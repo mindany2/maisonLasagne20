@@ -6,7 +6,7 @@ class Site_maison:
     """
     Définit l'intégralité du site
     """
-    def  __init__(this):
+    def  __init__(this, maison):
         this.site = Flask(__name__)
         this.liste_envi = Liste_environnements()
 
