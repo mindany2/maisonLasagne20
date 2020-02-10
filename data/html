@@ -1,0 +1,19 @@
+Ce fichier contient tous les boutons et instructions d'une page HTML
+
+Exemple de mise en forme :
+
+type = bluetooth, relais, fondu, sleep
+
+Nom_de_la_page
+
+    Nom_bouton : champ1_on/champ1_off, champ2_on/champ2_off
+        Nom_instruction1 : Nom_lampe : champ1, champ2
+        Nom_instruction2 : Nom_lampe
+
+    Nom_bouton2 : champ1, champ2
+        Nom_instruction1 : Nom_lampe
+-----------------------------------------------------------------------------------------------------
+Index
+
+    test : on/off, green/red
+        ne_fait_rien
