@@ -1,4 +1,5 @@
 from enum import Enum
+from threading import Thread
 
 class Attente(Enum):
     CONTINUE = 0

@@ -1,0 +1,5 @@
+Contient la carte de montage de toutes les lumières de l'environnement "Bar"
+
+Nom_projecteur  |   Type    |   Pin_GPIO    |   Addresse Bluetooth  |   Dernière couleur(hex)
+                |           |               |                       |
+led_test        |   led     |       5       |   be:ff:f0:00:88:11   |       0x000000

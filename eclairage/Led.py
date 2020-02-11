@@ -14,7 +14,7 @@ class Couleur:
         string = ""
         for valeur in this.couleur:
             string += hex(valeur)[2::]
-        print(string)
+        print("led couleur = "+string)
         return string
 
 
