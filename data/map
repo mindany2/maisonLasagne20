@@ -1,8 +1,0 @@
-Ce fichier contient la carte de toutes les entrées/sorties
-de l'environnement "Bar"
-
-nom_du_projecteur   |   type    |   pin_GPIO    |   Adresse Bluetooth   |   Dernière couleur
-                    |           |               |                       |
-led_test            |   led     |       3       |   be:ff:f0:00:88:11   |       0x000000
-Projecteur_test     |   projo   |       5       |                       |
-

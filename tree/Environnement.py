@@ -1,5 +1,6 @@
 from enum import Enum
 from tree.Liste_boutons import Liste_boutons
+from eclairage.Liste_lumieres import Liste_lumieres
 
 
 class Environnement:
@@ -9,10 +10,10 @@ class Environnement:
     """
     def __init__(this, nom, liste_info):
         this.nom = nom
-        this.liste_boutons = Liste_boutons()
         this.liste_lumières = Liste_lumieres()
         this.liste_info = []
         liste_info.append(this.liste_info)
+        this.liste_boutons = Liste_boutons(this.liste_info)
 
     def add_bouton(self, bouton):
         this.liste_boutons.add(bouton)

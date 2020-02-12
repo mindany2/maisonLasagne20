@@ -12,6 +12,7 @@ class Liste_instructions:
 
     def do(this):
         #on fait toute les instructions
+        print("coucou je fait des trucs")
         for inst in this.liste:
             # chaque instruction est un thread
             # on le demarre

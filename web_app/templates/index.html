@@ -1,38 +1,17 @@
+<!DOCTYPE html>
 <html>
-        <style type="text/css">
-            /* HIDE RADIO */
-            [type=radio] { 
-              position: absolute;
-              opacity: 0;
-              width: 0;
-              height: 0;
-            }
-
-            /* IMAGE STYLES */
-            [type=radio] + img {
-              cursor: pointer;
-            }
-
-            /* CHECKED STYLES */
-            [type=radio]:checked + img {
-              outline: 2px solid #f00;
-            }
-
-            body{
-                background-color = red;
-            }
-
-        </style>
-
+    <head>
+        <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    </head>
     <body>
         <label>
-      <input type="radio" name="test" value="small" checked>
-      <img src="http://placehold.it/40x60/0bf/fff&text=A">
-    </label>
+          <input type="radio" name="test" value="small" checked>
+          <img src="http://placehold.it/40x60/0bf/fff&text=A">
+        </label>
 
-    <label>
-      <input type="radio" name="test" value="big">
-      <img src="http://placehold.it/40x60/b0f/fff&text=B">
-    </label>
+        <label>
+          <input type="radio" name="test" value="big">
+          <img src="http://placehold.it/40x60/b0f/fff&text=B">
+        </label>
     </body>
 </html>

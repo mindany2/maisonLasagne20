@@ -8,7 +8,7 @@ class Site_maison:
     """
     def  __init__(this):
         this.site = Flask(__name__)
-        this.liste_envi = Liste_environnements()
+        this.liste_envi = None
 
         """
         Page d'accueil

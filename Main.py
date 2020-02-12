@@ -11,7 +11,12 @@ donc au démarage du rasperry
 
 site = Site_maison()
 liste_envi = get_tree(site)
+site.liste_envi = liste_envi
 
 
 # on donne à apache la bonne application
 app = site.site
+
+
+if __name__ == "__main__":
+     app.run()

@@ -1,0 +1,11 @@
+Contient toutes les informations relatives à l'environnement
+qui vont être donné à la page web et à la console
+
+index
+        n°0
+        Bouton_test : (oui/non), (green/red)
+        |   type    |   Lumière     |    dimmeur(%) |   Durée(s)    |   Attente |   Couleur(hex)
+        |           |               |               |               |           |
+        |   led     |   led_test    |       50      |       2       |    non    |   0xffffff
+        |   projo   |   projo_test  |       75      |       2       |    oui    |
+        |   led     |   led_test    |       100     |       2       |    non    |   0xffffff

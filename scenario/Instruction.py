@@ -11,9 +11,10 @@ class Instruction(Thread):
     Juste une class qui est vide pour
     être la parentes de bluetooth et pin
     """
-    def __init__(this, attente = Attente.CONTINUE):
+    def __init__(this, duree, attente):
         Thread.__init__(this)
         this.attente = attente
+        this.duree = duree
 
     def run(this):
         # implémenter dans les sous-classes
