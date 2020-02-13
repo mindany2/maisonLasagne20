@@ -1,313 +1,78 @@
-[Wed Feb 12 16:42:18.682779 2020] [wsgi:error] [pid 31800:tid 1965298736] bar
-[Wed Feb 12 16:42:18.683299 2020] [wsgi:error] [pid 31800:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:42:18.683407 2020] [wsgi:error] [pid 31800:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:42:18.683545 2020] [wsgi:error] [pid 31800:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:42:18.683930 2020] [wsgi:error] [pid 31800:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:42:18.684951 2020] [wsgi:error] [pid 31800:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:42:18.685033 2020] [wsgi:error] [pid 31800:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:42:18.685100 2020] [wsgi:error] [pid 31800:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:42:18.686721 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49156] [[], ['non', 'red']]
-[Wed Feb 12 16:42:21.090140 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] coucou je fait des trucs
-[Wed Feb 12 16:42:21.117554 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] [2020-02-12 16:42:21,107] ERROR in app: Exception on /Bouton_test [GET]
-[Wed Feb 12 16:42:21.117687 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] Traceback (most recent call last):
-[Wed Feb 12 16:42:21.117726 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/home/pi/maison/web_app/Bouton_html.py", line 37, in wrapper
-[Wed Feb 12 16:42:21.117763 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     return func()
-[Wed Feb 12 16:42:21.117796 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/home/pi/maison/web_app/Bouton_html.py", line 27, in bouton
-[Wed Feb 12 16:42:21.117831 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     print("etat = "+this.etat)
-[Wed Feb 12 16:42:21.117866 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] TypeError: Can't convert 'bool' object to str implicitly
-[Wed Feb 12 16:42:21.117899 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] 
-[Wed Feb 12 16:42:21.117931 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] During handling of the above exception, another exception occurred:
-[Wed Feb 12 16:42:21.117966 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] 
-[Wed Feb 12 16:42:21.117997 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] Traceback (most recent call last):
-[Wed Feb 12 16:42:21.118031 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1982, in wsgi_app
-[Wed Feb 12 16:42:21.118067 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     response = self.full_dispatch_request()
-[Wed Feb 12 16:42:21.118101 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1614, in full_dispatch_request
-[Wed Feb 12 16:42:21.118138 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     rv = self.handle_user_exception(e)
-[Wed Feb 12 16:42:21.118172 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1517, in handle_user_exception
-[Wed Feb 12 16:42:21.118208 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:42:21.118242 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:42:21.118278 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     raise value
-[Wed Feb 12 16:42:21.118311 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1612, in full_dispatch_request
-[Wed Feb 12 16:42:21.118346 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     rv = self.dispatch_request()
-[Wed Feb 12 16:42:21.118442 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1598, in dispatch_request
-[Wed Feb 12 16:42:21.118480 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     return self.view_functions[rule.endpoint](**req.view_args)
-[Wed Feb 12 16:42:21.118516 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]   File "/home/pi/maison/web_app/Bouton_html.py", line 40, in wrapper
-[Wed Feb 12 16:42:21.118551 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160]     logger.exception("Service exception: %s", e)
-[Wed Feb 12 16:42:21.118597 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] NameError: name 'logger' is not defined
-[Wed Feb 12 16:42:21.118747 2020] [wsgi:error] [pid 31800:tid 1965298736] [remote 127.0.0.1:49160] 
-[Wed Feb 12 16:43:05.487162 2020] [wsgi:error] [pid 31906:tid 1965298736] bar
-[Wed Feb 12 16:43:05.487645 2020] [wsgi:error] [pid 31906:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:43:05.487755 2020] [wsgi:error] [pid 31906:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:43:05.487897 2020] [wsgi:error] [pid 31906:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:43:05.488286 2020] [wsgi:error] [pid 31906:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:43:05.489283 2020] [wsgi:error] [pid 31906:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:43:05.489368 2020] [wsgi:error] [pid 31906:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:43:05.489438 2020] [wsgi:error] [pid 31906:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:43:05.491033 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] coucou je fait des trucs
-[Wed Feb 12 16:43:05.491132 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] etat =  True
-[Wed Feb 12 16:43:05.511851 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] [2020-02-12 16:43:05,501] ERROR in app: Exception on /Bouton_test [GET]
-[Wed Feb 12 16:43:05.511946 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] Traceback (most recent call last):
-[Wed Feb 12 16:43:05.511967 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/home/pi/maison/web_app/Bouton_html.py", line 37, in wrapper
-[Wed Feb 12 16:43:05.511988 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     return func()
-[Wed Feb 12 16:43:05.512007 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/home/pi/maison/web_app/Bouton_html.py", line 31, in bouton
-[Wed Feb 12 16:43:05.512027 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     return redirect(url_for("\\'"+this.page+"\\'"))
-[Wed Feb 12 16:43:05.512099 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/helpers.py", line 333, in url_for
-[Wed Feb 12 16:43:05.512125 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     return appctx.app.handle_url_build_error(error, endpoint, values)
-[Wed Feb 12 16:43:05.512146 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1805, in handle_url_build_error
-[Wed Feb 12 16:43:05.512166 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:43:05.512185 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:43:05.512205 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     raise value
-[Wed Feb 12 16:43:05.512223 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/helpers.py", line 323, in url_for
-[Wed Feb 12 16:43:05.512283 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     force_external=external)
-[Wed Feb 12 16:43:05.512301 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/werkzeug/routing.py", line 1758, in build
-[Wed Feb 12 16:43:05.512319 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     raise BuildError(endpoint, values, method, self)
-[Wed Feb 12 16:43:05.512337 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] werkzeug.routing.BuildError: Could not build url for endpoint "'index\\n'". Did you mean 'index' instead?
-[Wed Feb 12 16:43:05.512355 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] 
-[Wed Feb 12 16:43:05.512371 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] During handling of the above exception, another exception occurred:
-[Wed Feb 12 16:43:05.512388 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] 
-[Wed Feb 12 16:43:05.512404 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] Traceback (most recent call last):
-[Wed Feb 12 16:43:05.512421 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1982, in wsgi_app
-[Wed Feb 12 16:43:05.512439 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     response = self.full_dispatch_request()
-[Wed Feb 12 16:43:05.512456 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1614, in full_dispatch_request
-[Wed Feb 12 16:43:05.512474 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     rv = self.handle_user_exception(e)
-[Wed Feb 12 16:43:05.512491 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1517, in handle_user_exception
-[Wed Feb 12 16:43:05.512508 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:43:05.512526 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:43:05.512543 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     raise value
-[Wed Feb 12 16:43:05.512560 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1612, in full_dispatch_request
-[Wed Feb 12 16:43:05.512578 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     rv = self.dispatch_request()
-[Wed Feb 12 16:43:05.512595 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1598, in dispatch_request
-[Wed Feb 12 16:43:05.512613 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     return self.view_functions[rule.endpoint](**req.view_args)
-[Wed Feb 12 16:43:05.512630 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]   File "/home/pi/maison/web_app/Bouton_html.py", line 40, in wrapper
-[Wed Feb 12 16:43:05.512647 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162]     logger.exception("Service exception: %s", e)
-[Wed Feb 12 16:43:05.512673 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] NameError: name 'logger' is not defined
-[Wed Feb 12 16:43:05.512765 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49162] 
-[Wed Feb 12 16:43:08.819978 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49166] [[], ['non', 'red']]
-[Wed Feb 12 16:43:10.851929 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] coucou je fait des trucs
-[Wed Feb 12 16:43:10.852351 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] etat =  False
-[Wed Feb 12 16:43:10.859688 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] [2020-02-12 16:43:10,855] ERROR in app: Exception on /Bouton_test [GET]
-[Wed Feb 12 16:43:10.859849 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] Traceback (most recent call last):
-[Wed Feb 12 16:43:10.859890 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/home/pi/maison/web_app/Bouton_html.py", line 37, in wrapper
-[Wed Feb 12 16:43:10.859927 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     return func()
-[Wed Feb 12 16:43:10.859960 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/home/pi/maison/web_app/Bouton_html.py", line 31, in bouton
-[Wed Feb 12 16:43:10.859996 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     return redirect(url_for("\\'"+this.page+"\\'"))
-[Wed Feb 12 16:43:10.860033 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/helpers.py", line 333, in url_for
-[Wed Feb 12 16:43:10.860069 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     return appctx.app.handle_url_build_error(error, endpoint, values)
-[Wed Feb 12 16:43:10.860105 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1805, in handle_url_build_error
-[Wed Feb 12 16:43:10.860142 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:43:10.860177 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:43:10.860212 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     raise value
-[Wed Feb 12 16:43:10.860246 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/helpers.py", line 323, in url_for
-[Wed Feb 12 16:43:10.860281 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     force_external=external)
-[Wed Feb 12 16:43:10.860315 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/werkzeug/routing.py", line 1758, in build
-[Wed Feb 12 16:43:10.860351 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     raise BuildError(endpoint, values, method, self)
-[Wed Feb 12 16:43:10.860387 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] werkzeug.routing.BuildError: Could not build url for endpoint "'index\\n'". Did you mean 'index' instead?
-[Wed Feb 12 16:43:10.860423 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] 
-[Wed Feb 12 16:43:10.860456 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] During handling of the above exception, another exception occurred:
-[Wed Feb 12 16:43:10.860489 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] 
-[Wed Feb 12 16:43:10.860520 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] Traceback (most recent call last):
-[Wed Feb 12 16:43:10.860554 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1982, in wsgi_app
-[Wed Feb 12 16:43:10.860589 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     response = self.full_dispatch_request()
-[Wed Feb 12 16:43:10.860624 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1614, in full_dispatch_request
-[Wed Feb 12 16:43:10.860659 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     rv = self.handle_user_exception(e)
-[Wed Feb 12 16:43:10.860694 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1517, in handle_user_exception
-[Wed Feb 12 16:43:10.860729 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:43:10.860792 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:43:10.860829 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     raise value
-[Wed Feb 12 16:43:10.860863 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1612, in full_dispatch_request
-[Wed Feb 12 16:43:10.860898 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     rv = self.dispatch_request()
-[Wed Feb 12 16:43:10.860931 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1598, in dispatch_request
-[Wed Feb 12 16:43:10.860968 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     return self.view_functions[rule.endpoint](**req.view_args)
-[Wed Feb 12 16:43:10.861002 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]   File "/home/pi/maison/web_app/Bouton_html.py", line 40, in wrapper
-[Wed Feb 12 16:43:10.861037 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170]     logger.exception("Service exception: %s", e)
-[Wed Feb 12 16:43:10.861078 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] NameError: name 'logger' is not defined
-[Wed Feb 12 16:43:10.861226 2020] [wsgi:error] [pid 31906:tid 1965298736] [remote 127.0.0.1:49170] 
-[Wed Feb 12 16:44:58.659017 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172] mod_wsgi (pid=32070): Target WSGI script '/home/pi/maison/web_app/site_maison.wsgi' cannot be loaded as Python module.
-[Wed Feb 12 16:44:58.659251 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172] mod_wsgi (pid=32070): Exception occurred processing WSGI script '/home/pi/maison/web_app/site_maison.wsgi'.
-[Wed Feb 12 16:44:58.660962 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172] Traceback (most recent call last):
-[Wed Feb 12 16:44:58.661131 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]   File "/home/pi/maison/web_app/site_maison.wsgi", line 3, in <module>
-[Wed Feb 12 16:44:58.661159 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]     from Main import app as application
-[Wed Feb 12 16:44:58.661209 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]   File "/home/pi/maison/Main.py", line 2, in <module>
-[Wed Feb 12 16:44:58.661232 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]     from utils.In_out import get_tree
-[Wed Feb 12 16:44:58.661276 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]   File "/home/pi/maison/utils/In_out.py", line 10, in <module>
-[Wed Feb 12 16:44:58.661299 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]     from web_app.Bouton_html import Bouton_html
-[Wed Feb 12 16:44:58.661383 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]   File "/home/pi/maison/web_app/Bouton_html.py", line 34
-[Wed Feb 12 16:44:58.661440 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]     def exception_handler(this, func):
-[Wed Feb 12 16:44:58.661534 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172]       ^
-[Wed Feb 12 16:44:58.661588 2020] [wsgi:error] [pid 32070:tid 1965298736] [remote 127.0.0.1:49172] SyntaxError: invalid syntax
-[Wed Feb 12 16:44:58.855286 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174] mod_wsgi (pid=32070): Target WSGI script '/home/pi/maison/web_app/site_maison.wsgi' cannot be loaded as Python module.
-[Wed Feb 12 16:44:58.855487 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174] mod_wsgi (pid=32070): Exception occurred processing WSGI script '/home/pi/maison/web_app/site_maison.wsgi'.
-[Wed Feb 12 16:44:58.855955 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174] Traceback (most recent call last):
-[Wed Feb 12 16:44:58.856138 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]   File "/home/pi/maison/web_app/site_maison.wsgi", line 3, in <module>
-[Wed Feb 12 16:44:58.856161 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]     from Main import app as application
-[Wed Feb 12 16:44:58.856206 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]   File "/home/pi/maison/Main.py", line 2, in <module>
-[Wed Feb 12 16:44:58.856227 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]     from utils.In_out import get_tree
-[Wed Feb 12 16:44:58.856270 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]   File "/home/pi/maison/utils/In_out.py", line 10, in <module>
-[Wed Feb 12 16:44:58.856292 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]     from web_app.Bouton_html import Bouton_html
-[Wed Feb 12 16:44:58.856364 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]   File "/home/pi/maison/web_app/Bouton_html.py", line 34
-[Wed Feb 12 16:44:58.856419 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]     def exception_handler(this, func):
-[Wed Feb 12 16:44:58.856509 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174]       ^
-[Wed Feb 12 16:44:58.856560 2020] [wsgi:error] [pid 32070:tid 1931727920] [remote 127.0.0.1:49174] SyntaxError: invalid syntax
-[Wed Feb 12 16:45:27.357905 2020] [wsgi:error] [pid 32187:tid 1965298736] bar
-[Wed Feb 12 16:45:27.358369 2020] [wsgi:error] [pid 32187:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:45:27.358472 2020] [wsgi:error] [pid 32187:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:45:27.358611 2020] [wsgi:error] [pid 32187:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:45:27.358999 2020] [wsgi:error] [pid 32187:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:45:27.359990 2020] [wsgi:error] [pid 32187:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:45:27.360071 2020] [wsgi:error] [pid 32187:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:45:27.360138 2020] [wsgi:error] [pid 32187:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:45:27.361739 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49176] [[], ['non', 'red']]
-[Wed Feb 12 16:45:29.192924 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] coucou je fait des trucs
-[Wed Feb 12 16:45:29.193177 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] etat =  True
-[Wed Feb 12 16:45:29.230013 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] [2020-02-12 16:45:29,211] ERROR in app: Exception on /Bouton_test [GET]
-[Wed Feb 12 16:45:29.230148 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] Traceback (most recent call last):
-[Wed Feb 12 16:45:29.230187 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/home/pi/maison/web_app/Bouton_html.py", line 37, in wrapper
-[Wed Feb 12 16:45:29.230224 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     return func()
-[Wed Feb 12 16:45:29.230258 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/home/pi/maison/web_app/Bouton_html.py", line 31, in bouton
-[Wed Feb 12 16:45:29.230302 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     return redirect(url_for("%r".format(this.page)))
-[Wed Feb 12 16:45:29.230339 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/helpers.py", line 333, in url_for
-[Wed Feb 12 16:45:29.230376 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     return appctx.app.handle_url_build_error(error, endpoint, values)
-[Wed Feb 12 16:45:29.230412 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1805, in handle_url_build_error
-[Wed Feb 12 16:45:29.230508 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:45:29.230544 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:45:29.230580 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     raise value
-[Wed Feb 12 16:45:29.230614 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/helpers.py", line 323, in url_for
-[Wed Feb 12 16:45:29.230648 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     force_external=external)
-[Wed Feb 12 16:45:29.230683 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/werkzeug/routing.py", line 1758, in build
-[Wed Feb 12 16:45:29.230718 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     raise BuildError(endpoint, values, method, self)
-[Wed Feb 12 16:45:29.230753 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] werkzeug.routing.BuildError: Could not build url for endpoint '%r'. Did you mean 'Bouton_test' instead?
-[Wed Feb 12 16:45:29.230789 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] 
-[Wed Feb 12 16:45:29.230821 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] During handling of the above exception, another exception occurred:
-[Wed Feb 12 16:45:29.230856 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] 
-[Wed Feb 12 16:45:29.230888 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] Traceback (most recent call last):
-[Wed Feb 12 16:45:29.230922 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1982, in wsgi_app
-[Wed Feb 12 16:45:29.230957 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     response = self.full_dispatch_request()
-[Wed Feb 12 16:45:29.230992 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1614, in full_dispatch_request
-[Wed Feb 12 16:45:29.231027 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     rv = self.handle_user_exception(e)
-[Wed Feb 12 16:45:29.231061 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1517, in handle_user_exception
-[Wed Feb 12 16:45:29.231096 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     reraise(exc_type, exc_value, tb)
-[Wed Feb 12 16:45:29.231130 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
-[Wed Feb 12 16:45:29.231165 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     raise value
-[Wed Feb 12 16:45:29.231197 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1612, in full_dispatch_request
-[Wed Feb 12 16:45:29.231233 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     rv = self.dispatch_request()
-[Wed Feb 12 16:45:29.231266 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1598, in dispatch_request
-[Wed Feb 12 16:45:29.231302 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     return self.view_functions[rule.endpoint](**req.view_args)
-[Wed Feb 12 16:45:29.231337 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]   File "/home/pi/maison/web_app/Bouton_html.py", line 40, in wrapper
-[Wed Feb 12 16:45:29.231372 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180]     logger.exception("Service exception: %s", e)
-[Wed Feb 12 16:45:29.231415 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] NameError: name 'logger' is not defined
-[Wed Feb 12 16:45:29.231596 2020] [wsgi:error] [pid 32187:tid 1965298736] [remote 127.0.0.1:49180] 
-[Wed Feb 12 16:47:25.663055 2020] [wsgi:error] [pid 32350:tid 1965298736] bar
-[Wed Feb 12 16:47:25.663583 2020] [wsgi:error] [pid 32350:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:47:25.663697 2020] [wsgi:error] [pid 32350:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:47:25.663846 2020] [wsgi:error] [pid 32350:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:47:25.664259 2020] [wsgi:error] [pid 32350:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:47:25.665333 2020] [wsgi:error] [pid 32350:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:47:25.665420 2020] [wsgi:error] [pid 32350:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:47:25.665490 2020] [wsgi:error] [pid 32350:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:47:25.667203 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49182] [[], ['non', 'red']]
-[Wed Feb 12 16:47:28.315398 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49186] coucou je fait des trucs
-[Wed Feb 12 16:47:28.473840 2020] [wsgi:error] [pid 32350:tid 1931727920] [remote 127.0.0.1:49188] [[], ['non', 'red']]
-[Wed Feb 12 16:47:29.354758 2020] [wsgi:error] [pid 32350:tid 1931727920] [remote 127.0.0.1:49192] coucou je fait des trucs
-[Wed Feb 12 16:47:29.501356 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49194] [[], ['non', 'red']]
-[Wed Feb 12 16:47:30.682319 2020] [wsgi:error] [pid 32350:tid 1931727920] [remote 127.0.0.1:49196] coucou je fait des trucs
-[Wed Feb 12 16:47:30.835001 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49198] [[], ['non', 'red']]
-[Wed Feb 12 16:47:31.643239 2020] [wsgi:error] [pid 32350:tid 1931727920] [remote 127.0.0.1:49200] coucou je fait des trucs
-[Wed Feb 12 16:47:31.793851 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49202] [[], ['non', 'red']]
-[Wed Feb 12 16:47:32.594993 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49206] coucou je fait des trucs
-[Wed Feb 12 16:47:32.740770 2020] [wsgi:error] [pid 32350:tid 1931727920] [remote 127.0.0.1:49208] [[], ['non', 'red']]
-[Wed Feb 12 16:47:34.374405 2020] [wsgi:error] [pid 32350:tid 1965298736] [remote 127.0.0.1:49210] coucou je fait des trucs
-[Wed Feb 12 16:47:34.529479 2020] [wsgi:error] [pid 32350:tid 1931727920] [remote 127.0.0.1:49212] [[], ['non', 'red']]
-[Wed Feb 12 16:48:16.552534 2020] [wsgi:error] [pid 32477:tid 1965298736] bar
-[Wed Feb 12 16:48:16.553050 2020] [wsgi:error] [pid 32477:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:48:16.553160 2020] [wsgi:error] [pid 32477:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:48:16.553304 2020] [wsgi:error] [pid 32477:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:48:16.553707 2020] [wsgi:error] [pid 32477:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:48:16.554790 2020] [wsgi:error] [pid 32477:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:48:16.554885 2020] [wsgi:error] [pid 32477:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:48:16.554955 2020] [wsgi:error] [pid 32477:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:48:16.556662 2020] [wsgi:error] [pid 32477:tid 1965298736] [remote 127.0.0.1:49214] [[], ['non', 'red']]
-[Wed Feb 12 16:48:17.713407 2020] [wsgi:error] [pid 32477:tid 1965298736] [remote 127.0.0.1:49218] coucou je fait des trucs
-[Wed Feb 12 16:48:17.713697 2020] [wsgi:error] [pid 32477:tid 1965298736] [remote 127.0.0.1:49218] ['oui', 'green']
-[Wed Feb 12 16:48:17.893654 2020] [wsgi:error] [pid 32477:tid 1931727920] [remote 127.0.0.1:49220] [[], ['non', 'red']]
-[Wed Feb 12 16:49:09.224027 2020] [wsgi:error] [pid 32594:tid 1965298736] bar
-[Wed Feb 12 16:49:09.224530 2020] [wsgi:error] [pid 32594:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:49:09.224646 2020] [wsgi:error] [pid 32594:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:49:09.224835 2020] [wsgi:error] [pid 32594:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:49:09.225246 2020] [wsgi:error] [pid 32594:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:49:09.226296 2020] [wsgi:error] [pid 32594:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:49:09.226379 2020] [wsgi:error] [pid 32594:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:49:09.226448 2020] [wsgi:error] [pid 32594:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:49:09.228171 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49224] [[], ['non', 'red']]
-[Wed Feb 12 16:49:11.119769 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49228] coucou je fait des trucs
-[Wed Feb 12 16:49:11.120017 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49228] ['oui', 'red']
-[Wed Feb 12 16:49:11.319979 2020] [wsgi:error] [pid 32594:tid 1956906032] [remote 127.0.0.1:49230] [[], ['oui', 'red']]
-[Wed Feb 12 16:49:12.859953 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49232] coucou je fait des trucs
-[Wed Feb 12 16:49:12.860209 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49232] ['oui', 'red']
-[Wed Feb 12 16:49:13.001338 2020] [wsgi:error] [pid 32594:tid 1956906032] [remote 127.0.0.1:49234] [[], ['oui', 'red']]
-[Wed Feb 12 16:49:14.710404 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49236] coucou je fait des trucs
-[Wed Feb 12 16:49:14.710653 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49236] ['oui', 'red']
-[Wed Feb 12 16:49:14.867793 2020] [wsgi:error] [pid 32594:tid 1956906032] [remote 127.0.0.1:49238] [[], ['oui', 'red']]
-[Wed Feb 12 16:49:15.631424 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49240] coucou je fait des trucs
-[Wed Feb 12 16:49:15.631666 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49240] ['oui', 'red']
-[Wed Feb 12 16:49:15.789788 2020] [wsgi:error] [pid 32594:tid 1956906032] [remote 127.0.0.1:49242] [[], ['oui', 'red']]
-[Wed Feb 12 16:49:17.669655 2020] [wsgi:error] [pid 32594:tid 1956906032] [remote 127.0.0.1:49246] coucou je fait des trucs
-[Wed Feb 12 16:49:17.669945 2020] [wsgi:error] [pid 32594:tid 1956906032] [remote 127.0.0.1:49246] ['oui', 'red']
-[Wed Feb 12 16:49:17.821508 2020] [wsgi:error] [pid 32594:tid 1965298736] [remote 127.0.0.1:49248] [[], ['oui', 'red']]
-[Wed Feb 12 16:50:30.968320 2020] [wsgi:error] [pid 32716:tid 1965298736] bar
-[Wed Feb 12 16:50:30.968845 2020] [wsgi:error] [pid 32716:tid 1965298736] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:50:30.968958 2020] [wsgi:error] [pid 32716:tid 1965298736] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:50:30.969107 2020] [wsgi:error] [pid 32716:tid 1965298736] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:50:30.969506 2020] [wsgi:error] [pid 32716:tid 1965298736] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:50:30.970573 2020] [wsgi:error] [pid 32716:tid 1965298736] ['oui/non', 'green/red']
-[Wed Feb 12 16:50:30.970670 2020] [wsgi:error] [pid 32716:tid 1965298736] [['non'], ['oui']]
-[Wed Feb 12 16:50:30.970742 2020] [wsgi:error] [pid 32716:tid 1965298736] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:50:30.972561 2020] [wsgi:error] [pid 32716:tid 1965298736] [remote 127.0.0.1:49250] [[], ['non', 'red']]
-[Wed Feb 12 16:50:33.198510 2020] [wsgi:error] [pid 32716:tid 1965298736] [remote 127.0.0.1:49254] coucou je fait des trucs
-[Wed Feb 12 16:50:33.198823 2020] [wsgi:error] [pid 32716:tid 1965298736] [remote 127.0.0.1:49254] ['oui', 'red'] etat =  True
-[Wed Feb 12 16:50:33.365942 2020] [wsgi:error] [pid 32716:tid 1931727920] [remote 127.0.0.1:49256] [[], ['oui', 'red']]
-[Wed Feb 12 16:50:34.337449 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49262] coucou je fait des trucs
-[Wed Feb 12 16:50:34.337797 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49262] ['oui', 'red'] etat =  False
-[Wed Feb 12 16:50:34.478290 2020] [wsgi:error] [pid 32716:tid 1931727920] [remote 127.0.0.1:49264] [[], ['oui', 'red']]
-[Wed Feb 12 16:52:49.957323 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49266] [[], ['oui', 'red']]
-[Wed Feb 12 16:52:55.841444 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49270] coucou je fait des trucs
-[Wed Feb 12 16:52:55.841749 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49270] ['oui', 'red'] etat =  True
-[Wed Feb 12 16:52:56.122715 2020] [wsgi:error] [pid 32716:tid 1931727920] [remote 127.0.0.1:49272] [[], ['oui', 'red']]
-[Wed Feb 12 16:52:58.630504 2020] [wsgi:error] [pid 32716:tid 1931727920] [remote 127.0.0.1:49276] coucou je fait des trucs
-[Wed Feb 12 16:52:58.630818 2020] [wsgi:error] [pid 32716:tid 1931727920] [remote 127.0.0.1:49276] ['oui', 'red'] etat =  False
-[Wed Feb 12 16:52:58.892225 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49278] [[], ['oui', 'red']]
-[Wed Feb 12 16:52:59.875789 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49282] coucou je fait des trucs
-[Wed Feb 12 16:52:59.876107 2020] [wsgi:error] [pid 32716:tid 1940120624] [remote 127.0.0.1:49282] ['oui', 'red'] etat =  True
-[Wed Feb 12 16:53:00.135375 2020] [wsgi:error] [pid 32716:tid 1931727920] [remote 127.0.0.1:49284] [[], ['oui', 'red']]
-[Wed Feb 12 16:53:14.795412 2020] [wsgi:error] [pid 466:tid 1956906032] bar
-[Wed Feb 12 16:53:14.795951 2020] [wsgi:error] [pid 466:tid 1956906032] ---- Lumi\xc3\xa8res ----
-[Wed Feb 12 16:53:14.796075 2020] [wsgi:error] [pid 466:tid 1956906032] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Wed Feb 12 16:53:14.796231 2020] [wsgi:error] [pid 466:tid 1956906032] ['projo_test', 'projo', '3', '']
-[Wed Feb 12 16:53:14.796643 2020] [wsgi:error] [pid 466:tid 1956906032] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Wed Feb 12 16:53:14.797709 2020] [wsgi:error] [pid 466:tid 1956906032] ['oui/non', 'green/red']
-[Wed Feb 12 16:53:14.797797 2020] [wsgi:error] [pid 466:tid 1956906032] [['non'], ['oui']]
-[Wed Feb 12 16:53:14.797868 2020] [wsgi:error] [pid 466:tid 1956906032] [['non', 'red'], ['oui', 'green']]
-[Wed Feb 12 16:53:14.799609 2020] [wsgi:error] [pid 466:tid 1956906032] [remote 127.0.0.1:49286] [[], ['non', 'red']]
-[Wed Feb 12 16:53:17.921019 2020] [wsgi:error] [pid 466:tid 1956906032] [remote 127.0.0.1:49290] coucou je fait des trucs
-[Wed Feb 12 16:53:17.921342 2020] [wsgi:error] [pid 466:tid 1956906032] [remote 127.0.0.1:49290] ['oui', 'red'] etat =  True
-[Wed Feb 12 16:53:18.150901 2020] [wsgi:error] [pid 466:tid 1931727920] [remote 127.0.0.1:49292] [[], ['oui', 'red']]
-[Wed Feb 12 16:53:22.658985 2020] [wsgi:error] [pid 466:tid 1956906032] [remote 127.0.0.1:49294] coucou je fait des trucs
-[Wed Feb 12 16:53:22.659344 2020] [wsgi:error] [pid 466:tid 1956906032] [remote 127.0.0.1:49294] ['oui', 'red'] etat =  False
-[Wed Feb 12 16:53:22.806528 2020] [wsgi:error] [pid 466:tid 1931727920] [remote 127.0.0.1:49296] [[], ['oui', 'red']]
-[Thu Feb 13 15:47:24.636902 2020] [wsgi:error] [pid 1976:tid 1957442608] bar
-[Thu Feb 13 15:47:24.638058 2020] [wsgi:error] [pid 1976:tid 1957442608] ---- Lumi\xc3\xa8res ----
-[Thu Feb 13 15:47:24.638200 2020] [wsgi:error] [pid 1976:tid 1957442608] ['led_test', 'led', '5', 'be:ff:f0:00:88:11', '0x000000']
-[Thu Feb 13 15:47:24.638362 2020] [wsgi:error] [pid 1976:tid 1957442608] ['projo_test', 'projo', '3', '']
-[Thu Feb 13 15:47:24.639382 2020] [wsgi:error] [pid 1976:tid 1957442608] ici :  ['Bouton_test', '(oui/non),(green/red)']
-[Thu Feb 13 15:47:24.640627 2020] [wsgi:error] [pid 1976:tid 1957442608] ['oui/non', 'green/red']
-[Thu Feb 13 15:47:24.640738 2020] [wsgi:error] [pid 1976:tid 1957442608] [['non'], ['oui']]
-[Thu Feb 13 15:47:24.640808 2020] [wsgi:error] [pid 1976:tid 1957442608] [['non', 'red'], ['oui', 'green']]
-[Thu Feb 13 15:47:24.642469 2020] [wsgi:error] [pid 1976:tid 1957442608] [remote 192.168.43.152:39524] [[], ['non', 'red']]
-[Thu Feb 13 15:47:26.912486 2020] [wsgi:error] [pid 1976:tid 1949049904] [remote 192.168.43.152:39524] coucou je fait des trucs
-[Thu Feb 13 15:47:26.912912 2020] [wsgi:error] [pid 1976:tid 1949049904] [remote 192.168.43.152:39524] ['oui', 'red'] etat =  True
-[Thu Feb 13 15:47:26.970265 2020] [wsgi:error] [pid 1976:tid 1957442608] [remote 192.168.43.152:39524] [[], ['oui', 'red']]
-[Thu Feb 13 15:47:27.712550 2020] [wsgi:error] [pid 1976:tid 1949049904] [remote 192.168.43.152:39524] coucou je fait des trucs
-[Thu Feb 13 15:47:27.712839 2020] [wsgi:error] [pid 1976:tid 1949049904] [remote 192.168.43.152:39524] ['oui', 'red'] etat =  False
-[Thu Feb 13 15:47:27.738595 2020] [wsgi:error] [pid 1976:tid 1957442608] [remote 192.168.43.152:39524] [[], ['oui', 'red']]
-[Thu Feb 13 15:47:28.584128 2020] [wsgi:error] [pid 1976:tid 1949049904] [remote 192.168.43.152:39524] coucou je fait des trucs
-[Thu Feb 13 15:47:28.584428 2020] [wsgi:error] [pid 1976:tid 1949049904] [remote 192.168.43.152:39524] ['oui', 'red'] etat =  True
-[Thu Feb 13 15:47:28.606561 2020] [wsgi:error] [pid 1976:tid 1957442608] [remote 192.168.43.152:39524] [[], ['oui', 'red']]
+[Thu Feb 13 15:50:32.194784 2020] [wsgi:error] [pid 2267:tid 1965835312] bar
+[Thu Feb 13 15:50:32.198384 2020] [wsgi:error] [pid 2267:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 15:50:32.198585 2020] [wsgi:error] [pid 2267:tid 1965835312] [['non', 'red'], ['oui', 'green']]
+[Thu Feb 13 15:50:32.202015 2020] [wsgi:error] [pid 2267:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 15:50:32.202208 2020] [wsgi:error] [pid 2267:tid 1965835312] [['non', 'red'], ['oui', 'blue']]
+[Thu Feb 13 15:50:32.202632 2020] [wsgi:error] [pid 2267:tid 1965835312] ----- Environnement bar -----
+[Thu Feb 13 15:50:32.202714 2020] [wsgi:error] [pid 2267:tid 1965835312] ----- Lumi\xc3\xa8res -----
+[Thu Feb 13 15:50:32.203010 2020] [wsgi:error] [pid 2267:tid 1965835312] nom = led_test  | pin_addr =  5  | bluetooth_addr =  be:ff:f0:00:88:11  | couleur =  000
+[Thu Feb 13 15:50:32.203153 2020] [wsgi:error] [pid 2267:tid 1965835312] nom = projo_test  | pin_addr =  3
+[Thu Feb 13 15:50:32.203230 2020] [wsgi:error] [pid 2267:tid 1965835312] ----- Boutons -----
+[Thu Feb 13 15:50:32.203320 2020] [wsgi:error] [pid 2267:tid 1965835312] Bouton_test
+[Thu Feb 13 15:50:32.203576 2020] [wsgi:error] [pid 2267:tid 1965835312] led =  led_test  | dimmeur =  50  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 15:50:32.203803 2020] [wsgi:error] [pid 2267:tid 1965835312] projo =  projo_test  | dimmeur =  75  | duree =  2
+[Thu Feb 13 15:50:32.204038 2020] [wsgi:error] [pid 2267:tid 1965835312] led =  led_test  | dimmeur =  100  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 15:50:32.204169 2020] [wsgi:error] [pid 2267:tid 1965835312] sleep   | duree =  5
+[Thu Feb 13 15:50:32.204251 2020] [wsgi:error] [pid 2267:tid 1965835312] Bouton_test2
+[Thu Feb 13 15:50:32.208162 2020] [wsgi:error] [pid 2267:tid 1965835312] [remote 192.168.43.152:39550] [[], ['non', 'red'], ['non', 'red']]
+[Thu Feb 13 15:50:34.672621 2020] [wsgi:error] [pid 2267:tid 1965835312] [remote 192.168.43.152:39552] coucou je fait des trucs
+[Thu Feb 13 15:50:34.679166 2020] [wsgi:error] [pid 2267:tid 1891628080] Exception in thread Thread-1:
+[Thu Feb 13 15:50:34.679297 2020] [wsgi:error] [pid 2267:tid 1891628080] Traceback (most recent call last):
+[Thu Feb 13 15:50:34.679335 2020] [wsgi:error] [pid 2267:tid 1891628080]   File "/usr/lib/python3.5/threading.py", line 914, in _bootstrap_inner
+[Thu Feb 13 15:50:34.679370 2020] [wsgi:error] [pid 2267:tid 1891628080]     self.run()
+[Thu Feb 13 15:50:34.679402 2020] [wsgi:error] [pid 2267:tid 1891628080]   File "/home/pi/maison/scenario/Instruction_led.py", line 18, in run
+[Thu Feb 13 15:50:34.679437 2020] [wsgi:error] [pid 2267:tid 1891628080]     dimmeur_initial = this.projecteur.dimmeur
+[Thu Feb 13 15:50:34.679470 2020] [wsgi:error] [pid 2267:tid 1891628080] AttributeError: 'Instruction_led' object has no attribute 'projecteur'
+[Thu Feb 13 15:50:34.679528 2020] [wsgi:error] [pid 2267:tid 1891628080] 
+[Thu Feb 13 15:50:34.682484 2020] [wsgi:error] [pid 2267:tid 1881142320] Exception in thread Thread-2:
+[Thu Feb 13 15:50:34.682621 2020] [wsgi:error] [pid 2267:tid 1881142320] Traceback (most recent call last):
+[Thu Feb 13 15:50:34.682658 2020] [wsgi:error] [pid 2267:tid 1881142320]   File "/usr/lib/python3.5/threading.py", line 914, in _bootstrap_inner
+[Thu Feb 13 15:50:34.682693 2020] [wsgi:error] [pid 2267:tid 1881142320]     self.run()
+[Thu Feb 13 15:50:34.682726 2020] [wsgi:error] [pid 2267:tid 1881142320]   File "/home/pi/maison/scenario/Instruction_projecteur.py", line 17, in run
+[Thu Feb 13 15:50:34.682764 2020] [wsgi:error] [pid 2267:tid 1881142320]     dimmeur_initial = this.projecteur.dimmeur
+[Thu Feb 13 15:50:34.682797 2020] [wsgi:error] [pid 2267:tid 1881142320] AttributeError: 'Instruction_projecteur' object has no attribute 'projecteur'
+[Thu Feb 13 15:50:34.682858 2020] [wsgi:error] [pid 2267:tid 1881142320] 
+[Thu Feb 13 15:50:34.684630 2020] [wsgi:error] [pid 2267:tid 1891628080] Exception in thread Thread-3:
+[Thu Feb 13 15:50:34.684728 2020] [wsgi:error] [pid 2267:tid 1891628080] Traceback (most recent call last):
+[Thu Feb 13 15:50:34.684768 2020] [wsgi:error] [pid 2267:tid 1891628080]   File "/usr/lib/python3.5/threading.py", line 914, in _bootstrap_inner
+[Thu Feb 13 15:50:34.684870 2020] [wsgi:error] [pid 2267:tid 1891628080]     self.run()
+[Thu Feb 13 15:50:34.684904 2020] [wsgi:error] [pid 2267:tid 1891628080]   File "/home/pi/maison/scenario/Instruction_led.py", line 18, in run
+[Thu Feb 13 15:50:34.684939 2020] [wsgi:error] [pid 2267:tid 1891628080]     dimmeur_initial = this.projecteur.dimmeur
+[Thu Feb 13 15:50:34.684971 2020] [wsgi:error] [pid 2267:tid 1891628080] AttributeError: 'Instruction_led' object has no attribute 'projecteur'
+[Thu Feb 13 15:50:34.685033 2020] [wsgi:error] [pid 2267:tid 1891628080] 
+[Thu Feb 13 15:50:39.691225 2020] [wsgi:error] [pid 2267:tid 1965835312] [remote 192.168.43.152:39552] ['oui', 'red'] etat =  True
+[Thu Feb 13 15:50:39.748408 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39552] [[], ['oui', 'red'], ['non', 'red']]
+[Thu Feb 13 15:50:42.803655 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] coucou je fait des trucs
+[Thu Feb 13 15:50:42.821365 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] [2020-02-13 15:50:42,808] ERROR in app: Exception on /Bouton_test [GET]
+[Thu Feb 13 15:50:42.821503 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] Traceback (most recent call last):
+[Thu Feb 13 15:50:42.821541 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/home/pi/maison/web_app/Bouton_html.py", line 37, in wrapper
+[Thu Feb 13 15:50:42.821577 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     return func()
+[Thu Feb 13 15:50:42.821611 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/home/pi/maison/web_app/Bouton_html.py", line 25, in bouton
+[Thu Feb 13 15:50:42.821647 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     this.do()
+[Thu Feb 13 15:50:42.821680 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/home/pi/maison/tree/Bouton.py", line 21, in do
+[Thu Feb 13 15:50:42.821714 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     this.liste_inst.do()
+[Thu Feb 13 15:50:42.821748 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/home/pi/maison/scenario/Liste_instructions.py", line 22, in do
+[Thu Feb 13 15:50:42.821783 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     inst.start()
+[Thu Feb 13 15:50:42.821816 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3.5/threading.py", line 840, in start
+[Thu Feb 13 15:50:42.821852 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     raise RuntimeError("threads can only be started once")
+[Thu Feb 13 15:50:42.821887 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] RuntimeError: threads can only be started once
+[Thu Feb 13 15:50:42.821921 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] 
+[Thu Feb 13 15:50:42.821953 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] During handling of the above exception, another exception occurred:
+[Thu Feb 13 15:50:42.821988 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] 
+[Thu Feb 13 15:50:42.822019 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] Traceback (most recent call last):
+[Thu Feb 13 15:50:42.822054 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1982, in wsgi_app
+[Thu Feb 13 15:50:42.822090 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     response = self.full_dispatch_request()
+[Thu Feb 13 15:50:42.822125 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1614, in full_dispatch_request
+[Thu Feb 13 15:50:42.822161 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     rv = self.handle_user_exception(e)
+[Thu Feb 13 15:50:42.822252 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1517, in handle_user_exception
+[Thu Feb 13 15:50:42.822291 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     reraise(exc_type, exc_value, tb)
+[Thu Feb 13 15:50:42.822325 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3/dist-packages/flask/_compat.py", line 33, in reraise
+[Thu Feb 13 15:50:42.822360 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     raise value
+[Thu Feb 13 15:50:42.822394 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1612, in full_dispatch_request
+[Thu Feb 13 15:50:42.822429 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     rv = self.dispatch_request()
+[Thu Feb 13 15:50:42.822463 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/usr/lib/python3/dist-packages/flask/app.py", line 1598, in dispatch_request
+[Thu Feb 13 15:50:42.822499 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     return self.view_functions[rule.endpoint](**req.view_args)
+[Thu Feb 13 15:50:42.822534 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]   File "/home/pi/maison/web_app/Bouton_html.py", line 40, in wrapper
+[Thu Feb 13 15:50:42.822568 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554]     logger.exception("Service exception: %s", e)
+[Thu Feb 13 15:50:42.822610 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] NameError: name 'logger' is not defined
+[Thu Feb 13 15:50:42.822758 2020] [wsgi:error] [pid 2267:tid 1932264496] [remote 192.168.43.152:39554] 

@@ -6,7 +6,7 @@ class Attente(Enum):
     WAIT = 1
 
 
-class Instruction(Thread):
+class Instruction():
     """
     Juste une class qui est vide pour
     être la parentes de bluetooth et pin
@@ -16,6 +16,6 @@ class Instruction(Thread):
         this.attente = attente
         this.duree = duree
 
-    def run(this):
+    def start(this):
         # implémenter dans les sous-classes
         pass

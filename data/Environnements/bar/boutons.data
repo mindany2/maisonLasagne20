@@ -9,3 +9,9 @@ index
         |   led     |   led_test    |       50      |       2       |    non    |   0xffffff
         |   projo   |   projo_test  |       75      |       2       |    oui    |
         |   led     |   led_test    |       100     |       2       |    non    |   0xffffff
+        |   sleep   |               |               |       5       |    oui    |
+
+        numero 1
+        Bouton_test2 : (oui/non), (blue/red)
+        |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
+        |           |               |               |               |           |

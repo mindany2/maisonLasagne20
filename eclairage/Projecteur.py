@@ -13,4 +13,6 @@ class Projecteur(Lumiere):
         # on utilise ici la sortie
         #du raspberry
 
+    def show(this):
+        print("nom = " + this.nom," | pin_addr = ",this.pin_addr)
         

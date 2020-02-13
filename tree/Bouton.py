@@ -11,7 +11,7 @@ class Bouton:
         this.liste_inst = Liste_instructions()
 
     def add_inst(this, inst):
-        this.liste_inst.add(isnt)
+        this.liste_inst.add(inst)
         
 
     def change(this):
@@ -19,3 +19,8 @@ class Bouton:
 
     def do(this):
         this.liste_inst.do()
+
+    def show(this):
+        print(this.nom)
+        for inst in this.liste_inst:
+            inst.show()

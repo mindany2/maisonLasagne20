@@ -20,7 +20,6 @@ class Couleur:
         string = ""
         for valeur in this.couleur:
             string += hex(valeur)[2::]
-        print("led couleur = "+string)
         return string
 
 
@@ -40,4 +39,7 @@ class Led(Lumiere):
         # on utilise ici la sortie
         # bluetooth
         pass
+
+    def show(this):
+        print("nom = " + this.nom," | pin_addr = ",this.pin_addr, " | bluetooth_addr = ",this.bluetooth_addr, " | couleur = ", this.couleur)
 
