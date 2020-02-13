@@ -16,16 +16,21 @@ class Liste_instructions:
     def do(this):
         #on fait toute les instructions
         print("coucou je fait des trucs")
+        liste_thread = []
         for inst in this.liste:
             # chaque instruction est un thread
             # on le demarre
-            inst.start()
+            process = Thread(target=inst.run())
+            process.start()
             if (inst.attente):
                 # on doit attendre que l'instruction se termine
-                inst.join()
+                process.join()
+            else {
+                liste_thread.append(process)
+            }
 
         #on attend qu'ils aient tous terminé
-        for inst in this.liste:
-            inst.join()
+        for proc in liste_thread:
+            proc.join()
 
 
