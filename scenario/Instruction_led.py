@@ -2,7 +2,7 @@ import numpy as np
 from scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
 from time import sleep
 
-class Instruction_projecteur(Instruction_lumiere):
+class Instruction_led(Instruction_lumiere):
     """
     On set une bande de led
     """
@@ -23,4 +23,7 @@ class Instruction_projecteur(Instruction_lumiere):
         for dim, couleur in zip(liste_dimmeur, liste_couleur):
             led.set(dim, couleur)
             sleep(1/RESOLUTION)
+    
+    def show(this):
+        print("led = ",this.lumière.nom, " | dimmeur = ", this.dimmeur, " | duree = ", this.duree, " | couleur = ",this.couleur)
 

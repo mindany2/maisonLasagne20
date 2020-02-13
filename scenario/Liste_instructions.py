@@ -10,6 +10,9 @@ class Liste_instructions:
     def add(this, inst):
         this.liste.append(inst)
 
+    def __iter__(this):
+        return this.liste.__iter__()
+
     def do(this):
         #on fait toute les instructions
         print("coucou je fait des trucs")

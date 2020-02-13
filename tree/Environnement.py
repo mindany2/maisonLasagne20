@@ -18,7 +18,13 @@ class Environnement:
     def add_bouton(self, bouton):
         this.liste_boutons.add(bouton)
 
-    def add_lumiere(self, bouton):
-        this.liste_boutons.add(bouton)
+    def add_lumiere(self, lum):
+        this.liste_lumières.add(lum)
 
+    def show(this):
+        print("----- Environnement "+this.nom +" -----")
+        print("----- Lumières -----")
+        this.liste_lumières.show()
+        print("----- Boutons -----")
+        this.liste_boutons.show()
 

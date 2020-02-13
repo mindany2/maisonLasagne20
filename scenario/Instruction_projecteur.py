@@ -21,3 +21,5 @@ class Instruction_projecteur(Instruction_lumiere):
             projecteur.set(dim)
             sleep(1/RESOLUTION)
 
+    def show(this):
+        print("projo = ",this.lumière.nom, " | dimmeur = ", this.dimmeur, " | duree = ", this.duree)

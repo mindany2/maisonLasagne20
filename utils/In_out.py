@@ -8,6 +8,9 @@ from eclairage.Liste_lumieres import Liste_lumieres
 from eclairage.Led import Led
 from eclairage.Projecteur import Projecteur
 from web_app.Bouton_html import Bouton_html
+from scenario.Instruction_sleep import Instruction_sleep
+from scenario.Instruction_led import Instruction_led
+from scenario.Instruction_projecteur import Instruction_projecteur
 
 import os
 
@@ -42,8 +45,10 @@ def get_env(app, tree, nom):
     fichier_map.close()
     
     fichier_bouton = open(PATH+nom+"/boutons.data","r")
-    env.liste_boutons = get_boutons(app, fichier_bouton, tree.liste_info)
+    env.liste_boutons = get_boutons(app, fichier_bouton, tree.liste_info, env)
     fichier_bouton.close()
+
+    env.show()
 
     return env 
 
@@ -55,10 +60,8 @@ def get_map(fichier):
     #on saute les 4 premières lignes
     for i in range(0,4):
         fichier.readline()
-    print("---- Lumières ----")
     ligne = fichier.readline().replace(" ","").replace("\t","").replace("\n","").split("|")
     while ligne != ['']:
-        print(ligne)
         liste.add(get_lumiere(ligne))
         ligne = fichier.readline().replace(" ","").replace("\t","").replace("\n","").split("|")
     return liste
@@ -74,7 +77,7 @@ def get_lumiere(ligne):
         return Led(ligne[0], int(ligne[2]), ligne[3], ligne[4])
         
 
-def get_boutons(app, fichier, liste_info):
+def get_boutons(app, fichier, liste_info, env):
     """
     Créer tous les boutons avec leurs instructions
     """
@@ -86,34 +89,60 @@ def get_boutons(app, fichier, liste_info):
     index = fichier.readline()
     
     #on parcours tous les boutons
-    continu = True
-    while continu:
-        bouton, continu = get_bouton(app, fichier, liste_info, index)
+    #on saute une ligne
+    ligne = fichier.readline()
+    while ligne:
+        bouton = get_bouton(app, fichier, liste_info, index, env)
         liste.add(bouton)
+        #on saute une ligne a chaque bouton (numero)
+        ligne = fichier.readline()
 
     return liste
 
-def get_bouton(app, fichier, liste_info, index):
+def get_bouton(app, fichier, liste_info, index, env):
     """
     Créer un bouton
     """
-    #on saute une ligne
-    fichier.readline()
     ligne = fichier.readline().replace(" ","").replace("\t","").replace("\n","").split(":")
-    print(ligne)
     nom = ligne[0]
     bouton = Bouton_html(nom, index, app, liste_info)
     # on met les paramètres
     params = ligne[1].replace("(","").replace(")","").split(",")
-    print(params)
     for par in params:
         oui = par.split("/")[0]
         non = par.split("/")[1]
         bouton.add_param(oui, non)
+    #on saute 2 lignes
+    fichier.readline()
+    fichier.readline()
 
-    #TODO faire recupération instructions
+    # on recupére les instructions
+    ligne = fichier.readline().replace(" ","").replace("\t","").replace("\n","").split("|")
+    while ligne != ['']:
+        inst = get_inst(ligne, env)
+        bouton.add_inst(inst)
+        ligne = fichier.readline().replace(" ","").replace("\t","").replace("\n","").split("|")
+        
+    return bouton
 
-    return bouton, False
+def get_inst(ligne, env):
+    """
+    Créer une instruction
+    """
+    type_inst = ligne[1]
+    duree = int(ligne[4])
+    if (type_inst == "sleep"):
+        return Instruction_sleep(duree)
+    # on a une lumière
+    lum = ligne[2]
+    dimmeur = int(ligne[3])
+    attente = (ligne[5] == "oui")
+    if (type_inst == "projo"):
+        return Instruction_projecteur(env.liste_lumières.get(lum), dimmeur, duree)
+    elif (type_inst == "led"):
+        return Instruction_led(env.liste_lumières.get(lum), dimmeur, duree, ligne[6])
+    print("Erreur")
+    return 0
         
 
 

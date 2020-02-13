@@ -14,4 +14,6 @@ class Liste_lumieres:
     def get(this, nom):
         return this.dictionnaire[nom]
 
-
+    def show(this):
+        for lum in this.dictionnaire.values():
+            lum.show()
