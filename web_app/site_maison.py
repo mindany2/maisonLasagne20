@@ -16,6 +16,7 @@ class Site_maison:
         @this.site.route('/')
         def index():
             # liste_info est remplit directement dans bouton
+            print(this.liste_envi.liste_info)
             return render_template("index.html", valeur = this.liste_envi.liste_info)
 
    
