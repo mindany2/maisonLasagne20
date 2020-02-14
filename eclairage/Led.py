@@ -1,28 +1,17 @@
 from eclairage.Lumiere import Lumiere
 
-def hex_to_rgb(hexa):
-        red = int(hexa[2:3])
-        green = int(hexa[4:5])
-        blue = int(hexa[6:7])
-        return [red, green, blue]
-
 class Couleur:
     """
     Permet d'avoir la couleur en rgb
     """
     def __init__(this, hexa):
-        this.couleur = hex_to_rgb(hexa)
+        this.valeur = int(hexa,16)
 
     def set(this, couleur):
-        this.couleur = couleur
+        this.valeur = couleur.valeur
 
     def __str__(this):
-        string = ""
-        for valeur in this.couleur:
-            string += hex(valeur)[2::]
-        return string
-
-
+        return str(hex(this.valeur))
 
 class Led(Lumiere):
     """
@@ -38,7 +27,7 @@ class Led(Lumiere):
         this.dimmeur = dimmeur
         # on utilise ici la sortie
         # bluetooth
-        pass
+        print(this.nom," met le dimmeur a ",dimmeur," de couleur ",str(couleur))
 
     def show(this):
         print("nom = " + this.nom," | pin_addr = ",this.pin_addr, " | bluetooth_addr = ",this.bluetooth_addr, " | couleur = ", this.couleur)

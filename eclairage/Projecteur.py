@@ -12,6 +12,7 @@ class Projecteur(Lumiere):
         this.dimmeur = dimmeur
         # on utilise ici la sortie
         #du raspberry
+        print(this.nom," met le dimmeur a ",dimmeur)
 
     def show(this):
         print("nom = " + this.nom," | pin_addr = ",this.pin_addr)

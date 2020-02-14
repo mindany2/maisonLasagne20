@@ -1,5 +1,6 @@
 import numpy as np
 from scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
+from eclairage.Led import Couleur
 from time import sleep
 
 class Instruction_led(Instruction_lumiere):
@@ -16,12 +17,15 @@ class Instruction_led(Instruction_lumiere):
         """
         dimmeur_final = this.dimmeur
         dimmeur_initial = this.lumière.dimmeur
-        nb_points = RESOLUTION*duree
+        nb_points = RESOLUTION*this.duree
         liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, nb_points)
-        liste_couleur = np.arange(this.led.couleur, this.couleur, nb_points)
+        print("couleur = ",str(this.lumière.couleur)," couleur voulut = ",this.couleur),
+        couleur_final = Couleur(this.couleur)
+        liste_couleur = np.arange(this.lumière.couleur.valeur, couleur_final.valeur, nb_points)
+        print(liste_couleur)
 
-        for dim, couleur in zip(liste_dimmeur, liste_couleur):
-            led.set(dim, couleur)
+        for dim, valeur_couleur in zip(liste_dimmeur, liste_couleur):
+            this.lumière.set(dim, valeur_couleur)
             sleep(1/RESOLUTION)
     
     def show(this):
