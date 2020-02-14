@@ -5,15 +5,15 @@ class Instruction_sleep(Instruction):
     """
     On set un projecteur
     """
-    def __init__(this, duree):
-        Instruction.__init__(this, Attente.WAIT, duree)
-        this.duree = duree
+    def __init__(self, duree):
+        Instruction.__init__(self, Attente.WAIT, duree)
+        self.duree = duree
 
-    def run(this):
+    def run(self):
         """
         On s'occupe de faire l'instruction
         """
-        sleep(this.duree)
+        sleep(self.duree)
 
-    def show(this):
-        print("sleep "," | duree = ", this.duree)
+    def show(self):
+        print("sleep "," | duree = ", self.duree)

@@ -7,9 +7,9 @@ class Instruction_lumiere(Instruction):
     """
     Une instruction de type allumage
     """
-    def __init__(this, lumière, dimmeur, duree, attente = Attente.CONTINUE):
-        Instruction.__init__(this, duree, attente)
-        this.dimmeur = dimmeur
-        this.duree = duree
-        this.lumière = lumière
+    def __init__(self, lumière, dimmeur, duree, attente = Attente.CONTINUE):
+        Instruction.__init__(self, duree, attente)
+        self.dimmeur = dimmeur
+        self.duree = duree
+        self.lumière = lumière
 

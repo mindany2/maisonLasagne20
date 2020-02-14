@@ -4,15 +4,15 @@ class Projecteur(Lumiere):
     """
     Un projecteur simple sur un dyrak
     """
-    def __init__(this, nom, pin_addr):
-        Lumiere.__init__(this, nom, pin_addr)
+    def __init__(self, nom, pin_addr):
+        Lumiere.__init__(self, nom, pin_addr)
 
 
-    def set(this, dimmeur):
-        this.dimmeur = dimmeur
+    def set(self, dimmeur):
+        self.dimmeur = dimmeur
         # on utilise ici la sortie
         #du raspberry
 
-    def show(this):
-        print("nom = " + this.nom," | pin_addr = ",this.pin_addr)
+    def show(self):
+        print("nom = " + self.nom," | pin_addr = ",self.pin_addr)
         

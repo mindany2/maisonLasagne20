@@ -6,24 +6,24 @@ class Instruction_led(Instruction_lumiere):
     """
     On set une bande de led
     """
-    def __init__(this, led, dimmeur, duree, couleur):
-        Instruction_lumiere.__init__(this, led, dimmeur, duree)
-        this.couleur = couleur
+    def __init__(self, led, dimmeur, duree, couleur):
+        Instruction_lumiere.__init__(self, led, dimmeur, duree)
+        self.couleur = couleur
 
-    def run(this):
+    def run(self):
         """
         On s'occupe de faire l'instruction
         """
-        dimmeur_final = this.dimmeur
-        dimmeur_initial = this.projecteur.dimmeur
+        dimmeur_final = self.dimmeur
+        dimmeur_initial = self.projecteur.dimmeur
         nb_points = RESOLUTION*duree
         liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, nb_points)
-        liste_couleur = np.arange(this.led.couleur, this.couleur, nb_points)
+        liste_couleur = np.arange(self.led.couleur, self.couleur, nb_points)
 
         for dim, couleur in zip(liste_dimmeur, liste_couleur):
             led.set(dim, couleur)
             sleep(1/RESOLUTION)
     
-    def show(this):
-        print("led = ",this.lumière.nom, " | dimmeur = ", this.dimmeur, " | duree = ", this.duree, " | couleur = ",this.couleur)
+    def show(self):
+        print("led = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree, " | couleur = ",self.couleur)
 

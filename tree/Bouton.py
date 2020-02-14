@@ -5,22 +5,22 @@ class Bouton:
     La base d'un bouton, juste un état
     """
 
-    def __init__(this, nom):
-        this.etat = False
-        this.nom = nom
-        this.liste_inst = Liste_instructions()
+    def __init__(self, nom):
+        self.etat = False
+        self.nom = nom
+        self.liste_inst = Liste_instructions()
 
-    def add_inst(this, inst):
-        this.liste_inst.add(inst)
+    def add_inst(self, inst):
+        self.liste_inst.add(inst)
         
 
-    def change(this):
-        this.etat = not(this.etat)
+    def change(self):
+        self.etat = not(self.etat)
 
-    def do(this):
-        this.liste_inst.do()
+    def do(self):
+        self.liste_inst.do()
 
-    def show(this):
-        print(this.nom)
-        for inst in this.liste_inst:
+    def show(self):
+        print(self.nom)
+        for inst in self.liste_inst:
             inst.show()

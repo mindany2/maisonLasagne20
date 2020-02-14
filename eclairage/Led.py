@@ -10,15 +10,15 @@ class Couleur:
     """
     Permet d'avoir la couleur en rgb
     """
-    def __init__(this, hexa):
-        this.couleur = hex_to_rgb(hexa)
+    def __init__(self, hexa):
+        self.couleur = hex_to_rgb(hexa)
 
-    def set(this, couleur):
-        this.couleur = couleur
+    def set(self, couleur):
+        self.couleur = couleur
 
-    def __str__(this):
+    def __str__(self):
         string = ""
-        for valeur in this.couleur:
+        for valeur in self.couleur:
             string += hex(valeur)[2::]
         return string
 
@@ -28,18 +28,18 @@ class Led(Lumiere):
     """
     Un projecteur simple sur un dyrak
     """
-    def __init__(this, nom, pin_addr, bluetooth_addr, couleur = "0x000000"):
-        Lumiere.__init__(this, nom, pin_addr)
-        this.couleur = Couleur(couleur)
-        this.bluetooth_addr = bluetooth_addr
+    def __init__(self, nom, pin_addr, bluetooth_addr, couleur = "0x000000"):
+        Lumiere.__init__(self, nom, pin_addr)
+        self.couleur = Couleur(couleur)
+        self.bluetooth_addr = bluetooth_addr
 
 
-    def set(this, dimmeur, couleur):
-        this.dimmeur = dimmeur
+    def set(self, dimmeur, couleur):
+        self.dimmeur = dimmeur
         # on utilise ici la sortie
         # bluetooth
         pass
 
-    def show(this):
-        print("nom = " + this.nom," | pin_addr = ",this.pin_addr, " | bluetooth_addr = ",this.bluetooth_addr, " | couleur = ", this.couleur)
+    def show(self):
+        print("nom = " + self.nom," | pin_addr = ",self.pin_addr, " | bluetooth_addr = ",self.bluetooth_addr, " | couleur = ", self.couleur)
 

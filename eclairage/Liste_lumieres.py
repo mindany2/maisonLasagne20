@@ -5,15 +5,15 @@ class Liste_lumieres:
     Contient le dictionnaire qui lie les
     lumières et leur nom
     """
-    def __init__(this):
-        this.dictionnaire = dict()
+    def __init__(self):
+        self.dictionnaire = dict()
 
-    def add(this, lumière):
-        this.dictionnaire[lumière.nom] = lumière
+    def add(self, lumière):
+        self.dictionnaire[lumière.nom] = lumière
 
-    def get(this, nom):
-        return this.dictionnaire[nom]
+    def get(self, nom):
+        return self.dictionnaire[nom]
 
-    def show(this):
-        for lum in this.dictionnaire.values():
+    def show(self):
+        for lum in self.dictionnaire.values():
             lum.show()

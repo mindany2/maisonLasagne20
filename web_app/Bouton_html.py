@@ -8,29 +8,29 @@ class Bouton_html(Bouton):
     le bouton de l'application web
     """
 
-    def __init__(this, nom, page, app, liste_info):
-        Bouton.__init__(this, nom)
-        this.page = page
-        this.app = app
+    def __init__(self, nom, page, app, liste_info):
+        Bouton.__init__(self, nom)
+        self.page = page
+        self.app = app
         # liste_parametre[0] = faux / [1] = vrai
-        this.liste_parametre = [[],[]]
-        this.liste_info = this.liste_parametre[0]
-        liste_info.append(this.liste_info)
+        self.liste_parametre = [[],[]]
+        self.liste_info = self.liste_parametre[0]
+        liste_info.append(self.liste_info)
 
 
-        @this.app.site.route('/'+nom)
-        @this.exception_handler
+        @self.app.site.route('/'+nom)
+        @self.exception_handler
         def bouton():
             #on fait les instructions
-            this.do()
-            this.change()
+            self.do()
+            self.change()
             #on change la valeur de l'info
-            this.liste_info = this.liste_parametre[this.etat]
+            self.liste_info = self.liste_parametre[self.etat]
 
             return redirect(url_for(page))
 
 
-    def exception_handler(this, func):
+    def exception_handler(self, func):
       def wrapper():
         try:
             return func()
@@ -40,11 +40,11 @@ class Bouton_html(Bouton):
             r = dict_to_json({"message": e.message, "matches": e.message, "error_code": error_code})
             return Response(r, status=error_code, mimetype='application/json')
       # Renaming the function name:
-      wrapper.__name__ = this.nom
+      wrapper.__name__ = self.nom
       return wrapper
 
-    def add_param(this, param_vrai, param_faux):
-        this.liste_parametre[0].append(param_faux)
-        this.liste_parametre[1].append(param_vrai)
+    def add_param(self, param_vrai, param_faux):
+        self.liste_parametre[0].append(param_faux)
+        self.liste_parametre[1].append(param_vrai)
 
 

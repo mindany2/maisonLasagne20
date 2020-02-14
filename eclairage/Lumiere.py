@@ -3,8 +3,8 @@ class Lumiere:
     """
     Classe mère de toute les lumières
     """
-    def __init__(this, nom, pin_addresse):
-        this.nom = nom
-        this.pin_addr = pin_addresse
-        this.dimmeur = 0 #éteint
+    def __init__(self, nom, pin_addresse):
+        self.nom = nom
+        self.pin_addr = pin_addresse
+        self.dimmeur = 0 #éteint
     

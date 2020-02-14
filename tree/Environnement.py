@@ -8,23 +8,23 @@ class Environnement:
     Definit une zone avec toutes ses
     lumières et boutons
     """
-    def __init__(this, nom, liste_info):
-        this.nom = nom
-        this.liste_lumières = Liste_lumieres()
-        this.liste_info = []
-        liste_info.append(this.liste_info)
-        this.liste_boutons = Liste_boutons(this.liste_info)
+    def __init__(self, nom, liste_info):
+        self.nom = nom
+        self.liste_lumières = Liste_lumieres()
+        self.liste_info = []
+        liste_info.append(self.liste_info)
+        self.liste_boutons = Liste_boutons(self.liste_info)
 
     def add_bouton(self, bouton):
-        this.liste_boutons.add(bouton)
+        self.liste_boutons.add(bouton)
 
     def add_lumiere(self, lum):
-        this.liste_lumières.add(lum)
+        self.liste_lumières.add(lum)
 
-    def show(this):
-        print("----- Environnement "+this.nom +" -----")
+    def show(self):
+        print("----- Environnement "+self.nom +" -----")
         print("----- Lumières -----")
-        this.liste_lumières.show()
+        self.liste_lumières.show()
         print("----- Boutons -----")
-        this.liste_boutons.show()
+        self.liste_boutons.show()
 

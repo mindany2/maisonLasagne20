@@ -6,16 +6,16 @@ class Site_maison:
     """
     Définit l'intégralité du site
     """
-    def  __init__(this):
-        this.site = Flask(__name__)
-        this.liste_envi = None
+    def  __init__(self):
+        self.site = Flask(__name__)
+        self.liste_envi = None
 
         """
         Page d'accueil
         """
-        @this.site.route('/')
+        @self.site.route('/')
         def index():
             # liste_info est remplit directement dans bouton
-            return render_template("index.html", valeur = this.liste_envi.liste_info)
+            return render_template("index.html", valeur = self.liste_envi.liste_info)
 
    

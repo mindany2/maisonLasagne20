@@ -6,20 +6,20 @@ class Instruction_projecteur(Instruction_lumiere):
     """
     On set un projecteur
     """
-    def __init__(this, projecteur, dimmeur, duree):
-        Instruction_lumiere.__init__(this, projecteur, dimmeur, duree)
+    def __init__(self, projecteur, dimmeur, duree):
+        Instruction_lumiere.__init__(self, projecteur, dimmeur, duree)
 
-    def run(this):
+    def run(self):
         """
         On s'occupe de faire l'instruction
         """
-        dimmeur_final = this.dimmeur
-        dimmeur_initial = this.projecteur.dimmeur
+        dimmeur_final = self.dimmeur
+        dimmeur_initial = self.projecteur.dimmeur
         nb_points = RESOLUTION*duree
 
         for dim in np.arange(dimmeur_initial, dimmeur_final, nb_points):
             projecteur.set(dim)
             sleep(1/RESOLUTION)
 
-    def show(this):
-        print("projo = ",this.lumière.nom, " | dimmeur = ", this.dimmeur, " | duree = ", this.duree)
+    def show(self):
+        print("projo = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree)
