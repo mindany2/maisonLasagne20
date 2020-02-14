@@ -1,0 +1,86 @@
+[Thu Feb 13 16:37:22.807773 2020] [wsgi:error] [pid 5288:tid 1965835312] bar
+[Thu Feb 13 16:37:22.809751 2020] [wsgi:error] [pid 5288:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 16:37:22.809869 2020] [wsgi:error] [pid 5288:tid 1965835312] [['non', 'red'], ['oui', 'green']]
+[Thu Feb 13 16:37:22.811758 2020] [wsgi:error] [pid 5288:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 16:37:22.811885 2020] [wsgi:error] [pid 5288:tid 1965835312] [['non', 'red'], ['oui', 'blue']]
+[Thu Feb 13 16:37:22.812118 2020] [wsgi:error] [pid 5288:tid 1965835312] ----- Environnement bar -----
+[Thu Feb 13 16:37:22.812160 2020] [wsgi:error] [pid 5288:tid 1965835312] ----- Lumi\xc3\xa8res -----
+[Thu Feb 13 16:37:22.812240 2020] [wsgi:error] [pid 5288:tid 1965835312] nom = projo_test  | pin_addr =  3
+[Thu Feb 13 16:37:22.812373 2020] [wsgi:error] [pid 5288:tid 1965835312] nom = led_test  | pin_addr =  5  | bluetooth_addr =  be:ff:f0:00:88:11  | couleur =  0x0
+[Thu Feb 13 16:37:22.812413 2020] [wsgi:error] [pid 5288:tid 1965835312] ----- Boutons -----
+[Thu Feb 13 16:37:22.812458 2020] [wsgi:error] [pid 5288:tid 1965835312] Bouton_test
+[Thu Feb 13 16:37:22.812586 2020] [wsgi:error] [pid 5288:tid 1965835312] led =  led_test  | dimmeur =  50  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 16:37:22.812703 2020] [wsgi:error] [pid 5288:tid 1965835312] projo =  projo_test  | dimmeur =  75  | duree =  20
+[Thu Feb 13 16:37:22.812821 2020] [wsgi:error] [pid 5288:tid 1965835312] led =  led_test  | dimmeur =  100  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 16:37:22.812887 2020] [wsgi:error] [pid 5288:tid 1965835312] sleep   | duree =  5
+[Thu Feb 13 16:37:22.812926 2020] [wsgi:error] [pid 5288:tid 1965835312] Bouton_test2
+[Thu Feb 13 16:37:22.815126 2020] [wsgi:error] [pid 5288:tid 1965835312] [remote 192.168.43.152:40116] [[], ['non', 'red'], ['non', 'red']]
+[Thu Feb 13 16:37:24.028979 2020] [wsgi:error] [pid 5288:tid 1965835312] [remote 192.168.43.152:40116] ['oui', 'red'] etat =  True
+[Thu Feb 13 16:37:24.033170 2020] [wsgi:error] [pid 5288:tid 1891628080] couleur =  0x0  couleur voulut =  0xffffff
+[Thu Feb 13 16:37:24.049151 2020] [wsgi:error] [pid 5288:tid 1891628080] led_test  met le dimmeur \xc3\xa0  0  de couleur  0
+[Thu Feb 13 16:37:24.084432 2020] [wsgi:error] [pid 5288:tid 1949049904] [remote 192.168.43.152:40116] [[], ['oui', 'red'], ['non', 'red']]
+[Thu Feb 13 16:37:24.155010 2020] [wsgi:error] [pid 5288:tid 1891628080] led_test  met le dimmeur \xc3\xa0  20  de couleur  20
+[Thu Feb 13 16:37:24.255632 2020] [wsgi:error] [pid 5288:tid 1891628080] led_test  met le dimmeur \xc3\xa0  40  de couleur  40
+[Thu Feb 13 16:37:24.359164 2020] [wsgi:error] [pid 5288:tid 1891628080] projo_test  met le dimmeur \xc3\xa0  0
+[Thu Feb 13 16:37:24.460800 2020] [wsgi:error] [pid 5288:tid 1891628080] couleur =  0x0  couleur voulut =  0xffffff
+[Thu Feb 13 16:37:24.471316 2020] [wsgi:error] [pid 5288:tid 1891628080] led_test  met le dimmeur \xc3\xa0  40  de couleur  0
+[Thu Feb 13 16:37:24.571910 2020] [wsgi:error] [pid 5288:tid 1891628080] led_test  met le dimmeur \xc3\xa0  60  de couleur  20
+[Thu Feb 13 16:37:24.672406 2020] [wsgi:error] [pid 5288:tid 1891628080] led_test  met le dimmeur \xc3\xa0  80  de couleur  40
+[Thu Feb 13 16:38:07.991388 2020] [wsgi:error] [pid 5390:tid 1965835312] bar
+[Thu Feb 13 16:38:07.993305 2020] [wsgi:error] [pid 5390:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 16:38:07.993424 2020] [wsgi:error] [pid 5390:tid 1965835312] [['non', 'red'], ['oui', 'green']]
+[Thu Feb 13 16:38:07.995120 2020] [wsgi:error] [pid 5390:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 16:38:07.995215 2020] [wsgi:error] [pid 5390:tid 1965835312] [['non', 'red'], ['oui', 'blue']]
+[Thu Feb 13 16:38:07.995442 2020] [wsgi:error] [pid 5390:tid 1965835312] ----- Environnement bar -----
+[Thu Feb 13 16:38:07.995485 2020] [wsgi:error] [pid 5390:tid 1965835312] ----- Lumi\xc3\xa8res -----
+[Thu Feb 13 16:38:07.995567 2020] [wsgi:error] [pid 5390:tid 1965835312] nom = projo_test  | pin_addr =  3
+[Thu Feb 13 16:38:07.995702 2020] [wsgi:error] [pid 5390:tid 1965835312] nom = led_test  | pin_addr =  5  | bluetooth_addr =  be:ff:f0:00:88:11  | couleur =  0x0
+[Thu Feb 13 16:38:07.995789 2020] [wsgi:error] [pid 5390:tid 1965835312] ----- Boutons -----
+[Thu Feb 13 16:38:07.995834 2020] [wsgi:error] [pid 5390:tid 1965835312] Bouton_test
+[Thu Feb 13 16:38:07.995966 2020] [wsgi:error] [pid 5390:tid 1965835312] led =  led_test  | dimmeur =  50  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 16:38:07.996079 2020] [wsgi:error] [pid 5390:tid 1965835312] projo =  projo_test  | dimmeur =  75  | duree =  20
+[Thu Feb 13 16:38:07.996197 2020] [wsgi:error] [pid 5390:tid 1965835312] led =  led_test  | dimmeur =  100  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 16:38:07.996263 2020] [wsgi:error] [pid 5390:tid 1965835312] sleep   | duree =  5
+[Thu Feb 13 16:38:07.996303 2020] [wsgi:error] [pid 5390:tid 1965835312] Bouton_test2
+[Thu Feb 13 16:38:07.998507 2020] [wsgi:error] [pid 5390:tid 1965835312] [remote 192.168.43.152:40120] [[], ['non', 'red'], ['non', 'red']]
+[Thu Feb 13 16:38:09.837371 2020] [wsgi:error] [pid 5390:tid 1965835312] [remote 192.168.43.152:40120] ['oui', 'red'] etat =  True
+[Thu Feb 13 16:38:09.841492 2020] [wsgi:error] [pid 5390:tid 1890579504] couleur =  0x0  couleur voulut =  0xffffff
+[Thu Feb 13 16:38:09.857571 2020] [wsgi:error] [pid 5390:tid 1890579504] led_test  met le dimmeur a  0  de couleur  0
+[Thu Feb 13 16:38:09.888818 2020] [wsgi:error] [pid 5390:tid 1932264496] [remote 192.168.43.152:40120] [[], ['oui', 'red'], ['non', 'red']]
+[Thu Feb 13 16:38:09.963420 2020] [wsgi:error] [pid 5390:tid 1890579504] led_test  met le dimmeur a  20  de couleur  20
+[Thu Feb 13 16:38:10.063984 2020] [wsgi:error] [pid 5390:tid 1890579504] led_test  met le dimmeur a  40  de couleur  40
+[Thu Feb 13 16:38:10.167402 2020] [wsgi:error] [pid 5390:tid 1890579504] projo_test  met le dimmeur a  0
+[Thu Feb 13 16:38:10.269016 2020] [wsgi:error] [pid 5390:tid 1890579504] couleur =  0x0  couleur voulut =  0xffffff
+[Thu Feb 13 16:38:10.279475 2020] [wsgi:error] [pid 5390:tid 1890579504] led_test  met le dimmeur a  40  de couleur  0
+[Thu Feb 13 16:38:10.380194 2020] [wsgi:error] [pid 5390:tid 1890579504] led_test  met le dimmeur a  60  de couleur  20
+[Thu Feb 13 16:38:10.480791 2020] [wsgi:error] [pid 5390:tid 1890579504] led_test  met le dimmeur a  80  de couleur  40
+[Thu Feb 13 16:45:16.314347 2020] [wsgi:error] [pid 5686:tid 1965835312] bar
+[Thu Feb 13 16:45:16.316365 2020] [wsgi:error] [pid 5686:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 16:45:16.316489 2020] [wsgi:error] [pid 5686:tid 1965835312] [['non', 'red'], ['oui', 'green']]
+[Thu Feb 13 16:45:16.318203 2020] [wsgi:error] [pid 5686:tid 1965835312] [['non'], ['oui']]
+[Thu Feb 13 16:45:16.318294 2020] [wsgi:error] [pid 5686:tid 1965835312] [['non', 'red'], ['oui', 'blue']]
+[Thu Feb 13 16:45:16.318521 2020] [wsgi:error] [pid 5686:tid 1965835312] ----- Environnement bar -----
+[Thu Feb 13 16:45:16.318564 2020] [wsgi:error] [pid 5686:tid 1965835312] ----- Lumi\xc3\xa8res -----
+[Thu Feb 13 16:45:16.318706 2020] [wsgi:error] [pid 5686:tid 1965835312] nom = led_test  | pin_addr =  5  | bluetooth_addr =  be:ff:f0:00:88:11  | couleur =  0x0
+[Thu Feb 13 16:45:16.318778 2020] [wsgi:error] [pid 5686:tid 1965835312] nom = projo_test  | pin_addr =  3
+[Thu Feb 13 16:45:16.318819 2020] [wsgi:error] [pid 5686:tid 1965835312] ----- Boutons -----
+[Thu Feb 13 16:45:16.318865 2020] [wsgi:error] [pid 5686:tid 1965835312] Bouton_test
+[Thu Feb 13 16:45:16.318998 2020] [wsgi:error] [pid 5686:tid 1965835312] led =  led_test  | dimmeur =  50  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 16:45:16.319100 2020] [wsgi:error] [pid 5686:tid 1965835312] projo =  projo_test  | dimmeur =  75  | duree =  20
+[Thu Feb 13 16:45:16.319217 2020] [wsgi:error] [pid 5686:tid 1965835312] led =  led_test  | dimmeur =  100  | duree =  2  | couleur =  0xffffff
+[Thu Feb 13 16:45:16.319284 2020] [wsgi:error] [pid 5686:tid 1965835312] sleep   | duree =  5
+[Thu Feb 13 16:45:16.319325 2020] [wsgi:error] [pid 5686:tid 1965835312] Bouton_test2
+[Thu Feb 13 16:45:16.321622 2020] [wsgi:error] [pid 5686:tid 1965835312] [remote 192.168.43.152:40124] [[], ['non', 'red'], ['non', 'red']]
+[Thu Feb 13 16:45:17.088484 2020] [wsgi:error] [pid 5686:tid 1890579504] couleur =  0x0  couleur voulut =  0xffffff
+[Thu Feb 13 16:45:17.088605 2020] [wsgi:error] [pid 5686:tid 1965835312] [remote 192.168.43.152:40124] ['oui', 'red'] etat =  True
+[Thu Feb 13 16:45:17.096223 2020] [wsgi:error] [pid 5686:tid 1890579504] [       0       20       40 ..., 16777160 16777180 16777200]
+[Thu Feb 13 16:45:17.101664 2020] [wsgi:error] [pid 5686:tid 1890579504] led_test  met le dimmeur a  0  de couleur  0
+[Thu Feb 13 16:45:17.127404 2020] [wsgi:error] [pid 5686:tid 1932264496] [remote 192.168.43.152:40124] [[], ['oui', 'red'], ['non', 'red']]
+[Thu Feb 13 16:45:17.207166 2020] [wsgi:error] [pid 5686:tid 1890579504] led_test  met le dimmeur a  20  de couleur  20
+[Thu Feb 13 16:45:17.307664 2020] [wsgi:error] [pid 5686:tid 1890579504] led_test  met le dimmeur a  40  de couleur  40
+[Thu Feb 13 16:45:17.411150 2020] [wsgi:error] [pid 5686:tid 1890579504] projo_test  met le dimmeur a  0
+[Thu Feb 13 16:45:17.512785 2020] [wsgi:error] [pid 5686:tid 1890579504] couleur =  0x0  couleur voulut =  0xffffff
+[Thu Feb 13 16:45:17.526037 2020] [wsgi:error] [pid 5686:tid 1890579504] [       0       20       40 ..., 16777160 16777180 16777200]
+[Thu Feb 13 16:45:17.526460 2020] [wsgi:error] [pid 5686:tid 1890579504] led_test  met le dimmeur a  40  de couleur  0
+[Thu Feb 13 16:45:17.626964 2020] [wsgi:error] [pid 5686:tid 1890579504] led_test  met le dimmeur a  60  de couleur  20
+[Thu Feb 13 16:45:17.727594 2020] [wsgi:error] [pid 5686:tid 1890579504] led_test  met le dimmeur a  80  de couleur  40

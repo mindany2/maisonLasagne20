@@ -25,9 +25,10 @@ class Bouton_html(Bouton):
             self.do()
             self.change()
             #on change la valeur de l'info
-            self.liste_info = self.liste_parametre[self.etat]
+            self.liste_info[0] = self.liste_parametre[self.etat][0]
+            print(self.liste_info, "etat = ", self.etat)
 
-            return redirect(url_for(page))
+            return redirect(url_for(self.page))
 
 
     def exception_handler(self, func):
@@ -43,8 +44,15 @@ class Bouton_html(Bouton):
       wrapper.__name__ = self.nom
       return wrapper
 
+<<<<<<< HEAD
     def add_param(self, param_vrai, param_faux):
         self.liste_parametre[0].append(param_faux)
         self.liste_parametre[1].append(param_vrai)
+=======
+    def add_param(self, param_vrai, param_faux):
+        self.liste_parametre[0].append(param_faux)
+        self.liste_parametre[1].append(param_vrai)
+        print(self.liste_parametre)
+>>>>>>> e0d70040cbeb3c9f3e4496f3bcb2ccfee62c597b
 
 

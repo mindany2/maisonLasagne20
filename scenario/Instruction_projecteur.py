@@ -14,11 +14,11 @@ class Instruction_projecteur(Instruction_lumiere):
         On s'occupe de faire l'instruction
         """
         dimmeur_final = self.dimmeur
-        dimmeur_initial = self.projecteur.dimmeur
-        nb_points = RESOLUTION*duree
+        dimmeur_initial = self.lumière.dimmeur
+        nb_points = RESOLUTION*self.duree
 
         for dim in np.arange(dimmeur_initial, dimmeur_final, nb_points):
-            projecteur.set(dim)
+            self.lumière.set(dim)
             sleep(1/RESOLUTION)
 
     def show(self):

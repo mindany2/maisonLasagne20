@@ -1,4 +1,5 @@
 from scenario.Liste_instructions import Liste_instructions
+from threading import Thread
 
 class Bouton:
     """
@@ -18,7 +19,9 @@ class Bouton:
         self.etat = not(self.etat)
 
     def do(self):
-        self.liste_inst.do()
+
+        process = Thread(target = self.liste_inst.do)
+        process.start()
 
     def show(self):
         print(self.nom)

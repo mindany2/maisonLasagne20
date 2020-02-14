@@ -1,4 +1,5 @@
 from scenario.Instruction import Instruction
+from threading import Thread
 
 class Liste_instructions:
     """
@@ -15,7 +16,6 @@ class Liste_instructions:
 
     def do(self):
         #on fait toute les instructions
-        print("coucou je fait des trucs")
         liste_thread = []
         for inst in self.liste:
             # chaque instruction est un thread
@@ -25,7 +25,7 @@ class Liste_instructions:
             if (inst.attente):
                 # on doit attendre que l'instruction se termine
                 process.join()
-            else:
+            else :
                 liste_thread.append(process)
 
         #on attend qu'ils aient tous terminé

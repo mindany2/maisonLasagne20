@@ -18,7 +18,7 @@ import os
 Contient seulement les fonctions de lectures dans les fichiers
 du programme (récupérations des infos)
 """
-PATH  ="./data/Environnements/"
+PATH  ="/home/pi/maison/data/Environnements/"
 
 def get_tree(app):
     """
@@ -86,7 +86,7 @@ def get_boutons(app, fichier, liste_info, env):
     for _ in range(0,3):
         fichier.readline()
     #on store la d'index de la page
-    index = fichier.readline()
+    index = fichier.readline().replace("\n","")
     
     #on parcours tous les boutons
     #on saute une ligne
