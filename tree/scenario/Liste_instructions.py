@@ -1,4 +1,4 @@
-from scenario.Instruction import Instruction
+from tree.scenario.Instruction import Instruction
 from threading import Thread
 
 class Liste_instructions:

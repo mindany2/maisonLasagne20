@@ -1,6 +1,6 @@
-from enum import Enum
 from tree.Liste_boutons import Liste_boutons
-from eclairage.Liste_lumieres import Liste_lumieres
+from tree.Liste_boutons_radios import Liste_boutons_radios
+from tree.eclairage.Liste_lumieres import Liste_lumieres
 
 
 class Environnement:
@@ -8,18 +8,23 @@ class Environnement:
     Definit une zone avec toutes ses
     lumières et boutons
     """
-    def __init__(self, nom, liste_info):
+    def __init__(self, nom):
         self.nom = nom
         self.liste_lumières = Liste_lumieres()
-        self.liste_info = []
-        liste_info.append(self.liste_info)
-        self.liste_boutons = Liste_boutons(self.liste_info)
-
-    def add_bouton(self, bouton):
-        self.liste_boutons.add(bouton)
+        self.liste_boutons = Liste_boutons()
 
     def add_lumiere(self, lum):
         self.liste_lumières.add(lum)
+
+    def add_bouton(self, bt):
+        self.liste_boutons.add(bt)
+
+    def get_bouton(self, nom):
+        return self.liste_boutons.liste_boutons[nom]
+
+    def change_select(self, bouton):
+        if isinstance(self.liste_boutons, Liste_boutons_radios):
+            self.liste_boutons.change_select(bouton)
 
     def show(self):
         print("----- Environnement "+self.nom +" -----")

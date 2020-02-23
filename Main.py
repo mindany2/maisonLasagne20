@@ -1,5 +1,6 @@
 from web_app.site_maison import Site_maison
 from utils.In_out import get_tree
+from tree.Tree import Tree
 
  
 """
@@ -10,8 +11,6 @@ donc au démarage du rasperry
 # on recupére l'arbre
 
 site = Site_maison()
-liste_envi = get_tree(site)
-site.liste_envi = liste_envi
 
 
 
@@ -20,4 +19,4 @@ app = site.site
 
 
 if __name__ == "__main__":
-     app.run()
+     app.run(debug=True)

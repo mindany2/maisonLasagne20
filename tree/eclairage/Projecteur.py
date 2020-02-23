@@ -1,4 +1,4 @@
-from eclairage.Lumiere import Lumiere
+from tree.eclairage.Lumiere import Lumiere
 
 class Projecteur(Lumiere):
     """
@@ -12,7 +12,7 @@ class Projecteur(Lumiere):
         self.dimmeur = dimmeur
         # on utilise ici la sortie
         #du raspberry
-        print(this.nom," met le dimmeur a ",dimmeur)
+        print(self.nom," met le dimmeur a ",dimmeur)
 
     def show(self):
         print("nom = " + self.nom," | pin_addr = ",self.pin_addr)

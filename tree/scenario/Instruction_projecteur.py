@@ -1,13 +1,13 @@
 import numpy as np
-from scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
+from tree.scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
 from time import sleep
 
 class Instruction_projecteur(Instruction_lumiere):
     """
     On set un projecteur
     """
-    def __init__(self, projecteur, dimmeur, duree):
-        Instruction_lumiere.__init__(self, projecteur, dimmeur, duree)
+    def __init__(self, projecteur, dimmeur, duree, attente):
+        Instruction_lumiere.__init__(self, projecteur, dimmeur, duree, attente)
 
     def run(self):
         """

@@ -1,4 +1,4 @@
-from eclairage.Lumiere import Lumiere
+from tree.eclairage.Lumiere import Lumiere
 
 class Couleur:
     """

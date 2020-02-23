@@ -1,14 +1,14 @@
 import numpy as np
-from scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
-from eclairage.Led import Couleur
+from tree.scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
+from tree.eclairage.Led import Couleur
 from time import sleep
 
 class Instruction_led(Instruction_lumiere):
     """
     On set une bande de led
     """
-    def __init__(self, led, dimmeur, duree, couleur):
-        Instruction_lumiere.__init__(self, led, dimmeur, duree)
+    def __init__(self, led, dimmeur, duree, couleur, attente):
+        Instruction_lumiere.__init__(self, led, dimmeur, duree, attente)
         self.couleur = couleur
 
     def run(self):

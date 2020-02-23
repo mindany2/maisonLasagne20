@@ -1,4 +1,4 @@
-from scenario.Liste_instructions import Liste_instructions
+from tree.scenario.Liste_instructions import Liste_instructions
 from threading import Thread
 
 class Bouton:
@@ -19,7 +19,6 @@ class Bouton:
         self.etat = not(self.etat)
 
     def do(self):
-
         process = Thread(target = self.liste_inst.do)
         process.start()
 

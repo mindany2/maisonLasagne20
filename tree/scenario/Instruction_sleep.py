@@ -1,4 +1,4 @@
-from scenario.Instruction import Instruction,Attente
+from tree.scenario.Instruction import Instruction,Attente
 from time import sleep
 
 class Instruction_sleep(Instruction):

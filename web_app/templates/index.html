@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    </head>
-    <body>
-        <a href="/Bouton_test">
-            <label>
-              <input type = "button" style="background-color: {{ valeur[1][1] }}" value = {{ valeur[1][0] }} method = "POST">
-            </label>
-        </a>
+{% extends "base.html" %}
 
-        <label>
-          <input type="radio" name="test" value="big" checked>
-        </label>
-    </body>
-</html>
+{% block content %}
+    <form  action="" method="POST">
+            {{ form.hidden_tag() }}
+            {% for bouton in form %}
+                {{ bouton }}
+            {% endfor %}
+    </form>
+
+{% endblock %}
