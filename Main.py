@@ -9,7 +9,12 @@ donc au démarage du rasperry
 """
 # on lance tout
 # on recupére l'arbre
+"""
+l'initialisation 
 
+est faite dans le formulaire car sinon ça plante
+"""
+tree = get_tree()
 site = Site_maison()
 
 

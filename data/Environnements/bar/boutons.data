@@ -6,15 +6,17 @@ index
         Off : (oui / non), (green / red)
         |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
         |           |               |               |               |           |
-        |   led     |   led_test    |       50      |       2       |    non    |   0xffffff
-        |   projo   |   projo_test  |       75      |       20       |    oui    |
-        |   led     |   led_test    |       100     |       2       |    non    |   0xffffff
-        |   sleep   |               |               |       5       |    oui    |
+        |   led     |   led_banque_cuisine_1    |       100     |       2       |    non    |   0xffffff
+        |   led     |   led_banque_cuisine_2    |       100     |       2       |    non    |   0xffffff
+        |   led     |   led_banque_cuisine_3    |       100     |       2       |    non    |   0xffffff
 
         numero 1
         On : (oui/non), (blue/red)
         |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
         |           |               |               |               |           |
+        |   led     |   led_banque_cuisine_1    |       100     |       2       |    non    |   0xffffff
+        |   led     |   led_banque_cuisine_2    |       100     |       2       |    non    |   0xffffff
+        |   led     |   led_banque_cuisine_3    |       100     |       2       |    non    |   0xffffff
 
         numero 2
         Déco : (oui/non), (blue/red)

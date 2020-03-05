@@ -12,6 +12,8 @@ from tree.Bouton_html import Bouton_html
 from tree.scenario.Instruction_sleep import Instruction_sleep
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
+from commande.Controle import Controle
+from commande.Bluetooth import TYPE_CONTROLER
 
 import os
 
@@ -20,7 +22,7 @@ Contient seulement les fonctions de lectures dans les fichiers
 du programme (récupérations des infos)
 """
 PATH  ="/home/pi/maison/data/Environnements/"
-PATH  ="/home/lasagne/maison/data/Environnements/"
+#PATH  ="/home/lasagne/maison/data/Environnements/"
 
 def get_tree():
     """
@@ -72,10 +74,17 @@ def get_lumiere(ligne):
     Créer la lumière correspondante avec les bonnes infos
     """
     if ligne[1] == "projo":
-        return Projecteur(ligne[0], int(ligne[2]))
+        triac = Controle().get_triac(int(ligne[3][2]), int(ligne[3][0]))
+        return Projecteur(ligne[0], triac)
 
-    elif ligne[1] == "led":
-        return Led(ligne[0], int(ligne[2]), ligne[3], ligne[4])
+    elif ligne[1][0:3] == "led":
+        relais = Controle().get_relais(int(ligne[2][2]), int(ligne[2][0]))
+        if ligne[1][4] == "4":
+            type_led = TYPE_CONTROLER.NB_BROCHES_4
+        else:
+            type_led = TYPE_CONTROLER.NB_BROCHES_5
+
+        return Led(ligne[0], relais, ligne[4], type_led, ligne[5])
         
 
 def get_boutons(fichier, env):
@@ -145,7 +154,6 @@ def get_inst(ligne, env):
     print("Erreur")
     return 0
         
-
 
 
 

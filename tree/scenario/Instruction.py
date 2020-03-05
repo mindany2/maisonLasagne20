@@ -12,10 +12,9 @@ class Instruction():
     être la parentes de bluetooth et pin
     """
     def __init__(self, duree, attente):
-        Thread.__init__(self)
         self.attente = attente
         self.duree = duree
 
-    def start(self):
+    def run(self):
         # implémenter dans les sous-classes
         pass

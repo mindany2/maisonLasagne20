@@ -1,7 +1,7 @@
 from tree.scenario.Instruction import Instruction, Attente
 from tree.eclairage.Lumiere import Lumiere
 
-RESOLUTION = 10
+RESOLUTION = 30
 
 class Instruction_lumiere(Instruction):
     """
