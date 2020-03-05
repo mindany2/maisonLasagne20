@@ -20,16 +20,19 @@ class Liste_instructions:
         for inst in self.liste:
             # chaque instruction est un thread
             # on le demarre
-            process = Thread(target=inst.run())
+            print("on demarre "+inst.lumière.nom)
+            process = Thread(target=inst.run)
             process.start()
             if (inst.attente):
                 # on doit attendre que l'instruction se termine
+                print("on attent "+inst.lumière.nom)
                 process.join()
             else :
                 liste_thread.append(process)
 
         #on attend qu'ils aient tous terminé
         for proc in liste_thread:
+            print("on recupére "+inst.lumière.nom)
             proc.join()
 
 
