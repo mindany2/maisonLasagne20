@@ -15,6 +15,9 @@ class Liste_environnements:
         env = self.liste_env[nom]
         return env
 
+    def __iter__(self):
+        return self.liste_env.values().__iter__()
+
     def show(self):
         for env in self.liste_env.values():
             env.show()

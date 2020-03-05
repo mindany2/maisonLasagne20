@@ -9,11 +9,11 @@ class Bouton_html(Bouton):
     le bouton de l'application web
     """
 
-    def __init__(self, nom, nom_env):
+    def __init__(self, nom, nom_env, position):
         Bouton.__init__(self, nom)
         self.nom_env = nom_env
-        self.style_on = Style("green")
-        self.style_off = Style()
+        self.style_on = Style(position, "green")
+        self.style_off = Style(position)
         self.style = self.style_off
 
     def change(self):

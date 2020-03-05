@@ -29,17 +29,17 @@ def get_tree():
     tree = Tree().liste_envi
 
     # on va chercher les environnements
-    for env in os.listdir(PATH[:-1]):
+    for i,env in enumerate(os.listdir(PATH[:-1])):
         if (os.path.isdir(PATH+env)):
             print(env)
-            tree.add(get_env(env))
+            tree.add(get_env(env,i))
     return Tree()
 
-def get_env(nom):
+def get_env(nom, index):
     """
     retourne un environnement complet
     """
-    env = Environnement(nom) 
+    env = Environnement(nom, index) 
 
     fichier_map = open(PATH+nom+"/map.data","r")
     env.liste_lumières = get_map(fichier_map)
@@ -92,21 +92,23 @@ def get_boutons(fichier, env):
     #on parcours tous les boutons
     #on saute une ligne
     ligne = fichier.readline()
+    compteur = 0
     while ligne:
-        bouton = get_bouton(fichier, index, env)
+        bouton = get_bouton(fichier, compteur, env)
         liste.add(bouton)
         #on saute une ligne a chaque bouton (numero)
         ligne = fichier.readline()
+        compteur += 1
 
     return liste
 
-def get_bouton(fichier, index, env):
+def get_bouton(fichier, numero, env):
     """
     Créer un bouton
     """
     ligne = fichier.readline().replace(" ","").replace("\t","").replace("\n","").split(":")
     nom = ligne[0]
-    bouton = Bouton_html(nom, env.nom)
+    bouton = Bouton_html(nom, env.nom, (env.position,numero))
     # on met les paramètres
     params = ligne[1].replace("(","").replace(")","").split(",")
     for par in params:

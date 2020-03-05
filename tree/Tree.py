@@ -8,8 +8,12 @@ class Tree:
         self.liste_envi.show()
 
     @classmethod
-    def get_env(self, nom):
-        return self.liste_envi.get_env(nom)
+    def __iter__(self):
+        return self.liste_envi.__iter__()
+
+    @classmethod
+    def get_env(self, env):
+        return self.liste_envi.get_env(env)
 
     @classmethod
     def get_bouton(self, nom_env, nom_bouton):

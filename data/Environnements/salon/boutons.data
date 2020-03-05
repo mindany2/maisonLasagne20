@@ -2,7 +2,7 @@ Contient toutes les informations relatives a l'environnement
 qui vont etre donne a la page web et a la console
 
 index
-        numero 0
+        numero = 0
         Off : (oui / non), (green / red)
         |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
         |           |               |               |               |           |

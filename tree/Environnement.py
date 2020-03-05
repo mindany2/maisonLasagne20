@@ -8,10 +8,11 @@ class Environnement:
     Definit une zone avec toutes ses
     lumières et boutons
     """
-    def __init__(self, nom):
+    def __init__(self, nom, index):
         self.nom = nom
         self.liste_lumières = Liste_lumieres()
         self.liste_boutons = Liste_boutons()
+        self.position = index
 
     def add_lumiere(self, lum):
         self.liste_lumières.add(lum)

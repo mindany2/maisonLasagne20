@@ -41,8 +41,9 @@ class Site_maison:
             if form.validate_on_submit():
                 return redirect(url_for("index"))
 
-
-            return render_template("index.html", form = form)
+            for bouton in form:
+                print(bouton.id)
+            return render_template("index.html", form = form, envs = Tree().liste_envi)
 
 
 if __name__ == "__main__":

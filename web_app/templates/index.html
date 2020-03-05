@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form  action="" method="POST">
-            {{ form.hidden_tag() }}
-            {% for bouton in form %}
-                {{ bouton }}
-            {% endfor %}
-    </form>
+    {% for env in envs %}
+    {{ env.nom }}
+        <form  action="" method="POST">
+                {{ form.hidden_tag() }}
+                {% for bouton in form %}
+                    {% if bouton.id.split('.')[0] == env.nom %}
+                        {{ bouton }}
+                    {% endif %}
+                {% endfor %}
+        </form>
+
+    {% endfor %}
 
 {% endblock %}

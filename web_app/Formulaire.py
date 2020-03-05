@@ -40,9 +40,10 @@ class Formulaire(Form):
     class Meta:
             csrf = False
     tree = get_tree()
-    envi = Tree().get_env("bar")
-    for bt in envi.liste_boutons:
-        vars()[envi.nom + "."+bt.nom] = Widget(bt.get_name())
+    for envi in Tree():
+        for bt in envi.liste_boutons:
+            vars()[envi.nom + "."+bt.nom] = Widget(bt.get_name())
+
 
 
 
