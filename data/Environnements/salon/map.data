@@ -1,6 +1,6 @@
 Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
-
-Nom_projecteur  |   Type    |   Pin_GPIO    |   Addresse Bluetooth  |   Derniere couleur(hex)
-                |           |               |                       |
-led_test        |   led     |       5       |   be:ff:f0:00:88:11   |       0x000000
-projo_test      |   projo   |       3       |   
+4(1) = port 4 de la carte numéro 1
+    Nom_projecteur  |   Type    |   addr relais |     Addresse triac    | Addresse Bluetooth  |   Derniere couleur(hex)
+                    |           |               |                       |                     |
+    led_test        |   led(4)  |       4(1)    |                       | BE:FF:F0:00:EB:3F   |       0x000000
+    projo_test      |   projo   |               |           2(1)        |

@@ -4,16 +4,16 @@ qui vont etre donne a la page web et a la console
 index
         numero 0
         Off : (oui / non), (green / red)
-        |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
-        |           |               |               |               |           |
+        |   type    |   Lumiere                 |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
+        |           |                           |               |               |           |
         |   led     |   led_banque_cuisine_1    |       100     |       2       |    non    |   0xffffff
         |   led     |   led_banque_cuisine_2    |       100     |       2       |    non    |   0xffffff
         |   led     |   led_banque_cuisine_3    |       100     |       2       |    non    |   0xffffff
 
         numero 1
         On : (oui/non), (blue/red)
-        |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
-        |           |               |               |               |           |
+        |   type    |   Lumiere                 |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
+        |           |                           |               |               |           |
         |   led     |   led_banque_cuisine_1    |       100     |       2       |    non    |   0xffffff
         |   led     |   led_banque_cuisine_2    |       100     |       2       |    non    |   0xffffff
         |   led     |   led_banque_cuisine_3    |       100     |       2       |    non    |   0xffffff

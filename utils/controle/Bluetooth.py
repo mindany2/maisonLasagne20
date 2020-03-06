@@ -1,5 +1,8 @@
 from enum import Enum
-from bluepy.btle import Peripheral
+try:
+    from bluepy.btle import Peripheral
+except ModuleNotFoundError:
+    raise(ModuleNotFoundError)
 
 class TYPE_CONTROLER(Enum):
     NB_BROCHES_4 = 1

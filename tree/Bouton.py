@@ -20,6 +20,7 @@ class Bouton:
 
     def do(self):
         process = Thread(target = self.liste_inst.do)
+        print("ok")
         process.start()
 
     def show(self):

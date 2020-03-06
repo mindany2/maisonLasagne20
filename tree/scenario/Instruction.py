@@ -1,5 +1,5 @@
 from enum import Enum
-from threading import Thread
+from threading import Thread, Barrier
 
 class Attente(Enum):
     CONTINUE = 0
@@ -15,6 +15,6 @@ class Instruction():
         self.attente = attente
         self.duree = duree
 
-    def run(self):
+    def run(self, barrier):
         # implémenter dans les sous-classes
         pass

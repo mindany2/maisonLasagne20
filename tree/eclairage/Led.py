@@ -1,8 +1,15 @@
 from tree.eclairage.Lumiere import Lumiere
-from commande.Relais import Relais, Etat
-from commande.Bluetooth import Bluetooth
 from time import sleep
+from random import randrange
+from utils.In_out.Write_data import set_last_color_led
+
 import numpy as np
+MODE_RP = 1
+try:
+    from utils.controle.Bluetooth import Bluetooth
+    from utils.controle.Relais import Relais, Etat
+except ModuleNotFoundError:
+    MODE_RP = 0
 
 def rgb_to_hexa(r, g, b):
     return hex(r).zfill(2)+hex(g)[2:4].zfill(2)+hex(b)[2:4].zfill(2)
@@ -27,7 +34,7 @@ class Couleur:
     def get_liste(self, variable_init, variable_self, nb_points):
         if variable_init != variable_self:
             return np.arange(variable_init, variable_self, float((variable_self - variable_init))/nb_points)
-        return [0]*nb_points
+        raise(ZeroDivisionError)
 
 
 
@@ -54,11 +61,15 @@ class Led(Lumiere):
     """
     def __init__(self, nom, relais, bluetooth_addr, type_controler, couleur = "0x000000"):
         Lumiere.__init__(self, nom)
-        self.relais =  relais
         self.couleur = Couleur(couleur)
-        self.bluetooth = Bluetooth(bluetooth_addr, type_controler)
+        if MODE_RP:
+            self.relais =  relais
+            self.bluetooth = Bluetooth(bluetooth_addr, type_controler)
 
     def connect(self):
+        if not(MODE_RP):
+            sleep(randrange(0,3))
+            return 0
         if self.couleur.is_black():
             self.relais.set(Etat.ON)
         err = 1
@@ -76,18 +87,26 @@ class Led(Lumiere):
 
 
     def deconnect(self):
-        self.bluetooth.deconnect()
-        if self.couleur.is_black():
-            self.relais.set(Etat.OFF)
+        if MODE_RP:
+            self.bluetooth.deconnect()
+            if self.couleur.is_black():
+                self.relais.set(Etat.OFF)
+        # on enregistre la couleur de la led
+        set_last_color_led(self)
+
 
 
     def set(self, dimmeur, couleur):
         self.dimmeur = dimmeur
         self.couleur = Couleur(couleur)
-        self.bluetooth.send(self.couleur.valeur)
+        if MODE_RP:
+            self.bluetooth.send(self.couleur.valeur)
+        else:
+            sleep(randrange(0,1))
         print(self.nom," met le dimmeur a ",dimmeur," de couleur ",str(couleur))
 
     def show(self):
-        print("nom = " + self.nom," | bluetooth_addr = ",self.bluetooth.addr, " | couleur = ", self.couleur)
-        self.relais.show()
+        print("nom = " + self.nom," | couleur = ", self.couleur)
+        if MODE_RP:
+            self.relais.show()
 

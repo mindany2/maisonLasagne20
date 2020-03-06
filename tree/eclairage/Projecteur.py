@@ -21,6 +21,5 @@ class Projecteur(Lumiere):
 
     def show(self):
         print("nom = " + self.nom)
-        self.triak.show()
 
         

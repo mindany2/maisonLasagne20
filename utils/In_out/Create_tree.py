@@ -12,8 +12,15 @@ from tree.Bouton_html import Bouton_html
 from tree.scenario.Instruction_sleep import Instruction_sleep
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
-from commande.Controle import Controle
-from commande.Bluetooth import TYPE_CONTROLER
+
+PATH  ="/home/pi/maison/data/Environnements/"
+MODE_RP = 1
+try:
+    from commande.Controle import Controle
+    from commande.Bluetooth import TYPE_CONTROLER
+except:
+    PATH  ="/home/lasagne/maison/data/Environnements/"
+    MODE_RP = 0
 
 import os
 
@@ -21,8 +28,6 @@ import os
 Contient seulement les fonctions de lectures dans les fichiers
 du programme (récupérations des infos)
 """
-PATH  ="/home/pi/maison/data/Environnements/"
-#PATH  ="/home/lasagne/maison/data/Environnements/"
 
 def get_tree():
     """
@@ -33,9 +38,8 @@ def get_tree():
     # on va chercher les environnements
     for i,env in enumerate(os.listdir(PATH[:-1])):
         if (os.path.isdir(PATH+env)):
-            print(env)
             tree.add(get_env(env,i))
-    return Tree()
+    tree.show()
 
 def get_env(nom, index):
     """
@@ -51,7 +55,6 @@ def get_env(nom, index):
     env.liste_boutons = get_boutons(fichier_bouton, env)
     fichier_bouton.close()
 
-    env.show()
 
     return env 
 
@@ -74,15 +77,20 @@ def get_lumiere(ligne):
     Créer la lumière correspondante avec les bonnes infos
     """
     if ligne[1] == "projo":
-        triac = Controle().get_triac(int(ligne[3][2]), int(ligne[3][0]))
+        triac = 0
+        if MODE_RP:
+            triac = Controle().get_triac(int(ligne[3][2]), int(ligne[3][0]))
         return Projecteur(ligne[0], triac)
 
     elif ligne[1][0:3] == "led":
-        relais = Controle().get_relais(int(ligne[2][2]), int(ligne[2][0]))
-        if ligne[1][4] == "4":
-            type_led = TYPE_CONTROLER.NB_BROCHES_4
-        else:
-            type_led = TYPE_CONTROLER.NB_BROCHES_5
+        relais = 0
+        type_led = 42
+        if MODE_RP:
+            relais = Controle().get_relais(int(ligne[2][2]), int(ligne[2][0]))
+            if ligne[1][4] == "4":
+                type_led = TYPE_CONTROLER.NB_BROCHES_4
+            else:
+                type_led = TYPE_CONTROLER.NB_BROCHES_5
 
         return Led(ligne[0], relais, ligne[4], type_led, ligne[5])
         
@@ -154,7 +162,6 @@ def get_inst(ligne, env):
     print("Erreur")
     return 0
         
-
 
 
 
