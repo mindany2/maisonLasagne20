@@ -1,5 +1,5 @@
 from web_app.site_maison import Site_maison
-from utils.In_out import get_tree
+from utils.In_out.Create_tree import get_tree
 from tree.Tree import Tree
 
  
@@ -14,7 +14,8 @@ l'initialisation
 
 est faite dans le formulaire car sinon ça plante
 """
-tree = get_tree()
+# le get tree se fait dans le formulaire, le premier element qui est lancé
+#tree = get_tree()
 site = Site_maison()
 
 

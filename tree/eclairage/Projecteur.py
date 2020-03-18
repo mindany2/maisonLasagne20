@@ -1,4 +1,5 @@
 from tree.eclairage.Lumiere import Lumiere
+from utils.controle.Triac import ETAT
 
 class Projecteur(Lumiere):
     """
@@ -8,19 +9,15 @@ class Projecteur(Lumiere):
         Lumiere.__init__(self, nom)
         self.triak = triak
 
-
-    """
-    def connect(self):
-        self.triak.
-    """
     def set(self, dimmeur):
         self.dimmeur = dimmeur
-        # on utilise ici la sortie
-        #du raspberry
-        print(self.nom," met le dimmeur a ",dimmeur)
+        if dimmeur == 0:
+            self.triak.deconnect()
+        else :
+            self.triak.connect()
+            self.triak.set(dimmeur)
 
     def show(self):
         print("nom = " + self.nom)
-        self.triak.show()
 
         

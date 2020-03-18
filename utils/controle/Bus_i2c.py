@@ -8,17 +8,18 @@ def binbits(x, n):
         return '0b' + '0' * (n - len(bits)) + bits
     return bits
 
-class Bus:
+class Bus_ports_extender:
     """
     Ceci est le bus de donnée
-    en static bien sûr
+    vers la carte sur le rasperry pour augmenter le
+    nombre de ports
     """
     bus = SMBus(1)
     for i in range(0x20, 0x28):
         bus.write_byte_data(i, 0x00, 0)
         bus.write_byte_data(i, 0x01, 0)
-        bus.write_byte_data(i, 0x12, 0b11111111)
-        bus.write_byte_data(i, 0x13, 0b11111111)
+        bus.write_byte_data(i, 0x12, 0)
+        bus.write_byte_data(i, 0x13, 0)
 
 
     @classmethod
@@ -29,7 +30,7 @@ class Bus:
     def write_pin(self, port_bus, register, numero, valeur):
         data =  self.bus.read_byte_data(port_bus, register)
         data = binbits(data,8)
-        data = data[0:(numero+1)]+str(valeur)+data[(numero+1)::]
+        data = data[0:(numero)]+str(valeur)+data[(numero+1)::]
         print("on ecrit donc "+data + " dans resgistre "+hex(register)+" port "+hex(port_bus))
         data = int(data,2)
         self.write(port_bus, register, data)

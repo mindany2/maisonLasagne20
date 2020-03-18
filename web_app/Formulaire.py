@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import StringField
 from tree.Tree import Tree
-from utils.In_out import get_tree
+from utils.In_out.Create_tree import get_tree
 from wtforms.widgets import HTMLString, html_params
 
 
@@ -39,7 +39,7 @@ class Widget(StringField):
 class Formulaire(Form):
     class Meta:
             csrf = False
-    tree = get_tree()
+    get_tree()
     for envi in Tree():
         for bt in envi.liste_boutons:
             vars()[envi.nom + "."+bt.nom] = Widget(bt.get_name())

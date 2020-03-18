@@ -1,9 +1,9 @@
 from enum import Enum
-from commande.Bus import Bus
+from utils.controle.Bus_i2c import Bus_ports_extender
 
 class Etat(Enum):
-    ON = 0
-    OFF = 1
+    ON = 1
+    OFF = 0
 
 class Relais:
     """
@@ -17,7 +17,7 @@ class Relais:
 
     def set(self, etat):
         self.etat = etat
-        Bus().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
+        Bus_ports_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
 
 
 

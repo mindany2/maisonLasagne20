@@ -17,9 +17,11 @@ class Bluetooth:
     def connect(self):
         try:
             self.p = Peripheral(self.addr)
+            print("ooooooooooooookkkkkkkkkkkkkkkkkkk")
         except:
             return 1
-
+        print(self.type_controler)
+        print("iiiiiiiiiiiiiiiiiicccccccccccccccciiiiiiiiiiiiii")
         if self.type_controler == TYPE_CONTROLER.NB_BROCHES_4:
             self.serv = self.p.getServiceByUUID(0xfff0)
             self.char = self.serv.getCharacteristics(0xfff3)

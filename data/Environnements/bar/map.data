@@ -3,7 +3,6 @@ Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
     Nom_projecteur  |   Type    |   addr relais |     Addresse triac    | Addresse Bluetooth  |   Derniere couleur(hex)
                     |           |               |                       |                     |
     led_test        |   led(4)  |       4(1)    |                       | BE:FF:F0:00:EB:3F   |       0x000000
-    projo_test      |   projo   |               |           2(1)        |
 led_banque_cuisine_1|   led(4)  |       4(2)    |                       |   be:ff:80:01:31:02 |     0x000000
 led_banque_cuisine_2|   led(4)  |       5(2)    |                       |   be:ff:f0:00:ea:b4 |     0x000000
 led_banque_cuisine_3|   led(4)  |       6(2)    |                       |   be:ff:40:00:f1:7f |     0x000000
