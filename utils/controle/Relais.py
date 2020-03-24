@@ -14,10 +14,14 @@ class Relais:
         self.numero = numero
         self.registre = registre
         self.etat = None
+        self.nombre_lumière = 0
 
     def set(self, etat):
         self.etat = etat
-        Bus_ports_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
+        self.nombre_lumière -= (1-etat.value)
+        if self.nombre_lumière == 0:
+            Bus_ports_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
+        self.nombre_lumière += etat.value
 
 
 

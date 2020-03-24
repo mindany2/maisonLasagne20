@@ -13,9 +13,11 @@ class Projecteur(Lumiere):
         self.dimmeur = dimmeur
         if dimmeur == 0:
             self.triak.deconnect()
+            return 0
         else :
             self.triak.connect()
-            self.triak.set(dimmeur)
+            return self.triak.set(dimmeur)
+
 
     def show(self):
         print("nom = " + self.nom)

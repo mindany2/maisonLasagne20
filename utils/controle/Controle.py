@@ -6,7 +6,7 @@ class Controle:
     """
     Ceci est une classe static
     """
-    liste_carte_relais = [Carte_relais(1, 0x20), Carte_relais(2, 0x21)]
+    liste_carte_relais = [Carte_relais(1, 0x21, 0x13), Carte_relais(2, 0x21, 0x12)]
     liste_carte_triac = [Carte_triac(1), Carte_triac(2)]
 
 

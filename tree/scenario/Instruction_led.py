@@ -24,29 +24,32 @@ class Instruction_led(Instruction_lumiere):
         else:
             liste_dimmeur = [0]*nb_points
 
-        try:
+        if self.couleur != self.lumière.couleur:
             liste_couleur = self.couleur.generate_array(self.lumière.couleur, nb_points)
-        except ZeroDivisionError:
+        else:
             print("on fait rien")
             barrier.wait()
             return
 
         err = self.lumière.connect()
         if err:
-            print("l'instruction sur "+self.lumière.nom)
+            print("l'instruction sur "+self.lumière.nom+" a planté")
+            barrier.wait()
 
 
         print("on attend")
         barrier.wait()
         print("on part !!!")
         for dim, valeur_couleur in zip(liste_dimmeur, liste_couleur):
-            self.lumière.set(dim, valeur_couleur)
+            if not(err):
+                self.lumière.set(dim, valeur_couleur)
             sleep(1/RESOLUTION)
             barrier.wait()
 
-        self.lumière.set(dimmeur_final, self.couleur.valeur)
-        sleep(1.5)
-        self.lumière.deconnect()
+        if not(err):
+            self.lumière.set(dimmeur_final, self.couleur.valeur)
+            sleep(1.5)
+            self.lumière.deconnect()
     
     def show(self):
         print("led = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree, " | couleur = ",self.couleur)

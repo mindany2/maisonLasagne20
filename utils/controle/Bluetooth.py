@@ -17,19 +17,22 @@ class Bluetooth:
     def connect(self):
         try:
             self.p = Peripheral(self.addr)
-            print("ooooooooooooookkkkkkkkkkkkkkkkkkk")
         except:
             return 1
         print(self.type_controler)
-        print("iiiiiiiiiiiiiiiiiicccccccccccccccciiiiiiiiiiiiii")
         if self.type_controler == TYPE_CONTROLER.NB_BROCHES_4:
             self.serv = self.p.getServiceByUUID(0xfff0)
             self.char = self.serv.getCharacteristics(0xfff3)
+        else:
+            self.serv = self.p.getServiceByUUID(0xffe5)
+            self.char = self.serv.getCharacteristics(0xffe9)
         return 0
 
     def send(self, couleur_hex):
         if self.type_controler == TYPE_CONTROLER.NB_BROCHES_4:
             valeur = "0x7e070503"+couleur_hex[2::]+"10ef"
+        else:
+            valeur = "0x56"+couleur_hex[2::]+"00f0aa"
         print(valeur)
         valeur = int(valeur,16)
         valeur = valeur.to_bytes((valeur.bit_length()+7)//8,'big')

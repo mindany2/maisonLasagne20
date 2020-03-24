@@ -4,17 +4,33 @@ qui vont etre donne a la page web et a la console
 index
         numero = 0
         Off : (oui / non), (green / red)
-        |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
-        |           |               |               |               |           |
-        |projo      |   projo_test       |       0     |       2       |   oui     |
-        |projo      |   projo_test2       |       0     |       2       |   oui     |
+        |   type    |   Lumiere                |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
+        |           |                          |               |               |           |
+        |   led     |   led_mur_pierre_haut    |       100     |       2       |    oui    |   0x000000
+        |   led     |   led_mur_pierre_droite  |       100     |       2       |    oui    |   0x000000
+        |   led     |   led_mur_pierre_gauche  |       100     |       2       |    oui    |   0x000000
+        |  projo    |   projo_33               |       0       |       2       |    oui    |  
+        |  projo    |   projo_34               |       0       |       2       |    oui    |  
+        |  projo    |   projo_32               |       0       |       2       |    oui    |  
+        |  projo    |   projo_31               |       0      |       2       |    oui    |  
+        |  projo    |   projo_28               |       0      |       2       |    oui    |  
+        |  projo    |   projo_27               |       0      |       2       |    oui    |  
+        |  projo    |   projo_26               |       0      |       2       |    oui    |  
 
         numero 1
         On : (oui/non), (blue/red)
-        |   type    |   Lumiere     |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
-        |           |               |               |               |           |
-        |projo      |   projo_test       |       50     |       2       |   oui     |
-        |projo      |   projo_test2       |       100     |       4       |   oui     |
+        |   type    |   Lumiere                |    dimmeur(%) |   Duree(s)    |   Attente |   Couleur(hex)
+        |           |                          |               |               |           |
+        |   led     |   led_mur_pierre_haut    |       100     |       2       |    non    |   0x00000f
+        |   led     |   led_mur_pierre_droite  |       100     |       2       |    non    |   0x000f0f
+        |   led     |   led_mur_pierre_gauche  |       100     |       2       |    oui    |   0x000f0f
+        |  projo    |   projo_33               |       100      |       2       |    oui    |  
+        |  projo    |   projo_34               |       100      |       2       |    oui    |  
+        |  projo    |   projo_32               |       100      |       2       |    oui    |  
+        |  projo    |   projo_31               |       100      |       2       |    oui    |  
+        |  projo    |   projo_28               |       100      |       2       |    oui    |  
+        |  projo    |   projo_27               |       100      |       2       |    oui    |  
+        |  projo    |   projo_26               |       100      |       2       |    oui    |  
 
         numero 2
         Déco : (oui/non), (blue/red)

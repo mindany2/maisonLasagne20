@@ -10,6 +10,7 @@ class ETAT(Enum):
     ON = 1
     OFF = 0
 
+FACTEUR = 85
 
 class Triac:
     """
@@ -22,21 +23,32 @@ class Triac:
         self.valeur = valeur
 
     def set(self, dimmeur):
-        val = 85-int((float(dimmeur)/100)*85)
-        data = 2*(val < self.valeur) + 3*(val > self.valeur)
+        val = FACTEUR-int((float(dimmeur)/100)*FACTEUR)
+        count = 0
         while self.valeur != val:
+            data = 2*(val < self.valeur) + 3*(val > self.valeur)
+            print("data = ", data)
             print("on veut ",self.valeur ," == ", val)
             (valeur,etat) = Bus_vers_STNucleo().write(self.numero_carte-1, self.numero_triak-1, data)
             print(dimmeur)
+            if self.valeur == valeur:
+                count += 1
+            else:
+                count = 0
             self.valeur = valeur
-            sleep(0.01)
+            sleep(0.02)
+        return 0
 
 
     def connect(self):
-        Bus_vers_STNucleo().write(self.numero_carte-1, self.numero_triak-1, 1)
+        while self.etat == 0:
+            (valeur, etat) = Bus_vers_STNucleo().write(self.numero_carte-1, self.numero_triak-1, 1)
+            self.etat = etat
 
     def deconnect(self):
-        Bus_vers_STNucleo().write(self.numero_carte-1, self.numero_triak-1, 0)
+        while self.etat == 1:
+            (valeur, etat) = Bus_vers_STNucleo().write(self.numero_carte-1, self.numero_triak-1, 0)
+            self.etat = etat
 
     def show(self):
         print( "carte numéro : {} | triac numéro {}".format(self.numero_carte, self.numero_triak))

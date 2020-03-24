@@ -12,7 +12,7 @@ except ModuleNotFoundError:
     MODE_RP = 0
 
 def rgb_to_hexa(r, g, b):
-    return hex(r).zfill(2)+hex(g)[2:4].zfill(2)+hex(b)[2:4].zfill(2)
+    return "0x"+hex(r)[2:4].zfill(2)+hex(g)[2:4].zfill(2)+hex(b)[2:4].zfill(2)
 
 class Couleur:
     """
@@ -29,21 +29,22 @@ class Couleur:
         self.r = int("0x"+self.valeur[2:4].zfill(2),16)
         self.g = int("0x"+self.valeur[4:6].zfill(2),16)
         self.b = int("0x"+self.valeur[6:8].zfill(2),16)
-        print(self.r, self.g, self.b)
 
     def get_liste(self, variable_init, variable_self, nb_points):
         if variable_init != variable_self:
             return np.arange(variable_init, variable_self, float((variable_self - variable_init))/nb_points)
-        raise(ZeroDivisionError)
+        return [0]*nb_points
 
 
 
     def __str__(self):
         return str(self.valeur)
 
+    def __eq__(self, other):
+        return int(self.valeur,16) == int(other.valeur,16)
+
     def generate_array(self, couleur_init, nb_points):
         self.int_to_rgb()
-        print(nb_points)
         couleur_init.int_to_rgb()
         liste_rouge = self.get_liste(couleur_init.r, self.r, nb_points)
         liste_vert = self.get_liste(couleur_init.g, self.g, nb_points)
@@ -79,7 +80,7 @@ class Led(Lumiere):
             if err:
                 compteur += 1
                 print(self.nom +" n'arrive pas a se connecter ")
-                sleep(0.2)
+                sleep(1)
         if compteur == 10:
             return 1
         return 0
@@ -88,7 +89,10 @@ class Led(Lumiere):
 
     def deconnect(self):
         if MODE_RP:
-            self.bluetooth.deconnect()
+            try:
+                self.bluetooth.deconnect()
+            except:
+                pass
             if self.couleur.is_black():
                 self.relais.set(Etat.OFF)
         # on enregistre la couleur de la led
