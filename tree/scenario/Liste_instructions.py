@@ -1,6 +1,7 @@
 from tree.scenario.Instruction import Instruction
 from threading import Thread, Barrier
 from numpy import cumsum
+from time import time, sleep
 
 class Liste_instructions:
     """
@@ -13,7 +14,7 @@ class Liste_instructions:
     def add(self, inst):
         self.liste.append(inst)
         self.liste_barrier[-1] += 1
-        if inst.attente:
+        if not(inst.synchro):
             # on a une nouvelle barrière
             self.liste_barrier.append(0)
 
@@ -26,18 +27,17 @@ class Liste_instructions:
         print("liste barrier = ", self.liste_barrier)
         liste_barrieres = [Barrier(i) for i in self.liste_barrier]
         cummulative_somme = cumsum(self.liste_barrier)
-        for i,inst in enumerate(self.liste):
+        temps_prec = 0
+        for i,inst in enumerate(sorted(self.liste, key= lambda x: x.temps_init)):
+            sleep(inst.temps_init-temps_prec)
             # chaque instruction est un thread
             # on le demarre
             n = sum([int(i+1 > j) for j in cummulative_somme])
             bar = liste_barrieres[n]
             process = Thread(target=inst.run, args=[bar])
+            liste_thread.append(process)
             process.start()
-            if (inst.attente):
-                # on doit attendre que l'instruction se termine
-                process.join()
-            else :
-                liste_thread.append(process)
+            temps_prec = inst.temps_init
 
         #on attend qu'ils aient tous terminé
         for proc in liste_thread:

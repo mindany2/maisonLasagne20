@@ -5,10 +5,11 @@ Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
     led_mur_pierre_droite       |   led(5)  |      5(1)     |                       | ff:ff:ab:01:d9:9d   |     0x000000
     led_mur_pierre_gauche       |   led(5)  |      5(1)     |                       | ff:ff:bc:01:a9:a5   |     0x000000
     led_mur_pierre_haut         |   led(5)  |      5(1)     |                       | ff:ff:fa:01:75:4c   |     0x000000
-    projo_32                    |   projo   |               |           2(1)        |
-    projo_33                    |   projo   |               |           3(1)        |
-    projo_34                    |   projo   |               |           4(1)        |
-    projo_31                    |   projo   |               |           6(1)        |
-    projo_28                    |   projo   |               |           7(1)        |
-    projo_27                    |   projo   |               |           8(1)        |
-    projo_26                    |   projo   |               |           1(2)        |
+    projo_32                    |   projo_plafond   |               |           2(1)        |
+    projo_33                    |   projo_plafond   |               |           3(1)        |
+    projo_34                    |   projo_plafond   |               |           4(1)        |
+    projo_28                    |   projo_plafond   |               |           6(1)        |
+    projo_30                    |   projo_plafond   |               |           7(1)        |
+    projo_26                    |   projo_plafond   |               |           8(1)        |
+    projo_36                    |   projo_plafond   |               |           1(2)        |
+    poutre_table_basse          |   projo_poutres   |       7(1)    |           2(2)        |

@@ -6,8 +6,8 @@ class Instruction_projecteur(Instruction_lumiere):
     """
     On set un projecteur
     """
-    def __init__(self, projecteur, dimmeur, duree, attente):
-        Instruction_lumiere.__init__(self, projecteur, dimmeur, duree, attente)
+    def __init__(self, projecteur, dimmeur, duree, temps_init, synchro):
+        Instruction_lumiere.__init__(self, projecteur, dimmeur, duree, temps_init, synchro)
 
     def run(self, barrier):
         """
@@ -18,16 +18,11 @@ class Instruction_projecteur(Instruction_lumiere):
         nb_points = RESOLUTION*self.duree
         print("dimmeur_initial  = ", dimmeur_initial, " / dimmeur_final = ", dimmeur_final)
         print( nb_points)
-        if dimmeur_initial != dimmeur_final:
-            liste = np.arange(dimmeur_initial, dimmeur_final, (dimmeur_final-dimmeur_initial)/nb_points)
-        else:
-            liste = [0]*nb_points
+        self.lumière.connect()
         barrier.wait()
-        for dimmeur in liste:
-            self.lumière.set(int(dimmeur))
-            sleep(1/RESOLUTION)
+        self.lumière.set(dimmeur_final,self.duree)
+        self.lumière.deconnect()
 
-        self.lumière.set(dimmeur_final)
 
     def show(self):
         print("projo = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree)

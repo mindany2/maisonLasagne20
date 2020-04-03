@@ -7,8 +7,8 @@ class Instruction_led(Instruction_lumiere):
     """
     On set une bande de led
     """
-    def __init__(self, led, dimmeur, duree, couleur, attente):
-        Instruction_lumiere.__init__(self, led, dimmeur, duree, attente)
+    def __init__(self, led, dimmeur, duree, temps_init, synchro, couleur):
+        Instruction_lumiere.__init__(self, led, dimmeur, duree, temps_init, synchro)
         self.couleur = Couleur(couleur)
 
     def run(self, barrier):

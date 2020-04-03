@@ -1,29 +1,28 @@
-from tree.scenario.Liste_instructions import Liste_instructions
-from threading import Thread
+from tree.scenario.Liste_scenarios import Liste_scenarios
 
 class Bouton:
     """
     La base d'un bouton, juste un état
     """
 
-    def __init__(self, nom):
+    def __init__(self, nom, mode, liste_scenar = []):
         self.etat = False
-        self.nom = nom
-        self.liste_inst = Liste_instructions()
+        self.nom = nom+"."+mode.nom
+        self.mode = mode
+        self.liste_scénario = Liste_scenarios()
+        for scénar in liste_scenar:
+            self.add_scenar(scénar)
 
-    def add_inst(self, inst):
-        self.liste_inst.add(inst)
-        
+    def add_scenar(self, scénar, attente = False):
+        self.liste_scénario.add(scénar, attente)
 
     def change(self):
         self.etat = not(self.etat)
 
     def do(self):
-        process = Thread(target = self.liste_inst.do)
-        print("ok")
-        process.start()
+        self.liste_scénario.do()
 
     def show(self):
-        print(self.nom)
-        for inst in self.liste_inst:
-            inst.show()
+        print("mode = " + str(self.mode) + " nom = " +self.nom + " === " + str(self.etat))
+        for scénar in self.liste_scénario:
+            scénar.show()
