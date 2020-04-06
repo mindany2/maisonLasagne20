@@ -1,6 +1,7 @@
 from tree.Liste import Liste
 from tree.Liste_radios import Liste_radios
 from tree.Dico import Dico
+from utils.In_out.Liste_interrupteur import Liste_interrupteur
 
 
 class Environnement:
@@ -12,7 +13,7 @@ class Environnement:
         self.nom = nom
         self.liste_lumières = Liste()
         self.liste_presets = Liste()
-        self.liste_input = Liste()
+        self.liste_input = Liste_interrupteur()
         # table de hashage entre mode et preset
         self.liste_presets_choisis = Dico()
         self.liste_boutons = Liste_radios()
@@ -43,8 +44,8 @@ class Environnement:
     def get_lumiere(self, nom):
         return self.liste_lumières.get(nom)
 
-    def get_bouton(self, nom, mode):
-        return self.liste_boutons.get(nom+"."+mode.nom)
+    def get_bouton(self, nom):
+        return self.liste_boutons.get(nom)
 
     def show(self):
         print("----- Environnement "+self.nom +" -----")

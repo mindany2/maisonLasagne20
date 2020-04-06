@@ -14,11 +14,24 @@ class Dico:
         except:
             return None
 
-    def get_index(self, clef):
-        for i,key in enumerate(self.liste.keys()):
-            if clef == key:
-                return i
+    def next(self, element):
+        find = False
+        for el in self.liste.values():
+            if find:
+                return el
+            if el == element:
+                find = True
+        assert(find)
+        return list(self.liste.values())[0]
+
+
+
+    def get_key(self, element):
+        for i,clef in enumerate(self.liste.keys()):
+            if self.liste[clef] == element:
+                return clef
         return None
+
 
     def __iter__(self):
         return self.liste.values().__iter__()

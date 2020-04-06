@@ -18,11 +18,8 @@ class Bus_ports_extender:
     bus = SMBus(1)
     mutex = Lock()
     for i in range(0x20, 0x28):
-        bus.write_byte_data(i, 0x00, 0x00)
-        bus.write_byte_data(i, 0x01, 0x00)
         bus.write_byte_data(i, 0x12, 0xff)
         bus.write_byte_data(i, 0x13, 0xff)
-
 
     @classmethod
     def write(self, port_bus, register, data):
@@ -44,7 +41,8 @@ class Bus_ports_extender:
     def read(self, port_bus, register):
         data =  self.bus.read_byte_data(port_bus, register)
         data = binbits(data, 8)
-        for pin in data[2::]:
+        print("data ={}".format(data))
+        for pin in data:
             yield pin
 
 

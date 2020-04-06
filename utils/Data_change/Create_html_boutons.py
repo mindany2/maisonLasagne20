@@ -13,9 +13,7 @@ def get_liste():
     for i,env in enumerate(Tree().liste_envi):
         if env.have_html_boutons:
             for j,bt in enumerate(env.liste_boutons):
-                bt.mode.show()
-                if bt.mode == Tree().liste_modes.selected():
-                    liste.add_boutons(env.nom +"."+ bt.nom, Bouton_html(env.nom, bt, [i,j]))
+                liste.add_boutons(env.nom +"."+ bt.nom, Bouton_html(env.nom, bt, [i,j]))
 
     liste.show()
     return liste

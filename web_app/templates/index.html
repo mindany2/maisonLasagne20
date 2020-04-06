@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for env in envs %}
-    {{ env.nom }}
+    {% for env in tree.liste_envi %}
+        {% if env.have_html_boutons %}
+            {{ env.nom }}
+        {% endif %}
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}
                 {% for bouton in form %}

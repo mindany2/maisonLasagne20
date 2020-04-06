@@ -17,9 +17,13 @@ class Tree:
         return self.liste_modes.get(mode)
 
     @classmethod
+    def get_current_mode(self):
+        return self.liste_modes.element_select
+
+    @classmethod
     def get_env(self, env):
         return self.liste_envi.get(env)
 
     @classmethod
-    def get_bouton(self, nom_env, nom_bouton, nom_mode):
-        return self.get_env(nom_env).get_bouton(nom_bouton, self.get_mode(nom_mode))
+    def get_bouton(self, nom_env, nom_bouton):
+        return self.get_env(nom_env).get_bouton(nom_bouton)

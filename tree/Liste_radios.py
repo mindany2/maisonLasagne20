@@ -8,11 +8,12 @@ class Liste_radios(Liste):
         Liste.__init__(self)
         self.element_select = None
 
-    def add(self, element):
+    def add(self, element, change = True):
         Liste.add(self, element)
         if self.element_select == None:
             self.element_select = element
-            self.element_select.change()
+            if change:
+                self.element_select.change()
 
     def selected(self):
         return self.element_select
@@ -21,4 +22,8 @@ class Liste_radios(Liste):
         self.element_select.change()
         self.element_select = element
         element.change()
+
+    def next(self):
+        self.change_select(Liste.next(self, self.element_select))
+
         

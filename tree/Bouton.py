@@ -5,10 +5,9 @@ class Bouton:
     La base d'un bouton, juste un état
     """
 
-    def __init__(self, nom, mode, liste_scenar = []):
+    def __init__(self, nom, liste_scenar = []):
         self.etat = False
-        self.nom = nom+"."+mode.nom
-        self.mode = mode
+        self.nom = nom
         self.liste_scénario = Liste_scenarios()
         for scénar in liste_scenar:
             self.add_scenar(scénar)
@@ -19,10 +18,16 @@ class Bouton:
     def change(self):
         self.etat = not(self.etat)
 
+    def change_liste_scenario(self, nom, liste_scenar = []):
+        self.nom = nom
+        self.liste_scénario = Liste_scenarios()
+        for scénar in liste_scenar:
+            self.add_scenar(scénar)
+
+
     def do(self):
         self.liste_scénario.do()
 
     def show(self):
-        print("mode = " + str(self.mode) + " nom = " +self.nom + " === " + str(self.etat))
         for scénar in self.liste_scénario:
             scénar.show()

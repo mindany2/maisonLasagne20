@@ -2,6 +2,7 @@ from tree.Environnement import Environnement
 from tree.Tree import Tree
 from tree.Bouton import Bouton
 from utils.Data_change.Create_lumière import get_lumiere
+from utils.Data_change.Create_inputs import get_interrupteurs
 from utils.Data_change.Create_preset import get_preset
 from utils.Data_change.utils.Read import ouvrir, lire, trouver_fichier
 
@@ -47,17 +48,13 @@ def get_env(nom):
     # on a donc tous les paramètres de bases, maintenant on creer les boutons
     # donc un bouton par scénarios par preset selectionner
 
-    for mode in env.liste_presets_choisis.keys():
-        mode.show()
-        print("ooooooooooooooooooooooo")
-        preset = env.liste_presets_choisis.get(mode)
-        for scenar in preset.liste_scénario:
-            bt = Bouton(scenar.nom, mode, [scenar])
-            env.add_boutons(bt)
+    preset = env.liste_presets_choisis.get(Tree().get_current_mode())
+    for scenar in preset.liste_scénario:
+        bt = Bouton(scenar.nom, [scenar])
+        env.add_boutons(bt)
 
     # maintenant que l'on a les boutons "normaux"
-    # TODO les inputs
-
+    #on recupére les inters
 
     print("fin env")
     return env 

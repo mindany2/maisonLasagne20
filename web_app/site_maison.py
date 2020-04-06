@@ -24,9 +24,8 @@ class Site_maison:
                         nom = str(bouton.data)
                         nom_env = nom.split(".")[0]
                         nom_bouton = nom.split(".")[1]
-                        nom_mode = nom.split(".")[2]
                         # on trouve le vrai bouton
-                        bt = Tree().get_bouton(nom_env, nom_bouton, nom_mode)
+                        bt = Tree().get_bouton(nom_env, nom_bouton)
                         bt.do()
                         #on change les boutons radios
                         Tree().get_env(nom_env).change_bouton_select(bt)
@@ -48,7 +47,7 @@ class Site_maison:
 
             for bouton in form:
                 print(bouton.id)
-            return render_template("index.html", form = form, envs = Tree().liste_envi)
+            return render_template("index.html", form = form, tree = Tree())
 
 
 if __name__ == "__main__":

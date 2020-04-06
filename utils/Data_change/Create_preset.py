@@ -19,7 +19,6 @@ def get_preset(env, nom):
             preset.add_scenar(scenar)
         elif scenar != None:
             scenar.add_inst(get_inst(env,ligne.split("|")))
-    print(preset)
     return preset
 
 def get_inst(env, infos):
@@ -31,8 +30,12 @@ def get_inst(env, infos):
     duree = int(infos[3])
     temps_init = int(infos[4])
     couleur = infos[5]
-    synchro = infos[6] == "oui"
+    try:
+        synchro = infos[6] == "oui"
+    except:
+        synchro = False
     
+    print(nom_lampe)
     lumière = env.get_lumiere(nom_lampe)
     if isinstance(lumière, Projecteur):
         return Instruction_projecteur(lumière, dimmeur, duree, temps_init, synchro)
