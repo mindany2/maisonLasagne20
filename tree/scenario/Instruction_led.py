@@ -42,14 +42,14 @@ class Instruction_led(Instruction_lumiere):
         print("on part !!!")
         for dim, valeur_couleur in zip(liste_dimmeur, liste_couleur):
             if not(err):
-                self.lumière.set(dim, valeur_couleur)
+                self.lumière.set(int(dim), valeur_couleur)
             sleep(1/RESOLUTION)
             barrier.wait()
 
         if not(err):
-            self.lumière.set(dimmeur_final, self.couleur.valeur)
-            sleep(1.5)
-            self.lumière.deconnect()
+            self.lumière.set(int(dimmeur_final), self.couleur.valeur)
+            sleep(3)
+        self.lumière.deconnect()
     
     def show(self):
         print("led = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree, " | couleur = ",self.couleur)

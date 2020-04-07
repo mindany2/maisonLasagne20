@@ -1,8 +1,10 @@
 from utils.Data_change.utils.Read import ouvrir, lire
 from tree.Preset import Preset
 from tree.eclairage.Led import Led
+from tree.eclairage.Lampe import Lampe
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
+from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario
 
@@ -41,5 +43,7 @@ def get_inst(env, infos):
         return Instruction_projecteur(lumière, dimmeur, duree, temps_init, synchro)
     elif isinstance(lumière, Led):
         return Instruction_led(lumière, dimmeur, duree, temps_init, synchro, couleur)
+    elif isinstance(lumière, Lampe):
+        return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
     raise(IOError)
 

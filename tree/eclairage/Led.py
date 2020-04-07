@@ -44,9 +44,10 @@ class Led(Lumiere):
 
 
     def set(self, dimmeur, couleur):
+        if self.couleur != Couleur(couleur):
+            self.bluetooth.send_color(self.couleur.valeur)
         self.dimmeur = dimmeur
         self.couleur = Couleur(couleur)
-        self.bluetooth.send(self.couleur.valeur)
         print(self.nom," met le dimmeur a ",dimmeur," de couleur ",str(couleur))
 
     def show(self):

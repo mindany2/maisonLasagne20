@@ -40,6 +40,7 @@ class Liste_interrupteur:
     @classmethod
     def add(self, inter):
         self.liste_inter.add(inter.pin,inter)
+        #self.bus.write_pin(self.port_bus, 0x05, inter.pin, 1)
 
     @classmethod
     def interrupt(self, event):

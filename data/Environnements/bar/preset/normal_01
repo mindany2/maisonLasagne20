@@ -4,12 +4,12 @@
 eteindre
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |   poutre      |       0       |      10       |       0         |                   |
+  |   poutre      |       0       |      3       |       0         |                   |
 
 allumer
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |   poutre      |       100     |      10       |       0         |                   |
+  |   poutre      |       50     |      3       |       0         |                   |
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

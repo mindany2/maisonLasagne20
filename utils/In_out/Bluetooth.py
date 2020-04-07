@@ -28,7 +28,17 @@ class Bluetooth:
             self.char = self.serv.getCharacteristics(0xffe9)
         return 0
 
-    def send(self, couleur_hex):
+    def send_dimmeur(self, dimmeur):
+        if self.type_controler == TYPE_CONTROLER.NB_BROCHES_4:
+            valeur = "0x7e0401"+hex(dimmeur)[2::]+"01ffff0ef"
+        print(valeur)
+        valeur = int(valeur,16)
+        valeur = valeur.to_bytes((valeur.bit_length()+7)//8,'big')
+        self.char[0].write(valeur)
+
+
+
+    def send_color(self, couleur_hex):
         if self.type_controler == TYPE_CONTROLER.NB_BROCHES_4:
             valeur = "0x7e070503"+couleur_hex[2::]+"10ef"
         else:

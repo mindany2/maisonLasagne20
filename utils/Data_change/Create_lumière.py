@@ -1,5 +1,6 @@
 from utils.In_out.controle.Controle import Controle
 from tree.eclairage.Led import Led
+from tree.eclairage.Lampe import Lampe
 from utils.In_out.Bluetooth import TYPE_CONTROLER
 from tree.eclairage.Projecteur import Projecteur, LAMPE
 
@@ -49,3 +50,5 @@ def get_lumiere(infos):
         else:
             spec = None
         return Led(nom, relais, addr_bluetooth, spec)
+    elif type_lumière == "lampe":
+        return Lampe(nom, relais)

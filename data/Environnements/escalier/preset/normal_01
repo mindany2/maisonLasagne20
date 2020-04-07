@@ -2,16 +2,22 @@
 //qui vont etre donne a la page web et a la console
 
 eteindre
-//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
-//|               |               |               |                 |                   |
-  |led_escalier_haut   |       0       |       2       |        0        |   0x000000       |
-  |led_escalier_bas    |       0       |       2       |        0        |   0x000000       |
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |led_escalier_haut  |       0       |       5       |        0        |   0x000000       |
+  |led_escalier_bas   |       0       |       5       |        0        |   0x000000       |
+  |projo_45           |       0       |       2       |        0        |   
+  |projo_44           |       0       |       2       |        1        |   
+  |projo_43           |       0       |       2       |        2        |   
 
 allumer
 //|   Lumiere          |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|                    |               |               |                 |                   |
-  |led_escalier_haut   |       0       |       2       |        0        |   0xff0000       |   oui
-  |led_escalier_bas    |       0       |       2       |        0        |   0xff0000       |   oui
+  |projo_43            |       100     |       2       |        0        | 
+  |projo_44            |       100     |       2       |        1        | 
+  |projo_45            |       100     |       2       |        2        | 
+  |led_escalier_haut   |       100     |       2       |        0        |   0xff0000       |   oui
+  |led_escalier_bas    |       100     |       2       |        0        |   0xff0000       |   oui
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
