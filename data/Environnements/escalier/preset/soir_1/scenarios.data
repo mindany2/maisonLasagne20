@@ -1,0 +1,43 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre_vers_le_bas:off
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |led_escalier_haut  |       0       |       5       |        0        |   0x000000       |  
+  |led_escalier_bas   |       0       |       5       |        0        |   0x000000       |    
+  |projo_45           |       0       |       2       |        0        |   
+  |projo_44           |       0       |       2       |        1        |   
+  |projo_43           |       0       |       2       |        2        |   
+
+eteindre_vers_le_haut:off
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |led_escalier_haut  |       0       |       5       |        0        |   0x000000       |  
+  |led_escalier_bas   |       0       |       5       |        0        |   0x000000       |    
+  |projo_43           |       0       |       2       |        0        |   
+  |projo_44           |       0       |       2       |        1        |   
+  |projo_45           |       0       |       2       |        2        |   
+
+allumer_vers_le_bas:on
+//|   Lumiere          |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                    |               |               |                 |                   |
+  |projo_45            |       100     |       2       |        0        | 
+  |projo_44            |       100     |       2       |        1        | 
+  |projo_43            |       100     |       2       |        2        | 
+  |led_escalier_haut   |       10      |       5       |        0        |   0x0f0f00       |   
+  |led_escalier_bas    |       20      |       5       |        0        |   0x0f0f00       |   
+
+
+allumer_vers_le_haut:on
+//|   Lumiere          |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                    |               |               |                 |                   |
+  |projo_43            |       100     |       2       |        0        | 
+  |projo_44            |       100     |       2       |        1        | 
+  |projo_45            |       100     |       2       |        2        | 
+  |led_escalier_haut   |       10      |       5       |        0        |   0xf0000f       |   
+  |led_escalier_bas    |       20      |       5       |        0        |   0xf0000f       |   
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

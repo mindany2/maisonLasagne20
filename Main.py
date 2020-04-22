@@ -1,4 +1,5 @@
 from web_app.site_maison import Site_maison
+from time import sleep
 
  
 """
@@ -24,3 +25,5 @@ app = site.site
 
 if __name__ == "__main__":
      app.run(debug=True)
+     while(1):
+         pass

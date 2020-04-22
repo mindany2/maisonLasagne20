@@ -24,11 +24,11 @@ class Liste_instructions:
     def do(self):
         #on fait toute les instructions
         liste_thread = []
-        print("liste barrier = ", self.liste_barrier)
         liste_barrieres = [Barrier(i) for i in self.liste_barrier]
         cummulative_somme = cumsum(self.liste_barrier)
         temps_prec = 0
         for i,inst in enumerate(sorted(self.liste, key= lambda x: x.temps_init)):
+            print("on sleep {} s".format(inst.temps_init - temps_prec))
             sleep(inst.temps_init-temps_prec)
             # chaque instruction est un thread
             # on le demarre

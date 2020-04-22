@@ -1,7 +1,8 @@
-from tree.Liste import Liste
-from tree.Liste_radios import Liste_radios
-from tree.Dico import Dico
-from utils.In_out.Liste_interrupteur import Liste_interrupteur
+from tree.utils.Liste import Liste
+from tree.utils.Liste_radios import Liste_radios
+from tree.utils.Dico import Dico
+from tree.Tree import Tree
+from In_out.Liste_interrupteur import Liste_interrupteur
 
 
 class Environnement:
@@ -12,30 +13,46 @@ class Environnement:
     def __init__(self, nom):
         self.nom = nom
         self.liste_lumières = Liste()
-        self.liste_presets = Liste()
-        self.liste_input = Liste_interrupteur()
+        self.liste_presets = Liste_radios()
         # table de hashage entre mode et preset
         self.liste_presets_choisis = Dico()
-        self.liste_boutons = Liste_radios()
-        self.have_html_boutons = False
 
     def add_lumiere(self, lum):
         self.liste_lumières.add(lum)
 
-    def change_bouton_select(self, bt):
-        self.liste_boutons.change_select(bt)
+    def etat(self):
+        # retourne si l'environnement est allumer ou éteint
+        return self.get_preset_select().get_marqueur()
 
-    def add_boutons(self, bt):
-        self.liste_boutons.add(bt)
-        self.liste_boutons.show()
+    def get_preset_select(self):
+        return self.liste_presets.selected()
+
+    def change_mode(self):
+        print(Tree.get_current_mode().nom)
+        nv_preset = self.liste_presets_choisis.get(Tree.get_current_mode())
+        # on met le premier sénario qui correspond au même mode que celui en cours
+        for scenar in nv_preset.liste_scénario:
+            if scenar.etat != self.etat():
+                nv_preset.change_select(scenar)
+                break
+        # on change de preset
+        self.liste_presets.change_select(nv_preset)
+        self.get_preset_select().show()
+
+
+
+    def change_scenario_select(self, scenar):
+        self.get_preset_select().change_select(scenar)
 
     def add_preset(self, preset):
         self.liste_presets.add(preset)
 
-    def add_input(self, inter):
-        self.liste_input.add(inter)
+    def change_preset_select(self, preset):
+        self.liste_presets.change_select(preset)
 
     def add_mode(self, mode, nom_preset):
+        if Tree().get_current_mode() == mode:
+            self.change_preset_select(self.get_preset(nom_preset))
         self.liste_presets_choisis.add(mode, nom_preset)
 
     def get_preset(self, nom):
@@ -44,8 +61,9 @@ class Environnement:
     def get_lumiere(self, nom):
         return self.liste_lumières.get(nom)
 
-    def get_bouton(self, nom):
-        return self.liste_boutons.get(nom)
+    def get_scenar(self, nom):
+        return self.get_preset_select().get_scenar(nom)
+
 
     def show(self):
         print("----- Environnement "+self.nom +" -----")
@@ -53,11 +71,7 @@ class Environnement:
         self.liste_lumières.show()
         print("----- Presets -----")
         self.liste_presets.show()
-        print("----- Input -------")
-        self.liste_input.show()
         print("---- Presets sélectionné ----")
         self.liste_presets_choisis.show()
-        print("---- boutons -----")
-        self.liste_boutons.show()
         
 

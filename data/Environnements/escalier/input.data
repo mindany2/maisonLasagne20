@@ -1,3 +1,0 @@
-// creer les interrupteurs et on les lie au boutons
-//| nom_inter           |   pin     |   boutons
-  | bas_escalier_étage  |    1      |   escalier.allumer,escalier.eteindre

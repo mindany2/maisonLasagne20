@@ -1,24 +1,24 @@
 from tree.Environnement import Environnement
 from tree.Tree import Tree
-from tree.Bouton import Bouton
 from utils.Data_change.Create_lumière import get_lumiere
 from utils.Data_change.Create_inputs import get_interrupteurs
 from utils.Data_change.Create_preset import get_preset
-from utils.Data_change.utils.Read import ouvrir, lire, trouver_fichier
+from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
 
 def get_env(nom):
     """
     retourne un environnement complet
     """
     env = Environnement(nom) 
+    print("Environnement : "+ nom)
     
     #on recupére les lumières
     for lumière in lire(ouvrir(nom+"/lumieres.data")):
         env.add_lumiere(get_lumiere(lumière.split("|")))
 
     # on recupére les presets
-    for fichier in trouver_fichier("/"+nom+"/preset"):
-        env.add_preset(get_preset(env,fichier))
+    for dossier in trouver_dossier("/"+nom+"/preset"):
+        env.add_preset(get_preset(env,dossier))
 
     # on recupére les options
     # on commence par lire tout les informations utiles
@@ -29,7 +29,6 @@ def get_env(nom):
             read_preset = True
         else : 
             args = ligne.split("=")
-            print(args)
             arg1 = args[0]
             arg2 = args[1]
             if read_preset:
@@ -41,21 +40,11 @@ def get_env(nom):
                 env.liste_presets_choisis.add(mode, preset)
             else:
                 # on lit des paramètres
-                if arg1 == "boutons_html":
-                    if arg2 == "On" or arg2 == "on":
-                        env.have_html_boutons = True
+                # il n'y en a pas encore
+                pass
     
-    # on a donc tous les paramètres de bases, maintenant on creer les boutons
-    # donc un bouton par scénarios par preset selectionner
-
-    preset = env.liste_presets_choisis.get(Tree().get_current_mode())
-    for scenar in preset.liste_scénario:
-        bt = Bouton(scenar.nom, [scenar])
-        env.add_boutons(bt)
-
-    # maintenant que l'on a les boutons "normaux"
-    #on recupére les inters
-
+    # on met le même mode que le tree
+    env.change_mode()
     print("fin env")
     return env 
 

@@ -35,11 +35,12 @@ class Instruction_led(Instruction_lumiere):
         if err:
             print("l'instruction sur "+self.lumière.nom+" a planté")
             barrier.wait()
+            self.lumière.deconnect()
+            return
 
 
-        print("on attend")
+
         barrier.wait()
-        print("on part !!!")
         for dim, valeur_couleur in zip(liste_dimmeur, liste_couleur):
             if not(err):
                 self.lumière.set(int(dim), valeur_couleur)

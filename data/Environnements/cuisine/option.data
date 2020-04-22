@@ -1,9 +1,7 @@
 //Ici on a toutes les options de l'environnement
 
-// on génère les boutons pour tous les scénarios des presets sélectionné
-boutons_html = On
 
 Presets :
 //modes = Presets :
-normal = normal_01
-soirée = soiree_01
+normal = normal_1
+soirée = normal_1

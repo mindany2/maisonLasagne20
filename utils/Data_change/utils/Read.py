@@ -14,6 +14,7 @@ def lire(fichier):
 def trouver_dossier(nom_sous_dossier):
     for nom in os.listdir(PATH[:-1]+nom_sous_dossier):
         if (os.path.isdir(PATH[:-1]+nom_sous_dossier+"/"+nom)):
+            print(nom)
             yield nom
 
 def trouver_fichier(nom_sous_dossier):

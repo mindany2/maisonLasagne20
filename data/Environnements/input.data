@@ -1,0 +1,4 @@
+// creer les interrupteurs et on les lie au boutons
+//| nom_inter           |   pin     
+  | bas_escalier_étage  |    1     
+  | haut_escalier_étage |    2    

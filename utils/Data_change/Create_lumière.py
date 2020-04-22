@@ -1,7 +1,8 @@
-from utils.In_out.controle.Controle import Controle
+from In_out.cartes.Gestionnaire_de_cartes import Gestionnaire_de_cartes
 from tree.eclairage.Led import Led
 from tree.eclairage.Lampe import Lampe
-from utils.In_out.Bluetooth import TYPE_CONTROLER
+from In_out.bluetooth_devices.Controleur_4_pins import Controleur_4_pins
+from In_out.bluetooth_devices.Controleur_5_pins import Controleur_5_pins
 from tree.eclairage.Projecteur import Projecteur, LAMPE
 
 def get_addr(addr):
@@ -13,7 +14,6 @@ def get_lumiere(infos):
     """
     Créer la lumière correspondante avec les bonnes infos
     """
-    print(infos)
     nom = infos[0]
     specification = infos[1].split("_")
     type_lumière = specification[0]
@@ -23,13 +23,12 @@ def get_lumiere(infos):
     addr_bluetooth = infos[4]
     
     if addr_triac != None:
-        triac = Controle().get_triac(int(addr_triac[1]), int(addr_triac[0]))
+        triac = Gestionnaire_de_cartes().get_triac(int(addr_triac[1]), int(addr_triac[0]))
     else:
         triac = None
 
     if addr_relais != None:
-        print(addr_relais)
-        relais = Controle().get_relais(int(addr_relais[1]), int(addr_relais[0]))
+        relais = Gestionnaire_de_cartes().get_relais(int(addr_relais[1]), int(addr_relais[0]))
     else:
         relais = None
 
@@ -44,11 +43,9 @@ def get_lumiere(infos):
 
     elif type_lumière == "led":
         if option_lumiere == "2":
-            spec = TYPE_CONTROLER.NB_BROCHES_4
+            controleur = Controleur_4_pins(addr_bluetooth)
         elif option_lumiere == "1":
-            spec = TYPE_CONTROLER.NB_BROCHES_5
-        else:
-            spec = None
-        return Led(nom, relais, addr_bluetooth, spec)
+            controleur = Controleur_5_pins(addr_bluetooth)
+        return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)

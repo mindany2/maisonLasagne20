@@ -1,20 +1,18 @@
 from utils.Data_change.utils.Read import lire, ouvrir
-from utils.In_out.Interrupteur import Interrupteur
+from In_out.Interrupteur import Interrupteur
+from In_out.Liste_interrupteur import Liste_interrupteur
 
-def get_interrupteurs(env):
+def get_interrupteurs():
     """
     On setup tout les inters
     """
-    liste = env.liste_input
+    liste = Liste_interrupteur()
 
-    for ligne in lire(ouvrir(env.nom+"/input.data")):
-        print(env.nom)
-        print(ligne)
+    for ligne in lire(ouvrir("input.data")):
         infos = ligne.split("|")
         nom = infos[1]
         pin = int(infos[2])
-        liste_boutons = infos[3].split(",")
-        liste.add(Interrupteur(nom, pin, liste_boutons))
+        liste.add(Interrupteur(nom, pin))
 
 
 

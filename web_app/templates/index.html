@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for env in tree.liste_envi %}
-        {% if env.have_html_boutons %}
-            {{ env.nom }}
-        {% endif %}
+    <form  action="" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.mode }}
+    </form>
+
+
+    </form>
+    {% for env in liste.liste_boutons_env.keys() %}
+        {{ env.nom }}
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}
                 {% for bouton in form %}
-                    {% if bouton.id.split('.')[0] == env.nom %}
+                    {% if bouton.id.split('.')[0] == env.nom and bouton.id.split('.')[1] == env.get_preset_select().nom %}
                         {{ bouton }}
                     {% endif %}
                 {% endfor %}
