@@ -11,7 +11,6 @@ class Controleur_4_pins(Bluetooth_device):
     def send_dimmeur(self, dimmeur):
         dimmeur = int(250*float(dimmeur)/100)
         valeur = "0x7e0401"+(dimmeur < 16)*"0"+hex(dimmeur)[2::]+"01ffff00ef"
-        print("on envoie {}", valeur)
         self.send(valeur)
 
     def send_color(self, couleur_hex):

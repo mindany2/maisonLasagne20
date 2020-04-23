@@ -13,7 +13,7 @@ class Style:
     Contient toutes les informations de style
     des boutons html
     """
-    def __init__(self, position, relative = True, couleur = "red", taille = 10, couleur_texte = "black"):
+    def __init__(self, position, relative = True, couleur = "red", taille = 10, couleur_texte = "white"):
         self.image = ""
         self.bg = couleur
         self.size = taille
@@ -25,5 +25,5 @@ class Style:
         retour = ""
         retour +=  "background-color : "+self.bg + ";"
         retour += "font-size : "+str(self.size)+"px;"
-        retour += "font-color : "+str(self.font_color)+"px;"
+        retour += "color : "+str(self.font_color)+";"
         return retour

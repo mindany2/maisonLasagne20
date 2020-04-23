@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, request, render_template
 from web_app.Formulaire import Formulaire
-from web_app.boutons.Liste_boutons_html import Liste_boutons_html
 from time import sleep
+from tree.Tree import Tree
 
 class Site_maison:
     """
@@ -22,13 +22,14 @@ class Site_maison:
                 # on cherche le bouton qui à été appuyer
                 for bouton in form:
                     if (bouton.data):
-                        bt = Liste_boutons_html().get_bouton(str(bouton.data))
-                        bt.press()
+                        print(bouton.data)
+                        nom_env = bouton.data.split("_")[0]
+                        index = int(bouton.data.split("_")[1])
+                        Tree().press_bouton_html(nom_env, index)
                         break
 
             # on reload tous les boutons
-            for bt in Liste_boutons_html():
-                bt.reload()
+            Tree().reload_html()
                         
 
             for bouton in form:
@@ -40,7 +41,7 @@ class Site_maison:
 
             for bouton in form:
                 print(bouton.id)
-            return render_template("index.html", form = form, liste = Liste_boutons_html())
+            return render_template("index.html", form = form, tree = Tree())
 
 
 if __name__ == "__main__":

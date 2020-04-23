@@ -3,17 +3,19 @@
 {% block content %}
     <form  action="" method="POST">
             {{ form.hidden_tag() }}
-            {{ form.mode }}
+            {{ form.mode_0 }}
     </form>
 
 
-    </form>
-    {% for env in liste.liste_boutons_env.keys() %}
-        {{ env.nom }}
+
+    {% for env in tree.liste_envi%}
+        {% if env.get_preset_select().liste_boutons_html != [] %}
+            {{ env.nom }}
+        {% endif %}
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}
                 {% for bouton in form %}
-                    {% if bouton.id.split('.')[0] == env.nom and bouton.id.split('.')[1] == env.get_preset_select().nom %}
+                    {% if bouton.id.split('_')[0] == env.nom and env.get_preset_select().is_present(bouton.id.split('_')[1]) %}
                         {{ bouton }}
                     {% endif %}
                 {% endfor %}

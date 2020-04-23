@@ -23,6 +23,12 @@ class Tree:
             env.change_mode()
 
     @classmethod
+    def press_inter(self, nom_inter):
+        for env in self.liste_envi:
+            print(env.nom)
+            env.get_preset_select().press_inter(nom_inter)
+
+    @classmethod
     def add_mode(self, mode):
         self.liste_modes.add(mode)
 
@@ -31,8 +37,31 @@ class Tree:
         return self.liste_modes.selected()
 
     @classmethod
+    def reload_modes(self):
+        self.change_mode_select(self.get_current_mode())
+
+    @classmethod
     def get_env(self, env):
         return self.liste_envi.get(env)
+
+    @classmethod
+    def press_bouton_html(self, nom_env, index):
+        if nom_env != "mode":
+            self.get_env(nom_env).get_preset_select().press_bouton_html(index)
+        else:
+            self.liste_modes.selected().press_bouton_mode()
+
+    @classmethod
+    def reload_html(self):
+        for env in self.liste_envi:
+            env.get_preset_select().reload_html()
+
+    @classmethod
+    def get_bouton_html(self, nom_env, index):
+        if nom_env != "mode":
+            return self.get_env(nom_env).get_preset_select().get_bouton_html(index)
+        else:
+            return self.liste_modes.selected().bouton_change_html
 
     @classmethod
     def get_scenar(self, nom_env, nom_scenar):

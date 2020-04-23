@@ -3,9 +3,7 @@ from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
 from utils.Data_change.Create_env import get_env
 from utils.Data_change.Create_inputs import get_interrupteurs
 from In_out.Liste_interrupteur import Liste_interrupteur
-from web_app.boutons.Liste_boutons_html import Liste_boutons_html
-from web_app.boutons.Bouton_html import Bouton_html
-from tree.utils.boutons.Bouton_changement_mode import Bouton_changement_mode
+from tree.boutons.Bouton_changement_mode import Bouton_changement_mode
 from tree.Mode import Mode
 from threading import Thread
 
@@ -31,17 +29,15 @@ def get_tree():
     get_interrupteurs()
 
     
-
     # on va chercher les environnements
     # et on les remplits
-    for nom in trouver_dossier(""):
-        tree.liste_envi.add(get_env(nom))
+    for i,nom in enumerate(trouver_dossier("")):
+        tree.liste_envi.add(get_env(nom, i))
     
     # on met le bouton changement de mode
-    Liste_boutons_html().add_boutons_global(Bouton_changement_mode())
     
     # on lance les inters
     process = Thread(target=Liste_interrupteur().init)
     process.start()
 
-    tree.show()
+    #tree.show()

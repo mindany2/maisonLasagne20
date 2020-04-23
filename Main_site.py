@@ -4,17 +4,7 @@ from time import sleep
  
 """
 Ceci est le code qui sera éxécuter au lancement du site par apache
-donc au démarage du rasperry
 """
-# on lance tout
-# on recupére l'arbre
-"""
-l'initialisation 
-
-est faite dans le formulaire car sinon ça plante
-"""
-# le get tree se fait dans le formulaire, le premier element qui est lancé
-#tree = get_tree()
 site = Site_maison()
 
 

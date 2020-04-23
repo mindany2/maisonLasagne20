@@ -15,11 +15,10 @@ class Lampe(Lumiere):
     def set(self, on_off):
         self.mutex.acquire()
         if on_off:
-            print("on allume {}".format(self.nom))
             etat = Etat.ON
         else:
-            print("on eteint {}".format(self.nom))
             etat = Etat.OFF
+        print("on met la lampe {} a {}".format(self.nom, etat))
         if self.relais.etat != etat:
             self.relais.set(etat)
         self.mutex.release()

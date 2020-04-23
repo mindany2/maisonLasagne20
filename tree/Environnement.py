@@ -31,15 +31,17 @@ class Environnement:
         print(Tree.get_current_mode().nom)
         nv_preset = self.liste_presets_choisis.get(Tree.get_current_mode())
         # on met le premier sénario qui correspond au même mode que celui en cours
-        for scenar in nv_preset.liste_scénario:
-            if scenar.etat != self.etat():
-                nv_preset.change_select(scenar)
+        for bt in nv_preset.liste_boutons_html:
+            if bt.get_marqueur() == self.etat():
+                nv_preset.change_select(bt.scenar)
+                if self.etat(): # si on est allumer
+                    # on le met
+                    bt.press()
+                # sinon pas besoin on est éteint
                 break
         # on change de preset
         self.liste_presets.change_select(nv_preset)
         self.get_preset_select().show()
-
-
 
     def change_scenario_select(self, scenar):
         self.get_preset_select().change_select(scenar)

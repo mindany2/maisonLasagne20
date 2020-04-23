@@ -7,13 +7,13 @@ from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario
-from web_app.boutons.Liste_boutons_html import Liste_boutons_html
-from tree.utils.boutons.Bouton_simple import Bouton_simple
-from tree.utils.boutons.Bouton_poussoir import Bouton_poussoir
+from tree.boutons.Bouton_simple import Bouton_simple
+from tree.boutons.Bouton_poussoir import Bouton_poussoir
+from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
 from In_out.Liste_interrupteur import Liste_interrupteur
 
 
-def get_preset(env, nom):
+def get_preset(env, index, nom):
     """
     On recupére la preset
     """
@@ -38,21 +38,30 @@ def get_preset(env, nom):
 
     # maintenant on lie la liste des boutons html et inters utilisé avec le bon scenario
 
+    compt = 0
     for ligne in lire(ouvrir(env.nom+"/preset/"+nom+"/boutons.data")):
         (vide, nom_bt, type_bt, nom_scenar, mode) = ligne.split("|") 
-        if mode == "simple":
-           scenar = preset.get_scenar(nom_scenar)
-           print("scenario "+nom_scenar)
-           assert(scenar != None)
-           bt = Bouton_simple(nom_bt, env, preset, scenar)
-        elif mode == "poussoir":
-           noms_scenars = nom_scenar.split(",")
-           scenars = [preset.get_scenar(nom) for nom in noms_scenars]
-           bt = Bouton_poussoir(nom_bt, env, preset, scenars)
         if type_bt == "html":
-            Liste_boutons_html().add_boutons_env(bt, preset)
+            if mode == "simple":
+               scenar = preset.get_scenar(nom_scenar)
+               print("scenario "+nom_scenar)
+               assert(scenar != None)
+               bt = Bouton_simple_html(nom_bt, scenar, (compt, index))
+               preset.add_boutons_html(bt)
+               compt += 1
         elif type_bt == "inter":
-           Liste_interrupteur().get_inter(nom_bt).set_bouton(bt)
+            assert(Liste_interrupteur().get_inter(nom_bt) != None)
+            if mode == "poussoir":
+               scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
+               scenar_off = preset.get_scenar(nom_scenar.split(",")[1])
+               assert(scenar_on != None)
+               assert(scenar_off != None)
+               bt = Bouton_poussoir(nom_bt, env, scenar_on, scenar_off)
+               preset.add_lien_inter(nom_bt, bt)
+
+
+
+                
 
     return preset
 

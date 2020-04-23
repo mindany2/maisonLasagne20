@@ -1,3 +1,6 @@
+from tree.boutons.html.Bouton_html_modes import Bouton_html_modes
+from tree.Tree import Tree
+from tree.utils.Dico import Dico
 
 class Mode:
     """
@@ -7,6 +10,11 @@ class Mode:
     def __init__(self, nom):
         self.nom = nom
         self.etat = False
+        self.bouton_change_html = Bouton_html_modes(self.nom)
+
+    def press_bouton_mode(self):
+        self.bouton_change_html.press()
+        Tree().reload_modes()
 
     def show(self):
         print(self.nom)

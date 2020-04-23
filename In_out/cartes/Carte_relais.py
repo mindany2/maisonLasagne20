@@ -9,8 +9,10 @@ class Carte_relais(Carte):
     def __init__(self, numero, port_bus, registre, nb_ports = 8):
         Carte.__init__(self, numero, port_bus, registre, nb_ports)
         self.liste_relais = [ Relais(port_bus, registre, i) for i in range(1,nb_ports+1)]
+        """
         for i,pin in enumerate(Port_extender().read(port_bus, registre)):
             self.liste_relais[i].etat = pin
+        """
         bus = Port_extender()
         bus.write(port_bus, 0x12, 0xff)
         bus.write(port_bus, 0x13, 0xff)

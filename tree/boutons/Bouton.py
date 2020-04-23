@@ -10,7 +10,11 @@ class Bouton:
         return False
 
     def press(self):
-        pass
+        # doit retourner le scénario qui à été lancer
+        return None
+
+    def get_name(self):
+        return self.nom
 
     def show(self):
         print("bouton "+self.nom)

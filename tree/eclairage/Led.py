@@ -44,7 +44,7 @@ class Led(Lumiere):
         if self.dimmeur != dimmeur:
             self.dimmeur = dimmeur
             self.controleur.send_dimmeur(self.dimmeur)
-        print(self.nom," met le dimmeur a ",self.dimmeur," de couleur ",str(self.couleur.valeur))
+        #print(self.nom," met le dimmeur a ",self.dimmeur," de couleur ",str(self.couleur.valeur))
 
     def show(self):
         print("nom = " + self.nom," | couleur = ", self.couleur)
