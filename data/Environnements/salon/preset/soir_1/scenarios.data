@@ -1,0 +1,38 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre:off
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |led_mur_pierre_haut    |       0      |       10      |        0       |   0x000000       |  
+    |led_mur_pierre_droite  |       0      |       5       |        15      |   0x000000       |  
+    |led_mur_pierre_gauche  |       0      |       5       |        15      |   0x000000       |  oui
+    |   projo_32            |       0      |       5       |    0           |  
+    |   projo_33            |       0      |       5       |    3           |  
+    |   projo_34            |       0      |       5       |    6           |  
+    |   projo_36            |       0      |       5       |    9          |  
+    |   projo_26            |       0      |       5       |    12          |  
+    |   projo_28            |       0      |       5       |    15          |  
+    |   projo_30            |       0      |       5       |    18          |  
+    |   poutre_table_basse  |       0      |       20       |    0          |  
+
+
+allumer:on
+  //|   Lumiere           |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                     |              |               |                |                   |
+    |led_mur_pierre_haut    |       0      |       10      |        0       |   0x0f0000       |  
+    |led_mur_pierre_droite  |       0      |       5       |        15      |   0x0f0300       | 
+    |led_mur_pierre_gauche  |       0      |       5       |        15      |   0x0f0300       |  oui
+    |   projo_32            |       20      |       5       |    0           |  
+    |   projo_33            |       20      |       5       |    3           |  
+    |   projo_34            |       20      |       5       |    6           |  
+    |   projo_36            |       20      |       5       |    9          |  
+    |   projo_26            |       20      |       5       |    12          |  
+    |   projo_28            |       20      |       5       |    15          |  
+    |   projo_30            |       20      |       5       |    18          |  
+    |   poutre_table_basse  |       50      |       20       |    0          |  
+
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

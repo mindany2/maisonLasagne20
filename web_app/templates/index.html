@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+
     <form  action="" method="POST">
             {{ form.hidden_tag() }}
             {{ form.mode_0 }}
+
+
     </form>
-
-
-
     {% for env in tree.liste_envi%}
         {% if env.get_preset_select().liste_boutons_html != [] %}
-            {{ env.nom }}
+            <label style= {{ env.get_style() }}> {{ env.nom }} </label>
         {% endif %}
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}

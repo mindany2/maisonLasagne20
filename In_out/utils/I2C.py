@@ -24,3 +24,4 @@ class I2C:
         data = self.bus.read_byte_data(ip, register)
         self.mutex.release()
         return data
+

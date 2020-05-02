@@ -1,0 +1,240 @@
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 14
+SyntaxError: Non-ASCII character '\xc3' in file /home/pi/maison/utils/Data_change/Create_tree.py on line 15, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 14
+SyntaxError: Non-ASCII character '\xc3' in file /home/pi/maison/utils/Data_change/Create_tree.py on line 15, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 14
+SyntaxError: Non-ASCII character '\xc3' in file /home/pi/maison/utils/Data_change/Create_tree.py on line 15, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 14
+SyntaxError: Non-ASCII character '\xc3' in file /home/pi/maison/utils/Data_change/Create_tree.py on line 15, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 3, in <module>
+    from utils.Data_change.Create_env import get_env
+  File "/home/pi/maison/utils/Data_change/Create_env.py", line 5, in <module>
+    from utils.Data_change.Create_preset import get_preset
+  File "/home/pi/maison/utils/Data_change/Create_preset.py", line 12, in <module>
+    from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
+  File "/home/pi/maison/tree/boutons/html/Bouton_simple_html.py", line 3, in <module>
+    from flask import redirect, url_for
+ModuleNotFoundError: No module named 'flask'
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 3, in <module>
+    from utils.Data_change.Create_env import get_env
+  File "/home/pi/maison/utils/Data_change/Create_env.py", line 5, in <module>
+    from utils.Data_change.Create_preset import get_preset
+  File "/home/pi/maison/utils/Data_change/Create_preset.py", line 12, in <module>
+    from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
+  File "/home/pi/maison/tree/boutons/html/Bouton_simple_html.py", line 3, in <module>
+    from flask import redirect, url_for
+ModuleNotFoundError: No module named 'flask'
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 3, in <module>
+    from utils.Data_change.Create_env import get_env
+  File "/home/pi/maison/utils/Data_change/Create_env.py", line 5, in <module>
+    from utils.Data_change.Create_preset import get_preset
+  File "/home/pi/maison/utils/Data_change/Create_preset.py", line 12, in <module>
+    from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
+  File "/home/pi/maison/tree/boutons/html/Bouton_simple_html.py", line 3, in <module>
+    from flask import redirect, url_for
+ModuleNotFoundError: No module named 'flask'
+Traceback (most recent call last):
+  File "Main_inter.py", line 4, in <module>
+    from utils.Data_change.Create_tree import get_tree
+  File "/home/pi/maison/utils/Data_change/Create_tree.py", line 3, in <module>
+    from utils.Data_change.Create_env import get_env
+  File "/home/pi/maison/utils/Data_change/Create_env.py", line 5, in <module>
+    from utils.Data_change.Create_preset import get_preset
+  File "/home/pi/maison/utils/Data_change/Create_preset.py", line 12, in <module>
+    from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
+  File "/home/pi/maison/tree/boutons/html/Bouton_simple_html.py", line 3, in <module>
+    from flask import redirect, url_for
+ModuleNotFoundError: No module named 'flask'
+oooooooooooooooooooouuuuuuuuuuuuuuuuuuuiiiiiiiiiiiiiiiiii
+bar
+Environnement : bar
+soirée_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+scenario allumer
+normal_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+scenario allumer
+normal
+le scenarioeteindre etatTrue
+le scenarioeteindre etatFalse
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+Preset normal_1
+eteindre
+projo =  poutre  | dimmeur =  0  | duree =  3
+allumer
+projo =  poutre  | dimmeur =  70  | duree =  3
+déco1
+fin env
+escalier
+Environnement : escalier
+soir_1
+le scenarioeteindre_vers_le_bas etatFalse
+le scenarioeteindre_vers_le_bas etatTrue
+scenario eteindre_vers_le_haut
+scenario allumer_vers_le_bas
+iiiiiiiiiiiiiiiiiiiiciiiiiiiiiiiiiiiiiiiiiii
+bas_escalier_étage <tree.boutons.Bouton_poussoir.Bouton_poussoir object at 0x75343150>
+iiiiiiiiiiiiiiiiiiiiciiiiiiiiiiiiiiiiiiiiiii
+haut_escalier_étage <tree.boutons.Bouton_poussoir.Bouton_poussoir object at 0x75343250>
+normal_1
+le scenarioeteindre_vers_le_bas etatFalse
+le scenarioeteindre_vers_le_bas etatTrue
+scenario eteindre_vers_le_bas
+scenario allumer_vers_le_haut
+iiiiiiiiiiiiiiiiiiiiciiiiiiiiiiiiiiiiiiiiiii
+bas_escalier_étage <tree.boutons.Bouton_poussoir.Bouton_poussoir object at 0x75343930>
+iiiiiiiiiiiiiiiiiiiiciiiiiiiiiiiiiiiiiiiiiii
+haut_escalier_étage <tree.boutons.Bouton_poussoir.Bouton_poussoir object at 0x75343a30>
+normal
+le scenarioeteindre_vers_le_bas etatTrue
+le scenarioeteindre_vers_le_bas etatFalse
+le scenarioeteindre_vers_le_bas etatFalse
+le scenarioeteindre_vers_le_bas etatTrue
+Preset normal_1
+eteindre_vers_le_bas
+led =  led_escalier_haut  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+led =  led_escalier_bas  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+projo =  projo_45  | dimmeur =  0  | duree =  0
+projo =  projo_44  | dimmeur =  0  | duree =  0
+projo =  projo_43  | dimmeur =  0  | duree =  0
+eteindre_vers_le_haut
+led =  led_escalier_haut  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+led =  led_escalier_bas  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+projo =  projo_43  | dimmeur =  0  | duree =  0
+projo =  projo_44  | dimmeur =  0  | duree =  0
+projo =  projo_45  | dimmeur =  0  | duree =  0
+allumer_vers_le_bas
+projo =  projo_45  | dimmeur =  100  | duree =  0
+projo =  projo_44  | dimmeur =  100  | duree =  0
+projo =  projo_43  | dimmeur =  100  | duree =  0
+led =  led_escalier_haut  | dimmeur =  50  | duree =  5  | couleur =  0x00ff00
+led =  led_escalier_bas  | dimmeur =  50  | duree =  5  | couleur =  0x00ff00
+allumer_vers_le_haut
+projo =  projo_43  | dimmeur =  100  | duree =  0
+projo =  projo_44  | dimmeur =  100  | duree =  0
+projo =  projo_45  | dimmeur =  100  | duree =  0
+led =  led_escalier_haut  | dimmeur =  50  | duree =  5  | couleur =  0xff0000
+led =  led_escalier_bas  | dimmeur =  50  | duree =  5  | couleur =  0xff0000
+déco1
+fin env
+cuisine
+Environnement : cuisine
+soir_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+scenario allumer
+normal_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+scenario allumer
+normal
+le scenarioeteindre etatTrue
+le scenarioeteindre etatFalse
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+Preset normal_1
+eteindre
+projo =  poutre_table  | dimmeur =  0  | duree =  5
+led =  led_fond_exte  | dimmeur =  0  | duree =  10  | couleur =  0x000000
+led =  led_fond_inte  | dimmeur =  0  | duree =  3  | couleur =  0x000000
+allumer
+projo =  poutre_table  | dimmeur =  70  | duree =  5
+led =  led_fond_exte  | dimmeur =  5  | duree =  10  | couleur =  0x0000ff
+led =  led_fond_inte  | dimmeur =  100  | duree =  3  | couleur =  0xffffff
+déco1
+fin env
+billard
+Environnement : billard
+soirée_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+normal_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+scenario allumer
+normal
+le scenarioeteindre etatTrue
+le scenarioeteindre etatFalse
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+Preset normal_1
+eteindre
+led =  led_escalier_haut  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+led =  led_escalier_bas  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+allumer
+led =  led_escalier_haut  | dimmeur =  100  | duree =  5  | couleur =  0xff00ff
+led =  led_escalier_bas  | dimmeur =  1  | duree =  5  | couleur =  0xff00ff
+déco1
+fin env
+salon
+Environnement : salon
+normal_1
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+scenario eteindre
+scenario allumer
+normal
+le scenarioeteindre etatTrue
+le scenarioeteindre etatFalse
+le scenarioeteindre etatFalse
+le scenarioeteindre etatTrue
+Preset normal_1
+eteindre
+led =  led_mur_pierre_haut  | dimmeur =  0  | duree =  10  | couleur =  0x000000
+led =  led_mur_pierre_droite  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+led =  led_mur_pierre_gauche  | dimmeur =  0  | duree =  5  | couleur =  0x000000
+projo =  projo_32  | dimmeur =  0  | duree =  5
+projo =  projo_33  | dimmeur =  0  | duree =  5
+projo =  projo_34  | dimmeur =  0  | duree =  5
+projo =  projo_36  | dimmeur =  0  | duree =  5
+projo =  projo_26  | dimmeur =  0  | duree =  5
+projo =  projo_28  | dimmeur =  0  | duree =  5
+projo =  projo_30  | dimmeur =  0  | duree =  5
+projo =  poutre_table_basse  | dimmeur =  0  | duree =  20
+allumer
+led =  led_mur_pierre_haut  | dimmeur =  0  | duree =  10  | couleur =  0x0f0000
+led =  led_mur_pierre_droite  | dimmeur =  0  | duree =  5  | couleur =  0x0f0300
+led =  led_mur_pierre_gauche  | dimmeur =  0  | duree =  5  | couleur =  0x0f0300
+projo =  projo_32  | dimmeur =  20  | duree =  5
+projo =  projo_33  | dimmeur =  20  | duree =  5
+projo =  projo_34  | dimmeur =  20  | duree =  5
+projo =  projo_36  | dimmeur =  20  | duree =  5
+projo =  projo_26  | dimmeur =  20  | duree =  5
+projo =  projo_28  | dimmeur =  20  | duree =  5
+projo =  projo_30  | dimmeur =  20  | duree =  5
+projo =  poutre_table_basse  | dimmeur =  50  | duree =  20
+déco1
+fin env
+data = 00000000
+data = 00000000
+data = 00000000

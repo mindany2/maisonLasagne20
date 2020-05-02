@@ -3,12 +3,11 @@
     <head>
       <title>Site Maison</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- Pour refresh toutes les minutes -->
       <!-- <META HTTP-EQUIV="Refresh" CONTENT="60; URL=/"> -->
-      <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    </script>
+      <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename=tree.get_current_mode().css_file) }}" />
     </head>
     <body>
-        <hr>
-        {% block content %}{% endblock %}
+            {% block content %}{% endblock %}
     </body>
 </html>

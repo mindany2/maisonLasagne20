@@ -35,6 +35,7 @@ class Liste_interrupteur:
     @classmethod
     def init(self):
         self.bus.read(self.port_bus, 0x11)
+        self.bus.read(self.port_bus, 0x10)
         GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.interrupt)
         while(1):
             pass
@@ -57,11 +58,20 @@ class Liste_interrupteur:
         val = self.bus.read(self.port_bus, 0x13)
         for i,pin in enumerate(self.bus.read(self.port_bus,0x13)):
             if int(pin) == 1:
-                print(i+1)
-                print(list(self.liste_inter.liste.keys()))
+                print("sur le premier")
                 inter = self.liste_inter.get(i+1)
                 if inter != None:
                     inter.press()
+
+        val = self.bus.read(self.port_bus, 0x12)
+        for i,pin in enumerate(self.bus.read(self.port_bus,0x12)):
+            if int(pin) == 1:
+                print("sur le 2eme")
+                inter = self.liste_inter.get(i+9)
+                if inter != None:
+                    inter.press()
+
+
 
 
     @classmethod

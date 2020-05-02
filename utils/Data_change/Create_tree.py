@@ -22,7 +22,9 @@ def get_tree():
 
     #on va chercher les différents modes
     for mode in lire(ouvrir("modes.data")):
-        tree.add_mode(Mode(mode))
+        nom_mode = mode.split(":")[0]
+        css_file = mode.split(":")[1]
+        tree.add_mode(Mode(nom_mode, css_file))
 
 
     # on va chercher les inters
@@ -31,8 +33,8 @@ def get_tree():
     
     # on va chercher les environnements
     # et on les remplits
-    for i,nom in enumerate(trouver_dossier("")):
-        tree.liste_envi.add(get_env(nom, i))
+    for nom in trouver_dossier(""):
+        tree.liste_envi.add(get_env(nom))
     
     # on met le bouton changement de mode
     

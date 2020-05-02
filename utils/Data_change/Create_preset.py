@@ -13,7 +13,7 @@ from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
 from In_out.Liste_interrupteur import Liste_interrupteur
 
 
-def get_preset(env, index, nom):
+def get_preset(env, nom):
     """
     On recupére la preset
     """
@@ -38,18 +38,16 @@ def get_preset(env, index, nom):
 
     # maintenant on lie la liste des boutons html et inters utilisé avec le bon scenario
 
-    compt = 0
     for ligne in lire(ouvrir(env.nom+"/preset/"+nom+"/boutons.data")):
         (vide, nom_bt, type_bt, nom_scenar, mode) = ligne.split("|") 
         if type_bt == "html":
             if mode == "simple":
                scenar = preset.get_scenar(nom_scenar)
-               print("scenario "+nom_scenar)
                assert(scenar != None)
-               bt = Bouton_simple_html(nom_bt, scenar, (compt, index))
+               bt = Bouton_simple_html(nom_bt, scenar)
                preset.add_boutons_html(bt)
-               compt += 1
         elif type_bt == "inter":
+            print(nom_bt)
             assert(Liste_interrupteur().get_inter(nom_bt) != None)
             if mode == "poussoir":
                scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
@@ -58,7 +56,6 @@ def get_preset(env, index, nom):
                assert(scenar_off != None)
                bt = Bouton_poussoir(nom_bt, env, scenar_on, scenar_off)
                preset.add_lien_inter(nom_bt, bt)
-
 
 
                 

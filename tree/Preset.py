@@ -13,14 +13,10 @@ class Preset:
         self.lien_inter_bouton = Dico()
 
     def add_lien_inter(self, nom_inter, bouton):
-        print("iiiiiiiiiiiiiiiiiiiiciiiiiiiiiiiiiiiiiiiiiii")
-        print(nom_inter, bouton)
         self.lien_inter_bouton.add(nom_inter, bouton)
 
     def press_inter(self, nom_inter):
-        print("on regarde si l'inter {} existe".format(nom_inter))
         bt = self.lien_inter_bouton.get(nom_inter)
-        print("on a trouver {}".format(bt))
         if bt != None:
             scenar = bt.press()
             self.change_select(scenar)

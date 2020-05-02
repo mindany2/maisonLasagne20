@@ -4,14 +4,16 @@
 eteindre
 //|   Lumiere          |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)   |   synchro
 //|                    |               |               |                 |                  |
-  |led_escalier_haut   |       0       |       5       |        0        |   0x000000       | 
-  |led_escalier_bas    |       0       |       5       |        0        |   0x000000       | oui
+  | projo_2            |       0       |       5       |        0        |                  | 
+  | projo_4            |       0       |       5       |        2        |                  | 
+  | projo_19           |       0       |       5       |        4        |                  | 
 
 allumer
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |led_escalier_haut   |      100   |       5       |        0        |   0xff00ff       | 
-  |led_escalier_bas    |     1 |       5       |        0        |   0xff00ff       | oui
+  | projo_2       |       70       |       5       |        0        |                  | 
+  | projo_4       |       70       |       5       |        2        |                  | 
+  | projo_19      |       70       |       5       |        4        |                  | 
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

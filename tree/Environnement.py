@@ -3,6 +3,7 @@ from tree.utils.Liste_radios import Liste_radios
 from tree.utils.Dico import Dico
 from tree.Tree import Tree
 from In_out.Liste_interrupteur import Liste_interrupteur
+from tree.boutons.html.style.Style import Style
 
 
 class Environnement:
@@ -12,10 +13,23 @@ class Environnement:
     """
     def __init__(self, nom):
         self.nom = nom
+        self.couleurs = None
         self.liste_lumières = Liste()
         self.liste_presets = Liste_radios()
         # table de hashage entre mode et preset
         self.liste_presets_choisis = Dico()
+        self.style = None
+
+    def reload_style(self):
+        self.style = Style(position=(13*sum([len(bt.nom) for bt in self.get_preset_select().liste_boutons_html]),0),
+            couleur_texte = "red")
+
+    def get_style(self):
+        if self.style == None:
+            self.reload_style()
+        print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        print(self.style)
+        return self.style
 
     def add_lumiere(self, lum):
         self.liste_lumières.add(lum)
@@ -40,7 +54,7 @@ class Environnement:
                 # sinon pas besoin on est éteint
                 break
         # on change de preset
-        self.liste_presets.change_select(nv_preset)
+        self.change_preset_select(nv_preset)
         self.get_preset_select().show()
 
     def change_scenario_select(self, scenar):
@@ -50,6 +64,8 @@ class Environnement:
         self.liste_presets.add(preset)
 
     def change_preset_select(self, preset):
+        # on met le style
+        self.reload_style()
         self.liste_presets.change_select(preset)
 
     def add_mode(self, mode, nom_preset):

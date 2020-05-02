@@ -22,7 +22,7 @@ class Instruction_led(Instruction_lumiere):
         if dimmeur_initial != dimmeur_final:
             liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, (dimmeur_final-dimmeur_initial)/nb_points)
         else:
-            liste_dimmeur = [0]*nb_points
+            liste_dimmeur = [dimmeur_initial]*nb_points
 
         if self.couleur != self.lumière.couleur:
             liste_couleur = self.couleur.generate_array(self.lumière.couleur, nb_points)

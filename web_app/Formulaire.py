@@ -39,6 +39,8 @@ class Formulaire(Form):
     class Meta:
             csrf = False
     #on génère la liste des boutons html
+    from utils.Data_change.Create_tree import get_tree
+    get_tree()
     vars()["mode_0"] = Widget("mode_0")
     for env in Tree().liste_envi:
         for i in range(0,10): # on met 10 boutons à dispo

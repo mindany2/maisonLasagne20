@@ -1,0 +1,16 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |   poutre      |       0       |      3       |       0         |                   |
+
+allumer
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |   poutre      |       5     |      3       |       0         |                   |
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

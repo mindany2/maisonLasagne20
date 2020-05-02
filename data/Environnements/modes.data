@@ -1,4 +1,4 @@
 //               LISTES DES DIFFÉRENTS MODES 
 
-normal
-soirée
+normal : normal_style.css
+soirée : soiree_style.css

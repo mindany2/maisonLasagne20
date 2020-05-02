@@ -1,5 +1,5 @@
 from tree.eclairage.Lumiere import Lumiere
-from tree.eclairage.Couleur import Couleur
+from tree.utils.Couleur import Couleur
 from time import sleep
 from random import randrange
 from threading import Lock
@@ -21,10 +21,11 @@ class Led(Lumiere):
     def connect(self):
         self.mutex.acquire()
         print("on essaie de se co a "+self.nom)
-        if self.couleur.is_black():
+        if self.couleur.is_black() or self.dimmeur == 0:
             self.relais.set(Etat.ON)
             sleep(0.5)
-        return self.controleur.connect()
+            return self.controleur.connect()
+        return 0
             
 
 
@@ -44,7 +45,7 @@ class Led(Lumiere):
         if self.dimmeur != dimmeur:
             self.dimmeur = dimmeur
             self.controleur.send_dimmeur(self.dimmeur)
-        #print(self.nom," met le dimmeur a ",self.dimmeur," de couleur ",str(self.couleur.valeur))
+        print(self.nom," met le dimmeur a ",self.dimmeur," de couleur ",str(self.couleur.valeur))
 
     def show(self):
         print("nom = " + self.nom," | couleur = ", self.couleur)

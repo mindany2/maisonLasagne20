@@ -19,9 +19,9 @@ class Relais:
     def set(self, etat):
         print(etat, self.etat)
         if self.etat != etat:
-            self.etat = etat
             print("nombre_lumière {}".format(self.nombre_lumière))
             if self.nombre_lumière < 2:
+                self.etat = etat
                 Port_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
         self.nombre_lumière += 2*etat.value - 1
 
