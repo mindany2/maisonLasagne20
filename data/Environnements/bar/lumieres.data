@@ -3,3 +3,5 @@
 //Nom_projecteur  |   Type            |  addr relais |     Addresse triac    | Addresse Bluetooth 
 //                |                   |              |                       |                   
   poutre          |   projo_poutres   |              |           1(1)        |
+led_dessous       |   led_bledom   |      3(2)    |                       | be:89:20:00:23:3d  |     0x000000
+led_caisson_bois  |   led_triones   |      3(1)    |                       | ff:ff:00:00:e4:13  |     0x000000

@@ -6,20 +6,18 @@ class Bluetooth:
     """
     Gère le bluetooth
     """
-    mutex = Lock()
+    mutex_connect = Lock()
+    mutex_send = Lock()
 
     @classmethod
     def connect(self, addresse):
         """
         Retourne le périphérique
         """
-        self.mutex.acquire()
         try:
             periph = Peripheral(addresse)
         except:
-            self.mutex.release()
             return None
-        self.mutex.release()
         return periph
 
     @classmethod
@@ -44,16 +42,16 @@ class Bluetooth:
 
     @classmethod
     def send(self, char, valeur):
-        self.mutex.acquire()
+        self.mutex_send.acquire()
         char[0].write(valeur)
-        self.mutex.release()
+        self.mutex_send.release()
 
     @classmethod
     def deconnect(self, periph):
-        self.mutex.acquire()
+        self.mutex_connect.acquire()
         if periph != None:
             periph.disconnect()
-        self.mutex.release()
+        self.mutex_connect.release()
 
 
 

@@ -1,7 +1,7 @@
 from In_out.utils.Bluetooth import Bluetooth
 from In_out.bluetooth_devices.Bluetooth_device import Bluetooth_device
 
-class Controleur_4_pins(Bluetooth_device):
+class ELK_BLEDOM(Bluetooth_device):
     """
     Les controleur leds avec 2 branches et 4 pins 
     """

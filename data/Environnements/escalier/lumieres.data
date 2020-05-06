@@ -2,8 +2,8 @@
 //4(1) = port 4 de la carte numéro 1
 //Nom_projecteur  |   Type            |  addr relais |     Addresse triac    | Addresse Bluetooth 
 //                |                   |              |                       |                   
-led_escalier_haut |   led_2_branches  |       4(1)   |                       |   be:ff:f0:00:eb:3f
-led_escalier_bas  |   led_2_branche   |       4(1)   |                       |   be:ff:40:00:f0:60
+led_escalier_haut |   led_bledom  |       4(1)   |                       |   be:ff:f0:00:eb:3f
+led_escalier_bas  |   led_bledom   |       4(1)   |                       |   be:ff:40:00:f0:60
 projo_43          |   lampe_on_off    |       2(2)   |                       |
 projo_44          |   lampe_on_off    |       1(2)   |                       |
 projo_45          |   lampe_on_off    |       6(1)   |                       |

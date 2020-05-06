@@ -1,8 +1,9 @@
 from In_out.cartes.Gestionnaire_de_cartes import Gestionnaire_de_cartes
 from tree.eclairage.Led import Led
 from tree.eclairage.Lampe import Lampe
-from In_out.bluetooth_devices.Controleur_4_pins import Controleur_4_pins
-from In_out.bluetooth_devices.Controleur_5_pins import Controleur_5_pins
+from In_out.bluetooth_devices.LEDBLE import LEDBLE
+from In_out.bluetooth_devices.ELK_BLEDOM import ELK_BLEDOM
+from In_out.bluetooth_devices.TRIONES import TRIONES
 from tree.eclairage.Projecteur import Projecteur, LAMPE
 
 def get_addr(addr):
@@ -42,10 +43,12 @@ def get_lumiere(infos):
         return Projecteur(nom, triac, spec , relais = relais)
 
     elif type_lumière == "led":
-        if option_lumiere == "2":
-            controleur = Controleur_4_pins(addr_bluetooth)
-        elif option_lumiere == "1":
-            controleur = Controleur_5_pins(addr_bluetooth)
+        if option_lumiere == "triones":
+            controleur = TRIONES(addr_bluetooth)
+        elif option_lumiere == "ble":
+            controleur = LEDBLE(addr_bluetooth)
+        elif option_lumiere == "bledom":
+            controleur = ELK_BLEDOM(addr_bluetooth)
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)

@@ -39,7 +39,6 @@ class Port_extender:
         data =  self.i2c.read_reg(ip, register)
         data = binbits(data, 8)
         print("data = {}".format(data))
-        for pin in data:
-            yield pin
+        return [pin for pin in data]
 
 

@@ -21,7 +21,7 @@ class Led(Lumiere):
     def connect(self):
         self.mutex.acquire()
         print("on essaie de se co a "+self.nom)
-        if self.couleur.is_black() or self.dimmeur == 0:
+        if self.couleur.is_black():
             self.relais.set(Etat.ON)
             sleep(0.5)
             return self.controleur.connect()

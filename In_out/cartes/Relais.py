@@ -1,5 +1,6 @@
 from enum import Enum
 from In_out.utils.Port_extender import Port_extender
+from threading import Lock
 
 class Etat(Enum):
     ON = 1
@@ -15,15 +16,19 @@ class Relais:
         self.registre = registre
         self.etat = Etat.OFF
         self.nombre_lumière = 0
+        self.mutex = Lock()
 
     def set(self, etat):
         print(etat, self.etat)
-        if self.etat != etat:
-            print("nombre_lumière {}".format(self.nombre_lumière))
-            if self.nombre_lumière < 2:
+        self.mutex.acquire()
+        self.nombre_lumière += (2*etat.value) - 1
+        print("nombre_lumière = {}".format(self.nombre_lumière))
+        if self.nombre_lumière < 2:
+            if self.etat != etat:
                 self.etat = etat
+                print("on do etat = {}".format(etat))
                 Port_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
-        self.nombre_lumière += 2*etat.value - 1
+        self.mutex.release()
 
 
 

@@ -1,0 +1,22 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  | led_haut_bureau    |       0       |     3         |        0        |   0x000000       |
+  | led_haut_billard   |       0       |     3         |        1        |   0x000000       |
+  | led_porte_escalier  |       0       |     3         |        2        |   0x000000       |
+  | led_porte_billard  |       0       |     3         |        2        |   0x000000       |
+
+allumer
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  | led_haut_bureau    |       0       |     3         |        0        |   0x505050       |
+  | led_haut_billard    |       0       |     3         |        0        |   0x505050       |
+  | led_porte_billard   |       0       |     3         |        1        |   0xa00000       |
+  | led_porte_escalier  |       0       |     3         |        2        |   0xa00000       |
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

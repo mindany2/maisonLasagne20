@@ -15,7 +15,7 @@ class Instruction_projecteur(Instruction_lumiere):
         dimmeur_initial = self.lumière.dimmeur
         dimmeur_final = self.dimmeur
         ecart = dimmeur_final - dimmeur_initial
-        nb_points = abs(ecart)*RESOLUTION
+        nb_points = self.duree*RESOLUTION
         print("dimmeur_initial  = ", dimmeur_initial, " / dimmeur_final = ", dimmeur_final)
         if dimmeur_initial == dimmeur_final:
             print("on fait rien")
@@ -25,9 +25,10 @@ class Instruction_projecteur(Instruction_lumiere):
         val = dimmeur_initial
         debut = time()
         for _ in range(0,nb_points):
+            temps = time()
             self.lumière.set(val)
             val += ecart/nb_points
-            sleep(float(self.duree)/nb_points)
+            sleep(1/RESOLUTION)
         print(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
         self.lumière.deconnect()
 

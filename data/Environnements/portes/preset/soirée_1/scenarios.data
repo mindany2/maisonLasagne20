@@ -4,16 +4,10 @@
 eteindre
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |   poutre      |       0       |      3       |       0         |                   |
-  | led_dessous |       0       |     10        |        0        |   0x000000       |
-  | led_caisson_bois |       0       |     10        |        0        |   0x000000       |
 
 allumer
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |   poutre      |       70     |      3       |       0         |                   |
-  | led_dessous |       0       |     10        |        0        |   0x0000ff       |
-  | led_caisson_bois |       0       |     10        |        0        |   0x2f2f2f       |
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

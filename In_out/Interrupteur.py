@@ -1,6 +1,6 @@
 from tree.utils.Liste import Liste
 from tree.Tree import Tree
-from time import sleep
+from time import time
 from threading import Lock
 
 class Interrupteur:
@@ -12,17 +12,15 @@ class Interrupteur:
     def __init__(self, nom, pin):
         self.nom = nom
         self.pin = pin
-        self.used = False    # permet de prendre que 1 appuie
+        self.temps = time() 
         self.mutex = Lock()
 
 
     def press(self):
-        if not(self.used):
-            self.used = True
+        if ((time() - self.temps) > 1):     # permet de prendre que le premier appuie
             print("on press le bouton "+self.nom)
             Tree().press_inter(self.nom)
-            sleep(2)
-            self.used = False
+            self.temps = time() 
 
     def show(self):
         print(self.nom + " : " + str(self.pin) + " : ")

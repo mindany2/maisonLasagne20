@@ -1,0 +1,8 @@
+//Ici on a toutes les options de l'environnement
+
+couleurs = 0x0000ff,0x00ff00
+
+Presets :
+//modes = Presets :
+normal = normal_1
+soirée = soirée_1

@@ -2,9 +2,10 @@
 //4(1) = port 4 de la carte numéro 1
 //Nom_projecteur            |   Type            |  addr relais  |     Addresse triac    | Addresse Bluetooth 
 //                          |                   |               |                       |                   
-led_mur_pierre_droite       |   led_1_branche   |      5(1)     |                       | ff:ff:ab:01:d9:9d   |     0x000000
-led_mur_pierre_gauche       |   led_1_branche   |      5(1)     |                       | ff:ff:bc:01:a9:a5   |     0x000000
-led_mur_pierre_haut         |   led_1_branche   |      5(1)     |                       | ff:ff:fa:01:75:4c   |     0x000000
+led_mur_pierre_droite       |   led_ble   |      5(1)     |                       | ff:ff:ab:01:d9:9d   |     0x000000
+led_mur_pierre_gauche       |   led_ble   |      5(1)     |                       | ff:ff:bc:01:a9:a5   |     0x000000
+led_mur_pierre_haut         |   led_ble   |      5(1)     |                       | ff:ff:fa:01:75:4c   |     0x000000
+led_sous_table              |   led_triones   |      3(1)     |                   | ff:ff:30:00:9b:63   |     0x000000
 projo_32                    |   projo_plafond   |               |           2(1)        |
 projo_33                    |   projo_plafond   |               |           3(1)        |
 projo_34                    |   projo_plafond   |               |           4(1)        |
