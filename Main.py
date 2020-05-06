@@ -14,6 +14,4 @@ app = site.site
 
 
 if __name__ == "__main__":
-     app.run(debug=True)
-     while(1):
-         pass
+    pass
