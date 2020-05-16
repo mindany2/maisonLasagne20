@@ -28,8 +28,9 @@ class Instruction_projecteur(Instruction_lumiere):
             temps = time()
             self.lumière.set(val)
             val += ecart/nb_points
-            sleep(1/RESOLUTION)
+            sleep(1/RESOLUTION-(time()-temps))
         print(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
+        self.lumière.set(dimmeur_final)
         self.lumière.deconnect()
 
 

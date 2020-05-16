@@ -4,35 +4,71 @@
 eteindre:off
   //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
   //|                       |              |               |                |                   |
-    |led_mur_pierre_haut    |       0      |       10      |        0       |   0x000000       |  
-    |led_sous_table         |       0      |       10      |        0       |   0x000000       |  
-    |led_mur_pierre_droite  |       0      |       5       |        15      |   0x000000       |  
-    |led_mur_pierre_gauche  |       0      |       5       |        15      |   0x000000       |  oui
-    |   projo_32            |       0      |       5       |    0           |  
-    |   projo_33            |       0      |       5       |    3           |  
-    |   projo_34            |       0      |       5       |    6           |  
-    |   projo_36            |       0      |       5       |    9          |  
-    |   projo_26            |       0      |       5       |    12          |  
-    |   projo_28            |       0      |       5       |    15          |  
-    |   projo_30            |       0      |       5       |    18          |  
-    |   poutre_table_basse  |       0      |       20       |    0          |  
+    |       poutre          |       0      |        6      |        0       |                   |  
+    |      projo_26         |       0      |        6      |        0       |                   |
+    |      projo_27         |       0      |        1      |        0       |                   |
+    |      projo_28         |       0      |        1      |        0       |                   |
+    |      projo_30         |       0      |        1      |        0       |                   |
+    |      projo_31         |       0      |        6      |        0       |                   |
+    |      projo_32         |       0      |        6      |        0       |                   |
+    |      projo_33         |       0      |        1      |        0       |                   |
+    |      projo_34         |       0      |        1      |        0       |                   |
+    |      projo_35         |       0      |        1      |        0       |                   |
+    |      projo_36         |       0      |        6      |        0       |                   |
+
+allumer_juste_poutre
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |       poutre          |       100    |        15     |        0       |                   |  
+    |      projo_26         |       0      |        6      |        0       |                   |
+    |      projo_27         |       0      |        1      |        0       |                   |
+    |      projo_28         |       0      |        1      |        0       |                   |
+    |      projo_30         |       0      |        1      |        0       |                   |
+    |      projo_31         |       0      |        6      |        0       |                   |
+    |      projo_32         |       0      |        6      |        0       |                   |
+    |      projo_33         |       0      |        1      |        0       |                   |
+    |      projo_34         |       0      |        1      |        0       |                   |
+    |      projo_35         |       0      |        1      |        0       |                   |
+    |      projo_36         |       0      |        6      |        0       |                   |
+
 
 
 allumer:on
-  //|   Lumiere           |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
-  //|                     |              |               |                |                   |
-    |led_mur_pierre_haut    |       0      |       10      |        0       |   0x5f005f       |  
-    |led_sous_table         |       0      |       10      |        0       |   0x5f005f       |  
-    |led_mur_pierre_droite  |       0      |       5       |        15      |   0x5f004f       | 
-    |led_mur_pierre_gauche  |       0      |       5       |        15      |   0x5f004f       |  oui
-    |   projo_32            |       20      |       5       |    0           |  
-    |   projo_33            |       20      |       5       |    3           |  
-    |   projo_34            |       20      |       5       |    6           |  
-    |   projo_36            |       20      |       5       |    9          |  
-    |   projo_26            |       20      |       5       |    12          |  
-    |   projo_28            |       20      |       5       |    15          |  
-    |   projo_30            |       20      |       5       |    18          |  
-    |   poutre_table_basse  |       50      |       20       |    0          |  
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |       poutre          |       80     |        9      |        0       |                   |  
+    |      projo_26         |       35     |        3      |        3       |                   |
+    |      projo_27         |       0      |        1      |        0       |                   |
+    |      projo_28         |       0      |        1      |        0       |                   |
+    |      projo_30         |       0      |        1      |        0       |                   |
+    |      projo_31         |       30     |        3      |        6       |                   |
+    |      projo_32         |       30     |        3      |        9       |                   |
+    |      projo_33         |       0      |        1      |        0       |                   |
+    |      projo_34         |       0      |        1      |        0       |                   |
+    |      projo_35         |       0      |        1      |        0       |                   |
+    |      projo_36         |       40     |        3      |        12      |                   |
+
+
+allumer_en_2_temps
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |       poutre          |       100    |        6      |        0       |                   |  
+    |      projo_26         |       10     |        2      |        2       |                   |
+    |      projo_27         |       0      |        1      |        0       |                   |
+    |      projo_28         |       0      |        1      |        0       |                   |
+    |      projo_30         |       0      |        1      |        0       |                   |
+    |      projo_31         |       10     |        2      |        2       |                   |
+    |      projo_32         |       10     |        2      |        2       |                   |
+    |      projo_33         |       0      |        1      |        0       |                   |
+    |      projo_34         |       0      |        1      |        0       |                   |
+    |      projo_35         |       0      |        1      |        0       |                   |
+    |      projo_36         |       10     |        2      |        2       |                   |
+
+    |      projo_26         |       50     |        5      |        0       |                   |
+    |      projo_31         |       50     |        5      |        5       |                   |
+    |      projo_32         |       50     |        5      |        7       |                   |
+    |      projo_36         |       50     |        5      |        9       |                   |
+
 
 
 déco 1

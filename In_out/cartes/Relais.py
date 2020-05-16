@@ -21,13 +21,13 @@ class Relais:
     def set(self, etat):
         print(etat, self.etat)
         self.mutex.acquire()
-        self.nombre_lumière += (2*etat.value) - 1
-        print("nombre_lumière = {}".format(self.nombre_lumière))
         if self.nombre_lumière < 2:
             if self.etat != etat:
                 self.etat = etat
                 print("on do etat = {}".format(etat))
                 Port_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)
+        self.nombre_lumière += (2*etat.value) - 1
+        print("nombre_lumière = {}".format(self.nombre_lumière))
         self.mutex.release()
 
 
