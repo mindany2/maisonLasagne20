@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, request, render_template
 from web_app.Formulaire import Formulaire
+from web_app.Client_statique import Client_statique
 from time import sleep
-from tree.Tree import Tree
 
 class Site_maison:
     """
@@ -9,6 +9,7 @@ class Site_maison:
     """
     def  __init__(self):
         self.site = Flask(__name__)
+        tree = Client_statique.get_client()
 
         """
         Page d'accueil
@@ -25,11 +26,11 @@ class Site_maison:
                         print(bouton.data)
                         nom_env = bouton.data.split("_")[0]
                         index = int(bouton.data.split("_")[1])
-                        Tree().press_bouton_html(nom_env, index)
+                        tree.send_request("press_bouton_html", [nom_env, index])
                         break
 
             # on reload tous les boutons
-            Tree().reload_html()
+            tree.send_request("reload_html")
                         
 
             for bouton in form:
@@ -41,7 +42,7 @@ class Site_maison:
 
             for bouton in form:
                 print(bouton.id)
-            return render_template("index.html", form = form, tree = Tree())
+            return render_template("index.html", form = form, tree = tree)
 
 
 if __name__ == "__main__":

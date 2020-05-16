@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import StringField
-from tree.Tree import Tree
 from wtforms.widgets import HTMLString, html_params
+from web_app.Client_statique import Client_statique
 
 
 class Boutons(object):
@@ -22,10 +22,11 @@ class Boutons(object):
         if 'value' not in kwargs:
             kwargs['value'] = nom._value()
 
+        tree = Client_statique.get_client()
 
         nom_env = nom.label.text.split("_")[0]
         index = int(nom.label.text.split("_")[1])
-        bt = Tree().get_bouton_html(nom_env, index)
+        bt = tree.send_request("get_bouton_html",[nom_env, index])
         return HTMLString('<button {params}>{label}</button>'.format(
             params=self.html_params(name=nom.name, style = bt.style, **kwargs),
             label=bt.get_name()))
@@ -36,15 +37,13 @@ class Widget(StringField):
     widget = Boutons()
 
 class Formulaire(Form):
+    tree = Client_statique.get_client()
     class Meta:
             csrf = False
-    #on génère la liste des boutons html
-    from utils.Data_change.Create_tree import get_tree
-    get_tree()
     vars()["mode_0"] = Widget("mode_0")
-    for env in Tree().liste_envi:
+    for nom_env in tree.send_request("get_noms_envi"):
         for i in range(0,10): # on met 10 boutons à dispo
-            nom = env.nom + "_" + str(i)
+            nom = nom_env + "_" + str(i)
             vars()[nom] = Widget(nom)
 
 

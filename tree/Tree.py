@@ -45,6 +45,10 @@ class Tree:
         return self.liste_envi.get(env)
 
     @classmethod
+    def get_noms_envi(self):
+        return [env.nom for env in self.liste_envi]
+
+    @classmethod
     def press_bouton_html(self, nom_env, index):
         if nom_env != "mode":
             self.get_env(nom_env).get_preset_select().press_bouton_html(index)

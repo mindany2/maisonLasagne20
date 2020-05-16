@@ -10,7 +10,7 @@
 
 
     </form>
-    {% for env in tree.liste_envi%}
+    {% for env in tree.send("liste_envi")%}
         {% if env.get_preset_select().liste_boutons_html != [] %}
             <label style= {{ env.get_style() }}> {{ env.nom }} </label>
         {% endif %}

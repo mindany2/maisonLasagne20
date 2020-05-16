@@ -1,0 +1,154 @@
+[Sat May 16 16:42:36.335865 2020] [wsgi:error] [pid 16444:tid 1931838496] hello msg :  hello
+[Sat May 16 16:42:36.423292 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sat May 16 16:42:36.423429 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   form = Formulaire()
+[Sat May 16 16:42:36.456532 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] mode_0
+[Sat May 16 16:42:36.456701 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_0
+[Sat May 16 16:42:36.456771 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_1
+[Sat May 16 16:42:36.456841 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_2
+[Sat May 16 16:42:36.456906 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_3
+[Sat May 16 16:42:36.456974 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_4
+[Sat May 16 16:42:36.457039 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_5
+[Sat May 16 16:42:36.457106 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_6
+[Sat May 16 16:42:36.457170 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_7
+[Sat May 16 16:42:36.457237 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_8
+[Sat May 16 16:42:36.457301 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_9
+[Sat May 16 16:42:36.457368 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_0
+[Sat May 16 16:42:36.457433 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_1
+[Sat May 16 16:42:36.457500 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_2
+[Sat May 16 16:42:36.457564 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_3
+[Sat May 16 16:42:36.457631 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_4
+[Sat May 16 16:42:36.457697 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_5
+[Sat May 16 16:42:36.457762 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_6
+[Sat May 16 16:42:36.457829 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_7
+[Sat May 16 16:42:36.457892 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_8
+[Sat May 16 16:42:36.457959 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_9
+[Sat May 16 16:42:36.458024 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_0
+[Sat May 16 16:42:36.458091 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_1
+[Sat May 16 16:42:36.458155 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_2
+[Sat May 16 16:42:36.458222 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_3
+[Sat May 16 16:42:36.458287 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_4
+[Sat May 16 16:42:36.458354 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_5
+[Sat May 16 16:42:36.458418 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_6
+[Sat May 16 16:42:36.458484 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_7
+[Sat May 16 16:42:36.458548 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_8
+[Sat May 16 16:42:36.458616 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_9
+[Sat May 16 16:42:36.458680 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_0
+[Sat May 16 16:42:36.458747 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_1
+[Sat May 16 16:42:36.458889 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_2
+[Sat May 16 16:42:36.458958 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_3
+[Sat May 16 16:42:36.459022 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_4
+[Sat May 16 16:42:36.459089 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_5
+[Sat May 16 16:42:36.459155 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_6
+[Sat May 16 16:42:36.459221 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_7
+[Sat May 16 16:42:36.459286 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_8
+[Sat May 16 16:42:36.459378 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_9
+[Sat May 16 16:42:36.459466 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_0
+[Sat May 16 16:42:36.459532 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_1
+[Sat May 16 16:42:36.459600 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_2
+[Sat May 16 16:42:36.459665 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_3
+[Sat May 16 16:42:36.459731 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_4
+[Sat May 16 16:42:36.459796 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_5
+[Sat May 16 16:42:36.459862 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_6
+[Sat May 16 16:42:36.459927 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_7
+[Sat May 16 16:42:36.459993 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_8
+[Sat May 16 16:42:36.460058 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_9
+[Sat May 16 16:42:36.460124 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_0
+[Sat May 16 16:42:36.460189 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_1
+[Sat May 16 16:42:36.460258 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_2
+[Sat May 16 16:42:36.460326 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_3
+[Sat May 16 16:42:36.460390 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_4
+[Sat May 16 16:42:36.460457 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_5
+[Sat May 16 16:42:36.460521 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_6
+[Sat May 16 16:42:36.460587 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_7
+[Sat May 16 16:42:36.460653 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_8
+[Sat May 16 16:42:36.460720 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_9
+[Sat May 16 16:42:36.712772 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sat May 16 16:42:36.746438 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] [2020-05-16 16:42:36,737] ERROR in app: Exception on / [GET]
+[Sat May 16 16:42:36.746527 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] Traceback (most recent call last):
+[Sat May 16 16:42:36.746547 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
+[Sat May 16 16:42:36.746565 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     response = self.full_dispatch_request()
+[Sat May 16 16:42:36.746624 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
+[Sat May 16 16:42:36.746643 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     rv = self.handle_user_exception(e)
+[Sat May 16 16:42:36.746661 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
+[Sat May 16 16:42:36.746678 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     reraise(exc_type, exc_value, tb)
+[Sat May 16 16:42:36.746696 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+[Sat May 16 16:42:36.746714 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     raise value
+[Sat May 16 16:42:36.746730 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
+[Sat May 16 16:42:36.746747 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     rv = self.dispatch_request()
+[Sat May 16 16:42:36.746764 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
+[Sat May 16 16:42:36.746781 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     return self.view_functions[rule.endpoint](**req.view_args)
+[Sat May 16 16:42:36.746798 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/site_maison.py", line 45, in index
+[Sat May 16 16:42:36.746815 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     return render_template("index.html", form = form, tree = tree)
+[Sat May 16 16:42:36.746833 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+[Sat May 16 16:42:36.746851 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     ctx.app,
+[Sat May 16 16:42:36.746867 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+[Sat May 16 16:42:36.746884 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     rv = template.render(context)
+[Sat May 16 16:42:36.746901 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+[Sat May 16 16:42:36.746918 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     self.environment.handle_exception()
+[Sat May 16 16:42:36.746934 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+[Sat May 16 16:42:36.746953 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     reraise(*rewrite_traceback_stack(source=source))
+[Sat May 16 16:42:36.746970 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+[Sat May 16 16:42:36.746987 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     raise value.with_traceback(tb)
+[Sat May 16 16:42:36.747004 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/templates/index.html", line 1, in top-level template code
+[Sat May 16 16:42:36.747021 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     {% extends "base.html" %}
+[Sat May 16 16:42:36.747037 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/templates/base.html", line 11, in top-level template code
+[Sat May 16 16:42:36.747072 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     {% block content %}{% endblock %}
+[Sat May 16 16:42:36.747089 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/templates/index.html", line 13, in block "content"
+[Sat May 16 16:42:36.747106 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     {% for env in tree.send("liste_envi")%}
+[Sat May 16 16:42:36.747123 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/utils/Client.py", line 38, in send
+[Sat May 16 16:42:36.747139 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     data = pickle.loads(self.client.recv(2048))
+[Sat May 16 16:42:36.747156 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] EOFError: Ran out of input
+[Sat May 16 16:59:02.022016 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sat May 16 16:59:02.022403 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   form = Formulaire()
+[Sat May 16 16:59:02.048593 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] [2020-05-16 16:59:02,045] ERROR in app: Exception on / [GET]
+[Sat May 16 16:59:02.048931 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] Traceback (most recent call last):
+[Sat May 16 16:59:02.049078 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
+[Sat May 16 16:59:02.049202 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     response = self.full_dispatch_request()
+[Sat May 16 16:59:02.049326 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
+[Sat May 16 16:59:02.049450 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     rv = self.handle_user_exception(e)
+[Sat May 16 16:59:02.049568 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
+[Sat May 16 16:59:02.049689 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     reraise(exc_type, exc_value, tb)
+[Sat May 16 16:59:02.049803 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+[Sat May 16 16:59:02.049923 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     raise value
+[Sat May 16 16:59:02.050037 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
+[Sat May 16 16:59:02.050157 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     rv = self.dispatch_request()
+[Sat May 16 16:59:02.050277 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
+[Sat May 16 16:59:02.050402 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     return self.view_functions[rule.endpoint](**req.view_args)
+[Sat May 16 16:59:02.050521 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/maison/web_app/site_maison.py", line 33, in index
+[Sat May 16 16:59:02.050640 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     tree.send_request("reload_html")
+[Sat May 16 16:59:02.050754 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/maison/utils/Client.py", line 32, in send_request
+[Sat May 16 16:59:02.050944 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     return self.send(data)
+[Sat May 16 16:59:02.051058 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/maison/utils/Client.py", line 38, in send
+[Sat May 16 16:59:02.051173 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     data = pickle.loads(self.client.recv(2048))
+[Sat May 16 16:59:02.051285 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] EOFError: Ran out of input
+[Sat May 16 17:00:01.181491 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sat May 16 17:00:01.181682 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   form = Formulaire()
+[Sat May 16 17:00:01.194272 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] [Errno 32] Broken pipe
+[Sat May 16 17:00:01.198705 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] [2020-05-16 17:00:01,195] ERROR in app: Exception on / [GET]
+[Sat May 16 17:00:01.198848 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] Traceback (most recent call last):
+[Sat May 16 17:00:01.198895 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/utils/Client.py", line 37, in send
+[Sat May 16 17:00:01.198939 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     self.client.send(pickle.dumps(data))
+[Sat May 16 17:00:01.198982 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] BrokenPipeError: [Errno 32] Broken pipe
+[Sat May 16 17:00:01.199022 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] 
+[Sat May 16 17:00:01.199062 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] During handling of the above exception, another exception occurred:
+[Sat May 16 17:00:01.199105 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] 
+[Sat May 16 17:00:01.199152 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] Traceback (most recent call last):
+[Sat May 16 17:00:01.199679 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
+[Sat May 16 17:00:01.199731 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     response = self.full_dispatch_request()
+[Sat May 16 17:00:01.199773 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
+[Sat May 16 17:00:01.200224 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     rv = self.handle_user_exception(e)
+[Sat May 16 17:00:01.200281 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
+[Sat May 16 17:00:01.200326 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     reraise(exc_type, exc_value, tb)
+[Sat May 16 17:00:01.200370 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+[Sat May 16 17:00:01.200798 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     raise value
+[Sat May 16 17:00:01.200853 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
+[Sat May 16 17:00:01.200899 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     rv = self.dispatch_request()
+[Sat May 16 17:00:01.201386 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
+[Sat May 16 17:00:01.201435 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     return self.view_functions[rule.endpoint](**req.view_args)
+[Sat May 16 17:00:01.201476 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/web_app/site_maison.py", line 33, in index
+[Sat May 16 17:00:01.201515 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     tree.send_request("reload_html")
+[Sat May 16 17:00:01.201551 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/utils/Client.py", line 32, in send_request
+[Sat May 16 17:00:01.201588 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     return self.send(data)
+[Sat May 16 17:00:01.202043 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/utils/Client.py", line 46, in send
+[Sat May 16 17:00:01.202098 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     self.client.disconnect()
+[Sat May 16 17:00:01.202138 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] AttributeError: 'socket' object has no attribute 'disconnect'
