@@ -2,18 +2,24 @@
 //qui vont etre donne a la page web et a la console
 
 eteindre
-//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
-//|               |               |               |                 |                   |
-  |   poutre      |       0       |      3       |       0         |                   |
-  | led_dessous |       0       |     10        |        0        |   0x000000       |
-  | led_caisson_bois |       0       |     10        |        0        |   0x000000       |
+//|   Lumiere       |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                 |               |               |                 |                   |
+  | poutre          |     0         |     3         |         0       |                  
+  | projo_24        |     0         |     2         |         0       |                  
+  | projo_37        |     0         |     3         |         0       |                  
+  |led_caisson_bois |     0         |     3         |         0       |     0x000000        
+  |led_sol          |     0         |     3         |         0       |     0x000000        
+  | decoupe_bois    |     0         |     1         |         0       |
 
 allumer
-//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
-//|               |               |               |                 |                   |
-  |   poutre      |       70     |      3       |       0         |                   |
-  | led_dessous |       0       |     10        |        0        |   0x0000ff       |
-  | led_caisson_bois |       0       |     10        |        0        |   0x2f2f2f       |
+//|   Lumiere       |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                 |               |               |                 |                   |
+  | poutre          |     50        |     10        |         0       |                 
+  | projo_24        |     0         |     5         |         0       |                  
+  | projo_37        |     50        |     10        |         3       |                  
+  |led_caisson_bois |     50        |     5         |         2       |     0x2f2f2f        
+  |led_sol          |     50        |     5         |         5       |     0x5f5f00        
+  | decoupe_bois    |     100       |     0         |         2       |
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

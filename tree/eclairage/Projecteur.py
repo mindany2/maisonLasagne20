@@ -1,11 +1,20 @@
 from tree.eclairage.Lumiere import Lumiere
 from In_out.cartes.Relais import Etat
+from In_out.utils.ST_nucleo import ETAT_TRIAC
 from enum import Enum
 from threading import Lock
+from time import sleep
 
 class LAMPE(Enum):
-    type_plafond = 850
-    type_poutre = 900
+    # type  = (maxi,mini)
+    type_plafond = (400,130)
+    type_poutre = (400,130)
+    type_63 = (430,80)
+    type_91 = (430,50)
+    type_64 = (430,180)
+    type_73 = (400,130)
+    type_61 = (430,250)
+
 
 class Projecteur(Lumiere):
     """
@@ -19,34 +28,40 @@ class Projecteur(Lumiere):
         self.dimmeur = 0
         self.mutex = Lock()
         # on eteint la lampe sur la carte
-        self.triak.set(10**6)
+        self.triak.set(10**9,ETAT_TRIAC.off)
 
     def connect(self):
         self.mutex.acquire()
         #on connect s'il faut
         if self.dimmeur == 0:
             # on met le triac en place
-            self.triak.set(self.type_lampe.value)
-            #on prend la main sur l'inter s'il y a
-            if self.relais != None:
-                self.relais.set(Etat.ON)
+            self.triak.set(self.convert(0))
+        elif self.dimmeur == 100:
+            # on met le projo en dimmage
+            self.triak.set(self.convert(100))
 
     def deconnect(self):
         #on deconnect s'il faut
         if self.dimmeur == 0:
             # on met la valeur max pour éteindre la lampe
-            self.triak.set(10**6)
-            #on prend la main sur l'inter s'il y a
-            if self.relais != None:
-                self.relais.set(Etat.OFF)
+            self.triak.set(10**9, ETAT_TRIAC.off)
+        elif self.dimmeur == 100:
+            # on met le projo à on
+            self.triak.set(10**9, ETAT_TRIAC.on)
         self.mutex.release()
 
     def set(self, dimmeur):
-        # conversion du dimmeur en valeur triac
-        valeur_maxi = self.type_lampe.value
-        valeur = int(valeur_maxi*(1-dimmeur/100))
+        valeur = self.convert(dimmeur)
         self.triak.set(valeur)
         self.dimmeur = int(dimmeur)
+
+    def convert(self, dimmeur):
+        # conversion du dimmeur en valeur triac
+        maxi, mini = self.type_lampe.value
+        valeur = int(mini + (maxi-mini)*(1-dimmeur/100))
+        print(valeur)
+        return valeur
+
 
 
     def show(self):

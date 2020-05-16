@@ -4,16 +4,32 @@
 eteindre:off
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |  poutre_table |     0         |     5         |        0        |                   |
-  | led_fond_exte |       0       |     10        |        0        |   0x000000       |
-  | led_fond_inte |       0       |     3         |        0        |   0x000000       |
+  |  poutre_evier |     0         |     3         |         0       | 
+  |  poutre_table |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
 
-allumer
+allumer_cuisine
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |  poutre_table |     70        |     5         |     0           |                   |
-  | led_fond_exte |       5       |     10        |        0        |   0x0000ff       |
-  | led_fond_inte |       100     |     3         |        0        |   0xffffff       |
+  |  poutre_evier |     100       |     3         |         0       | 
+  |  poutre_table |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+
+mettre_table
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     100       |     3         |         0       | 
+  |  poutre_table |     100         |     3         |         0       | 
+  | poutre_banque |     100         |     3         |         0       | 
+
+manger
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     0         |     3         |         0       | 
+  |  poutre_table |     100       |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+
+
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

@@ -10,7 +10,7 @@ class Liste_interrupteur:
     Contient la liste des intérupteurs d'un pin d'intéruption
     """
     port_bus = 0x20
-    port_interrupt = 12
+    port_interrupts = [12,16]
     liste_inter = Dico()
     # GPINTEN = mettre les intérruptions
     bus = Port_extender()
@@ -41,15 +41,18 @@ class Liste_interrupteur:
     bus.read(port_bus,0x13)
 
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(port_interrupt, GPIO.IN)
+    GPIO.setup(port_interrupts[0], GPIO.IN)
+    GPIO.setup(port_interrupts[1], GPIO.IN)
 
     @classmethod
     def init(self):
         self.bus.read(self.port_bus,0x12)
         self.bus.read(self.port_bus,0x13)
-        GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.interrupt)
+        GPIO.add_event_detect(self.port_interrupts[0], GPIO.RISING, callback = self.interrupt1)
+        GPIO.add_event_detect(self.port_interrupts[1], GPIO.RISING, callback = self.interrupt2)
         while(1):
             pass
+
 
     @classmethod
     def add(self, inter):
@@ -65,7 +68,7 @@ class Liste_interrupteur:
 
 
     @classmethod
-    def interrupt(self, event):
+    def interrupt1(self, event):
         for i,pin in enumerate(self.bus.read(self.port_bus,0x13)):
             if int(pin) == 1:
                 print("sur le premier")
@@ -73,6 +76,8 @@ class Liste_interrupteur:
                 if inter != None:
                     inter.press()
 
+    @classmethod
+    def interrupt2(self, event):
         for i,pin in enumerate(self.bus.read(self.port_bus,0x12)):
             if int(pin) == 1:
                 print("sur le 2eme")

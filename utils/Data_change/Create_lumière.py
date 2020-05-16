@@ -18,7 +18,8 @@ def get_lumiere(infos):
     nom = infos[0]
     specification = infos[1].split("_")
     type_lumière = specification[0]
-    option_lumiere = specification[1]
+    if len(specification) > 1:
+        option_lumiere = specification[1]
     addr_relais = get_addr(infos[2])
     addr_triac = get_addr(infos[3])
     addr_bluetooth = infos[4]
@@ -38,6 +39,16 @@ def get_lumiere(infos):
             spec = LAMPE.type_plafond
         elif option_lumiere == "poutres":
             spec = LAMPE.type_poutre
+        elif option_lumiere == "A63":
+            spec = LAMPE.type_63
+        elif option_lumiere == "A91":
+            spec = LAMPE.type_91
+        elif option_lumiere == "A64":
+            spec = LAMPE.type_64
+        elif option_lumiere == "A73":
+            spec = LAMPE.type_73
+        elif option_lumiere == "A61":
+            spec = LAMPE.type_61
         else:
             spec = None
         return Projecteur(nom, triac, spec , relais = relais)
@@ -52,3 +63,7 @@ def get_lumiere(infos):
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)
+
+
+
+

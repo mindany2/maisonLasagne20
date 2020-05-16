@@ -4,16 +4,10 @@
 eteindre:off
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |  poutre_table |     0         |     5         |        0        |                   |
-  | led_fond_exte |       0       |     3        |        0        |   0x000000       |
-  | led_fond_inte |       80       |     3         |        0        |   0x0f0f00       |
 
 allumer
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
-  |  poutre_table |     70        |     5         |     0           |                   |
-  | led_fond_exte |       0       |     3        |        0        |   0x0000ff       |
-  | led_fond_inte |       100     |     3         |        0        |   0x00ff00       |
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

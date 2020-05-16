@@ -30,13 +30,12 @@ class Bluetooth_device:
                 print("La led n'arrive pas à ce connecter")
                 sleep(1)
             if compt > 10:
-                self.periph = Bluetooth().connect_by_scan(self.addr)
-            if compt > 12:
                 return 1
         self.char = Bluetooth().get_char(self.periph, self.uuid, self.char_id)
         return 0
 
     def send(self, valeur):
+        print(self.char)
         Bluetooth().send(self.char, hex_to_byte(valeur))
 
     def deconnect(self):
