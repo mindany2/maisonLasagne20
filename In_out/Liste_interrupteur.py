@@ -26,8 +26,8 @@ class Liste_interrupteur:
     bus.write(port_bus, 0x08, 0x00)
 
     # GPPU = resitance
-    bus.write(port_bus, 0x0d, 0xff)
-    bus.write(port_bus, 0x0c, 0xff)
+    bus.write(port_bus, 0x0d, 0x00)
+    bus.write(port_bus, 0x0c, 0x00)
 
     # IODIR = sortie / entrée
     bus.write(port_bus, 0x01, 0xff)
@@ -41,8 +41,8 @@ class Liste_interrupteur:
     bus.read(port_bus,0x13)
 
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(port_interrupts[0], GPIO.IN)
-    GPIO.setup(port_interrupts[1], GPIO.IN)
+    GPIO.setup(port_interrupts[0], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(port_interrupts[1], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     @classmethod
     def init(self):
@@ -69,6 +69,7 @@ class Liste_interrupteur:
 
     @classmethod
     def interrupt1(self, event):
+        print("interrup1 !!!!!!!!!!!!")
         for i,pin in enumerate(self.bus.read(self.port_bus,0x13)):
             if int(pin) == 1:
                 print("sur le premier")
@@ -78,6 +79,7 @@ class Liste_interrupteur:
 
     @classmethod
     def interrupt2(self, event):
+        print("interrup2 !!!!!!!!!!!!")
         for i,pin in enumerate(self.bus.read(self.port_bus,0x12)):
             if int(pin) == 1:
                 print("sur le 2eme")

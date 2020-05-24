@@ -17,8 +17,7 @@
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}
                 {% for bouton in form %}
-                {% if bouton.id.split('_')[0] == env and 
-                tree.send("get_env(\"{}\").get_preset_select().is_present(\"{}\")".format(env, bouton.id.split('_')[1])) %}
+                {% if bouton.id.split('_')[0] == env and tree.send("get_env(\"{}\").get_preset_select().is_present(\"{}\")".format(env, bouton.id.split('_')[1])) %}
                         {{ bouton }}
                     {% endif %}
                 {% endfor %}

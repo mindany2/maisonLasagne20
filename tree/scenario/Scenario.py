@@ -1,6 +1,11 @@
 from tree.scenario.Liste_instructions import Liste_instructions
 from threading import Thread
+from enum import Enum
 
+class MARQUEUR(Enum):
+    OFF = 0
+    ON = 1
+    DECO   = 2
 
 class Scenario:
     """

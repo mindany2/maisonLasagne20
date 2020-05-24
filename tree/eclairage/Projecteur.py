@@ -7,9 +7,7 @@ from time import sleep
 
 class LAMPE(Enum):
     # type  = (maxi,mini)
-    type_plafond = (400,130)
-    type_poutre = (400,130)
-    type_63 = (430,80)
+    type_63 = (400,80)
     type_91 = (430,50)
     type_64 = (430,180)
     type_73 = (400,130)
@@ -51,6 +49,7 @@ class Projecteur(Lumiere):
         self.mutex.release()
 
     def set(self, dimmeur):
+        #print("on veut set "+self.nom+" à "+str(dimmeur))
         valeur = self.convert(dimmeur)
         self.triak.set(valeur)
         self.dimmeur = int(dimmeur)
@@ -59,7 +58,6 @@ class Projecteur(Lumiere):
         # conversion du dimmeur en valeur triac
         maxi, mini = self.type_lampe.value
         valeur = int(mini + (maxi-mini)*(1-dimmeur/100))
-        print(valeur)
         return valeur
 
 

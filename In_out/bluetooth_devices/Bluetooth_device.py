@@ -35,7 +35,6 @@ class Bluetooth_device:
         return 0
 
     def send(self, valeur):
-        print(self.char)
         Bluetooth().send(self.char, hex_to_byte(valeur))
 
     def deconnect(self):

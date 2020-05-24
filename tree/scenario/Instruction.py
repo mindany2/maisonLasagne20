@@ -1,4 +1,5 @@
 from enum import Enum
+from time import sleep
 from threading import Thread, Barrier
 
 class Attente(Enum):
@@ -16,6 +17,7 @@ class Instruction():
         self.duree = duree
         self.synchro = synchro
 
-    def run(self, barrier):
-        # implémenter dans les sous-classes
-        pass
+    def run(self, temps_ecouler = 0):
+        if temps_ecouler < self.temps_init:
+            sleep(self.temps_init-temps_ecouler)
+        # le reste est dans les sous-classes

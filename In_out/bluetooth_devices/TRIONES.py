@@ -10,9 +10,7 @@ class TRIONES(Bluetooth_device):
 
     def send_color(self, couleur_hex):
         valeur = "0x56"+couleur_hex[2::]+"00f0aa"
-        print("on envoie")
         self.send(valeur)
-        print("finit d'envoyer")
 
     def send_dimmeur(self, dimmeur):
         #ce controleur n'a pas de dimmeur,

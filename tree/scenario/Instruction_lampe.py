@@ -13,6 +13,7 @@ class Instruction_lampe(Instruction_lumiere):
         """
         On s'occupe de faire l'instruction
         """
+        super().run()
         self.lumière.set(self.dimmeur != 0)
         print("oooookkkk")
 

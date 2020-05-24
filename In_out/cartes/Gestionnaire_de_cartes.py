@@ -7,7 +7,7 @@ class Gestionnaire_de_cartes:
     Ceci est une classe static
     """
     liste_carte_relais = [Carte_relais(1, 0x21), Carte_relais(2, 0x22)]
-    liste_carte_triac = [Carte_triac(1), Carte_triac(2),Carte_triac(3)]
+    liste_carte_triac = [Carte_triac(1), Carte_triac(2),Carte_triac(3), Carte_triac(4)]
 
 
     @classmethod

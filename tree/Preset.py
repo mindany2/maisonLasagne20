@@ -19,6 +19,8 @@ class Preset:
         bt = self.lien_inter_bouton.get(nom_inter)
         if bt != None:
             scenar = bt.press()
+            print("iiiiiiiiiiiiiiciiiiiiiiiiiiiii")
+            print(scenar.nom)
             self.change_select(scenar)
 
     def change(self):
@@ -47,11 +49,21 @@ class Preset:
     def get_scenar(self, nom):
         return self.liste_scénario.get(nom)
 
+    def change_scenario_prec(self, scenar):
+        self.liste_scénario.change_precedent(scenar)
+
+    def get_scenario_prec(self):
+        return self.liste_scénario.precedent()
+
     def change_select(self, scenar):
         self.liste_scénario.change_select(scenar)
 
     def get_marqueur(self):
         return self.liste_scénario.selected().get_marqueur()
+
+    def get_marqueur_precedent(self):
+        return self.liste_scénario.precedent().get_marqueur()
+
 
     def do(self):
         self.liste_scénario.selected().do()

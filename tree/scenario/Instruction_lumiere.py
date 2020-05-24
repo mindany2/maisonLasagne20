@@ -1,7 +1,7 @@
 from tree.scenario.Instruction import Instruction, Attente
 from tree.eclairage.Lumiere import Lumiere
 
-RESOLUTION = 20
+RESOLUTION = 10
 
 class Instruction_lumiere(Instruction):
     """
@@ -12,4 +12,7 @@ class Instruction_lumiere(Instruction):
         self.dimmeur = dimmeur
         self.duree = duree
         self.lumière = lumière
+
+    def run(self, temps_ecouler=0):
+        super().run(temps_ecouler)
 

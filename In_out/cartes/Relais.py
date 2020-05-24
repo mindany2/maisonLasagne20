@@ -19,7 +19,6 @@ class Relais:
         self.mutex = Lock()
 
     def set(self, etat):
-        print(etat, self.etat)
         self.mutex.acquire()
         if self.nombre_lumière < 2:
             if self.etat != etat:

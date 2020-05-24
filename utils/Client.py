@@ -32,18 +32,18 @@ class Client:
         return self.send(data)
 
 
-    def send(self, data):
+    def send(self, msg):
         try:
-            self.client.send(pickle.dumps(data))
+            self.client.send(pickle.dumps(msg))
             data = pickle.loads(self.client.recv(2048))
             if isinstance(data,str):
                 if data.count("Error"):
                     print(data)
-                    self.client.disconnect()
+                    print("lors de l'envoie de {}".format(msg))
+                    return None
             return data
         except socket.error as e:
             print(e)
-            self.client.disconnect()
         
 
 

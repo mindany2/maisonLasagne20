@@ -1,13 +1,13 @@
 // creer les interrupteurs et on les lie au boutons
 //| nom_inter           |   pin     
   | inter_1  |    1     
-  | inter_2 |    2    
+  | inter_2  |    2    
   | inter_3  |    3    
   | inter_4  |    4    
-  | inter_5 |    5    
-  | inter_6_marche_pas |    6    
-  | inter_7 |    7    
+  | inter_5  |    5    
+  | inter_6  |    6    
+  | inter_7  |    7    
   | inter_8  |    8    
   | inter_9  |    9    
-  | inter_10  |    10    
-  | inter_11  |    11    
+  | inter_10 |    10    
+  | inter_11 |    11    

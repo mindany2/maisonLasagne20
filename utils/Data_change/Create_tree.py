@@ -1,6 +1,6 @@
 from tree.Tree import Tree
 from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
-from utils.Data_change.Create_env import get_env
+from utils.Data_change.Create_env import get_env,reload_env
 from utils.Data_change.Create_inputs import get_interrupteurs
 from In_out.Liste_interrupteur import Liste_interrupteur
 from tree.boutons.Bouton_changement_mode import Bouton_changement_mode
@@ -13,6 +13,11 @@ import os
 Contient seulement les fonctions de lectures dans les fichiers
 du programme (récupérations des infos)
 """
+def reload_tree():
+    for env in Tree().liste_envi:
+        reload_env(env)
+        
+
 
 def get_tree():
     """
