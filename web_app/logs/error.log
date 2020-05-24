@@ -1,154 +1,412 @@
-[Sat May 16 16:42:36.335865 2020] [wsgi:error] [pid 16444:tid 1931838496] hello msg :  hello
-[Sat May 16 16:42:36.423292 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
-[Sat May 16 16:42:36.423429 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   form = Formulaire()
-[Sat May 16 16:42:36.456532 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] mode_0
-[Sat May 16 16:42:36.456701 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_0
-[Sat May 16 16:42:36.456771 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_1
-[Sat May 16 16:42:36.456841 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_2
-[Sat May 16 16:42:36.456906 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_3
-[Sat May 16 16:42:36.456974 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_4
-[Sat May 16 16:42:36.457039 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_5
-[Sat May 16 16:42:36.457106 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_6
-[Sat May 16 16:42:36.457170 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_7
-[Sat May 16 16:42:36.457237 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_8
-[Sat May 16 16:42:36.457301 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] bar_9
-[Sat May 16 16:42:36.457368 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_0
-[Sat May 16 16:42:36.457433 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_1
-[Sat May 16 16:42:36.457500 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_2
-[Sat May 16 16:42:36.457564 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_3
-[Sat May 16 16:42:36.457631 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_4
-[Sat May 16 16:42:36.457697 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_5
-[Sat May 16 16:42:36.457762 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_6
-[Sat May 16 16:42:36.457829 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_7
-[Sat May 16 16:42:36.457892 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_8
-[Sat May 16 16:42:36.457959 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] escalier_9
-[Sat May 16 16:42:36.458024 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_0
-[Sat May 16 16:42:36.458091 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_1
-[Sat May 16 16:42:36.458155 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_2
-[Sat May 16 16:42:36.458222 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_3
-[Sat May 16 16:42:36.458287 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_4
-[Sat May 16 16:42:36.458354 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_5
-[Sat May 16 16:42:36.458418 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_6
-[Sat May 16 16:42:36.458484 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_7
-[Sat May 16 16:42:36.458548 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_8
-[Sat May 16 16:42:36.458616 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] portes_9
-[Sat May 16 16:42:36.458680 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_0
-[Sat May 16 16:42:36.458747 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_1
-[Sat May 16 16:42:36.458889 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_2
-[Sat May 16 16:42:36.458958 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_3
-[Sat May 16 16:42:36.459022 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_4
-[Sat May 16 16:42:36.459089 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_5
-[Sat May 16 16:42:36.459155 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_6
-[Sat May 16 16:42:36.459221 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_7
-[Sat May 16 16:42:36.459286 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_8
-[Sat May 16 16:42:36.459378 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] cuisine_9
-[Sat May 16 16:42:36.459466 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_0
-[Sat May 16 16:42:36.459532 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_1
-[Sat May 16 16:42:36.459600 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_2
-[Sat May 16 16:42:36.459665 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_3
-[Sat May 16 16:42:36.459731 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_4
-[Sat May 16 16:42:36.459796 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_5
-[Sat May 16 16:42:36.459862 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_6
-[Sat May 16 16:42:36.459927 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_7
-[Sat May 16 16:42:36.459993 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_8
-[Sat May 16 16:42:36.460058 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] billard_9
-[Sat May 16 16:42:36.460124 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_0
-[Sat May 16 16:42:36.460189 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_1
-[Sat May 16 16:42:36.460258 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_2
-[Sat May 16 16:42:36.460326 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_3
-[Sat May 16 16:42:36.460390 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_4
-[Sat May 16 16:42:36.460457 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_5
-[Sat May 16 16:42:36.460521 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_6
-[Sat May 16 16:42:36.460587 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_7
-[Sat May 16 16:42:36.460653 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_8
-[Sat May 16 16:42:36.460720 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] salon_9
-[Sat May 16 16:42:36.712772 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
-[Sat May 16 16:42:36.746438 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] [2020-05-16 16:42:36,737] ERROR in app: Exception on / [GET]
-[Sat May 16 16:42:36.746527 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] Traceback (most recent call last):
-[Sat May 16 16:42:36.746547 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
-[Sat May 16 16:42:36.746565 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     response = self.full_dispatch_request()
-[Sat May 16 16:42:36.746624 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
-[Sat May 16 16:42:36.746643 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     rv = self.handle_user_exception(e)
-[Sat May 16 16:42:36.746661 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
-[Sat May 16 16:42:36.746678 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     reraise(exc_type, exc_value, tb)
-[Sat May 16 16:42:36.746696 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-[Sat May 16 16:42:36.746714 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     raise value
-[Sat May 16 16:42:36.746730 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
-[Sat May 16 16:42:36.746747 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     rv = self.dispatch_request()
-[Sat May 16 16:42:36.746764 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
-[Sat May 16 16:42:36.746781 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     return self.view_functions[rule.endpoint](**req.view_args)
-[Sat May 16 16:42:36.746798 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/site_maison.py", line 45, in index
-[Sat May 16 16:42:36.746815 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     return render_template("index.html", form = form, tree = tree)
-[Sat May 16 16:42:36.746833 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-[Sat May 16 16:42:36.746851 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     ctx.app,
-[Sat May 16 16:42:36.746867 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-[Sat May 16 16:42:36.746884 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     rv = template.render(context)
-[Sat May 16 16:42:36.746901 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-[Sat May 16 16:42:36.746918 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     self.environment.handle_exception()
-[Sat May 16 16:42:36.746934 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-[Sat May 16 16:42:36.746953 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     reraise(*rewrite_traceback_stack(source=source))
-[Sat May 16 16:42:36.746970 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/.local/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-[Sat May 16 16:42:36.746987 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     raise value.with_traceback(tb)
-[Sat May 16 16:42:36.747004 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/templates/index.html", line 1, in top-level template code
-[Sat May 16 16:42:36.747021 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     {% extends "base.html" %}
-[Sat May 16 16:42:36.747037 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/templates/base.html", line 11, in top-level template code
-[Sat May 16 16:42:36.747072 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     {% block content %}{% endblock %}
-[Sat May 16 16:42:36.747089 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/web_app/templates/index.html", line 13, in block "content"
-[Sat May 16 16:42:36.747106 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     {% for env in tree.send("liste_envi")%}
-[Sat May 16 16:42:36.747123 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]   File "/home/pi/maison/utils/Client.py", line 38, in send
-[Sat May 16 16:42:36.747139 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234]     data = pickle.loads(self.client.recv(2048))
-[Sat May 16 16:42:36.747156 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43234] EOFError: Ran out of input
-[Sat May 16 16:59:02.022016 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
-[Sat May 16 16:59:02.022403 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   form = Formulaire()
-[Sat May 16 16:59:02.048593 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] [2020-05-16 16:59:02,045] ERROR in app: Exception on / [GET]
-[Sat May 16 16:59:02.048931 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] Traceback (most recent call last):
-[Sat May 16 16:59:02.049078 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
-[Sat May 16 16:59:02.049202 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     response = self.full_dispatch_request()
-[Sat May 16 16:59:02.049326 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
-[Sat May 16 16:59:02.049450 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     rv = self.handle_user_exception(e)
-[Sat May 16 16:59:02.049568 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
-[Sat May 16 16:59:02.049689 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     reraise(exc_type, exc_value, tb)
-[Sat May 16 16:59:02.049803 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-[Sat May 16 16:59:02.049923 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     raise value
-[Sat May 16 16:59:02.050037 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
-[Sat May 16 16:59:02.050157 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     rv = self.dispatch_request()
-[Sat May 16 16:59:02.050277 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
-[Sat May 16 16:59:02.050402 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     return self.view_functions[rule.endpoint](**req.view_args)
-[Sat May 16 16:59:02.050521 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/maison/web_app/site_maison.py", line 33, in index
-[Sat May 16 16:59:02.050640 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     tree.send_request("reload_html")
-[Sat May 16 16:59:02.050754 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/maison/utils/Client.py", line 32, in send_request
-[Sat May 16 16:59:02.050944 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     return self.send(data)
-[Sat May 16 16:59:02.051058 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]   File "/home/pi/maison/utils/Client.py", line 38, in send
-[Sat May 16 16:59:02.051173 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238]     data = pickle.loads(self.client.recv(2048))
-[Sat May 16 16:59:02.051285 2020] [wsgi:error] [pid 16444:tid 1965409312] [remote 192.168.1.13:43238] EOFError: Ran out of input
-[Sat May 16 17:00:01.181491 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
-[Sat May 16 17:00:01.181682 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   form = Formulaire()
-[Sat May 16 17:00:01.194272 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] [Errno 32] Broken pipe
-[Sat May 16 17:00:01.198705 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] [2020-05-16 17:00:01,195] ERROR in app: Exception on / [GET]
-[Sat May 16 17:00:01.198848 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] Traceback (most recent call last):
-[Sat May 16 17:00:01.198895 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/utils/Client.py", line 37, in send
-[Sat May 16 17:00:01.198939 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     self.client.send(pickle.dumps(data))
-[Sat May 16 17:00:01.198982 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] BrokenPipeError: [Errno 32] Broken pipe
-[Sat May 16 17:00:01.199022 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] 
-[Sat May 16 17:00:01.199062 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] During handling of the above exception, another exception occurred:
-[Sat May 16 17:00:01.199105 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] 
-[Sat May 16 17:00:01.199152 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] Traceback (most recent call last):
-[Sat May 16 17:00:01.199679 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
-[Sat May 16 17:00:01.199731 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     response = self.full_dispatch_request()
-[Sat May 16 17:00:01.199773 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
-[Sat May 16 17:00:01.200224 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     rv = self.handle_user_exception(e)
-[Sat May 16 17:00:01.200281 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
-[Sat May 16 17:00:01.200326 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     reraise(exc_type, exc_value, tb)
-[Sat May 16 17:00:01.200370 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-[Sat May 16 17:00:01.200798 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     raise value
-[Sat May 16 17:00:01.200853 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
-[Sat May 16 17:00:01.200899 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     rv = self.dispatch_request()
-[Sat May 16 17:00:01.201386 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/.local/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
-[Sat May 16 17:00:01.201435 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     return self.view_functions[rule.endpoint](**req.view_args)
-[Sat May 16 17:00:01.201476 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/web_app/site_maison.py", line 33, in index
-[Sat May 16 17:00:01.201515 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     tree.send_request("reload_html")
-[Sat May 16 17:00:01.201551 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/utils/Client.py", line 32, in send_request
-[Sat May 16 17:00:01.201588 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     return self.send(data)
-[Sat May 16 17:00:01.202043 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]   File "/home/pi/maison/utils/Client.py", line 46, in send
-[Sat May 16 17:00:01.202098 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240]     self.client.disconnect()
-[Sat May 16 17:00:01.202138 2020] [wsgi:error] [pid 16444:tid 1931838496] [remote 192.168.1.13:43240] AttributeError: 'socket' object has no attribute 'disconnect'
+[Sun May 24 10:29:49.071942 2020] [wsgi:error] [pid 5766:tid 1964721184] hello msg :  hello
+[Sun May 24 10:29:49.156083 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:29:49.156217 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096]   form = Formulaire()
+[Sun May 24 10:29:49.189370 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] mode_0
+[Sun May 24 10:29:49.189539 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_0
+[Sun May 24 10:29:49.189609 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_1
+[Sun May 24 10:29:49.189677 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_2
+[Sun May 24 10:29:49.189744 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_3
+[Sun May 24 10:29:49.189811 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_4
+[Sun May 24 10:29:49.189876 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_5
+[Sun May 24 10:29:49.189942 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_6
+[Sun May 24 10:29:49.190007 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_7
+[Sun May 24 10:29:49.190073 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_8
+[Sun May 24 10:29:49.190138 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] bar_9
+[Sun May 24 10:29:49.190205 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_0
+[Sun May 24 10:29:49.190271 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_1
+[Sun May 24 10:29:49.190336 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_2
+[Sun May 24 10:29:49.190401 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_3
+[Sun May 24 10:29:49.190466 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_4
+[Sun May 24 10:29:49.190532 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_5
+[Sun May 24 10:29:49.190597 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_6
+[Sun May 24 10:29:49.190663 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_7
+[Sun May 24 10:29:49.190729 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_8
+[Sun May 24 10:29:49.190794 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] escalier_9
+[Sun May 24 10:29:49.190859 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_0
+[Sun May 24 10:29:49.190924 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_1
+[Sun May 24 10:29:49.190990 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_2
+[Sun May 24 10:29:49.191055 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_3
+[Sun May 24 10:29:49.191120 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_4
+[Sun May 24 10:29:49.191184 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_5
+[Sun May 24 10:29:49.191248 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_6
+[Sun May 24 10:29:49.191314 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_7
+[Sun May 24 10:29:49.191378 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_8
+[Sun May 24 10:29:49.191442 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] portes_9
+[Sun May 24 10:29:49.191507 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_0
+[Sun May 24 10:29:49.191571 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_1
+[Sun May 24 10:29:49.191636 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_2
+[Sun May 24 10:29:49.191774 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_3
+[Sun May 24 10:29:49.191841 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_4
+[Sun May 24 10:29:49.191907 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_5
+[Sun May 24 10:29:49.191973 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_6
+[Sun May 24 10:29:49.192039 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_7
+[Sun May 24 10:29:49.192103 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_8
+[Sun May 24 10:29:49.192169 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] cuisine_9
+[Sun May 24 10:29:49.192234 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_0
+[Sun May 24 10:29:49.192299 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_1
+[Sun May 24 10:29:49.192364 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_2
+[Sun May 24 10:29:49.192429 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_3
+[Sun May 24 10:29:49.192494 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_4
+[Sun May 24 10:29:49.192559 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_5
+[Sun May 24 10:29:49.192624 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_6
+[Sun May 24 10:29:49.192689 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_7
+[Sun May 24 10:29:49.192754 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_8
+[Sun May 24 10:29:49.192818 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] billard_9
+[Sun May 24 10:29:49.192884 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_0
+[Sun May 24 10:29:49.192949 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_1
+[Sun May 24 10:29:49.193015 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_2
+[Sun May 24 10:29:49.193081 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_3
+[Sun May 24 10:29:49.193146 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_4
+[Sun May 24 10:29:49.193211 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_5
+[Sun May 24 10:29:49.193276 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_6
+[Sun May 24 10:29:49.193342 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_7
+[Sun May 24 10:29:49.193407 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_8
+[Sun May 24 10:29:49.193471 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] salon_9
+[Sun May 24 10:29:49.472412 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:29:49.562520 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:29:50.205821 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:29:50.284116 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:29:50.543194 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:29:50.621922 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:29:50.700284 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:29:50.969840 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:29:51.054337 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:29:51.133810 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:29:51.398981 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:29:51.486215 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 102px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0033cc, #0000ff);
+[Sun May 24 10:29:51.569173 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 187px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #006699, #0033cc);
+[Sun May 24 10:29:51.658163 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -10px;width : 153px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #009966, #006699);
+[Sun May 24 10:29:51.740900 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -15px;width : 119px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00cc33, #009966);
+[Sun May 24 10:29:52.254211 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:29:52.334876 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #5500aa, #0000ff);
+[Sun May 24 10:29:52.417908 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.13:41096] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #aa0055, #5500aa);
+[Sun May 24 10:30:09.946415 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:30:09.946542 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244]   form = Formulaire()
+[Sun May 24 10:30:09.973234 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] mode_0
+[Sun May 24 10:30:09.973356 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_0
+[Sun May 24 10:30:09.973395 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_1
+[Sun May 24 10:30:09.973432 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_2
+[Sun May 24 10:30:09.973470 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_3
+[Sun May 24 10:30:09.973505 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_4
+[Sun May 24 10:30:09.973542 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_5
+[Sun May 24 10:30:09.973578 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_6
+[Sun May 24 10:30:09.973614 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_7
+[Sun May 24 10:30:09.973650 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_8
+[Sun May 24 10:30:09.973685 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] bar_9
+[Sun May 24 10:30:09.973723 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_0
+[Sun May 24 10:30:09.973758 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_1
+[Sun May 24 10:30:09.973794 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_2
+[Sun May 24 10:30:09.973829 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_3
+[Sun May 24 10:30:09.973863 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_4
+[Sun May 24 10:30:09.973898 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_5
+[Sun May 24 10:30:09.973935 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_6
+[Sun May 24 10:30:09.973973 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_7
+[Sun May 24 10:30:09.974009 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_8
+[Sun May 24 10:30:09.974045 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] escalier_9
+[Sun May 24 10:30:09.974125 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_0
+[Sun May 24 10:30:09.974161 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_1
+[Sun May 24 10:30:09.974196 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_2
+[Sun May 24 10:30:09.974231 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_3
+[Sun May 24 10:30:09.974266 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_4
+[Sun May 24 10:30:09.974303 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_5
+[Sun May 24 10:30:09.974340 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_6
+[Sun May 24 10:30:09.974377 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_7
+[Sun May 24 10:30:09.974412 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_8
+[Sun May 24 10:30:09.974446 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] portes_9
+[Sun May 24 10:30:09.974481 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_0
+[Sun May 24 10:30:09.974515 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_1
+[Sun May 24 10:30:09.974550 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_2
+[Sun May 24 10:30:09.974587 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_3
+[Sun May 24 10:30:09.974622 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_4
+[Sun May 24 10:30:09.974659 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_5
+[Sun May 24 10:30:09.974694 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_6
+[Sun May 24 10:30:09.974729 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_7
+[Sun May 24 10:30:09.974764 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_8
+[Sun May 24 10:30:09.974799 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] cuisine_9
+[Sun May 24 10:30:09.974834 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_0
+[Sun May 24 10:30:09.974871 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_1
+[Sun May 24 10:30:09.974907 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_2
+[Sun May 24 10:30:09.974944 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_3
+[Sun May 24 10:30:09.974979 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_4
+[Sun May 24 10:30:09.975014 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_5
+[Sun May 24 10:30:09.975049 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_6
+[Sun May 24 10:30:09.975084 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_7
+[Sun May 24 10:30:09.975119 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_8
+[Sun May 24 10:30:09.975156 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] billard_9
+[Sun May 24 10:30:09.975191 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_0
+[Sun May 24 10:30:09.975226 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_1
+[Sun May 24 10:30:09.975261 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_2
+[Sun May 24 10:30:09.975297 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_3
+[Sun May 24 10:30:09.975333 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_4
+[Sun May 24 10:30:09.975369 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_5
+[Sun May 24 10:30:09.975404 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_6
+[Sun May 24 10:30:09.975465 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_7
+[Sun May 24 10:30:09.975502 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_8
+[Sun May 24 10:30:09.975537 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] salon_9
+[Sun May 24 10:30:10.048508 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:10.133783 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:10.208253 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:10.281165 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:10.515497 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:10.587076 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:10.647583 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:10.867029 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:10.927038 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:10.991656 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:11.200544 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:11.270723 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 102px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0033cc, #0000ff);
+[Sun May 24 10:30:11.335654 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 187px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #006699, #0033cc);
+[Sun May 24 10:30:11.396009 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -10px;width : 153px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #009966, #006699);
+[Sun May 24 10:30:11.465695 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -15px;width : 119px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00cc33, #009966);
+[Sun May 24 10:30:11.882146 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:11.947506 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #5500aa, #0000ff);
+[Sun May 24 10:30:12.023281 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #aa0055, #5500aa);
+[Sun May 24 10:30:14.348258 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:30:14.348373 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244]   form = Formulaire()
+[Sun May 24 10:30:14.375563 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] mode_0
+[Sun May 24 10:30:14.375681 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_0
+[Sun May 24 10:30:14.375722 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_1
+[Sun May 24 10:30:14.375794 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_2
+[Sun May 24 10:30:14.375833 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_3
+[Sun May 24 10:30:14.375870 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_4
+[Sun May 24 10:30:14.376002 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_5
+[Sun May 24 10:30:14.376093 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_6
+[Sun May 24 10:30:14.376180 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_7
+[Sun May 24 10:30:14.376218 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_8
+[Sun May 24 10:30:14.376274 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] bar_9
+[Sun May 24 10:30:14.376311 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_0
+[Sun May 24 10:30:14.376348 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_1
+[Sun May 24 10:30:14.376384 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_2
+[Sun May 24 10:30:14.376420 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_3
+[Sun May 24 10:30:14.376457 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_4
+[Sun May 24 10:30:14.376492 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_5
+[Sun May 24 10:30:14.376529 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_6
+[Sun May 24 10:30:14.376566 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_7
+[Sun May 24 10:30:14.376604 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_8
+[Sun May 24 10:30:14.376639 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] escalier_9
+[Sun May 24 10:30:14.376674 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_0
+[Sun May 24 10:30:14.376712 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_1
+[Sun May 24 10:30:14.376747 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_2
+[Sun May 24 10:30:14.376784 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_3
+[Sun May 24 10:30:14.376821 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_4
+[Sun May 24 10:30:14.376858 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_5
+[Sun May 24 10:30:14.376893 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_6
+[Sun May 24 10:30:14.376928 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_7
+[Sun May 24 10:30:14.376965 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_8
+[Sun May 24 10:30:14.377001 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] portes_9
+[Sun May 24 10:30:14.377038 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_0
+[Sun May 24 10:30:14.377075 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_1
+[Sun May 24 10:30:14.377112 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_2
+[Sun May 24 10:30:14.377147 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_3
+[Sun May 24 10:30:14.377183 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_4
+[Sun May 24 10:30:14.377221 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_5
+[Sun May 24 10:30:14.377257 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_6
+[Sun May 24 10:30:14.377292 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_7
+[Sun May 24 10:30:14.377330 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_8
+[Sun May 24 10:30:14.377365 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] cuisine_9
+[Sun May 24 10:30:14.377401 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_0
+[Sun May 24 10:30:14.377438 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_1
+[Sun May 24 10:30:14.377474 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_2
+[Sun May 24 10:30:14.377509 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_3
+[Sun May 24 10:30:14.377575 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_4
+[Sun May 24 10:30:14.377611 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_5
+[Sun May 24 10:30:14.377649 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_6
+[Sun May 24 10:30:14.377685 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_7
+[Sun May 24 10:30:14.377722 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_8
+[Sun May 24 10:30:14.377757 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] billard_9
+[Sun May 24 10:30:14.377794 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_0
+[Sun May 24 10:30:14.377830 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_1
+[Sun May 24 10:30:14.377865 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_2
+[Sun May 24 10:30:14.377901 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_3
+[Sun May 24 10:30:14.377937 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_4
+[Sun May 24 10:30:14.377973 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_5
+[Sun May 24 10:30:14.378010 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_6
+[Sun May 24 10:30:14.378046 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_7
+[Sun May 24 10:30:14.378082 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_8
+[Sun May 24 10:30:14.378118 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] salon_9
+[Sun May 24 10:30:14.459101 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:14.541804 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:14.619720 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:14.701949 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:14.943647 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:15.026447 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:15.108820 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:15.381794 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:15.466416 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:15.549532 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:15.813004 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:15.897398 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 102px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0033cc, #0000ff);
+[Sun May 24 10:30:15.980290 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 187px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #006699, #0033cc);
+[Sun May 24 10:30:16.058016 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -10px;width : 153px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #009966, #006699);
+[Sun May 24 10:30:16.139824 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -15px;width : 119px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00cc33, #009966);
+[Sun May 24 10:30:16.637311 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:16.713041 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #5500aa, #0000ff);
+[Sun May 24 10:30:16.785734 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52244] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #aa0055, #5500aa);
+[Sun May 24 10:30:23.932754 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52246] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:30:23.932870 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52246]   form = Formulaire()
+[Sun May 24 10:30:23.940023 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52246] salon_1
+[Sun May 24 10:30:24.150331 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:30:24.150501 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246]   form = Formulaire()
+[Sun May 24 10:30:24.183223 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] mode_0
+[Sun May 24 10:30:24.183409 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_0
+[Sun May 24 10:30:24.183489 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_1
+[Sun May 24 10:30:24.183566 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_2
+[Sun May 24 10:30:24.183641 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_3
+[Sun May 24 10:30:24.183716 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_4
+[Sun May 24 10:30:24.183791 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_5
+[Sun May 24 10:30:24.183865 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_6
+[Sun May 24 10:30:24.183940 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_7
+[Sun May 24 10:30:24.184013 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_8
+[Sun May 24 10:30:24.184087 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] bar_9
+[Sun May 24 10:30:24.184162 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_0
+[Sun May 24 10:30:24.184235 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_1
+[Sun May 24 10:30:24.184311 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_2
+[Sun May 24 10:30:24.184385 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_3
+[Sun May 24 10:30:24.184460 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_4
+[Sun May 24 10:30:24.184534 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_5
+[Sun May 24 10:30:24.184608 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_6
+[Sun May 24 10:30:24.184683 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_7
+[Sun May 24 10:30:24.184757 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_8
+[Sun May 24 10:30:24.184832 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] escalier_9
+[Sun May 24 10:30:24.184908 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_0
+[Sun May 24 10:30:24.184981 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_1
+[Sun May 24 10:30:24.185055 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_2
+[Sun May 24 10:30:24.185128 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_3
+[Sun May 24 10:30:24.185203 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_4
+[Sun May 24 10:30:24.185275 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_5
+[Sun May 24 10:30:24.185350 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_6
+[Sun May 24 10:30:24.185501 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_7
+[Sun May 24 10:30:24.185573 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_8
+[Sun May 24 10:30:24.185643 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] portes_9
+[Sun May 24 10:30:24.185714 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_0
+[Sun May 24 10:30:24.185786 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_1
+[Sun May 24 10:30:24.185855 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_2
+[Sun May 24 10:30:24.186018 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_3
+[Sun May 24 10:30:24.186100 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_4
+[Sun May 24 10:30:24.186172 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_5
+[Sun May 24 10:30:24.186241 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_6
+[Sun May 24 10:30:24.186312 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_7
+[Sun May 24 10:30:24.186382 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_8
+[Sun May 24 10:30:24.186453 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] cuisine_9
+[Sun May 24 10:30:24.186522 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_0
+[Sun May 24 10:30:24.186594 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_1
+[Sun May 24 10:30:24.186666 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_2
+[Sun May 24 10:30:24.186735 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_3
+[Sun May 24 10:30:24.186805 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_4
+[Sun May 24 10:30:24.186875 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_5
+[Sun May 24 10:30:24.186946 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_6
+[Sun May 24 10:30:24.187015 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_7
+[Sun May 24 10:30:24.187087 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_8
+[Sun May 24 10:30:24.187158 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] billard_9
+[Sun May 24 10:30:24.187227 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_0
+[Sun May 24 10:30:24.187298 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_1
+[Sun May 24 10:30:24.187367 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_2
+[Sun May 24 10:30:24.187438 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_3
+[Sun May 24 10:30:24.187507 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_4
+[Sun May 24 10:30:24.187905 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_5
+[Sun May 24 10:30:24.187984 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_6
+[Sun May 24 10:30:24.188058 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_7
+[Sun May 24 10:30:24.188130 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_8
+[Sun May 24 10:30:24.188202 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] salon_9
+[Sun May 24 10:30:24.303741 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:24.487022 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:24.557317 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:24.622257 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:24.821275 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:24.881755 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:24.952073 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:25.160733 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:25.216273 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:25.280930 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:25.519646 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:25.633383 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 102px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0033cc, #0000ff);
+[Sun May 24 10:30:25.723495 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 187px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #006699, #0033cc);
+[Sun May 24 10:30:25.793858 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : -10px;width : 153px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #009966, #006699);
+[Sun May 24 10:30:25.848668 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : -15px;width : 119px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00cc33, #009966);
+[Sun May 24 10:30:26.214307 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:26.269309 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 15px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #5500aa, #0000ff);
+[Sun May 24 10:30:26.339256 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52246] background-color : red;font-size : 23px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #aa0055, #5500aa);
+[Sun May 24 10:30:43.654648 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52260] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:30:43.654770 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52260]   form = Formulaire()
+[Sun May 24 10:30:43.661243 2020] [wsgi:error] [pid 5766:tid 1931150368] [remote 192.168.1.28:52260] salon_0
+[Sun May 24 10:30:43.756997 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] /home/pi/maison/web_app/site_maison.py:20: FlaskWTFDeprecationWarning: "flask_wtf.Form" has been renamed to "FlaskForm" and will be removed in 1.0.
+[Sun May 24 10:30:43.757153 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260]   form = Formulaire()
+[Sun May 24 10:30:43.813221 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] mode_0
+[Sun May 24 10:30:43.813410 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_0
+[Sun May 24 10:30:43.813488 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_1
+[Sun May 24 10:30:43.813560 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_2
+[Sun May 24 10:30:43.813636 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_3
+[Sun May 24 10:30:43.813708 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_4
+[Sun May 24 10:30:43.813780 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_5
+[Sun May 24 10:30:43.813852 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_6
+[Sun May 24 10:30:43.813925 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_7
+[Sun May 24 10:30:43.813997 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_8
+[Sun May 24 10:30:43.814068 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] bar_9
+[Sun May 24 10:30:43.814232 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_0
+[Sun May 24 10:30:43.814304 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_1
+[Sun May 24 10:30:43.814377 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_2
+[Sun May 24 10:30:43.814449 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_3
+[Sun May 24 10:30:43.814521 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_4
+[Sun May 24 10:30:43.814592 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_5
+[Sun May 24 10:30:43.814667 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_6
+[Sun May 24 10:30:43.814741 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_7
+[Sun May 24 10:30:43.814879 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_8
+[Sun May 24 10:30:43.814950 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] escalier_9
+[Sun May 24 10:30:43.815025 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_0
+[Sun May 24 10:30:43.815098 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_1
+[Sun May 24 10:30:43.815172 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_2
+[Sun May 24 10:30:43.815245 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_3
+[Sun May 24 10:30:43.815315 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_4
+[Sun May 24 10:30:43.815385 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_5
+[Sun May 24 10:30:43.815458 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_6
+[Sun May 24 10:30:43.815531 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_7
+[Sun May 24 10:30:43.815602 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_8
+[Sun May 24 10:30:43.815671 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] portes_9
+[Sun May 24 10:30:43.815744 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_0
+[Sun May 24 10:30:43.815814 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_1
+[Sun May 24 10:30:43.816033 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_2
+[Sun May 24 10:30:43.816137 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_3
+[Sun May 24 10:30:43.816210 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_4
+[Sun May 24 10:30:43.816285 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_5
+[Sun May 24 10:30:43.816357 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_6
+[Sun May 24 10:30:43.816428 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_7
+[Sun May 24 10:30:43.816502 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_8
+[Sun May 24 10:30:43.816573 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] cuisine_9
+[Sun May 24 10:30:43.816647 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_0
+[Sun May 24 10:30:43.816718 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_1
+[Sun May 24 10:30:43.816789 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_2
+[Sun May 24 10:30:43.816863 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_3
+[Sun May 24 10:30:43.816935 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_4
+[Sun May 24 10:30:43.817006 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_5
+[Sun May 24 10:30:43.817077 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_6
+[Sun May 24 10:30:43.817208 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_7
+[Sun May 24 10:30:43.817281 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_8
+[Sun May 24 10:30:43.817357 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] billard_9
+[Sun May 24 10:30:43.817426 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_0
+[Sun May 24 10:30:43.817524 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_1
+[Sun May 24 10:30:43.817597 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_2
+[Sun May 24 10:30:43.817669 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_3
+[Sun May 24 10:30:43.817744 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_4
+[Sun May 24 10:30:43.817814 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_5
+[Sun May 24 10:30:43.817888 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_6
+[Sun May 24 10:30:43.817958 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_7
+[Sun May 24 10:30:43.818029 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_8
+[Sun May 24 10:30:43.818103 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] salon_9
+[Sun May 24 10:30:44.051682 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : white;font-size : 15px;color : black;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:44.097235 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:44.136953 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:44.447576 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:44.717747 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:44.812216 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:44.924915 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:45.187016 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:45.308357 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0055aa, #0000ff);
+[Sun May 24 10:30:45.419542 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00aa55, #0055aa);
+[Sun May 24 10:30:45.605744 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:45.659844 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 102px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #0033cc, #0000ff);
+[Sun May 24 10:30:45.727244 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 187px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #006699, #0033cc);
+[Sun May 24 10:30:45.794537 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -10px;width : 153px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #009966, #006699);
+[Sun May 24 10:30:45.856966 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -15px;width : 119px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #00cc33, #009966);
+[Sun May 24 10:30:46.217472 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : red;top : 0px;left : 0px;width : 50px;height : 50px;padding : 0% 0%;border-left : None;border-right : None;border-radius : 0 0 0 0 ;box-shadow : None;font-weight : None;
+[Sun May 24 10:30:46.282716 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 23px;color : white;top : 0px;left : 0px;width : 51px;height : 50px;padding : 0% 0%;border-left : solid;border-right : None;border-radius : 40px 0 0 40px ;box-shadow : None;font-weight : bolder;background-image : linear-gradient(to left, #5500aa, #0000ff);
+[Sun May 24 10:30:46.344935 2020] [wsgi:error] [pid 5766:tid 1964721184] [remote 192.168.1.28:52260] background-color : red;font-size : 15px;color : white;top : 0px;left : -5px;width : 34px;height : 50px;padding : 0% 0%;border-left : None;border-right : solid;border-radius : 0 40px 40px 0 ;box-shadow : None;font-weight : light;background-image : linear-gradient(to left, #aa0055, #5500aa);
