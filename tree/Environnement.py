@@ -20,6 +20,12 @@ class Environnement:
         self.liste_presets_choisis = Dico()
         self.style = None
 
+    def reset_preset(self):
+        self.liste_presets = Liste_radios()
+        self.liste_presets_choisis = Dico()
+        self.style = None
+        self.couleurs = None
+
     def reload_style(self):
         self.style = Style(position=(13*sum([len(bt.nom) for bt in self.get_preset_select().liste_boutons_html]),0),
             couleur_texte = "red")
@@ -27,16 +33,24 @@ class Environnement:
     def get_style(self):
         if self.style == None:
             self.reload_style()
-        print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-        print(self.style)
         return self.style
 
     def add_lumiere(self, lum):
         self.liste_lumières.add(lum)
 
     def etat(self):
-        # retourne si l'environnement est allumer ou éteint
+        # retourne si l'état correspondant au marqueur du scénario en cours
+        # pour savoir si l'environnement est dans un état allumer, eteint ou juste décoratif
         return self.get_preset_select().get_marqueur()
+
+    def etat_prec(self):
+        return self.get_preset_select().get_marqueur_precedent()
+
+    def change_scenario_prec(self, scenar):
+        self.get_preset_select().change_scenario_prec(scenar)
+
+    def get_scenario_prec(self):
+        return self.get_preset_select().get_scenario_prec()
 
     def get_preset_select(self):
         return self.liste_presets.selected()

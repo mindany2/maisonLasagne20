@@ -4,7 +4,5 @@
 //                |                   |             |                       |                   
   poutre_evier    |     projo_A64     |     16(2)   |       6(2)            |  
   poutre_banque   |     projo_A64     |     15(2)   |       7(2)            |  
-  poutre_table    |     projo_A73     |     4(2)    |       5(2)            |  
-  projo_14        |     projo_A61     |             |          1(3)         |
   led_exterieur   |     led_bledom    |     7(1)    |                       |   be:ff:80:01:2b:33
   led_interieur   |     led_bledom    |     7(1)    |                       |   be:ff:f0:00:ea:c2

@@ -6,7 +6,7 @@ from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.eclairage.Projecteur import Projecteur
-from tree.scenario.Scenario import Scenario
+from tree.scenario.Scenario import Scenario,MARQUEUR
 from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_poussoir import Bouton_poussoir
 from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
@@ -26,15 +26,29 @@ def get_preset(env, nom):
             if ligne.count(":") == 1:
                 (nom_scenar, marqueur) = ligne.split(":")
                 #on a un marqueur on/off
-                marqueur = ("on" == marqueur)
+                if marqueur == "deco" or marqueur == "déco":
+                    marqueur = MARQUEUR.DECO
+                elif marqueur == "off":
+                    marqueur = MARQUEUR.OFF
+                else:
+                    marqueur = MARQUEUR.ON
             else:
                 nom_scenar = ligne
-                marqueur = (nom_scenar != "eteindre")
+                # on suppose que c'est on
+                if nom_scenar != "eteindre":
+                    marqueur = MARQUEUR.ON
+                else:
+                    marqueur = MARQUEUR.OFF
             # on créer donc un nv scenar
             scenar = Scenario(nom_scenar, marqueur)
             preset.add_scenar(scenar)
         elif scenar != None:
-            scenar.add_inst(get_inst(env,ligne.split("|")))
+            inst = get_inst(env,ligne.split("|"))
+            if inst != None:
+                scenar.add_inst(inst)
+            else:
+                raise(IOError("Erreur de lecture : env = {}, preset = {}, scenar = {}".format(env.nom, preset.nom, scenar.nom)))
+                
 
     # maintenant on lie la liste des boutons html et inters utilisé avec le bon scenario
 
@@ -84,5 +98,5 @@ def get_inst(env, infos):
         return Instruction_led(lumière, dimmeur, duree, temps_init, synchro, couleur)
     elif isinstance(lumière, Lampe):
         return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
-    raise(IOError)
+    return None
 

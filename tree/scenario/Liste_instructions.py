@@ -26,10 +26,8 @@ class Liste_instructions:
         liste_thread = []
         liste_barrieres = [Barrier(i) for i in self.liste_barrier]
         cummulative_somme = cumsum(self.liste_barrier)
-        temps_prec = 0
-        for i,inst in enumerate(sorted(self.liste, key= lambda x: x.temps_init)):
-            print("on sleep {} s".format(inst.temps_init - temps_prec))
-            sleep(inst.temps_init-temps_prec)
+        # on demarre toutes les instructions
+        for i,inst in enumerate(self.liste):
             # chaque instruction est un thread
             # on le demarre
             n = sum([int(i+1 > j) for j in cummulative_somme])
@@ -37,7 +35,6 @@ class Liste_instructions:
             process = Thread(target=inst.run, args=[bar])
             liste_thread.append(process)
             process.start()
-            temps_prec = inst.temps_init
 
         #on attend qu'ils aient tous terminé
         for proc in liste_thread:

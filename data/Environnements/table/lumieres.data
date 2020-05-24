@@ -1,0 +1,7 @@
+//Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
+//4(1) = port 4 de la carte numéro 1
+//Nom_projecteur  |   Type            |  addr relais|     Addresse triac    | Addresse Bluetooth 
+//                |                   |             |                       |                   
+  poutre_table    |     projo_A73     |     4(2)    |       5(2)            |  
+  projo_14        |     projo_A61     |             |          1(3)         |
+  projo_15        |     projo_A61     |             |          1(4)         |

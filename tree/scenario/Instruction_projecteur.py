@@ -12,6 +12,7 @@ class Instruction_projecteur(Instruction_lumiere):
         """
         On s'occupe de faire l'instruction
         """
+        temps_init = time()
         dimmeur_initial = self.lumière.dimmeur
         dimmeur_final = self.dimmeur
         ecart = dimmeur_final - dimmeur_initial
@@ -21,6 +22,7 @@ class Instruction_projecteur(Instruction_lumiere):
             print("on fait rien")
             return
         self.lumière.connect()
+        super().run(temps_ecouler=(time()-temps_init))
         barrier.wait()
         val = dimmeur_initial
         debut = time()
@@ -28,7 +30,9 @@ class Instruction_projecteur(Instruction_lumiere):
             temps = time()
             self.lumière.set(val)
             val += ecart/nb_points
-            sleep(1/RESOLUTION-(time()-temps))
+            dodo = 1/RESOLUTION-(time()-temps)
+            if dodo > 0:
+                sleep(dodo)
         print(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
         self.lumière.set(dimmeur_final)
         self.lumière.deconnect()

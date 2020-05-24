@@ -1,7 +1,7 @@
 import numpy as np
 from tree.scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
 from tree.eclairage.Led import Couleur
-from time import sleep
+from time import sleep,time
 
 class Instruction_led(Instruction_lumiere):
     """
@@ -15,6 +15,7 @@ class Instruction_led(Instruction_lumiere):
         """
         On s'occupe de faire l'instruction
         """
+        temps_init = time()
         dimmeur_final = self.dimmeur
         dimmeur_initial = self.lumière.dimmeur
         nb_points = RESOLUTION*self.duree
@@ -37,6 +38,7 @@ class Instruction_led(Instruction_lumiere):
             barrier.wait()
             self.lumière.deconnect()
             return
+        super().run(temps_ecouler=(time()-temps_init))
 
 
 

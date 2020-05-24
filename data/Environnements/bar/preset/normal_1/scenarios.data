@@ -19,7 +19,7 @@ allumer
   | projo_37        |     50        |     10        |         3       |                  
   |led_caisson_bois |     50        |     5         |         2       |     0x2f2f2f        
   |led_sol          |     50        |     5         |         5       |     0x5f5f00        
-  | decoupe_bois    |     100       |     0         |         2       |
+  | decoupe_bois    |     100       |     1         |         2       |
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

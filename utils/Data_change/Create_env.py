@@ -7,6 +7,12 @@ from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
 from tree.utils.Couleur import Couleur
 from utils.Data_change.Create_styles import set_styles
 
+def reload_env(env):
+    env.reset_preset()
+    get_infos(env)
+
+
+
 def get_env(nom):
     """
     retourne un environnement complet
@@ -18,6 +24,12 @@ def get_env(nom):
     for lumière in lire(ouvrir(nom+"/lumieres.data")):
         env.add_lumiere(get_lumiere(lumière.split("|")))
 
+    get_infos(env)
+
+    return env
+
+def get_infos(env):
+    nom = env.nom
     # on recupére les presets
     for dossier in trouver_dossier("/"+nom+"/preset"):
         env.add_preset(get_preset(env,dossier))
@@ -57,9 +69,6 @@ def get_env(nom):
     env.change_mode()
 
 
-
-    print("fin env")
-    return env 
 
 
 

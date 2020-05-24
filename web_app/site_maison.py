@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, request, render_template
 from web_app.Formulaire import Formulaire
+from utils.Data_change.Create_tree import reload_tree
 from time import sleep
 from tree.Tree import Tree
 

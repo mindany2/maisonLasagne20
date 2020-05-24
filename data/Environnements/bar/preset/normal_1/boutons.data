@@ -4,4 +4,4 @@
     |  off          | html      | eteindre          | simple 
     |  on           | html      | allumer           | simple 
     | inter_10      | inter     | allumer, eteindre |poussoir
-    | inter_7       | inter     | eteindre, eteindre |poussoir
+    | inter_7       | inter     | eteindre, eteindre|poussoir

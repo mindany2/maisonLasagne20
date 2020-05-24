@@ -3,7 +3,6 @@
 //  |    nom        |   type    |   scénario(s)     | mode
     |   eteint      |   html    |   eteindre        |simple
     |   cuisination |   html    |   allumer_cuisine |simple
-    |   mangation   |   html    |   manger          |simple
     |   couvert     |   html    |   mettre_table    |simple
-    |   inter_8     | inter     |   mettre_table,eteindre |poussoir
+    |   inter_4     | inter     |   allumer_cuisine,eteindre |poussoir
     | inter_7       | inter     | eteindre, eteindre |poussoir

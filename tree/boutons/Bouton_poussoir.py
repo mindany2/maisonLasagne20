@@ -1,24 +1,61 @@
 from tree.boutons.Bouton import Bouton
 from threading import Thread
+from tree.utils.Dico import Dico
+from tree.scenario.Scenario import MARQUEUR
 
 class Bouton_poussoir(Bouton):
     """
-    bouton avec 2 type de scenario, on et off
+    bouton avec une liste de scénario, il en faut obligatoirement un seul de chaque type
     """
     def __init__(self, nom, env, scenar_on, scenar_off):
         Bouton.__init__(self, nom)
-        self.scenar_off = scenar_off
-        self.scenar_on = scenar_on
+        self.scenars = Dico()
         self.env = env
+        # scenar_on peut avoir un marqueur déco ou pas
+        self.scenar_on = scenar_on
+        self.scenar_off = scenar_off
 
-    def etat(self):
+
+    def etat_env(self):
         return self.env.etat()
 
     def press(self):
-        if self.etat():
-            scenar = self.scenar_off
+        # on décide que le premier element de la liste, (celui renseigner en premier)
+        # est ce que l'on souhaite faire en priorité :
+        # off / déco
+        # off / on
+
+        if self.scenar_on.marqueur != self.etat_env():
+            if self.scenar_on.marqueur == MARQUEUR.ON:
+                return self.lancer_scenar(self.scenar_on)
+            elif self.scenar_on.marqueur == MARQUEUR.DECO:
+                if self.etat_env() == MARQUEUR.ON:
+                    # on ne doit rien faire, On est prioritaire, donc on stocke
+                    # juste ce scenar dans le suivant pour retourner à cet état si on éteint
+                    self.env.change_scenario_prec(self.scenar_on)
+
+                else:
+                    # on était off, on allume donc
+                    return self.lancer_scenar(self.scenar_on)
+            else: 
+                # le scenar on faut off, donc on eteint
+                return self.lancer_scenar(self.scenar_on)
         else:
-            scenar = self.scenar_on
+            # on doit eteindre, mais attention aux déco
+            if self.etat_env() == MARQUEUR.DECO:
+                # on eteint
+                return self.lancer_scenar(self.scenar_off)
+            else:
+                # on est ON
+                if self.env.etat_prec() == MARQUEUR.DECO:
+                    # on remet cette déco là
+                    return self.lancer_scenar(self.env.get_scenario_prec)
+                else:
+                    # on eteint
+                    return self.lancer_scenar(self.scenar_off)
+
+
+    def lancer_scenar(self, scenar):
         process = Thread(target=scenar.do)
         process.start()
         return scenar
