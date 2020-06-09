@@ -15,7 +15,6 @@ class Bouton_poussoir(Bouton):
         self.scenar_on = scenar_on
         self.scenar_off = scenar_off
 
-
     def etat_env(self):
         return self.env.etat()
 
@@ -32,8 +31,13 @@ class Bouton_poussoir(Bouton):
                 if self.etat_env() == MARQUEUR.ON:
                     # on ne doit rien faire, On est prioritaire, donc on stocke
                     # juste ce scenar dans le suivant pour retourner à cet état si on éteint
-                    self.env.change_scenario_prec(self.scenar_on)
-
+                    if self.env.etat_prec() == MARQUEUR.DECO:
+                        # on doit dire que le prochain eteint
+                        self.env.change_scenario_prec(self.scenar_off)
+                    else: 
+                        # on stocke le déco
+                        self.env.change_scenario_prec(self.scenar_on)
+                    return None
                 else:
                     # on était off, on allume donc
                     return self.lancer_scenar(self.scenar_on)
@@ -49,7 +53,7 @@ class Bouton_poussoir(Bouton):
                 # on est ON
                 if self.env.etat_prec() == MARQUEUR.DECO:
                     # on remet cette déco là
-                    return self.lancer_scenar(self.env.get_scenario_prec)
+                    return self.lancer_scenar(self.env.get_scenario_prec())
                 else:
                     # on eteint
                     return self.lancer_scenar(self.scenar_off)

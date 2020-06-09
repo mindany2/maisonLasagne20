@@ -4,5 +4,6 @@
     |   eteint      |   html    |   eteindre        |simple
     |   cuisination |   html    |   allumer_cuisine |simple
     |   couvert     |   html    |   mettre_table    |simple
-    |   inter_4     | inter     |   allumer_cuisine,eteindre |poussoir
+    |   inter_13    | inter     |   allumer_cuisine,mettre_table |poussoir
+    |   inter_14    | inter     |   eteindre,eteindre |poussoir
     | inter_7       | inter     | eteindre, eteindre |poussoir

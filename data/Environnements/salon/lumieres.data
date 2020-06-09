@@ -14,6 +14,6 @@
   projo_35        |   projo_A91       |              |          6(1)         |
   projo_36        |   projo_A91       |              |          7(1)         |
   led_mur_droite  |   led_ble         |     5(1)     |                       |  ff:ff:ab:01:d9:9d
-  led_mur_centre  |   led_ble         |     5(1)     |                       |  ff:ff:fa:01:75:ac
+  led_mur_centre  |   led_ble         |     5(1)     |                       |  ff:ff:fa:01:75:4c
   led_mur_gauche  |   led_ble         |     5(1)     |                       |  ff:ff:bc:01:a9:a5
   led_sous_table  |   led_triones     |     5(1)     |                       |  ff:ff:30:00:9b:63

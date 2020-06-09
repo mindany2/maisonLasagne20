@@ -20,8 +20,9 @@ class Preset:
         if bt != None:
             scenar = bt.press()
             print("iiiiiiiiiiiiiiciiiiiiiiiiiiiii")
-            print(scenar.nom)
-            self.change_select(scenar)
+            if scenar != None:
+                print(scenar.nom)
+                self.change_select(scenar)
 
     def change(self):
         self.etat = not(self.etat)
