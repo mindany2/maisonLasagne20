@@ -1,5 +1,6 @@
 from smbus import SMBus
 from threading import Lock
+from time import sleep
 
 class I2C:
     bus = SMBus(1)
@@ -15,7 +16,11 @@ class I2C:
     def write_data(self, ip, data):
         self.mutex.acquire()
         #print("on envoie {} sur le port {}".format(data,ip))
-        self.bus.write_i2c_block_data(ip, 0, data)
+        try:
+            self.bus.write_i2c_block_data(ip, 0, data)
+        except:
+            print("Erreur sur le bus I2C....")
+            sleep(0.1)
         self.mutex.release()
 
     @classmethod
@@ -24,4 +29,3 @@ class I2C:
         data = self.bus.read_byte_data(ip, register)
         self.mutex.release()
         return data
-

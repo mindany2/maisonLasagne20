@@ -16,6 +16,9 @@ class Instruction_led(Instruction_lumiere):
         On s'occupe de faire l'instruction
         """
         temps_init = time()
+
+        self.lumière.lock()
+ 
         dimmeur_final = self.dimmeur
         dimmeur_initial = self.lumière.dimmeur
         nb_points = RESOLUTION*self.duree
@@ -24,19 +27,20 @@ class Instruction_led(Instruction_lumiere):
             liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, (dimmeur_final-dimmeur_initial)/nb_points)
         else:
             liste_dimmeur = [dimmeur_initial]*nb_points
-
         if self.couleur != self.lumière.couleur:
             liste_couleur = self.couleur.generate_array(self.lumière.couleur, nb_points)
         else:
             print("on fait rien")
             barrier.wait()
+            self.lumière.unlock()
             return
 
         err = self.lumière.connect()
         if err:
             print("l'instruction sur "+self.lumière.nom+" a planté")
             barrier.wait()
-            self.lumière.deconnect()
+            self.lumière.deconnect(planté = True)
+            self.lumière.unlock()
             return
         super().run(temps_ecouler=(time()-temps_init))
 
@@ -45,15 +49,19 @@ class Instruction_led(Instruction_lumiere):
         barrier.wait()
         for dim, valeur_couleur in zip(liste_dimmeur, liste_couleur):
             if not(err):
-                self.lumière.set(int(dim), valeur_couleur)
+                err1 = self.lumière.set(int(dim), valeur_couleur)
+                if err1:
+                    break
             sleep(1/RESOLUTION)
             barrier.wait()
 
-        if not(err):
+        if (not(err) and not(err1)):
             self.lumière.set(int(dimmeur_final), self.couleur.valeur)
-            sleep(3)
+        print(" la led {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-temps_init, self.duree))
         self.lumière.deconnect()
+        self.lumière.unlock()
     
     def show(self):
         print("led = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree, " | couleur = ",self.couleur)
+
 

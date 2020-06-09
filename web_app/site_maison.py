@@ -23,7 +23,7 @@ class Site_maison:
                 # on cherche le bouton qui à été appuyer
                 for bouton in form:
                     if (bouton.data):
-                        print(bouton.data)
+                        #print(bouton.data)
                         nom_env = bouton.data.split("_")[0]
                         index = int(bouton.data.split("_")[1])
                         Tree().press_bouton_html(nom_env, index)
@@ -40,8 +40,6 @@ class Site_maison:
             if form.validate_on_submit():
                 return redirect(url_for("index"))
 
-            for bouton in form:
-                print(bouton.id)
             return render_template("index.html", form = form, tree = Tree())
 
 

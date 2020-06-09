@@ -40,6 +40,5 @@ class Style:
         retour += "font-weight : {};".format(self.font_weight)
         if self.bg_image: # != None
             retour += "background-image : {};".format(self.bg_image)
-        print(retour)
 
         return retour

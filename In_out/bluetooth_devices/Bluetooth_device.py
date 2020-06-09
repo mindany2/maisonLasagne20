@@ -29,13 +29,27 @@ class Bluetooth_device:
                 compt += 1
                 print("La led n'arrive pas à ce connecter")
                 sleep(1)
-            if compt > 10:
+            if compt == 10:
+                Bluetooth().restart()
+            elif compt > 20:
                 return 1
         self.char = Bluetooth().get_char(self.periph, self.uuid, self.char_id)
         return 0
 
     def send(self, valeur):
-        Bluetooth().send(self.char, hex_to_byte(valeur))
+        err = Bluetooth().send(self.char, hex_to_byte(valeur))
+        if err:
+            # on a une erreur de connection
+            # on se deconnect
+            self.deconnect()
+            sleep(1)
+            # on se reconnect
+            self.connect()
+            err = Bluetooth().send(self.char, hex_to_byte(valeur))
+            if err:
+                return 1
+        return 0
+            
 
     def deconnect(self):
         Bluetooth().deconnect(self.periph)

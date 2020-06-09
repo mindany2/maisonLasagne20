@@ -4,6 +4,7 @@ from tree.utils.Dico import Dico
 from tree.Tree import Tree
 from In_out.Liste_interrupteur import Liste_interrupteur
 from tree.boutons.html.style.Style import Style
+from tree.scenario.Scenario import MARQUEUR
 
 
 class Environnement:
@@ -59,12 +60,11 @@ class Environnement:
         print(Tree.get_current_mode().nom)
         nv_preset = self.liste_presets_choisis.get(Tree.get_current_mode())
         # on met le premier sénario qui correspond au même mode que celui en cours
-        for bt in nv_preset.liste_boutons_html:
-            if bt.get_marqueur() == self.etat():
-                nv_preset.change_select(bt.scenar)
-                if self.etat(): # si on est allumer
-                    # on le met
-                    bt.press()
+        for scenar in nv_preset.liste_scénario:
+            if scenar.get_marqueur() == self.etat():
+                nv_preset.change_select(scenar)
+                if self.etat() != MARQUEUR.OFF:
+                    scenar.do()
                 # sinon pas besoin on est éteint
                 break
         # on change de preset

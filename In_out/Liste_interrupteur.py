@@ -69,20 +69,16 @@ class Liste_interrupteur:
 
     @classmethod
     def interrupt1(self, event):
-        print("interrup1 !!!!!!!!!!!!")
         for i,pin in enumerate(self.bus.read(self.port_bus,0x13)):
             if int(pin) == 1:
-                print("sur le premier")
                 inter = self.liste_inter.get(i+1)
                 if inter != None:
                     inter.press()
 
     @classmethod
     def interrupt2(self, event):
-        print("interrup2 !!!!!!!!!!!!")
         for i,pin in enumerate(self.bus.read(self.port_bus,0x12)):
             if int(pin) == 1:
-                print("sur le 2eme")
                 inter = self.liste_inter.get(i+9)
                 if inter != None:
                     inter.press()

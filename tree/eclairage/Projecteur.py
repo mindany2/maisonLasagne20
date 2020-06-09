@@ -2,7 +2,6 @@ from tree.eclairage.Lumiere import Lumiere
 from In_out.cartes.Relais import Etat
 from In_out.utils.ST_nucleo import ETAT_TRIAC
 from enum import Enum
-from threading import Lock
 from time import sleep
 
 class LAMPE(Enum):
@@ -24,12 +23,11 @@ class Projecteur(Lumiere):
         self.relais = relais
         self.type_lampe = type_lampe
         self.dimmeur = 0
-        self.mutex = Lock()
         # on eteint la lampe sur la carte
         self.triak.set(10**9,ETAT_TRIAC.off)
 
     def connect(self):
-        self.mutex.acquire()
+        print("on est connecté à "+self.nom)
         #on connect s'il faut
         if self.dimmeur == 0:
             # on met le triac en place
@@ -46,7 +44,7 @@ class Projecteur(Lumiere):
         elif self.dimmeur == 100:
             # on met le projo à on
             self.triak.set(10**9, ETAT_TRIAC.on)
-        self.mutex.release()
+        print("on est deconnecté de "+self.nom)
 
     def set(self, dimmeur):
         #print("on veut set "+self.nom+" à "+str(dimmeur))
