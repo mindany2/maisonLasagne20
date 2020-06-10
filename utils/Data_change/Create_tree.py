@@ -1,8 +1,6 @@
 from tree.Tree import Tree
 from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
 from utils.Data_change.Create_env import get_env,reload_env
-from utils.Data_change.Create_inputs import get_interrupteurs
-from In_out.Liste_interrupteur import Liste_interrupteur
 from tree.boutons.Bouton_changement_mode import Bouton_changement_mode
 from tree.Mode import Mode
 from threading import Thread
@@ -32,9 +30,6 @@ def get_tree():
         tree.add_mode(Mode(nom_mode, css_file))
 
 
-    # on va chercher les inters
-    get_interrupteurs()
-
     
     # on va chercher les environnements
     # et on les remplits
@@ -43,8 +38,4 @@ def get_tree():
     
     # on met le bouton changement de mode
     
-    # on lance les inters
-    process = Thread(target=Liste_interrupteur().init)
-    process.start()
-
     #tree.show()

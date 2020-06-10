@@ -10,7 +10,6 @@ from tree.scenario.Scenario import Scenario,MARQUEUR
 from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_poussoir import Bouton_poussoir
 from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
-from In_out.Liste_interrupteur import Liste_interrupteur
 
 
 def get_preset(env, nom):
@@ -61,8 +60,6 @@ def get_preset(env, nom):
                bt = Bouton_simple_html(nom_bt, scenar)
                preset.add_boutons_html(bt)
         elif type_bt == "inter":
-            print(nom_bt)
-            assert(Liste_interrupteur().get_inter(nom_bt) != None)
             if mode == "poussoir":
                scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
                scenar_off = preset.get_scenar(nom_scenar.split(",")[1])

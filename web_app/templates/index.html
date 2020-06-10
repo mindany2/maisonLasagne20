@@ -10,14 +10,17 @@
 
 
     </form>
-    {% for env in tree.send("get_noms_envi()")%}
-    {% if tree.send("get_env(\"{}\").get_preset_select().liste_boutons_html != []".format(env)) %}
-    <label style= {{ tree.send("get_env(\"{}\").get_style()".format(env)) }}> {{ env}} </label>
+    {% for infos in tree.send("get_infos_envi()")%}
+        {% set env = infos[0] %}
+        {% set style = infos[1] %}
+        {% set nb_boutons = infos[2] %}
+        {% if nb_boutons != 0%}
+            <label style= {{ style }}> {{ env}} </label>
         {% endif %}
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}
                 {% for bouton in form %}
-                {% if bouton.id.split('_')[0] == env and tree.send("get_env(\"{}\").get_preset_select().is_present(\"{}\")".format(env, bouton.id.split('_')[1])) %}
+                    {% if bouton.id.split('_')[0] == env and (bouton.id.split('_')[1] | int) < nb_boutons %}
                         {{ bouton }}
                     {% endif %}
                 {% endfor %}

@@ -26,6 +26,10 @@ class I2C:
     @classmethod
     def read_reg(self, ip, register): 
         self.mutex.acquire()
-        data = self.bus.read_byte_data(ip, register)
+        try:
+            data = self.bus.read_byte_data(ip, register)
+        except:
+            print("Erreur sur le bus I2C....")
+            raise
         self.mutex.release()
         return data

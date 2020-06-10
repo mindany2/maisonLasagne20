@@ -1,8 +1,10 @@
 import os
-PATH  ="/home/pi/maison/data/Environnements/"
-
-def ouvrir(nom):
-     return open(PATH+nom,"r")
+PATH = "/home/pi/maison/data/"
+PATH_ENV = PATH + "Environnements/"
+def ouvrir(nom, envs = True):
+     if envs:
+         return open(PATH_ENV+nom,"r")
+     return open(PATH+nom, "r")
 
 def lire(fichier):
     liste = fichier.read().replace(" ","").replace("\t","").split("\n")
@@ -12,14 +14,14 @@ def lire(fichier):
     fichier.close()
 
 def trouver_dossier(nom_sous_dossier):
-    for nom in os.listdir(PATH[:-1]+nom_sous_dossier):
-        if (os.path.isdir(PATH[:-1]+nom_sous_dossier+"/"+nom)):
+    for nom in os.listdir(PATH_ENV[:-1]+nom_sous_dossier):
+        if (os.path.isdir(PATH_ENV[:-1]+nom_sous_dossier+"/"+nom)):
             print(nom)
             yield nom
 
 def trouver_fichier(nom_sous_dossier):
-    for nom in os.listdir(PATH[:-1]+nom_sous_dossier):
-        if (os.path.isfile(PATH[:-1]+nom_sous_dossier+"/"+nom)):
+    for nom in os.listdir(PATH_ENV[:-1]+nom_sous_dossier):
+        if (os.path.isfile(PATH_ENV[:-1]+nom_sous_dossier+"/"+nom)):
             yield nom
 
 

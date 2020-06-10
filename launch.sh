@@ -1,8 +1,17 @@
 #!/bin/sh
 
-sudo rm ./web_app/logs/error.log
-sudo systemctl reload apache2
-curl 192.168.1.13 > /dev/null
-cat web_app/logs/error.log
-tail -f web_app/logs/error.log
+sudo rm ./logs/*.log
+sudo systemctl stop apache2.service
+echo "apache2 : stopped"
+sudo supervisorctl stop inter
+sudo supervisorctl stop tree
+sudo supervisorctl start tree
+sudo supervisorctl start inter
+sudo systemctl start apache2.service
+echo "apache2 : started"
+sleep 5
+cat logs/tree.log
+tail -f ./logs/tree.log
 
+#cat logs/site.log
+#tail -f ./logs/site.log

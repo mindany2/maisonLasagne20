@@ -2,7 +2,6 @@ from tree.utils.Liste import Liste
 from tree.utils.Liste_radios import Liste_radios
 from tree.utils.Dico import Dico
 from tree.Tree import Tree
-from In_out.Liste_interrupteur import Liste_interrupteur
 from tree.boutons.html.style.Style import Style
 from tree.scenario.Scenario import MARQUEUR
 
@@ -46,6 +45,9 @@ class Environnement:
 
     def etat_prec(self):
         return self.get_preset_select().get_marqueur_precedent()
+
+    def nb_boutons_html(self):
+        return self.get_preset_select().get_nb_boutons_html()
 
     def change_scenario_prec(self, scenar):
         self.get_preset_select().change_scenario_prec(scenar)

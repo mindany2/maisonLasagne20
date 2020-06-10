@@ -19,6 +19,9 @@ class Bouton_simple_html(Bouton_simple):
     def reload(self):
         self.style = (self.style_off, self.style_on)[self.etat()]
 
+    def get_infos(self):
+        return (self.get_name(), self.style)
+
     def show(self):
         print(self.get_name() + " = " + str(self.etat()))
 

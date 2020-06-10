@@ -26,8 +26,7 @@ class Boutons(object):
 
         nom_env = nom.label.text.split("_")[0]
         index = int(nom.label.text.split("_")[1])
-        nom_bt = tree.send("get_bouton_html(\"{}\", {}).get_name()".format(nom_env, index))
-        style_bt = tree.send("get_bouton_html(\"{}\", {}).style".format(nom_env, index))
+        nom_bt,style_bt = tree.send("get_bouton_html(\"{}\", {}).get_infos()".format(nom_env, index))
         return HTMLString('<button {params}>{label}</button>'.format(
             params=self.html_params(name=nom.name, style = style_bt, **kwargs),
             label=nom_bt))

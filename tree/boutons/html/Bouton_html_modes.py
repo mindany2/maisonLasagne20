@@ -12,6 +12,9 @@ class Bouton_html_modes(Bouton_changement_mode):
         else:
             self.style = Style(relative=False, background_color="black", couleur_texte="white")
 
+    def get_infos(self):
+        return (self.get_name(), self.style)
+
     def reload(self):
         pass
 

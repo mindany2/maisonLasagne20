@@ -19,7 +19,6 @@ class Preset:
         bt = self.lien_inter_bouton.get(nom_inter)
         if bt != None:
             scenar = bt.press()
-            print("iiiiiiiiiiiiiiciiiiiiiiiiiiiii")
             if scenar != None:
                 print(scenar.nom)
                 self.change_select(scenar)
@@ -30,8 +29,8 @@ class Preset:
     def add_boutons_html(self, bt):
         self.liste_boutons_html.append(bt)
 
-    def is_present(self, index_str):
-        return int(index_str) < len(self.liste_boutons_html)
+    def get_nb_boutons_html(self):
+        return len(self.liste_boutons_html)
 
     def press_bouton_html(self, index):
         bt = self.liste_boutons_html[index]

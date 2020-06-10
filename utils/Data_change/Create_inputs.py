@@ -1,18 +1,19 @@
 from utils.Data_change.utils.Read import lire, ouvrir
-from In_out.Interrupteur import Interrupteur
-from In_out.Liste_interrupteur import Liste_interrupteur
+from In_out.interruptions.utils.Interrupteur import Interrupteur
+from In_out.interruptions.Gestionnaire_interruptions import Gestionnaire_interruptions
 
-def get_interrupteurs():
+def get_interruptions():
     """
     On setup tout les inters
     """
-    liste = Liste_interrupteur()
+    gestionnaire = Gestionnaire_interruptions()
 
-    for ligne in lire(ouvrir("input.data")):
+    for ligne in lire(ouvrir("input.data", envs = False)):
         infos = ligne.split("|")
         nom = infos[1]
         pin = int(infos[2])
-        liste.add(Interrupteur(nom, pin))
+        if nom.split("_")[0] == "inter":
+            gestionnaire.add_interruption(Interrupteur(nom, pin, gestionnaire.client))
 
 
 

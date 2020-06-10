@@ -1,7 +1,6 @@
 from tree.Environnement import Environnement
 from tree.Tree import Tree
 from utils.Data_change.Create_lumière import get_lumiere
-from utils.Data_change.Create_inputs import get_interrupteurs
 from utils.Data_change.Create_preset import get_preset
 from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
 from tree.utils.Couleur import Couleur

@@ -56,8 +56,9 @@ class Bluetooth:
             # pas besoin de mutex on ne fait que lire
             # on attend qu'il n'y ai plus rien de co
             while self.nb_connection > 0:
+                print("on est bloquer, nombre de connection = {}".format(self.nb_connection))
                 sleep(1)
-                print("on est bloquer car nb_connection = {}".format(self.nb_connection))
+
             # on restart le bluetooth
             os.system("sudo systemctl restart bluetooth")
             print("on a reset")
