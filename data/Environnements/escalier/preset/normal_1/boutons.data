@@ -3,5 +3,5 @@
 //  |    nom                |   type    |   scénario(s)                                 | mode
     |       off             |   html    |   eteindre_vers_le_bas                        | simple
     |       on              |   html    |   allumer_vers_le_bas                         | simple
-    |       inter_2         |   inter   |   allumer_vers_le_haut,eteindre_vers_le_bas   | poussoir
-    |       inter_1         |   inter   |   allumer_vers_le_bas,eteindre_vers_le_haut   | poussoir
+    |       inter_2         |   inter   |   allumer_vers_le_haut,eteindre_vers_le_bas   | principal
+    |       inter_1         |   inter   |   allumer_vers_le_bas,eteindre_vers_le_haut   | principal

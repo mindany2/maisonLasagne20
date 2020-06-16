@@ -3,6 +3,7 @@ from tree.utils.Liste_radios import Liste_radios
 from tree.utils.Dico import Dico
 from tree.Tree import Tree
 from tree.boutons.html.style.Style import Style
+from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import MARQUEUR
 
 
@@ -43,17 +44,16 @@ class Environnement:
         # pour savoir si l'environnement est dans un état allumer, eteint ou juste décoratif
         return self.get_preset_select().get_marqueur()
 
-    def etat_prec(self):
-        return self.get_preset_select().get_marqueur_precedent()
-
     def nb_boutons_html(self):
         return self.get_preset_select().get_nb_boutons_html()
 
-    def change_scenario_prec(self, scenar):
-        self.get_preset_select().change_scenario_prec(scenar)
+    def refresh_all_projo(self):
+        for lumière in self.liste_lumières:
+            if isinstance(lumière, Projecteur) and lumière.dimmeur != 0:
+                lumière.set(lumière.dimmeur)
 
-    def get_scenario_prec(self):
-        return self.get_preset_select().get_scenario_prec()
+    def get_pile_scenarios(self):
+        return self.get_preset_select().get_pile()
 
     def get_preset_select(self):
         return self.liste_presets.selected()

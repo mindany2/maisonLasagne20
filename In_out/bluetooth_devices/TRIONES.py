@@ -8,8 +8,8 @@ class TRIONES(Bluetooth_device):
     def __init__(self, addr):
         Bluetooth_device.__init__(self,addr, 0xffd5, 0xffd9)
 
-    def send_color(self, couleur_hex):
-        valeur = "0x56"+couleur_hex[2::]+"00f0aa"
+    def send_color(self, couleur):
+        valeur = "0x56"+couleur.valeur[2::]+"00f0aa"
         self.send(valeur)
 
     def send_dimmeur(self, dimmeur):

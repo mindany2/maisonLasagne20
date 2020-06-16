@@ -39,8 +39,9 @@ class Port_extender:
     @classmethod
     def read(self, ip, register):
         data =  self.i2c.read_reg(ip, register)
-        data = binbits(data, 8)
-        #print("data = {}".format(data))
-        return [pin for pin in data]
+        if data != None:
+            data = binbits(data, 8)
+            #print("data = {}".format(data))
+            return [pin for pin in data]
 
 

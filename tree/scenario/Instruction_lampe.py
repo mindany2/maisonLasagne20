@@ -14,8 +14,9 @@ class Instruction_lampe(Instruction_lumiere):
         On s'occupe de faire l'instruction
         """
         super().run()
-        self.lumière.set(self.dimmeur != 0)
-        print("oooookkkk")
+        if self.lumière.etat() != (self.dimmeur != 0):
+            self.lumière.set(self.dimmeur != 0)
+        print("on met la lampe {} a {}".format(self.lumière, self.dimmeur))
 
 
     def show(self):

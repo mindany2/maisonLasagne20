@@ -11,12 +11,12 @@ class Gestionnaire_interruptions:
     GPIO.setmode(GPIO.BCM)
 
     client = Client() # on se connect à l'arbre
-    listes_inters = [Liste_interruptions(12, 0x20, 1), Liste_interruptions(16,0x20,0)]
+    listes_inters = [Liste_interruptions(12, 0x20, 1), Liste_interruptions(6,0x20,0)]
 
     #TODO bosse que sur le port extender, a faire pour les interruptions du rpi directement
     @classmethod
     def add_interruption(self, inter):
-        self.listes_inters[inter.pin // 9].add(inter, inter.pin % 9)
+        self.listes_inters[(inter.pin//9)].add(inter, (inter.pin-1) % 8)
 
 
 

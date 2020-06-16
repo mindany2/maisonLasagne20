@@ -1,5 +1,7 @@
-from tree.utils.Liste_radios import Liste_radios
+from tree.utils.Pile_radio import Pile_radio
 from tree.utils.Dico import Dico
+from tree.scenario.Scenario import MARQUEUR
+from tree.boutons.Bouton_principal import Bouton_principal
 
 class Preset:
     """
@@ -7,7 +9,7 @@ class Preset:
     """
     def __init__(self, nom):
         self.nom = nom
-        self.liste_scénario = Liste_radios()
+        self.liste_scénario = Pile_radio()
         self.liste_boutons_html = []
         self.etat = False
         self.lien_inter_bouton = Dico()
@@ -15,13 +17,21 @@ class Preset:
     def add_lien_inter(self, nom_inter, bouton):
         self.lien_inter_bouton.add(nom_inter, bouton)
 
-    def press_inter(self, nom_inter):
-        bt = self.lien_inter_bouton.get(nom_inter)
+    def get_bouton(self, nom_inter):
+        return self.lien_inter_bouton.get(nom_inter)
+
+    def principal(self, nom_inter):
+        # permet de savoir si le bouton est principal pour l'environnement
+        return isinstance(self.get_bouton(nom_inter), Bouton_principal)
+
+    def press_inter(self, nom_inter, etat_env_principal):
+        bt = self.get_bouton(nom_inter)
         if bt != None:
-            scenar = bt.press()
-            if scenar != None:
-                print(scenar.nom)
-                self.change_select(scenar)
+            scenar = bt.press(etat_env_principal)
+            self.change_select(scenar)
+
+    def change_select(self, scenar):
+        self.liste_scénario.change_select(scenar)
 
     def change(self):
         self.etat = not(self.etat)
@@ -49,21 +59,11 @@ class Preset:
     def get_scenar(self, nom):
         return self.liste_scénario.get(nom)
 
-    def change_scenario_prec(self, scenar):
-        self.liste_scénario.change_precedent(scenar)
-
-    def get_scenario_prec(self):
-        return self.liste_scénario.precedent()
-
-    def change_select(self, scenar):
-        self.liste_scénario.change_select(scenar)
+    def get_pile(self):
+        return self.liste_scénario
 
     def get_marqueur(self):
         return self.liste_scénario.selected().get_marqueur()
-
-    def get_marqueur_precedent(self):
-        return self.liste_scénario.precedent().get_marqueur()
-
 
     def do(self):
         self.liste_scénario.selected().do()

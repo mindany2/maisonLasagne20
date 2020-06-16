@@ -3,5 +3,7 @@
 //  |    nom        |   type    |   scénario(s)     | mode
     |   eteint      |   html    |   eteindre        |simple
     |   allumer     |   html    |   allumer         |simple
-    |   inter_4     | inter     |   deco_pour_table,eteindre |poussoir
-    | inter_7       | inter     | eteindre, eteindre |poussoir
+    |   inter_8     | inter     |   deco_pour_table |deco
+    | inter_7       | inter     | eteindre          |poussoir
+    |   inter_13    | inter     |   allumer,eteindre|principal
+    |   inter_14    | inter     |   eteindre        |poussoir

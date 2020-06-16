@@ -39,6 +39,9 @@ class Dico:
     def keys(self):
         return self.liste.keys().__iter__()
 
+    def est_vide(self):
+        return self.liste.keys() == []
+
     def show(self):
         for element in self.liste.values():
             element.show()

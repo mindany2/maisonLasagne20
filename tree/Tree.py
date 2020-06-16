@@ -1,5 +1,6 @@
 from tree.utils.Liste_radios import Liste_radios
 from tree.utils.Liste import Liste
+from threading import Thread
 
 class Tree:
     liste_envi = Liste()
@@ -19,14 +20,17 @@ class Tree:
     @classmethod
     def change_mode_select(self, mode):
         self.liste_modes.change_select(mode)
-        for env in self.liste_envi:
-            env.change_mode()
 
     @classmethod
     def press_inter(self, nom_inter):
+        print("on press l'inter "+nom_inter)
+        # on recupère tous les boutons
         for env in self.liste_envi:
-            print(env.nom)
-            env.get_preset_select().press_inter(nom_inter)
+            if env.get_preset_select().principal(nom_inter):
+                break
+        etat = env.etat()
+        for env in self.liste_envi:
+            env.get_preset_select().press_inter(nom_inter, etat)
 
     @classmethod
     def add_mode(self, mode):
@@ -39,6 +43,15 @@ class Tree:
     @classmethod
     def reload_modes(self):
         self.change_mode_select(self.get_current_mode())
+        # on met les environnements dans le même mode
+        for env in self.liste_envi:
+            env.change_mode()
+
+    @classmethod
+    def refresh_all_projo(self):
+        # renvoie le dernier ordre à tous les projecteurs
+        for env in self.liste_envi:
+            env.refresh_all_projo()
 
     @classmethod
     def get_env(self, env):

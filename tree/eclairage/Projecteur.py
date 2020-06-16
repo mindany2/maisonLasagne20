@@ -1,5 +1,5 @@
 from tree.eclairage.Lumiere import Lumiere
-from In_out.cartes.Relais import Etat
+from In_out.cartes.relais.Relais import Etat
 from In_out.utils.ST_nucleo import ETAT_TRIAC
 from enum import Enum
 from time import sleep
@@ -7,6 +7,7 @@ from time import sleep
 class LAMPE(Enum):
     # type  = (maxi,mini)
     type_63 = (400,80)
+    type_65 = (400,160)
     type_91 = (430,50)
     type_64 = (430,180)
     type_73 = (400,130)
@@ -27,7 +28,6 @@ class Projecteur(Lumiere):
         self.triak.set(10**9,ETAT_TRIAC.off)
 
     def connect(self):
-        print("on est connecté à "+self.nom)
         #on connect s'il faut
         if self.dimmeur == 0:
             # on met le triac en place
@@ -44,12 +44,12 @@ class Projecteur(Lumiere):
         elif self.dimmeur == 100:
             # on met le projo à on
             self.triak.set(10**9, ETAT_TRIAC.on)
-        print("on est deconnecté de "+self.nom)
 
     def set(self, dimmeur):
         #print("on veut set "+self.nom+" à "+str(dimmeur))
         valeur = self.convert(dimmeur)
         self.triak.set(valeur)
+        #print(valeur)
         self.dimmeur = int(dimmeur)
 
     def convert(self, dimmeur):

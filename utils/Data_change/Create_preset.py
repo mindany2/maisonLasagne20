@@ -2,13 +2,18 @@ from utils.Data_change.utils.Read import ouvrir, lire
 from tree.Preset import Preset
 from tree.eclairage.Led import Led
 from tree.eclairage.Lampe import Lampe
+from tree.eclairage.Trappe import Trappe
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
+from tree.scenario.Instruction_trappe import Instruction_trappe
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario,MARQUEUR
 from tree.boutons.Bouton_simple import Bouton_simple
+from tree.boutons.Bouton_principal import Bouton_principal
 from tree.boutons.Bouton_poussoir import Bouton_poussoir
+from tree.boutons.Bouton_deco import Bouton_deco
+from tree.boutons.Bouton_choix import Bouton_choix
 from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
 
 
@@ -56,30 +61,49 @@ def get_preset(env, nom):
         if type_bt == "html":
             if mode == "simple":
                scenar = preset.get_scenar(nom_scenar)
-               assert(scenar != None)
+               check(env, preset,scenar, nom_scenar)
                bt = Bouton_simple_html(nom_bt, scenar)
                preset.add_boutons_html(bt)
         elif type_bt == "inter":
-            if mode == "poussoir":
+            if mode == "principal":
                scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
                scenar_off = preset.get_scenar(nom_scenar.split(",")[1])
-               assert(scenar_on != None)
-               assert(scenar_off != None)
-               bt = Bouton_poussoir(nom_bt, env, scenar_on, scenar_off)
-               preset.add_lien_inter(nom_bt, bt)
+               check(env, preset, scenar_on, nom_scenar)
+               check(env, preset, scenar_off, nom_scenar)
+               bt = Bouton_principal(nom_bt, env, scenar_on, scenar_off)
 
+            elif mode == "poussoir":
+               scenar = preset.get_scenar(nom_scenar)
+               check(env, preset,scenar, nom_scenar)
+               bt = Bouton_poussoir(nom_bt, env, scenar)
 
-                
+            elif mode == "deco":
+               scenar = preset.get_scenar(nom_scenar)
+               check(env, preset,scenar, nom_scenar)
+               bt = Bouton_deco(nom_bt, env, scenar)
+
+            elif mode =="choix":
+                liste_nom = nom_scenar.split(",")
+                liste_scenar = [check(env, preset, preset.get_scenar(nom), nom) for nom in liste_nom]
+                bt = Bouton_choix(nom_bt, env, liste_scenar)
+            else:
+                bt = None
+            preset.add_lien_inter(nom_bt, bt)
 
     return preset
 
+def check(env, preset, scenar, nom_scenar):
+    if scenar == None:
+        print("Le scenario {} dans l'environnement {} preset {} n'existe pas".format(nom_scenar, env.nom, preset.nom))
+        raise
+    return scenar
 
 def get_inst(env, infos):
     """
     Créer une instruction
     """
     nom_lampe = infos[1]
-    dimmeur = int(infos[2])
+    dimmeur = infos[2]
     duree = int(infos[3])
     temps_init = int(infos[4])
     couleur = infos[5]
@@ -90,10 +114,13 @@ def get_inst(env, infos):
     
     lumière = env.get_lumiere(nom_lampe)
     if isinstance(lumière, Projecteur):
-        return Instruction_projecteur(lumière, dimmeur, duree, temps_init, synchro)
+        return Instruction_projecteur(lumière, int(dimmeur), duree, temps_init, synchro)
     elif isinstance(lumière, Led):
-        return Instruction_led(lumière, dimmeur, duree, temps_init, synchro, couleur)
+        return Instruction_led(lumière, int(dimmeur), duree, temps_init, synchro, couleur)
     elif isinstance(lumière, Lampe):
-        return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
+        return Instruction_lampe(lumière, int(dimmeur), temps_init, synchro)
+    elif isinstance(lumière, Trappe):
+        action = dimmeur
+        return Instruction_trappe(action,duree, temps_init, synchro)
     return None
 

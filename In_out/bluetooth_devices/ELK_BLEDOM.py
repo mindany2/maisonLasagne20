@@ -13,6 +13,6 @@ class ELK_BLEDOM(Bluetooth_device):
         valeur = "0x7e0401"+(dimmeur < 16)*"0"+hex(dimmeur)[2::]+"01ffff00ef"
         return self.send(valeur)
 
-    def send_color(self, couleur_hex):
-        valeur = "0x7e070503"+couleur_hex[2::]+"10ef"
+    def send_color(self, couleur):
+        valeur = "0x7e070503"+couleur.valeur[2::]+"10ef"
         return self.send(valeur)

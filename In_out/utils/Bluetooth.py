@@ -1,7 +1,7 @@
 from enum import Enum
 from bluepy.btle import Peripheral, Scanner
 from threading import Lock
-from time import sleep
+from time import sleep,time
 import os
 
 class Bluetooth:
@@ -55,7 +55,8 @@ class Bluetooth:
             self.mutex_reset.release()
             # pas besoin de mutex on ne fait que lire
             # on attend qu'il n'y ai plus rien de co
-            while self.nb_connection > 0:
+            debut = time()
+            while self.nb_connection > 0 and time()-debut < 30:
                 print("on est bloquer, nombre de connection = {}".format(self.nb_connection))
                 sleep(1)
 

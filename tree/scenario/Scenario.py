@@ -27,12 +27,14 @@ class Scenario:
         return self.marqueur
 
     def change(self):
-        print( "le scenario"+  self.nom +" etat"+ str(self.etat))
         self.etat = not(self.etat)
-        print( "le scenario"+  self.nom +" etat"+ str(self.etat))
 
-    def do(self):
-        self.liste_inst.do()
+    def do(self, join = False):
+        proc = Thread(target=self.liste_inst.do)
+        proc.start()
+        if join:
+            proc.join()
+        return self
 
     def show(self):
         print(self.nom)

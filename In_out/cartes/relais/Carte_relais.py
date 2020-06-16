@@ -1,6 +1,6 @@
 from In_out.utils.Port_extender import Port_extender
 from In_out.cartes.Carte import Carte
-from In_out.cartes.Relais import Relais
+from In_out.cartes.relais.Relais_port_extender import Relais_port_extender
 
 class Carte_relais(Carte):
     """
@@ -8,7 +8,7 @@ class Carte_relais(Carte):
     """
     def __init__(self, numero, port_bus, nb_ports = 16):
         Carte.__init__(self, numero, port_bus, nb_ports)
-        self.liste_relais = [ Relais(port_bus, 0x13*(i<8)+0x12*(i>7), i%8+1) for i in range(0,nb_ports)]
+        self.liste_relais = [ Relais_port_extender(port_bus, 0x13*(i<8)+0x12*(i>7), i%8+1) for i in range(0,nb_ports)]
         """
         for i,pin in enumerate(Port_extender().read(port_bus, registre)):
             self.liste_relais[i].etat = pin

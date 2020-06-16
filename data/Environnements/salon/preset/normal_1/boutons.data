@@ -3,6 +3,6 @@
 //  |    nom        |   type    |   scénario(s)     | mode
     |  off          | html      | eteindre          | simple 
     |  on           | html      | allumer           | simple 
-    |   inter_3     | inter     | allumer, eteindre | poussoir
-    | inter_7       | inter     | eteindre, eteindre |poussoir
+    |   inter_3     | inter     | allumer, eteindre | principal
+    | inter_7       | inter     | eteindre          |poussoir
     

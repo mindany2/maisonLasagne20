@@ -16,10 +16,5 @@ class Triac:
             ST_nucleo().set(self.numero_carte, self.numero_triak, valeur, etat)
             self.valeur = valeur
 
-
     def show(self):
         print( "carte numéro : {} | triac numéro {}".format(self.numero_carte, self.numero_triak))
-
-
-if __name__ == "__main__":
-    pass

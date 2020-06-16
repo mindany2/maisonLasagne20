@@ -3,7 +3,7 @@ import pickle
 from tree.Tree import Tree
 from threading import Thread
 import io
-import sys
+import sys, traceback
 
 """
 Ceci est le serveur de socket, il permet à tous les périphériques clients
@@ -35,14 +35,15 @@ def threaded_client(conn):
                 break
             else:
                 # traitement de l'ordre de la forme "fonction(arg1, arg2)"
-                print("Received: ", requete)
+                #print("Received: ", requete)
                 try:
                     data = eval("Tree()."+requete)
-                    print(data)
+                    #print(data)
                 except:
-                    print("Unexpected error:", sys.exc_info()[0])
+                    traceback.print_tb(sys.exc_info()[2])
+                    print("Unexpected error: ",sys.exc_info()[1])
                     data = "Error:la methodes ou les arguments ne sont pas valide \n on veut la forme \"fonction(arg1, arg2)\""
-            print("pickeled = ", len(pickle.dumps(data)))
+            #print("pickeled = ", len(pickle.dumps(data)))
             conn.send(pickle.dumps(data))
         except:
             break

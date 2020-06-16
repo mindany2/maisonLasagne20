@@ -1,7 +1,7 @@
 from tree.eclairage.Lumiere import Lumiere
 from time import sleep
 from threading import Lock
-from In_out.cartes.Relais import Relais, Etat
+from In_out.cartes.relais.Relais import Etat
 
 class Lampe(Lumiere):
     """
@@ -22,6 +22,9 @@ class Lampe(Lumiere):
         if self.relais.etat != etat:
             self.relais.set(etat)
         self.mutex.release()
+
+    def etat(self):
+        return self.relais.etat
 
     def show(self):
         self.relais.show()

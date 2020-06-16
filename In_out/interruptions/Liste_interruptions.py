@@ -37,6 +37,7 @@ class Liste_interruptions:
         self.liste_inter.add(index,inter)
 
     def get_inter(self, nom):
+        print(self.liste_inter)
         for inter in self.liste_inter:
             if inter.nom == nom:
                 return inter
@@ -48,6 +49,7 @@ class Liste_interruptions:
             # on verifie si le pin est haut
             #TODO il va falloir le modifier pour les radars ect..
             if int(pin) == 1:
+                print("le pin {} est on".format(i))
                 inter = self.liste_inter.get(i)
                 if inter != None:
                     inter.press()

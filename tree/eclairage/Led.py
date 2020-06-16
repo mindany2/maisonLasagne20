@@ -2,8 +2,7 @@ from tree.eclairage.Lumiere import Lumiere
 from tree.utils.Couleur import Couleur
 from time import sleep
 from random import randrange
-
-from In_out.cartes.Relais import Relais, Etat
+from In_out.cartes.relais.Relais import Etat
 
 class Led(Lumiere):
     """
@@ -26,7 +25,7 @@ class Led(Lumiere):
         return self.controleur.connect()
 
     def deconnect(self, planté = False):
-        self.controleur.deconnect()
+        self.controleur.deconnect(is_black = self.couleur.is_black())
         if self.couleur.is_black() or planté:
             self.planté = True
             sleep(5)
@@ -38,7 +37,7 @@ class Led(Lumiere):
         err1, err2 = 0,0
         if self.couleur != Couleur(couleur):
             self.couleur = Couleur(couleur)
-            err1 = self.controleur.send_color(self.couleur.valeur)
+            err1 = self.controleur.send_color(self.couleur)
         if self.dimmeur != dimmeur:
             self.dimmeur = dimmeur
             err2 = self.controleur.send_dimmeur(self.dimmeur)

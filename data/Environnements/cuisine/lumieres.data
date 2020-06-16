@@ -5,5 +5,5 @@
   poutre_evier    |     projo_A64     |     16(2)   |       6(2)            |  
   poutre_banque   |     projo_A64     |     15(2)   |       7(2)            |  
   led_exterieur   |     led_bledom    |     7(1)    |                       |   be:ff:80:01:2b:33
-  led_interieur   |     led_bledom    |     7(1)    |                       |   be:ff:f0:00:ea:c2
+  led_interieur   |     led_lednet    |     7(1)    |                       |   192.168.1.39
   led_banque      |     led_bledom    |     7(1)    |                       |   be:ff:80:01:31:02

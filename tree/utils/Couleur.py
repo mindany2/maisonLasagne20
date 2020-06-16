@@ -17,11 +17,12 @@ class Couleur:
         self.r = int("0x"+self.valeur[2:4].zfill(2),16)
         self.g = int("0x"+self.valeur[4:6].zfill(2),16)
         self.b = int("0x"+self.valeur[6:8].zfill(2),16)
+        return [self.r, self.g, self.b]
 
     def get_liste(self, variable_init, variable_self, nb_points):
         if variable_init != variable_self:
             return np.arange(variable_init, variable_self, float((variable_self - variable_init))/nb_points)
-        return [0]*nb_points
+        return [variable_init]*nb_points
 
     def __str__(self):
         return str(self.valeur)

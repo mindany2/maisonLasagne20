@@ -3,5 +3,5 @@
 //  |    nom        |   type    |   scénario(s)     | mode
     |   eteint      |   html    |   eteindre        |simple
     |   mangation   |   html    |   manger          |simple
-    |   inter_8     | inter     |   manger,eteindre |poussoir
-    | inter_7       | inter     | eteindre, eteindre |poussoir
+    |   inter_8     | inter     |   manger,eteindre |principal
+    | inter_7       | inter     | eteindre          |poussoir

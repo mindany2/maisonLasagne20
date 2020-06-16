@@ -18,10 +18,10 @@ class Instruction_projecteur(Instruction_lumiere):
         dimmeur_final = self.dimmeur
         ecart = dimmeur_final - dimmeur_initial
         nb_points = self.duree*RESOLUTION
-        print("dimmeur_initial  = ", dimmeur_initial, " / dimmeur_final = ", dimmeur_final)
+        #print("dimmeur_initial  = ", dimmeur_initial, " / dimmeur_final = ", dimmeur_final)
 
         if dimmeur_initial == dimmeur_final:
-            print("on fait rien")
+            print("on fait rien pour {}".format(self.lumière.nom))
             self.lumière.unlock()
             return
 

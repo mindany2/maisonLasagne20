@@ -30,7 +30,7 @@ class Instruction_led(Instruction_lumiere):
         if self.couleur != self.lumière.couleur:
             liste_couleur = self.couleur.generate_array(self.lumière.couleur, nb_points)
         else:
-            print("on fait rien")
+            print("on fait rien pour {}".format(self.lumière.nom))
             barrier.wait()
             self.lumière.unlock()
             return

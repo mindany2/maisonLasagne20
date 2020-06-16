@@ -9,7 +9,7 @@ sudo supervisorctl start tree
 sudo supervisorctl start inter
 sudo systemctl start apache2.service
 echo "apache2 : started"
-sleep 5
+sleep 2
 cat logs/tree.log
 tail -f ./logs/tree.log
 

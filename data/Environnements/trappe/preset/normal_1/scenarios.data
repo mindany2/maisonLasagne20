@@ -1,0 +1,12 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+trappe_ouverte:off
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |     trappe        |    monte      |         1     |         1      |   
+
+trappe_ferme:on
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |     trappe        |    descent    |         1     |         1      |   

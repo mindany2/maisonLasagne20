@@ -4,7 +4,9 @@ from tree.eclairage.Lampe import Lampe
 from In_out.bluetooth_devices.LEDBLE import LEDBLE
 from In_out.bluetooth_devices.ELK_BLEDOM import ELK_BLEDOM
 from In_out.bluetooth_devices.TRIONES import TRIONES
+from In_out.wifi_devices.LEDnet import LEDnet
 from tree.eclairage.Projecteur import Projecteur, LAMPE
+from tree.eclairage.Trappe import Trappe
 
 def get_addr(addr):
     if addr != "":
@@ -22,7 +24,7 @@ def get_lumiere(infos):
         option_lumiere = specification[1]
     addr_relais = get_addr(infos[2])
     addr_triac = get_addr(infos[3])
-    addr_bluetooth = infos[4]
+    addr_bluetooth_ou_ip = infos[4]
     
     if addr_triac != None:
         triac = Gestionnaire_de_cartes().get_triac(int(addr_triac[1]), int(addr_triac[0]))
@@ -30,7 +32,7 @@ def get_lumiere(infos):
         triac = None
 
     if addr_relais != None:
-        relais = Gestionnaire_de_cartes().get_relais(int(addr_relais[1]), int(addr_relais[0]))
+        relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
     else:
         relais = None
 
@@ -49,20 +51,26 @@ def get_lumiere(infos):
             spec = LAMPE.type_73
         elif option_lumiere == "A61":
             spec = LAMPE.type_61
+        elif option_lumiere == "A65":
+            spec = LAMPE.type_65
         else:
             spec = None
         return Projecteur(nom, triac, spec , relais = relais)
 
     elif type_lumière == "led":
         if option_lumiere == "triones":
-            controleur = TRIONES(addr_bluetooth)
+            controleur = TRIONES(addr_bluetooth_ou_ip)
         elif option_lumiere == "ble":
-            controleur = LEDBLE(addr_bluetooth)
+            controleur = LEDBLE(addr_bluetooth_ou_ip)
         elif option_lumiere == "bledom":
-            controleur = ELK_BLEDOM(addr_bluetooth)
+            controleur = ELK_BLEDOM(addr_bluetooth_ou_ip)
+        elif option_lumiere == "lednet":
+            controleur = LEDnet(addr_bluetooth_ou_ip)
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)
+    elif type_lumière == "trappe":
+        return Trappe()
 
 
 

@@ -2,8 +2,11 @@
 //ce peut être des inputs comme des boutons html
 //  |    nom        |   type    |   scénario(s)                 | mode
     |  0%           | html      | eteindre                      | simple 
-    |  10%          | html      | déco_depuis_salon             | simple 
+    |  10%          | html      | déco_depuis_table             | simple 
+    |  20%          | html      | déco_depuis_salon             | simple 
     |  100%         | html      | allumer                       | simple 
-    | inter_10      | inter     | allumer, eteindre             |poussoir
-    | inter_7       | inter     | eteindre, eteindre            |poussoir
-    |   inter_3     | inter     | déco_depuis_salon, eteindre   | poussoir
+    | inter_10      | inter     | allumer, eteindre             | principal
+    | inter_7       | inter     | eteindre                      | poussoir
+    | inter_8       | inter     | déco_depuis_table             | deco
+    |   inter_3     | inter     | déco_depuis_salon             | deco
+    |   inter_6     | inter     | déco_depuis_salon             | deco

@@ -3,4 +3,4 @@
 //  |    nom        |   type    |   scénario(s)     | mode
     |   eteint      |   html    |   eteindre        |simple
     |   allumer     |   html    |   allumer         |simple
-    | inter_7       | inter     | eteindre, eteindre |poussoir
+    | inter_7       | inter     | eteindre          |poussoir

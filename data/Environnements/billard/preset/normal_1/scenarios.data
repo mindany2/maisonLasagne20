@@ -15,11 +15,11 @@ allumer
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|               |               |               |                 |                   |
   |     projo_1        |    0          |    0          |        0        |   
-  |     projo_2        |    100        |    10          |        10        |   
-  |     projo_3        |    100        |    10         |        10        |   
+  |     projo_2        |    100        |    1          |        20        |   
+  |     projo_3        |    100        |    1         |        20        |   
   |     projo_4        |    0          |    0          |        0        |   
-  |     projo_21       |    100         |    5          |        0        |   
-  |     projo_poutre   |    100         |    1          |        0        |
+  |     projo_21       |    100         |    20          |        0        |   
+  |     projo_poutre   |    0         |    1          |        0        |
 
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |

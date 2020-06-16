@@ -1,5 +1,6 @@
 from threading import Thread
 from tree.boutons.Bouton import Bouton
+from tree.scenario.Scenario import MARQUEUR
 
 class Bouton_simple(Bouton):
     """
@@ -16,10 +17,9 @@ class Bouton_simple(Bouton):
     def get_marqueur(self):
         return self.scenar.get_marqueur()
 
-    def press(self):
+    def press(self, etat_env_principal = None):
         # on fait le scénario
-        process = Thread(target=self.scenar.do)
-        process.start()
+        self.scenar.do()
         # on le renvoie pour qu'il change d'état
         return self.scenar
 

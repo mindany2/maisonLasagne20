@@ -50,7 +50,7 @@ class Bluetooth_device:
                 return 1
         return 0
 
-    def deconnect(self):
+    def deconnect(self, is_black = True):
         Bluetooth().deconnect(self.periph)
         self.periph = None
         self.char = None
