@@ -20,7 +20,7 @@ class Bouton_deco(Bouton):
                 return pile.pop().do()
             # sinon on le supprime
             pile.remove(self.scenar_deco)
-            return None
+            return pile.selected()
         # On doit allumer
         pile.push_select()
         return self.scenar_deco.do()

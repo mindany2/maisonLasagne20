@@ -1,5 +1,7 @@
-from In_out.utils.Spi import Spi
 from enum import Enum
+from threading import Lock
+from In_out.utils.I2C import I2C
+from time import sleep
 
 class MESSAGE_MASTER(Enum):
     rien = 0
@@ -25,13 +27,20 @@ class Arduino:
     """
     Classe global, a modifier s'il y en a plusieures
     """
-    spi = Spi()
-    spi.open(1) # on est sur le port spi1
+    i2c = I2C()
+    ip = 0x30
+    mutex = Lock()
 
     @classmethod
     def send(self, message):
-        return self.spi.send([message.value])
+        self.mutex.acquire()
+        #self.i2c.write_data(self.ip, [message.value])
+        if message == MESSAGE_MASTER.ferme_trappe or message == MESSAGE_MASTER.ouvre_trappe:
+            sleep(2) # temps de l'instruction
+        sleep(0.01)
+        self.mutex.release()
 
     @classmethod
     def send_for_request(self, message):
-        return self.spi.send_for_request([message.value])
+        #return self.i2c.read_reg(self.ip, message.value)
+        pass

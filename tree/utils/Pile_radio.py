@@ -21,7 +21,10 @@ class Pile_radio(Liste_radios):
         self.pile.append(element)
 
     def remove(self, element):
-        self.pile.remove(element)
+        try:
+            self.pile.remove(element)
+        except:
+            pass
 
     def pop(self):
         element = self.top()

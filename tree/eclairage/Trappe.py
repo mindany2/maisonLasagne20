@@ -8,6 +8,7 @@ class Trappe:
     etat = Arduino().send_for_request(MESSAGE_MASTER.demande_etat_trappe)
     sécu = False
     Arduino().send(MESSAGE_MASTER.sécurité_trappe_off)   # on met la sécu
+    print("etat trappe = "+str(etat))
     nom = "trappe"
 
     @classmethod

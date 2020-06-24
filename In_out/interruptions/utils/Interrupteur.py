@@ -1,4 +1,5 @@
 from time import time
+from tree.Tree import Tree
 from In_out.interruptions.utils.Interruption import Interruption
 
 class Interrupteur(Interruption):
@@ -15,6 +16,7 @@ class Interrupteur(Interruption):
         if ((time() - self.temps) > 1):     # permet de prendre que le premier appuie
             print("on press le bouton "+self.nom)
             self.client.send_request("press_inter",[self.nom])
+            
             self.temps = time() 
 
     def show(self):

@@ -14,3 +14,6 @@
   | inter_12 |    12    
   | inter_13 |    13    
   | inter_14 |    14    
+  | arduino  |    15
+  // on a radar_escalier_bas_on / radar_escalier_bas_off
+  // on a trappe_monte  /   trappe_ferme

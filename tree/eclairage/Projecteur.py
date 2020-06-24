@@ -36,6 +36,13 @@ class Projecteur(Lumiere):
             # on met le projo en dimmage
             self.triak.set(self.convert(100))
 
+    def refresh(self):
+        self.set(self.dimmeur)
+        self.deconnect() # met a on ou off
+        print("ok pour projo "+self.nom)
+
+
+
     def deconnect(self):
         #on deconnect s'il faut
         if self.dimmeur == 0:
