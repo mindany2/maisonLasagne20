@@ -1,5 +1,0 @@
-//Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
-//4(1) = port 4 de la carte numéro 1
-//Nom_projecteur  |   Type            |  addr relais |     Addresse triac    | Addresse Bluetooth 
-//                |                   |              |                       |                   
-    trappe        |     trappe        |              |                       |

@@ -1,9 +1,0 @@
-//Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
-//4(1) = port 4 de la carte numéro 1
-//Nom_projecteur  |   Type            |  addr relais |     Addresse triac    | Addresse Bluetooth 
-//                |                   |              |                       |                   
-        led_haut  |     led_bledom    |     1(1)     |                       |    be:ff:f0:00:eb:3f
-        led_bas   |     led_bledom    |     1(1)     |                       |    be:ff:40:00:f0:60
-        lampe_haut|     lampe         |     2(1)     |                       |
-    lampe_milieu  |     lampe         |     3(1)     |                       |
-        lampe_bas |     lampe         |     4(1)     |                       |
