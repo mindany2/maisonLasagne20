@@ -13,12 +13,21 @@ class Interruption_arduino(Interruption):
         self.temps = time()
 
     def press(self):
-        if ((time() - self.temps) > 1):     # permet de prendre que la premiere interruption
-            sleep(0.5)# on attend 1s
-            print("la arduino nous demande de la lire")
-            #data = Arduino.send_for_request(MESSAGE_SLAVE.rien)
+        sleep(0.1)
+        print("la arduino nous demande de la lire")
+        data = Arduino.send_for_request(MESSAGE_SLAVE.rien)
+        try:
             print("on a reçu ",MESSAGE_SLAVE(data).name)
-            self.temps = time() 
+        except:
+            data = Arduino.send_for_request(MESSAGE_SLAVE.rien)
+            try:
+                print("on a reçu ",MESSAGE_SLAVE(data).name)
+            except:
+                #raise(Exception("erreur de lecture, on a reçu {}".format(data)))
+                pass
+        if data != 0:
+            sleep(0.1)
+            self.client.send_request("press_inter",["arduino_"+MESSAGE_SLAVE(data).name])
 
     def show(self):
         print(self.nom + " : " + str(self.pin) + " : ")

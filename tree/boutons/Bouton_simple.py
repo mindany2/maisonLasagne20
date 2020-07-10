@@ -22,8 +22,3 @@ class Bouton_simple(Bouton):
         self.scenar.do()
         # on le renvoie pour qu'il change d'état
         return self.scenar
-
-    def show(self):
-        print("bouton simple")
-        super.show()
-        self.scenar.show()

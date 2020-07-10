@@ -1,15 +1,11 @@
 from smbus import SMBus
 from threading import Lock,Thread
 from time import sleep, time
-from tree.Tree import Tree
-import RPi.GPIO as GPIO
 
 class I2C:
     bus = SMBus(1)
     mutex = Lock()
     temps_reset = time()
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(13, GPIO.OUT)
 
     @classmethod
     def write_reg(self, ip, register, data):
@@ -18,7 +14,6 @@ class I2C:
             self.bus.write_byte_data(ip, register, data)
         except Exception as e:
             print("Erreur sur le bus I2C...."+str(e))
-            self.reset_carte_st()
         sleep(0.02)
         self.mutex.release()
 
@@ -31,9 +26,11 @@ class I2C:
         except Exception as e:
             print("Erreur sur le bus I2C...."+str(e))
             print("on a pas pu envoyer {}".format(data))
-            self.reset_carte_st()
+            self.mutex.release()
+            return 1
         sleep(0.02)
         self.mutex.release()
+        return 0
 
     @classmethod
     def read_reg(self, ip, register): 
@@ -42,23 +39,9 @@ class I2C:
             data = self.bus.read_byte_data(ip, register)
         except Exception as e:
             print("Erreur sur le bus I2C...."+str(e))
-            self.reset_carte_st()
             self.mutex.release()
             return None
         sleep(0.02)
         self.mutex.release()
         return data
-
-    @classmethod
-    def reset_carte_st(self):
-        if time() - self.temps_reset > 10: 
-            print("ooooooonnnnnnnnnnn rrrrrrrrrrreeeeeeeeeeeeeesssssssssssssseeeeeeeeeeeeettttttttttt la carte")
-            GPIO.output(13, GPIO.LOW)
-            sleep(0.01)
-            GPIO.output(13, GPIO.HIGH)
-            sleep(0.5)
-            proc = Thread(target = Tree().refresh_all_projo)
-            proc.start()
-            self.temps_reset = time()
-
 

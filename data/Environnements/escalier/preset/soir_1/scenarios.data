@@ -43,3 +43,9 @@ deco_bar:deco
 //|                   |               |               |                 |                   |
   |     led_bas       |     20         |     3         |         0       |   0x050005        |
   |     led_haut      |     20         |     3         |         3       |   0x050005        |
+
+deco_billard:deco
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|                   |               |               |                 |                   |
+  |     led_bas       |     30         |     3         |         0       |   0x350035        |
+  |     led_haut      |     30         |     3         |         3       |   0x350035        |

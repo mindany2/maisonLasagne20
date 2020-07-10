@@ -2,12 +2,12 @@
 //4(1) = port 4 de la carte numéro 1
 //Nom_projecteur  |   Type            |  addr relais|     Addresse triac    | Addresse Bluetooth 
 //                |                   |             |                       |                   
-  projo_1         |     projo_A63     |             |          5(3)         |
-  projo_2         |     projo_A63     |             |          6(3)         |
-  projo_3         |     projo_A63     |             |          7(3)         |
-  projo_4         |     projo_A63     |     14(2)   |          8(3)         |
-  projo_19        |     projo_A63     |             |          4(4)         |
-  projo_20        |     projo_A63     |     10(2)   |          5(4)         |
+  projo_1         |     projo_A65     |             |          5(3)         |
+  projo_2         |     projo_A65     |             |          6(3)         |
+  projo_3         |     projo_A65     |             |          7(3)         |
+  projo_4         |     projo_A65     |     14(2)   |          8(3)         |
+  projo_19        |     projo_A65     |             |          4(4)         |
+  poutre          |     projo_A65     |     10(2)   |          5(4)         |
   projo_21        |     projo_A65     |     13(2)   |          2(3)         |
-  projo_22        |     projo_A63     |             |          6(4)         |
+  projo_22        |     projo_A65     |             |          6(4)         |
   projo_poutre    |     lampe         |     12(1)   |                       |

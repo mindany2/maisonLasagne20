@@ -47,11 +47,6 @@ class Environnement:
     def nb_boutons_html(self):
         return self.get_preset_select().get_nb_boutons_html()
 
-    def refresh_all_projo(self):
-        for lumière in self.liste_lumières:
-            if isinstance(lumière, Projecteur):
-                lumière.refresh()
-
     def get_pile_scenarios(self):
         return self.get_preset_select().get_pile()
 

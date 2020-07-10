@@ -16,3 +16,11 @@ class Instruction_lumiere(Instruction):
     def run(self, temps_ecouler=0):
         super().run(temps_ecouler)
 
+    def eclairage(self):
+        return self.lumière
+
+    def __eq__(self, other):
+        if isinstance(other, Instruction_lumiere):
+            return (self.dimmeur == other.dimmeur) and (self.lumière == other.lumière) 
+
+        return False

@@ -21,3 +21,4 @@ class Instruction_lampe(Instruction_lumiere):
 
     def show(self):
         print("projo = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree)
+

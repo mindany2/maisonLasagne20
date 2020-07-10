@@ -25,11 +25,13 @@ class Led(Lumiere):
         return self.controleur.connect()
 
     def deconnect(self, planté = False):
+        sleep(1)
         self.controleur.deconnect(is_black = self.couleur.is_black())
         if self.couleur.is_black() or planté:
             self.planté = True
-            sleep(5)
+            sleep(2)
             self.relais.set(Etat.OFF)
+            sleep(1)
         # TODO on enregistre la couleur de la led
 
 

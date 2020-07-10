@@ -4,4 +4,6 @@
     |   eteint      |   html    |   eteindre        |simple
     |   manger      |   html    |   allumer         |simple
     |   inter_8     | inter     |   allumer,eteindre|principal
+    |   inter_6     | inter     |  billard          |deco
+    |   inter_4     | inter     |  billard          |deco
     | inter_7       | inter     | eteindre          |poussoir

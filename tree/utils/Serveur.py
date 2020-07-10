@@ -1,6 +1,7 @@
 import socket
 import pickle
 from tree.Tree import Tree
+from utils.Data_change.Create_tree import reload_tree
 from threading import Thread
 import io
 import sys, traceback
@@ -10,13 +11,15 @@ Ceci est le serveur de socket, il permet à tous les périphériques clients
 de se connecté et d'avoir accès à l'arbre
 """
 
-server = "192.168.1.13"
+hostname = socket.gethostname()
+ip_address = socket.gethostbyname(hostname)
+
 port = 5555
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-    s.bind((server, port))
+    s.bind((ip_address, port))
 except socket.error as e:
     str(e)
 
@@ -36,13 +39,17 @@ def threaded_client(conn):
             else:
                 # traitement de l'ordre de la forme "fonction(arg1, arg2)"
                 #print("Received: ", requete)
-                try:
-                    data = eval("Tree()."+requete)
-                    #print(data)
-                except:
-                    traceback.print_tb(sys.exc_info()[2])
-                    print("Unexpected error: ",sys.exc_info()[1])
-                    data = "Error:la methodes ou les arguments ne sont pas valide \n on veut la forme \"fonction(arg1, arg2)\""
+                if requete.count("reload_tree"):
+                    reload_tree()
+                    data = ""
+                else:
+                    try:
+                        data = eval("Tree()."+requete)
+                        #print(data)
+                    except:
+                        traceback.print_tb(sys.exc_info()[2])
+                        print("Unexpected error: ",sys.exc_info()[1])
+                        data = "Error:la methodes ou les arguments ne sont pas valide \n on veut la forme \"fonction(arg1, arg2)\""
             #print("pickeled = ", len(pickle.dumps(data)))
             conn.send(pickle.dumps(data))
         except:

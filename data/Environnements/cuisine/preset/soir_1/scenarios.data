@@ -28,6 +28,16 @@ deco_pour_table:déco
   | led_interieur |     20        |     3         |         0       |       0xaf00af
   | led_banque    |     0         |     3         |         0       |       0x000000    
 
+deco_pour_billard:déco
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     50        |     3         |         0       |       0x0f000f    
+  | led_interieur |     20        |     3         |         0       |       0xaf00af
+  | led_banque    |     0         |     3         |         0       |       0x000000    
+
+
 déco 1
 //|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
 //|               |               |               |                 |                   |

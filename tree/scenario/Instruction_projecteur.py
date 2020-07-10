@@ -39,6 +39,7 @@ class Instruction_projecteur(Instruction_lumiere):
                 sleep(dodo)
         print(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
         self.lumière.set(dimmeur_final)
+        sleep(0.5)
         self.lumière.deconnect()
         self.lumière.unlock()
 

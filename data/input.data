@@ -15,5 +15,4 @@
   | inter_13 |    13    
   | inter_14 |    14    
   | arduino  |    15
-  // on a radar_escalier_bas_on / radar_escalier_bas_off
-  // on a trappe_monte  /   trappe_ferme
+  // on a arduino_radar_on / arduino_radar_off / inter_etage_monte ... (cf Arduino.py)

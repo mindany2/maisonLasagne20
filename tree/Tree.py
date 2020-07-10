@@ -48,12 +48,6 @@ class Tree:
             env.change_mode()
 
     @classmethod
-    def refresh_all_projo(self):
-        # renvoie le dernier ordre à tous les projecteurs
-        for env in self.liste_envi:
-            env.refresh_all_projo()
-
-    @classmethod
     def get_env(self, env):
         return self.liste_envi.get(env)
 

@@ -18,6 +18,19 @@ class Liste_instructions:
             # on a une nouvelle barrière
             self.liste_barrier.append(0)
 
+    def __eq__(self, other):
+        if isinstance(other, Liste_instructions):
+            for inst1 in self.liste:
+                for inst2 in other.liste:
+                    if inst1.eclairage() == inst2.eclairage(): # si elles ont le même eclairage  
+                        if not(inst1 == inst2): # si elle finissent pas pareil
+                            return False
+            return True
+
+        return False
+
+
+
     def __iter__(self):
         return self.liste.__iter__()
 

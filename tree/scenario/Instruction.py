@@ -21,3 +21,7 @@ class Instruction():
         if temps_ecouler < self.temps_init:
             sleep(self.temps_init-temps_ecouler)
         # le reste est dans les sous-classes
+
+    def eclairage(self):
+        return None
+

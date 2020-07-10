@@ -3,4 +3,3 @@
 //Nom_projecteur  |   Type            |  addr relais |     Addresse triac    | Addresse Bluetooth 
 //                |                   |              |                       |                   
     trappe        |     trappe        |              |                       |
-    led_escalier  |     lampe         |  1(arduino)  |                       |

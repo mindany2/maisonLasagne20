@@ -3,4 +3,6 @@
 //  |    nom        |   type    |   scénario(s)     | mode
     |   inter_6     |   inter   |allumer, eteindre  | principal
     |   inter_11    |   inter   |allumer, eteindre  | principal
-    | inter_7       | inter     | eteindre          | simple
+    | inter_7       | inter     | eteindre          | poussoir
+    | off           |  html     | eteindre          | simple 
+    | on            |  html     | allumer           | simple 

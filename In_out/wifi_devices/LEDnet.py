@@ -1,5 +1,6 @@
 from In_out.utils.Magic_Home import MagicHomeApi
 from In_out.wifi_devices.Wifi_device import Wifi_device
+from time import sleep
 
 class LEDnet(Wifi_device):
     """
@@ -10,7 +11,16 @@ class LEDnet(Wifi_device):
         self.controleur = MagicHomeApi(self.ip, 0)
 
     def connect(self):
-        return self.controleur.connect()
+        for i in range(0,5):
+            err = self.controleur.connect()
+            if not(err):
+                # la led est arrivé à se co
+                break
+            sleep(0.5)
+        return err
+
+
+
 
     def send_color(self, couleur):
         r,g,b = couleur.int_to_rgb()

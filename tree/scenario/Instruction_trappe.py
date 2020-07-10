@@ -1,7 +1,7 @@
 from tree.eclairage.Trappe import Trappe
 from tree.scenario.Instruction import Instruction
 
-LISTE_ACTIONS = ["monte", "descent", "verrouille", "deverrouille"]
+LISTE_ACTIONS = ["verrouille", "deverrouille"]
 
 class Instruction_trappe(Instruction):
     """
@@ -17,16 +17,14 @@ class Instruction_trappe(Instruction):
         On s'occupe de faire l'instruction
         """
         super().run()
-        if self.action == "monte":
-            Trappe().ouvre()
-        elif self.action == "descent":
-            Trappe().ferme()
-        elif self.action == "verrouille":
+        if self.action == "verrouille":
             Trappe().set_secu(True)
         elif self.action == "deverrouille":
             Trappe().set_secu(False)
         print("on {} la trappe".format(self.action))
 
+    def eclairage(self):
+        return Trappe()
 
     def show(self):
         print("on {} la trappe a {}".format(self.action, self.temps_init))

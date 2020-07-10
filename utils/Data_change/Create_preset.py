@@ -86,16 +86,20 @@ def get_preset(env, nom):
                 liste_nom = nom_scenar.split(",")
                 liste_scenar = [check(env, preset, preset.get_scenar(nom), nom) for nom in liste_nom]
                 bt = Bouton_choix(nom_bt, env, liste_scenar)
+
+            elif mode == "simple":
+               scenar = preset.get_scenar(nom_scenar)
+               check(env, preset,scenar, nom_scenar)
+               bt = Bouton_simple(nom_bt, scenar)
             else:
-                bt = None
+                raise(Exception("Le type de bouton \"{}\" dans la preset {} de {} n'existe pas".format(mode,preset.nom,env.nom)))
             preset.add_lien_inter(nom_bt, bt)
 
     return preset
 
 def check(env, preset, scenar, nom_scenar):
     if scenar == None:
-        print("Le scenario {} dans l'environnement {} preset {} n'existe pas".format(nom_scenar, env.nom, preset.nom))
-        raise
+        raise(Exception(("Le scenario {} dans l'environnement {} preset {} n'existe pas".format(nom_scenar, env.nom, preset.nom))))
     return scenar
 
 def get_inst(env, infos):

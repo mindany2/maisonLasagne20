@@ -5,13 +5,11 @@ from time import sleep
 
 class MESSAGE_MASTER(Enum):
     rien = 0
-    ferme_trappe = 20
-    ouvre_trappe = 21
-    relais_led_escalier_on = 22
-    relais_led_escalier_off = 23
-    sécurité_trappe_on = 24
-    sécurité_trappe_off = 25
-    demande_etat_trappe = 26
+    relais_led_escalier_on = 20
+    relais_led_escalier_off = 21
+    sécurité_trappe_on = 22
+    sécurité_trappe_off = 23
+    demande_etat_trappe = 24
 
 class MESSAGE_SLAVE(Enum):
     rien = 0
@@ -28,19 +26,23 @@ class Arduino:
     Classe global, a modifier s'il y en a plusieures
     """
     i2c = I2C()
-    ip = 0x30
+    ip = 0x10
     mutex = Lock()
 
     @classmethod
     def send(self, message):
         self.mutex.acquire()
-        #self.i2c.write_data(self.ip, [message.value])
-        if message == MESSAGE_MASTER.ferme_trappe or message == MESSAGE_MASTER.ouvre_trappe:
-            sleep(2) # temps de l'instruction
-        sleep(0.01)
+        for i in range(0,5):
+            if not(self.i2c.write_data(self.ip, [message.value])):
+                break
+            sleep(0.5)
+        sleep(0.1)
         self.mutex.release()
 
     @classmethod
     def send_for_request(self, message):
-        #return self.i2c.read_reg(self.ip, message.value)
-        pass
+        self.mutex.acquire()
+        data = self.i2c.read_reg(self.ip, message.value)
+        sleep(0.1)
+        self.mutex.release()
+        return data

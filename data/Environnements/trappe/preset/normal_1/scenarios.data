@@ -1,28 +1,12 @@
 //Contient toutes les informations relatives a l'environnement
 //qui vont etre donne a la page web et a la console
 
-trappe_ouverte:off
+trappe_verouille:off
 //|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|                   |               |               |                 |                   |
-  |     led_escalier  |     100       |         1     |         0       |
-  |     led_escalier  |     0         |         1     |         1       |
-  |     led_escalier  |     100       |         1     |         2       |
-  |     led_escalier  |     0         |         1     |         3       |
-  |     led_escalier  |     100       |         1     |         4       |
-  |     led_escalier  |     0         |         1     |         5       |
-  |     trappe        | deverrouille  |         1     |         6      |   
-  |     trappe        |    monte      |         1     |         7      |   
-  |     trappe        |    verrouille |         1     |         8      |   
+  |     trappe        |     verrouille|      0        |        0        |
 
-trappe_ferme:on
+trappe_deverouille:on
 //|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
 //|                   |               |               |                 |                   |
-  |     led_escalier  |     100       |         1     |         0       |
-  |     led_escalier  |     0         |         1     |         1       |
-  |     led_escalier  |     100       |         1     |         2       |
-  |     led_escalier  |     0         |         1     |         3       |
-  |     led_escalier  |     100       |         1     |         4       |
-  |     led_escalier  |     0         |         1     |         5       |
-  |     trappe        | deverrouille  |         1     |         6      |   
-  |     trappe        |    descent    |         1     |         7      |   
-  |     trappe        |    verrouille |         1     |         8      |   
+  |     trappe        |   deverrouille|      0        |        0        |

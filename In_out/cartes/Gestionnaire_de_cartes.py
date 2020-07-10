@@ -9,7 +9,7 @@ class Gestionnaire_de_cartes:
     """
     liste_carte_relais = [Carte_relais(1, 0x21), Carte_relais(2, 0x22)]
     liste_carte_triac = [Carte_triac(1), Carte_triac(2),Carte_triac(3), Carte_triac(4)]
-    liste_relais_arduino = [ Relais_arduino(MESSAGE_MASTER.relais_led_escalier_on, MESSAGE_MASTER.relais_led_escalier_off) ]
+    liste_relais_arduino = [Relais_arduino(MESSAGE_MASTER.relais_led_escalier_on, MESSAGE_MASTER.relais_led_escalier_off) ]
 
 
     @classmethod

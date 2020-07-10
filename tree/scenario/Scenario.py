@@ -20,6 +20,12 @@ class Scenario:
         self.marqueur = marqueur # si le scénario allume ou éteint les lampes
         self.etat = False
 
+    def __eq__(self, obj):
+        if isinstance(obj, Scenario):
+            # si les liste_inst finissent pareil
+            return self.liste_inst == obj.liste_inst
+        return False
+
     def add_inst(self, inst):
         self.liste_inst.add(inst)
 
