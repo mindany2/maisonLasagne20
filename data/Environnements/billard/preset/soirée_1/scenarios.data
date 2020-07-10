@@ -1,0 +1,32 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre
+//|   Lumiere          |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                    |               |               |                 |                   |
+  |     projo_1        |    0          |    2          |        0        |   
+  |     projo_2        |    0          |    2          |        0        |   
+  |     projo_3        |    0          |    2          |        0        |   
+  |     projo_4        |    0          |    2          |        0        |   
+  |     projo_21       |    0          |    2          |        0        |   
+  |     projo_22       |    0          |    2          |        0        |   
+  |     projo_19       |    0          |    2          |        2        |   
+  |     poutre         |    0          |    2          |        0        |   
+  |     projo_poutre   |    0          |    2          |        0        |
+
+allumer
+//|   Lumiere          |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                    |               |               |                 |                   |
+  |     projo_1        |    0         |    2          |        10       |   
+  |     projo_2        |    0         |    2          |        8        |   
+  |     projo_3        |    0         |    2          |        6        |   
+  |     projo_4        |    0         |    2          |        4        |   
+  |     projo_21       |    0         |    2          |        2        |   
+  |     projo_22       |    0         |    2          |        2        |   
+  |     projo_19       |    0         |    2          |        2        |   
+  |     poutre         |    80         |    2          |        0        |   
+  |     projo_poutre   |    0         |    2          |        0        |
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

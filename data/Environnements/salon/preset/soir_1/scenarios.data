@@ -1,0 +1,68 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre:off
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |       poutre          |       0      |        20     |        0       |                   |  
+    |      projo_26         |       0      |        3      |        0       |                   |
+    |      projo_27         |       0      |        3      |        1       |                   |
+    |      projo_28         |       0      |        3      |        2       |                   |
+    |      projo_30         |       0      |        3      |        3       |                   |
+    |      projo_31         |       0      |        3      |        4       |                   |
+    |      projo_32         |       0      |        3      |        5       |                   |
+    |      projo_33         |       0      |        3      |        6       |                   |
+    |      projo_34         |       0      |        3      |        7       |                   |
+    |      projo_35         |       0      |        3      |        8       |                   |
+    |      projo_36         |       0      |        3      |        9       |                   |
+    |     led_mur_droite    |       0      |        9      |        0       |   0x000000        |
+    |     led_mur_gauche    |       0      |        9      |        0       |   0x000000        |   
+    |     led_mur_centre    |       0      |        9      |        0       |   0x000000        |   
+    |     led_sous_table    |       0      |        20     |        0       |   0x000000 
+
+
+
+allumer:on
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |       poutre          |       50    |        50     |        0       |                   |  
+    |      projo_26         |       20     |        5      |        5       |                   |
+    |      projo_27         |       10     |        5      |        10      |                   |
+    |      projo_28         |       10     |        5      |        15      |                   |
+    |      projo_30         |       10     |        5      |        20      |                   |
+    |      projo_31         |       20     |        5      |        25      |                   |
+    |      projo_32         |       20     |        5      |        30      |                   |
+    |      projo_33         |       10     |        5      |        35      |                   |
+    |      projo_34         |       10     |        5      |        40      |                   |
+    |      projo_35         |       10     |        5      |        45      |                   |
+    |      projo_36         |       20     |        5      |        50      |                   |
+    |     led_mur_droite    |       50     |        10     |        0       |   0xa000a0        |
+    |     led_mur_gauche    |       50     |        10     |        0       |   0xa000a0        |   
+    |     led_mur_centre    |       60     |        10     |        3       |   0xc000c0        |   
+    |     led_sous_table    |       70     |        50     |        0       |   0xa000a0 
+
+
+allumer_juste_poutre
+  //|   Lumiere             |    dimmeur(%)|   Duree(s)    |   Temps init(s)|   Couleur(hex)    |   synchro_precedent
+  //|                       |              |               |                |                   |
+    |       poutre          |       50    |        15     |        0       |                   |  
+    |      projo_26         |       0      |        6      |        0       |                   |
+    |      projo_27         |       0      |        1      |        0       |                   |
+    |      projo_28         |       0      |        1      |        0       |                   |
+    |      projo_30         |       0      |        1      |        0       |                   |
+    |      projo_31         |       0      |        6      |        0       |                   |
+    |      projo_32         |       0      |        6      |        0       |                   |
+    |      projo_33         |       0      |        1      |        0       |                   |
+    |      projo_34         |       0      |        1      |        0       |                   |
+    |      projo_35         |       0      |        1      |        0       |                   |
+    |      projo_36         |       0      |        6      |        0       |                   |
+    |     led_mur_droite    |       50     |        10     |        0       |   0x600060        |
+    |     led_mur_gauche    |       50     |        10     |        0       |   0x600060        |   
+    |     led_mur_centre    |       60     |        10     |        3       |   0x600060        |   
+    |     led_sous_table    |       70     |        50     |        0       |   0x400040 
+
+
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

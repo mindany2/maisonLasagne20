@@ -1,0 +1,11 @@
+//Contient la carte de montage de toutes les lumieres de l'environnement "Bar"
+//4(1) = port 4 de la carte numéro 1
+//Nom_projecteur  |   Type            |  addr relais |     Addresse triac    | Addresse Bluetooth 
+//                |                   |              |                       |                   
+  poutre          |   projo_A91       |      5(2)    |           4(3)        |
+  projo_24        |   projo_A63       |              |          8(2)         |
+  projo_37        |   projo_A91       |              |          3(3)         |
+  led_caisson_bois|   led_lednet      |     6(1)     |                       |  10.0.0.53
+  led_sol         |   led_bledom      |     6(1)     |                       |  be:89:20:00:23:3d
+  decoupe_bois    |   lampe           |     16(1)    |                       |
+  led_sous_bar    |   led_triones     |     6(1)     |                       |  ff:ff:40:00:dc:88

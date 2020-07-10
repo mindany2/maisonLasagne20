@@ -1,0 +1,35 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre:off
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     0         |     3         |         0       |       0x000000    
+  | led_interieur |     0         |     3         |         0       |       0x000000    
+  | led_banque    |     0         |     3         |         0       |       0x000000    
+
+
+allumer_cuisine:deco
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     100       |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     0         |     3         |         0       |       0x000000    
+  | led_interieur |     100       |     3         |         0       |       0xffffff   
+  | led_banque    |     30        |     3         |         0       |       0x0000ff    
+
+mettre_table
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     100       |     3         |         0       | 
+  | poutre_banque |     100       |     3         |         0       | 
+  | led_exterieur |     0         |     3         |         0       |       0x000000    
+  | led_interieur |     0         |     3         |         0       |       0x000000    
+  | led_banque    |     0         |     3         |         0       |       0x000000    
+
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

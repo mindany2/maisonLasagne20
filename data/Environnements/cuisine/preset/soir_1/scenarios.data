@@ -1,0 +1,43 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre:off
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     0         |     3         |         0       |       0x000000    
+  | led_interieur |     0         |     3         |         0       |       0x000000    
+  | led_banque    |     0         |     3         |         0       |       0x000000    
+
+allumer:on
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     30        |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     0         |     3         |         0       |       0x00000f    
+  | led_interieur |     50        |     3         |         0       |       0x0000ff    
+  | led_banque    |     70        |     3         |         0       |       0x0000ff    
+
+deco_pour_table:déco
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     50        |     3         |         0       |       0x0f000f    
+  | led_interieur |     20        |     3         |         0       |       0xaf00af
+  | led_banque    |     0         |     3         |         0       |       0x000000    
+
+deco_pour_billard:déco
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |  poutre_evier |     0         |     3         |         0       | 
+  | poutre_banque |     0         |     3         |         0       | 
+  | led_exterieur |     50        |     3         |         0       |       0x0f000f    
+  | led_interieur |     20        |     3         |         0       |       0xaf00af
+  | led_banque    |     0         |     3         |         0       |       0x000000    
+
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |

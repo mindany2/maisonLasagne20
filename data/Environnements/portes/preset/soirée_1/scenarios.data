@@ -1,0 +1,34 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |led_porte_billard    |   0           |       3       |       0         |     0x000000       
+  |led_porte_escalier   |   0           |       3       |       0         |     0x000000       
+  |led_haut_bureau      |   0           |       3       |       0         |     0x000000       
+  |led_haut_billard     |   0           |       3       |       0         |     0x000000       
+  |led_fond_armoire     |   0           |       3       |       0         |     0x000000       
+  |led_fond_rpi         |   0           |       3       |       0         |     0x000000       
+
+allumer
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |led_porte_billard    |   100         |       3       |       0         |     0xff0000       
+  |led_porte_escalier   |   100         |       3       |       0         |     0xff0000       
+  |led_haut_bureau      |   100         |       3       |       0         |     0x0000ff       
+  |led_haut_billard     |   100         |       3       |       0         |     0x0000ff       
+  |led_fond_armoire     |   100         |       3       |       0         |     0xffffff       
+  |led_fond_rpi         |   100         |       3       |       0         |     0xff0000       
+
+billard
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|               |               |               |                 |                   |
+  |led_porte_billard    |   100         |       3       |       0         |     0xff00ff       
+  |led_porte_escalier   |   0         |       3       |       0         |     0x000000       
+  |led_haut_bureau      |   0         |       3       |       0         |     0x000000       
+  |led_haut_billard     |   0         |       3       |       0         |     0x000000       
+  |led_fond_armoire     |   0         |       3       |       0         |     0x000000       
+  |led_fond_rpi         |   0         |       3       |       0         |     0x000000       
+
+

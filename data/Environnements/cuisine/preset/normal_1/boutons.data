@@ -1,0 +1,9 @@
+// ceci est la liste de tous les boutons et de ce qu'ils font pour ce scénario, 
+//ce peut être des inputs comme des boutons html
+//  |    nom        |   type    |   scénario(s)                  | mode
+    |   eteint      |   html    |   eteindre                     |simple
+    |   cuisination |   html    |   allumer_cuisine              |simple
+    |   couvert     |   html    |   mettre_table                 |simple
+    |   inter_13    | inter     |   allumer_cuisine,mettre_table |choix
+    |   inter_14    | inter     |   eteindre                     |poussoir
+    | inter_7       | inter     | eteindre                       |poussoir

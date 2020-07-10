@@ -1,0 +1,7 @@
+// ceci est la liste de tous les boutons et de ce qu'ils font pour ce scénario, 
+//ce peut être des inputs comme des boutons html
+//  |    nom                |   type    |   scénario(s)                                 | mode
+    |       off             |   html    |   eteindre_vers_le_bas                        | simple
+    |       on              |   html    |   allumer_vers_le_bas                         | simple
+    |       inter_2         |   inter   |   allumer_vers_le_haut,eteindre_vers_le_bas   | principal
+    |       inter_1         |   inter   |   allumer_vers_le_bas,palier,eteindre_vers_le_bas   | choix

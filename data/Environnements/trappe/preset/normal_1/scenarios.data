@@ -1,0 +1,12 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+trappe_verouille:off
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |     trappe        |     verrouille|      0        |        0        |
+
+trappe_deverouille:on
+//|   Lumiere         |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                   |               |               |                 |                   |
+  |     trappe        |   deverrouille|      0        |        0        |

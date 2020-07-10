@@ -1,0 +1,26 @@
+//Contient toutes les informations relatives a l'environnement
+//qui vont etre donne a la page web et a la console
+
+eteindre
+//|   Lumiere       |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                 |               |               |                 |                   |
+  | poutre          |     0         |     5         |         0       |                  
+  | projo_24        |     0         |     5         |         2       |                  
+  | projo_37        |     0         |     5         |         4       |                  
+  |led_sol          |     0         |     1         |         0       |     0x000000        
+  | decoupe_bois    |     0         |     1         |         0       |
+  | led_caisson_bois|     0         |     1         |         0       |     0x000000
+
+allumer
+//|   Lumiere       |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |   synchro
+//|                 |               |               |                 |                   |
+  | poutre          |     100       |     5         |         0       |                 
+  | projo_24        |     100       |     5         |         2       |                  
+  | projo_37        |     100       |     5         |         4       |                  
+  |led_sol          |     0         |     5         |         0       |     0x000000        
+  | decoupe_bois    |     0         |     1         |         0       |
+  | led_caisson_bois|     0         |     1         |         0       |     0x000000
+
+déco 1
+//|   Lumiere     |    dimmeur(%) |   Duree(s)    |   Temps init(s) |   Couleur(hex)    |
+//|               |               |               |                 |                   |
