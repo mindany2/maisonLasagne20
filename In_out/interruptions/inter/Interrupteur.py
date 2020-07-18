@@ -1,6 +1,6 @@
 from time import time
 from tree.Tree import Tree
-from In_out.interruptions.utils.Interruption import Interruption
+from In_out.interruptions.inter.Interruption import Interruption
 
 class Interrupteur(Interruption):
     """
@@ -8,8 +8,8 @@ class Interrupteur(Interruption):
     """
     # mode pousoir par défaut
 
-    def __init__(self, nom, pin, client):
-        Interruption.__init__(self, nom, pin, client)
+    def __init__(self, nom, pin, client, type_inter):
+        Interruption.__init__(self, nom, pin, client, type_inter)
         self.temps = time()
 
     def press(self):

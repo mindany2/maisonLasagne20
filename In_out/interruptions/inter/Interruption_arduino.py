@@ -1,5 +1,5 @@
 from time import time, sleep
-from In_out.interruptions.utils.Interruption import Interruption
+from In_out.interruptions.inter.Interruption import Interruption
 from In_out.utils.Arduino import Arduino, MESSAGE_SLAVE
 
 class Interruption_arduino(Interruption):

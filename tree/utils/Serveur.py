@@ -13,6 +13,7 @@ de se connecté et d'avoir accès à l'arbre
 
 hostname = socket.gethostname()
 ip_address = socket.gethostbyname(hostname)
+ip_address = "192.168.1.20"
 
 port = 5555
 

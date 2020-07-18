@@ -7,7 +7,7 @@ class Client:
     mutex = Lock()
     temps = 0
 
-    def __init__(self, ip_address = None):
+    def __init__(self, ip_address = "192.168.1.20"):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not(ip_address): # == None
             # on utilise l'ip de ce rpi
