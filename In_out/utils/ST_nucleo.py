@@ -18,7 +18,7 @@ class ST_nucleo:
     Carte pour les triacs
     """
 
-    port = Serial("/dev/ttyACM0", baudrate=9600)
+    port = Serial("/dev/ttyAMA0", baudrate=9600)
     mutex = Lock()
 
     @classmethod
