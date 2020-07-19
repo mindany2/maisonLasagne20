@@ -2,17 +2,19 @@ import socket
 import pickle
 from threading import Lock
 from time import time, sleep
+import netifaces as ni
 
 class Client:
     mutex = Lock()
     temps = 0
 
-    def __init__(self, ip_address = "192.168.1.20"):
+    def __init__(self, ip_address = None):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not(ip_address): # == None
             # on utilise l'ip de ce rpi
-            hostname = socket.gethostname()
-            self.ip_address = socket.gethostbyname(hostname)
+            ni.ifaddresses('eth0')
+            self.ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+            print("ip addresse = {}".format(self.ip_address))
         else:
             self.ip_address = ip_address
 

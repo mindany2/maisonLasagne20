@@ -5,15 +5,15 @@ from utils.Data_change.Create_tree import reload_tree
 from threading import Thread
 import io
 import sys, traceback
+import netifaces as ni
 
 """
 Ceci est le serveur de socket, il permet à tous les périphériques clients
 de se connecté et d'avoir accès à l'arbre
 """
 
-hostname = socket.gethostname()
-ip_address = socket.gethostbyname(hostname)
-ip_address = "192.168.1.20"
+ni.ifaddresses('eth0')
+ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
 
 port = 5555
 
