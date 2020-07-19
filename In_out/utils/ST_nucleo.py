@@ -18,10 +18,11 @@ class ST_nucleo:
     Carte pour les triacs
     """
 
-    port = Serial("/dev/ttyAMA0", baudrate=9600)
-    mutex = Lock()
+    def __init__(self, addr):
+        self.port = Serial(addr, baudrate=9600)
+        self.mutex = Lock()
+        self.addr = addr
 
-    @classmethod
     def set(self, carte, triac, valeur, etat):
         self.mutex.acquire()
         v1 = valeur // 255 +1 

@@ -6,7 +6,6 @@ from In_out.bluetooth_devices.ELK_BLEDOM import ELK_BLEDOM
 from In_out.bluetooth_devices.TRIONES import TRIONES
 from In_out.wifi_devices.LEDnet import LEDnet
 from tree.eclairage.Projecteur import Projecteur, LAMPE
-from tree.eclairage.Trappe import Trappe
 
 def get_addr(addr):
     if addr != "":
@@ -66,11 +65,10 @@ def get_lumiere(infos):
             controleur = ELK_BLEDOM(addr_bluetooth_ou_ip)
         elif option_lumiere == "lednet":
             controleur = LEDnet(addr_bluetooth_ou_ip)
+        print("retour")
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)
-    elif type_lumière == "trappe":
-        return Trappe()
 
 
 

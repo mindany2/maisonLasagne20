@@ -5,9 +5,9 @@ class Carte_triac:
     """
     Une carte de triac
     """
-    def __init__(self, numero, nb_ports = 8):
+    def __init__(self, numero, stnucleo, nb_ports = 8):
         Carte.__init__(self, numero, nb_ports)
-        self.liste_triac = [ Triac(numero, i) for i in range(1,nb_ports+1)]
+        self.liste_triac = [ Triac(numero, i, stnucleo) for i in range(1,nb_ports+1)]
 
 
     def get_triac(self, indice_triac):

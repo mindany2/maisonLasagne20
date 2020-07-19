@@ -5,6 +5,7 @@ from In_out.interruptions.Liste_interruptions_extender import Liste_interruption
 from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Carte_relais_extender import Carte_relais_extender
+from In_out.utils.ST_nucleo import ST_nucleo
 from utils.Data_change.utils.Read import ouvrir, lire
 
 def get_config_inter():
@@ -43,6 +44,13 @@ def get_config_inter():
 def get_config_carte():
     # lit la config des différentes cartes relais et triac avec lequel le rpi peut communiquer
     mode = ""
+    
+    st_addr = get_st_adresse()
+
+    if st_addr:
+        st_nucleo = ST_nucleo(st_addr)
+    else:
+        print("pas de carte ST")
 
     for ligne in lire(ouvrir("config.data", False)):
 
@@ -71,20 +79,33 @@ def get_config_carte():
             elif carte == "triac":
                 if type_conn != "st_nucleo":
                     raise("Les triacs ne fonctionne que sur la st")
-                carte = Carte_triac(numero) # les cartes ont tjrs 8 triacs
+                carte = Carte_triac(numero, st_nucleo) # les cartes ont tjrs 8 triacs
 
             else:
                 raise("Type de carte inconnu")
             Gestionnaire_de_cartes.configure(carte)
 
+def get_st_adresse():
+    # on va chercher l'adresse le la st nucleo
+    mode = ""
+
+    for ligne in lire(ouvrir("config.data", False)):
+
+        if get_mode(ligne) != None:
+            mode = get_mode(ligne)
+            continue
+
+        if mode == "stnucleo":
+            return ligne.split("=")[1]
+
+    return None
 
 
-
-
-    
 def get_mode(ligne):
     if ligne.count("interrupt"):
          return "interrupt"
     elif ligne.count("cartes"):
          return "cartes"
+    elif ligne.count("stnucleo"):
+        return "stnucleo"
     return None
