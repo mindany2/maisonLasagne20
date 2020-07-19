@@ -5,14 +5,13 @@ __pycache__/
 
 # C extensions
 *.so
-.Trash
+.Trash-1000/
 .vim/
 logs/
 
 # Distribution / packaging
 .Python
 build/
-data/
 develop-eggs/
 dist/
 downloads/

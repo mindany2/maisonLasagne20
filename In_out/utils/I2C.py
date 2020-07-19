@@ -3,7 +3,10 @@ from threading import Lock,Thread
 from time import sleep, time
 
 class I2C:
-    bus = SMBus(1)
+    try:
+        bus = SMBus(1)
+    except:
+        print("pas de bus i2c")
     mutex = Lock()
     temps_reset = time()
 
