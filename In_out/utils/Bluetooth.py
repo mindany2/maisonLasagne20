@@ -101,8 +101,6 @@ class Bluetooth:
             self.mutex_connect.acquire()
             self.nb_connection -= 1
             self.mutex_connect.release()
-            if self.nb_connection == 0:
-                self.restart()      # si c'est le dernier connecté on aura un restart
 
 
 
