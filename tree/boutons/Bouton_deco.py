@@ -10,7 +10,7 @@ class Bouton_deco(Bouton):
         self.env = env
         self.scenar_deco = scenar_deco
 
-    def press(self, etat_env_principal = None):
+    def press(self, etat_env_principal = None, etat = None):
         pile = self.env.get_preset_select().get_pile()
         if etat_env_principal == MARQUEUR.ON:
             # on doit eteindre

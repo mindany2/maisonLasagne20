@@ -14,7 +14,7 @@ class Triac:
 
     def set(self, valeur, etat=ETAT_TRIAC.dimmer):
         if self.valeur != valeur:
-            self.stnucleo.set(self.numero_carte, self.numero_triak, valeur, etat)
+            self.stnucleo.set_triac(self.numero_carte, self.numero_triak, valeur, etat)
             self.valeur = valeur
 
     def show(self):

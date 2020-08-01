@@ -10,7 +10,7 @@ class Bouton_poussoir(Bouton):
         self.env = env
         self.scenar = scenar
 
-    def press(self, etat_env_principal = None):
+    def press(self, etat_env_principal = None, etat = None):
         pile = self.env.get_pile_scenarios()
         if self.scenar.marqueur == MARQUEUR.OFF:
             pile.clear()

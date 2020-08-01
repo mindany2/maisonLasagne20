@@ -23,7 +23,7 @@ class ST_nucleo:
         self.mutex = Lock()
         self.addr = addr
 
-    def set(self, carte, triac, valeur, etat):
+    def set_triac(self, carte, triac, valeur, etat):
         self.mutex.acquire()
         v1 = valeur // 255 +1 
         v2 = valeur  % 255 +1

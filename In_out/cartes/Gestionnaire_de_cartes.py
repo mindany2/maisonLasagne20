@@ -1,5 +1,6 @@
 from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
+from In_out.cartes.relais.Relais_GPIO import Relais_GPIO
 from In_out.cartes.relais.Relais_arduino import Relais_arduino, MESSAGE_MASTER
 
 
@@ -13,7 +14,11 @@ class Gestionnaire_de_cartes:
 
     @classmethod
     def get_relais(self, carte, indice_relais):
-        if carte != "arduino":
+        if carte == "gpio":
+            # l'indice du relais joue le role du port gpio
+            return Relais_GPIO(indice_relais)
+        else:
+            # c'est une carte
             indice_carte = int(carte)
             return self.liste_carte_relais[indice_carte-1].get_relais(indice_relais)
 
@@ -24,7 +29,6 @@ class Gestionnaire_de_cartes:
 
     @classmethod
     def configure(self, carte):
-        print(carte)
         if isinstance(carte, Carte_triac):
             self.liste_carte_triac.append(carte)
         elif isinstance(carte, Carte_relais):

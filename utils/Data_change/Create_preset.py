@@ -13,6 +13,7 @@ from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_principal import Bouton_principal
 from tree.boutons.Bouton_poussoir import Bouton_poussoir
 from tree.boutons.Bouton_deco import Bouton_deco
+from tree.boutons.Bouton_etat import Bouton_etat
 from tree.boutons.Bouton_choix import Bouton_choix
 from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
 
@@ -71,6 +72,13 @@ def get_preset(env, nom):
                check(env, preset, scenar_on, nom_scenar)
                check(env, preset, scenar_off, nom_scenar)
                bt = Bouton_principal(nom_bt, env, scenar_on, scenar_off)
+
+            elif mode == "etat" or mode == "radar":
+               scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
+               scenar_off = preset.get_scenar(nom_scenar.split(",")[1])
+               check(env, preset, scenar_on, nom_scenar)
+               check(env, preset, scenar_off, nom_scenar)
+               bt = Bouton_etat(nom_bt, env, scenar_on, scenar_off)
 
             elif mode == "poussoir":
                scenar = preset.get_scenar(nom_scenar)

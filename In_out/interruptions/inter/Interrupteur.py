@@ -12,10 +12,10 @@ class Interrupteur(Interruption):
         Interruption.__init__(self, nom, pin, client, type_inter)
         self.temps = time()
 
-    def press(self):
+    def press(self, etat = 1):
         if ((time() - self.temps) > 1):     # permet de prendre que le premier appuie
             print("on press le bouton "+self.nom)
-            self.client.send_request("press_inter",[self.nom])
+            self.client.send_request("press_inter",[self.nom, etat])
             
             self.temps = time() 
 

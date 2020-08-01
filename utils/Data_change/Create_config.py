@@ -40,6 +40,9 @@ def get_config_inter():
 
                 Gestionnaire_interruptions().configure(liste, TYPE_INTER.extender)
 
+            elif type_inter == "gpio":
+                print("pas besoin de configurer les gpios")
+
 
 def get_config_carte():
     # lit la config des différentes cartes relais et triac avec lequel le rpi peut communiquer

@@ -10,7 +10,7 @@ class Bouton_choix(Bouton):
         self.env = env
         self.liste_scenar = liste_scenar
 
-    def press(self, etat_env_principal = None):
+    def press(self, etat_env_principal = None, etat= None):
         pile = self.env.get_preset_select().get_pile()
         select = 0
         for i,scenar in enumerate(self.liste_scenar):

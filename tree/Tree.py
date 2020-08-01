@@ -22,15 +22,15 @@ class Tree:
         self.liste_modes.change_select(mode)
 
     @classmethod
-    def press_inter(self, nom_inter):
+    def press_inter(self, nom_inter, etat):
         print("on press l'inter "+nom_inter)
         # on recupère tous les boutons
         for env in self.liste_envi:
             if env.get_preset_select().principal(nom_inter):
                 break
-        etat = env.etat()
+        etat_env = env.etat()
         for env in self.liste_envi:
-            env.get_preset_select().press_inter(nom_inter, etat)
+            env.get_preset_select().press_inter(nom_inter,etat_env, etat)
 
     @classmethod
     def add_mode(self, mode):

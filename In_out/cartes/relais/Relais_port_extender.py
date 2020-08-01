@@ -12,5 +12,4 @@ class Relais_port_extender(Relais):
         self.registre = registre
 
     def reload(self):
-        print("le relais a pour numero "+str(self.numero))
         Port_extender().write_pin(self.port_bus, self.registre, self.numero, self.etat.value)

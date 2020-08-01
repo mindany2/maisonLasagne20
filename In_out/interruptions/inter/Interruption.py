@@ -5,6 +5,7 @@ from enum import Enum
 
 class TYPE_INTER(Enum):
     extender = 0
+    rpi = 1
 
 class Interruption:
     """

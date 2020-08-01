@@ -1,7 +1,7 @@
 from tree.boutons.Bouton import Bouton
 from tree.scenario.Scenario import MARQUEUR
 
-class Bouton_principal(Bouton):
+class Bouton_etat(Bouton):
     """
     bouton avec une liste de scénario, il en faut obligatoirement un seul de chaque type
     """
@@ -13,15 +13,15 @@ class Bouton_principal(Bouton):
 
     def press(self, etat_env_principal = None, etat = None):
         pile = self.env.get_pile_scenarios()
-        if self.env.etat() != MARQUEUR.ON:
+        if self.env.etat() != MARQUEUR.ON and etat:
             pile.push_select()
             return self.scenar_on.do()
         # sinon on met le precedent
-        if pile.top() != None:
-            if pile.top().marqueur == MARQUEUR.DECO:
-                return pile.pop().do()
-        pile.pop()
-        return self.scenar_off.do()
-
+        if not(etat):
+            if pile.top() != None:
+                if pile.top().marqueur == MARQUEUR.DECO:
+                    return pile.pop().do()
+            pile.pop()
+            return self.scenar_off.do()
 
 

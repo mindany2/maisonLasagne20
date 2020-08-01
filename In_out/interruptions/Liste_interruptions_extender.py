@@ -34,7 +34,6 @@ class Liste_interruptions_extender:
         GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt)
 
     def add(self, inter, index):
-        print("new inter")
         self.liste_inter.add(index,inter)
 
     def get_inter(self, nom):
