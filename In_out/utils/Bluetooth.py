@@ -3,6 +3,7 @@ from bluepy.btle import Peripheral, Scanner
 from threading import Lock
 from time import sleep,time
 import os
+from utils.Logger import Logger
 
 class Bluetooth:
     """
@@ -21,15 +22,15 @@ class Bluetooth:
         Retourne le périphérique
         """
         try:
-            print("on tente de se connecte")
+            Logger.debug("on tente de se connecte")
             periph = Peripheral(addresse)
-            print("on y est arrive")
+            Logger.debug("on y est arrive")
         except:
-            print("erreur de connection")
+            Logger.error("erreur de connection")
             return None
         self.mutex_connect.acquire()
         self.nb_connection += 1
-        print("nb connection = {}".format(self.nb_connection))
+        Logger.debug("nb connection = {}".format(self.nb_connection))
         self.mutex_connect.release()
         return periph
 
@@ -50,19 +51,19 @@ class Bluetooth:
     def restart(self):
         self.mutex_reset.acquire()
         if not(self.reset):
-            print("on reset le bluetooth")
+            Logger.info("on reset le bluetooth")
             self.reset = True
             self.mutex_reset.release()
             # pas besoin de mutex on ne fait que lire
             # on attend qu'il n'y ai plus rien de co
             debut = time()
             while self.nb_connection > 0 and time()-debut < 30:
-                print("on est bloquer, nombre de connection = {}".format(self.nb_connection))
+                Logger.debug("on est bloquer, nombre de connection = {}".format(self.nb_connection))
                 sleep(1)
 
             # on restart le bluetooth
             os.system("sudo systemctl restart bluetooth")
-            print("on a reset")
+            Logger.info("on a reset")
             sleep(20)
             self.mutex_reset.acquire()
             self.reset = False
@@ -82,7 +83,7 @@ class Bluetooth:
         try:
             char[0].write(valeur)
         except:
-            print("erreur de connection durant l'envoi")
+            Logger.error("erreur de connection durant l'envoi")
             self.mutex_send.release()
             return 1
         self.mutex_send.release()
@@ -96,7 +97,7 @@ class Bluetooth:
                 periph.disconnect()
                 self.mutex_deconnect.release()
             except:
-                print("erreur de deconnection")
+                Logger.error("erreur de deconnection")
                 pass
             self.mutex_connect.acquire()
             self.nb_connection -= 1

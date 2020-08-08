@@ -7,7 +7,6 @@ def set_styles(env, preset):
     """
     nb_boutons = len(preset.liste_boutons_html)
     liste_couleur = env.couleurs[1].generate_array(env.couleurs[0], nb_boutons+1)
-    print(liste_couleur)
     diff_position = -5
     taille_caractère = 17
     for i, bt in enumerate(preset.liste_boutons_html):

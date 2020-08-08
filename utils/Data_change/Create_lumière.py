@@ -65,7 +65,6 @@ def get_lumiere(infos):
             controleur = ELK_BLEDOM(addr_bluetooth_ou_ip)
         elif option_lumiere == "lednet":
             controleur = LEDnet(addr_bluetooth_ou_ip)
-        print("retour")
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)

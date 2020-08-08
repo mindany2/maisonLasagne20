@@ -17,7 +17,6 @@ def get_env(nom):
     retourne un environnement complet
     """
     env = Environnement(nom) 
-    print("Environnement : "+ nom)
     
     #on recupére les lumières
     for lumière in lire(ouvrir(nom+"/lumieres.data")):

@@ -11,7 +11,7 @@ class LEDnet(Wifi_device):
         self.controleur = MagicHomeApi(self.ip, 0)
 
     def connect(self):
-        for i in range(0,5):
+        for _ in range(0,20):
             err = self.controleur.connect()
             if not(err):
                 # la led est arrivé à se co

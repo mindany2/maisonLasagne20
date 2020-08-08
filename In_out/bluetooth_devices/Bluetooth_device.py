@@ -1,6 +1,7 @@
 from enum import Enum
 from In_out.utils.Bluetooth import Bluetooth
 from time import sleep
+from utils.Logger import Logger
 
 
 def hex_to_byte(valeur):
@@ -27,8 +28,10 @@ class Bluetooth_device:
                 break
             else:
                 compt += 1
-                print("La led n'arrive pas à ce connecter")
+                Logger.warn("La led n'arrive pas à ce connecter")
                 sleep(1)
+            if compt > 10:
+                Bluetooth.restart()
             if compt > 20:
                 return 1
         self.char = Bluetooth().get_char(self.periph, self.uuid, self.char_id)
@@ -50,6 +53,8 @@ class Bluetooth_device:
 
     def deconnect(self, is_black = True):
         Bluetooth().deconnect(self.periph)
+        if Bluetooth.nb_connection == 0:
+            Bluetooth.restart()
         self.periph = None
         self.char = None
 

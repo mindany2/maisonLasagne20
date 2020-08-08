@@ -13,6 +13,7 @@ import socket
 import csv
 import struct
 import datetime
+from utils.Logger import Logger
 
 
 class MagicHomeApi:
@@ -30,10 +31,10 @@ class MagicHomeApi:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.settimeout(20)
         try:
-            print("Establishing connection with the device.")
+            Logger.info("Establishing connection with the device.")
             self.s.connect((self.device_ip, self.API_PORT))
         except socket.error as exc:
-            print("Caught exception socket.error : %s" % exc)
+            Logger.error("Caught exception socket.error : %s" % exc)
             if str(exc).count("already connected"):
                 return 0
             return 1
@@ -163,6 +164,6 @@ class MagicHomeApi:
             if self.keep_alive is False:
                 self.s.close
         except socket.error as exc:
-            print("Caught exception socket.error : %s" % exc)
+            Logger.error("Caught exception socket.error : %s" % exc)
             if self.s:
                 self.s.close()

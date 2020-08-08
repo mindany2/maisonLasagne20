@@ -3,10 +3,10 @@ import pickle
 from threading import Lock
 from time import time, sleep
 import netifaces as ni
+from utils.Logger import Logger
 
 class Client:
     mutex = Lock()
-    temps = 0
 
     def __init__(self, ip_address = None):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -14,7 +14,7 @@ class Client:
             # on utilise l'ip de ce rpi
             ni.ifaddresses('eth0')
             self.ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
-            print("ip addresse = {}".format(self.ip_address))
+            Logger.debug("ip addresse = {}".format(self.ip_address))
         else:
             self.ip_address = ip_address
 
@@ -23,14 +23,14 @@ class Client:
         hello = self.connect()
         while hello == None:
             hello = self.connect()
-        print("hello msg : ",hello)
+        Logger.debug("hello msg : " + hello)
 
     def connect(self):
         try:
             self.client.connect(self.addr)
             return pickle.loads(self.client.recv(2048))
         except:
-            print("erreur de connection au serveur")
+            Logger.error("erreur de connection au serveur")
             sleep(5)
 
     def send_request(self, fonction, args = []):
@@ -47,20 +47,17 @@ class Client:
     def send(self, msg):
         try:
             self.mutex.acquire()
-            debut = time()
             self.client.send(pickle.dumps(msg))
             data = pickle.loads(self.client.recv(2048))
-            self.temps += time() -debut
-            print(self.temps)
             self.mutex.release()
             if isinstance(data,str):
                 if data.count("Error"):
-                    print(data)
-                    print("lors de l'envoie de {}".format(msg))
+                    Logger.error(data)
+                    Logger.error("lors de l'envoie de {}".format(msg))
                     return None
             return data
         except socket.error as e:
-            print(e)
+            Logger.error(e)
         
 
 

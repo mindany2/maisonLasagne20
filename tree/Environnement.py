@@ -5,6 +5,7 @@ from tree.Tree import Tree
 from tree.boutons.html.style.Style import Style
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import MARQUEUR
+from utils.Logger import Logger
 
 
 class Environnement:
@@ -54,7 +55,6 @@ class Environnement:
         return self.liste_presets.selected()
 
     def change_mode(self):
-        print(Tree.get_current_mode().nom)
         nv_preset = self.liste_presets_choisis.get(Tree.get_current_mode())
         # on met le premier sénario qui correspond au même mode que celui en cours
         for scenar in nv_preset.liste_scénario:
@@ -66,7 +66,6 @@ class Environnement:
                 break
         # on change de preset
         self.change_preset_select(nv_preset)
-        self.get_preset_select().show()
 
     def change_scenario_select(self, scenar):
         self.get_preset_select().change_select(scenar)

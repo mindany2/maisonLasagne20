@@ -1,6 +1,7 @@
 from In_out.utils.Port_extender import Port_extender
 from tree.utils.Dico import Dico
 import RPi.GPIO as GPIO
+from utils.Logger import Logger
 
 class Liste_interruptions_extender:
     """
@@ -44,12 +45,12 @@ class Liste_interruptions_extender:
         return None
 
     def detect_interrupt(self, event):
-        print("interruption {} !!!".format(self.add_registre))
+        Logger.info("interruption {} !!!".format(self.add_registre))
         for i,pin in enumerate(self.bus.read(self.port_bus,0x12 + self.add_registre)):
             # on verifie si le pin est haut
             #TODO il va falloir le modifier pour les radars ect..
             if int(pin) == 1:
-                print("le pin {} est on".format(i))
+                Logger.info("le pin {} est on".format(i))
                 inter = self.liste_inter.get(i)
                 if inter != None:
                     inter.press()

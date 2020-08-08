@@ -29,13 +29,7 @@ def get_tree():
         css_file = mode.split(":")[1]
         tree.add_mode(Mode(nom_mode, css_file))
 
-
-    
     # on va chercher les environnements
     # et on les remplits
     for nom in trouver_dossier(""):
         tree.liste_envi.add(get_env(nom))
-    
-    # on met le bouton changement de mode
-    
-    #tree.show()

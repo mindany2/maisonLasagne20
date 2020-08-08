@@ -1,6 +1,7 @@
 import numpy as np
 from tree.scenario.Instruction_lumiere import Instruction_lumiere
 from time import sleep
+from utils.Logger import Logger
 
 class Instruction_lampe(Instruction_lumiere):
     """
@@ -16,7 +17,7 @@ class Instruction_lampe(Instruction_lumiere):
         super().run()
         if self.lumière.etat() != (self.dimmeur != 0):
             self.lumière.set(self.dimmeur != 0)
-        print("on met la lampe {} a {}".format(self.lumière, self.dimmeur))
+        Logger.debug("on met la lampe {} a {}".format(self.lumière, self.dimmeur))
 
 
     def show(self):

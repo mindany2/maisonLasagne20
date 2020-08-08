@@ -3,9 +3,12 @@ from threading import Thread
 from enum import Enum
 
 class MARQUEUR(Enum):
+    """
+    Permet de type les scenarios
+    """
     OFF = 0
     ON = 1
-    DECO   = 2
+    DECO = 2
 
 class Scenario:
     """
@@ -15,9 +18,7 @@ class Scenario:
     def __init__(self, nom, marqueur):
         self.nom = nom
         self.liste_inst = Liste_instructions()
-        # le marqueur permet de savoir si le scénario éteint
-        # l'environnement ou pas
-        self.marqueur = marqueur # si le scénario allume ou éteint les lampes
+        self.marqueur = marqueur
         self.etat = False
 
     def __eq__(self, obj):

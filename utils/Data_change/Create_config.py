@@ -7,6 +7,7 @@ from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Carte_relais_extender import Carte_relais_extender
 from In_out.utils.ST_nucleo import ST_nucleo
 from utils.Data_change.utils.Read import ouvrir, lire
+from utils.Logger import Logger
 
 def get_config_inter():
     # lis la configuration des interruptions pour remplir Gestionnaire_interruptions
@@ -41,7 +42,7 @@ def get_config_inter():
                 Gestionnaire_interruptions().configure(liste, TYPE_INTER.extender)
 
             elif type_inter == "gpio":
-                print("pas besoin de configurer les gpios")
+                Logger.warn("pas besoin de configurer les gpios")
 
 
 def get_config_carte():
@@ -53,7 +54,7 @@ def get_config_carte():
     if st_addr:
         st_nucleo = ST_nucleo(st_addr)
     else:
-        print("pas de carte ST")
+        Logger.warn("pas de carte ST")
 
     for ligne in lire(ouvrir("config.data", False)):
 
@@ -70,7 +71,6 @@ def get_config_carte():
             except:
                 raise("Erreur dans le fichier de config : le numero ou le nb de ports n'est pas entier")
             if carte == "relais":
-                print("relias !!!!")
                 if type_conn == "extender":
                     try:
                         port_bus = int(args,16)

@@ -1,6 +1,7 @@
 from In_out.interruptions.inter.Interruption import TYPE_INTER
 from utils.Client import Client
 import RPi.GPIO as GPIO
+from utils.Logger import Logger
 
 
 class Gestionnaire_interruptions:
@@ -29,7 +30,7 @@ class Gestionnaire_interruptions:
         if type_inter == TYPE_INTER.extender:
             self.listes_inters_extender.append(interrupt)
         elif type_inter == TYPE_INTER.rpi:
-            print("pas la peine de les renseigner")
+            Logger.warn("pas la peine de renseigner les inters rpi dans la configuration")
 
 
 

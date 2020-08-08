@@ -1,5 +1,6 @@
 from tree.scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
 from time import sleep, time
+from utils.Logger import Logger
 
 class Instruction_projecteur(Instruction_lumiere):
     """
@@ -18,10 +19,9 @@ class Instruction_projecteur(Instruction_lumiere):
         dimmeur_final = self.dimmeur
         ecart = dimmeur_final - dimmeur_initial
         nb_points = self.duree*RESOLUTION
-        #print("dimmeur_initial  = ", dimmeur_initial, " / dimmeur_final = ", dimmeur_final)
 
         if dimmeur_initial == dimmeur_final:
-            print("on fait rien pour {}".format(self.lumière.nom))
+            Logger.info("on fait rien pour {}".format(self.lumière.nom))
             self.lumière.unlock()
             return
 
@@ -37,7 +37,7 @@ class Instruction_projecteur(Instruction_lumiere):
             dodo = 1/RESOLUTION-(time()-temps)
             if dodo > 0:
                 sleep(dodo)
-        print(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
+        Logger.info(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
         self.lumière.set(dimmeur_final)
         sleep(0.5)
         self.lumière.deconnect()

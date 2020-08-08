@@ -2,6 +2,7 @@ import numpy as np
 from tree.scenario.Instruction_lumiere import Instruction_lumiere, RESOLUTION
 from tree.eclairage.Led import Couleur
 from time import sleep,time
+from utils.Logger import Logger
 
 class Instruction_led(Instruction_lumiere):
     """
@@ -22,7 +23,6 @@ class Instruction_led(Instruction_lumiere):
         dimmeur_final = self.dimmeur
         dimmeur_initial = self.lumière.dimmeur
         nb_points = RESOLUTION*self.duree
-        print("couleur = ",str(self.lumière.couleur)," couleur voulut = ",self.couleur),
         if dimmeur_initial != dimmeur_final:
             liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, (dimmeur_final-dimmeur_initial)/nb_points)
         else:
@@ -30,14 +30,14 @@ class Instruction_led(Instruction_lumiere):
         if self.couleur != self.lumière.couleur:
             liste_couleur = self.couleur.generate_array(self.lumière.couleur, nb_points)
         else:
-            print("on fait rien pour {}".format(self.lumière.nom))
+            Logger.debug("on fait rien pour {}".format(self.lumière.nom))
             barrier.wait()
             self.lumière.unlock()
             return
 
         err = self.lumière.connect()
         if err:
-            print("l'instruction sur "+self.lumière.nom+" a planté")
+            Logger.debug("l'instruction sur "+self.lumière.nom+" a planté")
             barrier.wait()
             self.lumière.deconnect(planté = True)
             self.lumière.unlock()
@@ -57,7 +57,7 @@ class Instruction_led(Instruction_lumiere):
 
         if (not(err) and not(err1)):
             self.lumière.set(int(dimmeur_final), self.couleur.valeur)
-        print(" la led {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-temps_init, self.duree))
+        Logger.info(" la led {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-temps_init, self.duree))
         self.lumière.deconnect()
         self.lumière.unlock()
     

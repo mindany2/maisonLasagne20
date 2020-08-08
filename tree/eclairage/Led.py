@@ -3,6 +3,7 @@ from tree.utils.Couleur import Couleur
 from time import sleep
 from random import randrange
 from In_out.cartes.relais.Relais import Etat
+from utils.Logger import Logger
 
 class Led(Lumiere):
     """
@@ -17,7 +18,7 @@ class Led(Lumiere):
         self.planté = False  # indique si la led à eu un problème dernièrement (pas de connection à l'éteignage)
 
     def connect(self):
-        print("on essaie de se co a "+self.nom)
+        Logger.info("on essaie de se co a "+self.nom)
         if self.couleur.is_black() or self.planté:
             self.relais.set(Etat.ON)
             sleep(1)

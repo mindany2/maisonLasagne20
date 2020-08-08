@@ -2,6 +2,7 @@ from tree.eclairage.Lumiere import Lumiere
 from time import sleep
 from threading import Lock
 from In_out.cartes.relais.Relais import Etat
+from utils.Logger import Logger
 
 class Lampe(Lumiere):
     """
@@ -18,7 +19,7 @@ class Lampe(Lumiere):
             etat = Etat.ON
         else:
             etat = Etat.OFF
-        print("on met la lampe {} a {}".format(self.nom, etat))
+        Logger.info("on met la lampe {} a {}".format(self.nom, etat))
         if self.relais.etat != etat:
             self.relais.set(etat)
         self.mutex.release()

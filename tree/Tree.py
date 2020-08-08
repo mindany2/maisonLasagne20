@@ -1,6 +1,7 @@
 from tree.utils.Liste_radios import Liste_radios
 from tree.utils.Liste import Liste
 from threading import Thread
+from utils.Logger import Logger
 
 class Tree:
     liste_envi = Liste()
@@ -20,10 +21,11 @@ class Tree:
     @classmethod
     def change_mode_select(self, mode):
         self.liste_modes.change_select(mode)
+        Logger.info("Changement de mode : " + self.get_current_mode().nom)
 
     @classmethod
     def press_inter(self, nom_inter, etat):
-        print("on press l'inter "+nom_inter)
+        Logger.debug("on press l'inter "+nom_inter)
         # on recupère tous les boutons
         for env in self.liste_envi:
             if env.get_preset_select().principal(nom_inter):
