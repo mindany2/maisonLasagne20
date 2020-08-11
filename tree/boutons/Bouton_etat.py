@@ -11,7 +11,7 @@ class Bouton_etat(Bouton):
         self.scenar_on = scenar_on
         self.scenar_off = scenar_off
 
-    def press(self, etat_env_principal = None, etat = None):
+    def press(self, etat = None):
         pile = self.env.get_pile_scenarios()
         if self.env.etat() != MARQUEUR.ON and etat:
             pile.push_select()

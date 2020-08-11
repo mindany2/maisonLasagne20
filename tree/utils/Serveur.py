@@ -43,6 +43,7 @@ def threaded_client(conn):
                 #print("Received: ", requete)
                 if requete.count("reload_tree"):
                     reload_tree()
+                    Logger.info("Reloaded")
                     data = ""
                 else:
                     try:

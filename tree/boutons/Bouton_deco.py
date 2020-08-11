@@ -10,9 +10,10 @@ class Bouton_deco(Bouton):
         self.env = env
         self.scenar_deco = scenar_deco
 
-    def press(self, etat_env_principal = None, etat = None):
+    def press(self, etat = None):
         pile = self.env.get_preset_select().get_pile()
-        if etat_env_principal == MARQUEUR.ON:
+        print(etat)
+        if not(etat):
             # on doit eteindre
             if pile.selected() == self.scenar_deco:
                 # si le scenario actuel est celui de ce bouton
@@ -23,5 +24,10 @@ class Bouton_deco(Bouton):
             return pile.selected()
         # On doit allumer
         pile.push_select()
-        return self.scenar_deco.do()
+        if (self.env.etat() != MARQUEUR.ON):
+            # si on est pas ON
+            return self.scenar_deco.do()
+        # sinon on fait rien
+        return pile.selected()
+
 

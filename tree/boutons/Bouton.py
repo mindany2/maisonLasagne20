@@ -13,6 +13,11 @@ class Bouton:
         # doit retourner le scénario qui à été lancer
         return None
 
+    def __eq__(self, other):
+        if isinstance(other, Bouton):
+            return self.nom == other.nom
+        return False
+
     def get_name(self):
         return self.nom
 

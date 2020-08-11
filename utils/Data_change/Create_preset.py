@@ -6,6 +6,7 @@ from tree.eclairage.Trappe import Trappe
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
+from tree.scenario.Instruction_bouton import Instruction_bouton
 from tree.scenario.Instruction_trappe import Instruction_trappe
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario,MARQUEUR
@@ -115,14 +116,28 @@ def get_inst(env, infos):
     Créer une instruction
     """
     nom_lampe = infos[1]
-    dimmeur = infos[2]
-    duree = int(infos[3])
     temps_init = int(infos[4])
-    couleur = infos[5]
     try:
         synchro = infos[6] == "oui"
     except:
         synchro = False
+    if (nom_lampe.count(".") != 0):
+        # on a une instruction bouton
+        nom_env, nom_preset, nom_scenar = nom_lampe.split(".")
+        etat = int(infos[2])
+        type_bt = infos[3]
+        temps_init = int(infos[4])
+        if (type_bt != "deco"):
+            raise(Exception("Type bouton non supporter {} : {}".format(env.nom, type_bt)))
+
+        return Instruction_bouton(nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro)
+
+
+
+
+    dimmeur = infos[2]
+    duree = int(infos[3])
+    couleur = infos[5]
     
     lumière = env.get_lumiere(nom_lampe)
     if isinstance(lumière, Projecteur):

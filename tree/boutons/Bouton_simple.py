@@ -17,7 +17,7 @@ class Bouton_simple(Bouton):
     def get_marqueur(self):
         return self.scenar.get_marqueur()
 
-    def press(self, etat_env_principal = None, etat = None):
+    def press(self, etat = None):
         # on fait le scénario
         self.scenar.do()
         # on le renvoie pour qu'il change d'état

@@ -24,10 +24,10 @@ class Preset:
         # permet de savoir si le bouton est principal pour l'environnement
         return isinstance(self.get_bouton(nom_inter), Bouton_principal)
 
-    def press_inter(self, nom_inter, etat_env_principal, etat):
+    def press_inter(self, nom_inter, etat):
         bt = self.get_bouton(nom_inter)
         if bt != None:
-            scenar = bt.press(etat_env_principal, etat)
+            scenar = bt.press(etat)
             self.change_select(scenar)
 
     def change_select(self, scenar):
