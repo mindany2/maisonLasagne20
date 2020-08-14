@@ -5,5 +5,6 @@ from utils.Data_change.Create_config import get_config_inter
 get_config_inter()
 get_interruptions()
 
-while(1):
-    pass
+from threading import Event
+
+Event().wait()

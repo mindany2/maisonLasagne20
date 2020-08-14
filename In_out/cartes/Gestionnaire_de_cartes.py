@@ -14,13 +14,17 @@ class Gestionnaire_de_cartes:
 
     @classmethod
     def get_relais(self, carte, indice_relais):
-        if carte == "gpio":
-            # l'indice du relais joue le role du port gpio
-            return Relais_GPIO(indice_relais)
-        else:
-            # c'est une carte
-            indice_carte = int(carte)
-            return self.liste_carte_relais[indice_carte-1].get_relais(indice_relais)
+        indice_relais = int(indice_relais)
+        try:
+            if carte == "gpio":
+                # l'indice du relais joue le role du port gpio
+                return Relais_GPIO(indice_relais)
+            else:
+                # c'est une carte
+                indice_carte = int(carte)
+                return self.liste_carte_relais[indice_carte-1].get_relais(indice_relais)
+        except:
+            return None
 
     @classmethod
     def get_triac(self, indice_carte, indice_triac):

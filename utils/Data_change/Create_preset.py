@@ -2,12 +2,14 @@ from utils.Data_change.utils.Read import ouvrir, lire
 from tree.Preset import Preset
 from tree.eclairage.Led import Led
 from tree.eclairage.Lampe import Lampe
+from tree.eclairage.Enceintes import Enceintes
 from tree.eclairage.Trappe import Trappe
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.scenario.Instruction_bouton import Instruction_bouton
 from tree.scenario.Instruction_trappe import Instruction_trappe
+from tree.scenario.Instruction_enceinte import Instruction_enceinte
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario,MARQUEUR
 from tree.boutons.Bouton_simple import Bouton_simple
@@ -149,5 +151,8 @@ def get_inst(env, infos):
     elif isinstance(lumière, Trappe):
         action = dimmeur
         return Instruction_trappe(action,duree, temps_init, synchro)
+    elif isinstance(lumière, Enceintes):
+        return Instruction_enceinte(lumière, int(dimmeur), duree, temps_init, synchro) 
+
     return None
 

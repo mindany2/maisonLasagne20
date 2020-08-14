@@ -19,7 +19,7 @@ class Instruction_bouton(Instruction):
         self.preset = None
         self.env = None
 
-    def run(self, temps_ecouler=0):
+    def run(self, barrier):
         super().run()
 
         if self.bouton == None:

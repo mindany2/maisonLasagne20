@@ -10,17 +10,26 @@ class Zone:
 
         values = self.output.get_all_infos(self.numero)
 
-        pa, self.power,self.mute, self.distrub, self.volume, self.treble, self.bass, self.balance, self.source, ls = values
+        if values:
+
+            pa, self.power,bpower, self.mute, self.distrub, self.volume, self.treble, self.bass, self.balance, self.source, ls = values
+
+            if int(self.source) != 2:
+                self.output.send(self.numero, ACTION.source, 2)
+                self.source = 2
+
+            print("fin init zone " + str(numero) + " source = "+ str(self.source))
+        else:
+            self.power = 0
+            self.volume = 0
 
     def set_volume(self, volume):
         self.output.send(self.numero, ACTION.volume, volume)
+        self.volume = volume
+
 
     def set_power(self, valeur):
         self.output.send(self.numero, ACTION.power, valeur)
-
-    def reload(self):
-        self.output.send(self.numero, ACTION.volume, self.volume)
-        self.output.send(self.numero, ACTION.power, self.power)
-        self.output.send(self.numero, ACTION.source, self.source)
+        self.power = valeur
 
 

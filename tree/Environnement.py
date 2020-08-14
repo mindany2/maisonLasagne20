@@ -4,8 +4,10 @@ from tree.utils.Dico import Dico
 from tree.Tree import Tree
 from tree.boutons.html.style.Style import Style
 from tree.eclairage.Projecteur import Projecteur
+from tree.eclairage.Enceintes import Enceintes
 from tree.scenario.Scenario import MARQUEUR
 from utils.Logger import Logger
+import sys
 
 
 class Environnement:
@@ -31,6 +33,11 @@ class Environnement:
     def reload_style(self):
         self.style = Style(position=(13*sum([len(bt.nom) for bt in self.get_preset_select().liste_boutons_html]),0),
             couleur_texte = "red")
+
+    def reload_son(self, etat):
+        for enceinte in self.liste_lumières:
+            if isinstance(enceinte, Enceintes):
+                enceinte.reload(etat)
 
     def get_style(self):
         if self.style == None:

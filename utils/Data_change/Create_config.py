@@ -6,6 +6,7 @@ from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Carte_relais_extender import Carte_relais_extender
 from In_out.utils.ST_nucleo import ST_nucleo
+from In_out.son.Ampli_6_zones import Ampli_6_zones
 from utils.Data_change.utils.Read import ouvrir, lire
 from utils.Logger import Logger
 
@@ -16,8 +17,9 @@ def get_config_inter():
 
     for ligne in lire(ouvrir("config.data", False)):
 
-        if get_mode(ligne) != None:
-            mode = get_mode(ligne)
+        if ligne.count("---") != 0:
+            mode = ligne.split("---")[1]
+            print(mode)
             continue
 
         if mode == "interrupt":
@@ -49,20 +51,38 @@ def get_config_carte():
     # lit la config des différentes cartes relais et triac avec lequel le rpi peut communiquer
     mode = ""
     
-    st_addr = get_st_adresse()
-
-    if st_addr:
-        st_nucleo = ST_nucleo(st_addr)
-    else:
-        Logger.warn("pas de carte ST")
-
     for ligne in lire(ouvrir("config.data", False)):
 
-        if get_mode(ligne) != None:
-            mode = get_mode(ligne)
+        if ligne.count("---") != 0:
+            mode = ligne.split("---")[1]
             continue
 
-        if mode == "cartes":
+        if mode == "stnucleo":
+            st_addr = ligne.split("=")[1]
+            st_nucleo = ST_nucleo(st_addr)
+
+
+        elif mode == "ampli":
+            type_ampli, args = ligne.split("=")
+            addr, relais = args.split(",")
+
+            if (type_ampli == "dax66"):
+                relais = Gestionnaire_de_cartes.get_relais(relais[2], relais[0])
+
+                if not(relais):
+                    Logger.error("Definir d'abord les cartes avant l'ampli")
+                    continue
+
+                Ampli_6_zones.init(addr, relais)
+
+
+
+        elif mode == "cartes":
+            if not(st_nucleo):
+                Logger.error("Pas de carte ST")
+                Logger.warn("Veuillez la definir avant les cartes")
+                continue
+
             numero, carte, type_conn , nb_ports, args = ligne.split("|")
 
             try:
@@ -87,28 +107,3 @@ def get_config_carte():
             else:
                 raise("Type de carte inconnu")
             Gestionnaire_de_cartes.configure(carte)
-
-def get_st_adresse():
-    # on va chercher l'adresse le la st nucleo
-    mode = ""
-
-    for ligne in lire(ouvrir("config.data", False)):
-
-        if get_mode(ligne) != None:
-            mode = get_mode(ligne)
-            continue
-
-        if mode == "stnucleo":
-            return ligne.split("=")[1]
-
-    return None
-
-
-def get_mode(ligne):
-    if ligne.count("interrupt"):
-         return "interrupt"
-    elif ligne.count("cartes"):
-         return "cartes"
-    elif ligne.count("stnucleo"):
-        return "stnucleo"
-    return None

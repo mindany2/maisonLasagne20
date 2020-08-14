@@ -1,5 +1,7 @@
 from In_out.cartes.Gestionnaire_de_cartes import Gestionnaire_de_cartes
+from In_out.son.Ampli_6_zones import Ampli_6_zones
 from tree.eclairage.Led import Led
+from tree.eclairage.Enceintes import Enceintes
 from tree.eclairage.Lampe import Lampe
 from In_out.bluetooth_devices.LEDBLE import LEDBLE
 from In_out.bluetooth_devices.ELK_BLEDOM import ELK_BLEDOM
@@ -68,6 +70,17 @@ def get_lumiere(infos):
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         return Lampe(nom, relais)
+
+    elif type_lumière == "enceinte":
+        zone, ampli = get_addr(addr_bluetooth_ou_ip)
+        if ampli == "dax66":
+            zone = Ampli_6_zones.get_zone(int(zone))
+            if not(zone):
+                raise(Exception("Il y a des enceintes sans ampli"))
+            return Enceintes(nom, Ampli_6_zones, zone)
+
+            
+
 
 
 

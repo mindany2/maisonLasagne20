@@ -7,6 +7,9 @@ class Tree:
     liste_envi = Liste()
     liste_modes = Liste_radios()
 
+    # TODO vraiment IMMONDE
+    etat = False
+
     @classmethod
     def show(self):
         print("modes : ")
@@ -22,6 +25,18 @@ class Tree:
     def change_mode_select(self, mode):
         self.liste_modes.change_select(mode)
         Logger.info("Changement de mode : " + self.get_current_mode().nom)
+
+    @classmethod
+    def spotify_inter(self, status):
+        Logger.debug("Spotify : " +status)
+        if (status != "paused"):
+            etat = (status == "playing")
+            # TODO c'est moche, faire une class spotify
+            if etat != self.etat:
+                for env in self.liste_envi:
+                    env.reload_son(etat)
+            self.etat = etat
+
 
     @classmethod
     def press_inter(self, nom_inter, etat):
