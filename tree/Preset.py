@@ -28,7 +28,8 @@ class Preset:
         bt = self.get_bouton(nom_inter)
         if bt != None:
             scenar = bt.press(etat)
-            self.change_select(scenar)
+            if scenar != None:
+                self.change_select(scenar)
 
     def change_select(self, scenar):
         self.liste_scénario.change_select(scenar)

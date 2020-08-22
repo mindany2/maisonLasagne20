@@ -13,35 +13,37 @@ class Instruction_projecteur(Instruction_lumiere):
         """
         On s'occupe de faire l'instruction
         """
-        self.lumière.lock()
-        temps_init = time()
-        dimmeur_initial = self.lumière.dimmeur
-        dimmeur_final = self.dimmeur
-        ecart = dimmeur_final - dimmeur_initial
-        nb_points = self.duree*RESOLUTION
+        try:
+            self.lumière.lock()
+            temps_init = time()
+            dimmeur_initial = self.lumière.dimmeur
+            dimmeur_final = self.dimmeur
+            ecart = dimmeur_final - dimmeur_initial
+            nb_points = self.duree*RESOLUTION
 
-        if dimmeur_initial == dimmeur_final:
-            Logger.info("on fait rien pour {}".format(self.lumière.nom))
+            if dimmeur_initial == dimmeur_final:
+                Logger.info("on fait rien pour {}".format(self.lumière.nom))
+                return
+
+            self.lumière.connect()
+            super().run(temps_ecouler=(time()-temps_init))
+            barrier.wait()
+            val = dimmeur_initial
+            debut = time()
+            for _ in range(0,nb_points):
+                temps = time()
+                self.lumière.set(val)
+                val += ecart/nb_points
+                dodo = 1/RESOLUTION-(time()-temps)
+                if dodo > 0:
+                    sleep(dodo)
+            Logger.info(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
+            self.lumière.set(dimmeur_final)
+            sleep(0.5)
+            self.lumière.deconnect()
+
+        finally:
             self.lumière.unlock()
-            return
-
-        self.lumière.connect()
-        super().run(temps_ecouler=(time()-temps_init))
-        barrier.wait()
-        val = dimmeur_initial
-        debut = time()
-        for _ in range(0,nb_points):
-            temps = time()
-            self.lumière.set(val)
-            val += ecart/nb_points
-            dodo = 1/RESOLUTION-(time()-temps)
-            if dodo > 0:
-                sleep(dodo)
-        Logger.info(" le projecteur {} a mis {} s a s'allumer au lieu de {}".format(self.lumière.nom, time()-debut, self.duree))
-        self.lumière.set(dimmeur_final)
-        sleep(0.5)
-        self.lumière.deconnect()
-        self.lumière.unlock()
 
 
     def show(self):

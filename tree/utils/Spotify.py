@@ -1,6 +1,6 @@
 from utils.Logger import Logger
 from tree.Tree import Tree
-from multiprocessing import Process
+from threading import Thread
 from time import sleep
 
 class Spotify:
@@ -17,12 +17,10 @@ class Spotify:
         etat = (status == "playing")
         if etat != self.etat:
             if etat:
-                if self.process:
-                    self.process.terminate()
-                process = Process(target=Tree().reload_son, args=[etat])
+                process = Thread(target=Tree().reload_son, args=[etat])
                 process.start()
             else:
-                self.process = Process(target=self.inst)
+                self.process = Thread(target=self.inst)
                 self.process.start()
         self.etat = etat
 
@@ -32,8 +30,9 @@ class Spotify:
     def inst(self):
         print("on attend")
         sleep(30)
-        Tree().reload_son(False)
-        self.etat = False
+        if not(self.etat):
+            Tree().reload_son(False)
+            self.etat = False
 
 
 

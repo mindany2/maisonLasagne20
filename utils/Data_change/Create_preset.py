@@ -19,6 +19,7 @@ from tree.boutons.Bouton_deco import Bouton_deco
 from tree.boutons.Bouton_etat import Bouton_etat
 from tree.boutons.Bouton_choix import Bouton_choix
 from tree.boutons.html.Bouton_simple_html import Bouton_simple_html
+from tree.boutons.html.Bouton_unique_html import Bouton_unique_html
 
 
 def get_preset(env, nom):
@@ -67,7 +68,13 @@ def get_preset(env, nom):
                scenar = preset.get_scenar(nom_scenar)
                check(env, preset,scenar, nom_scenar)
                bt = Bouton_simple_html(nom_bt, scenar)
-               preset.add_boutons_html(bt)
+            if mode == "unique":
+               scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
+               scenar_off = preset.get_scenar(nom_scenar.split(",")[1])
+               check(env, preset, scenar_on, nom_scenar)
+               check(env, preset, scenar_off, nom_scenar)
+               bt = Bouton_unique_html(nom_bt, scenar_on, scenar_off)
+            preset.add_boutons_html(bt)
         elif type_bt == "inter":
             if mode == "principal":
                scenar_on = preset.get_scenar(nom_scenar.split(",")[0])

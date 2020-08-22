@@ -37,8 +37,13 @@ def threaded_client(conn):
             if not requete:
                 Logger.info(str(conn) + "is disconnect")
                 break
-            else:
+            try:
                 data = requete.do()
+                Logger.debug(data)
+            except e:
+                Logger.error("Exception during client message: ")
+                Logger.error(e)
+                break
             conn.send(pickle.dumps(data))
         except:
             break

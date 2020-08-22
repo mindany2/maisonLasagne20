@@ -52,8 +52,6 @@ class Enceintes:
     def show(self):
         print("Enceinte " + str(self.zone.numero))
 
-
-
     def lock(self):
         self.mutex.acquire()
 

@@ -11,6 +11,8 @@ class Bouton:
 
     def press(self):
         # doit retourner le scénario qui à été lancer
+        # si on veut que le precent soit mis a false
+        # et celui ci a on
         return None
 
     def __eq__(self, other):

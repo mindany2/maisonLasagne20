@@ -2,6 +2,7 @@ from tree.scenario.Instruction import Instruction
 from threading import Thread, Barrier
 from numpy import cumsum
 from time import time, sleep
+from multiprocessing import Process
 
 class Liste_instructions:
     """
@@ -53,5 +54,7 @@ class Liste_instructions:
         #on attend qu'ils aient tous terminé
         for proc in self.liste_thread:
             proc.join()
+
+
 
 

@@ -68,6 +68,7 @@ class Tree:
     @classmethod
     def press_bouton_html(self, nom_env, index):
         if nom_env != "mode":
+            Logger.info("On press le bouton html : "+nom_env +"."+str(index))
             self.get_env(nom_env).get_preset_select().press_bouton_html(index)
         else:
             self.liste_modes.selected().press_bouton_mode()
