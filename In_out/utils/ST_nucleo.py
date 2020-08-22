@@ -1,7 +1,11 @@
 from enum import Enum
 from time import sleep
 from threading import Lock, Thread
-from serial import Serial
+
+try:
+    from serial import Serial
+except:
+    pass
 
 class ETAT_TRIAC(Enum):
     """

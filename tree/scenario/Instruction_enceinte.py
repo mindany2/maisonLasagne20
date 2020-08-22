@@ -16,11 +16,18 @@ class Instruction_enceinte(Instruction):
 
     def run(self, barrier):
 
+        Logger.debug("lancer enceinte")
         self.enceinte.lock()
+        Logger.debug("lock enceinte")
         super().run()
         volume_initial = self.enceinte.volume
         volume_final = self.volume
         ecart = volume_final - volume_initial
+
+        if ecart == 0:
+            Logger.info("on fait rien pour l'enceinte {}".format(self.enceinte.nom))
+            self.enceinte.unlock()
+            return
         nb_points = self.duree*RESOLUTION
 
         val = volume_initial
@@ -35,6 +42,7 @@ class Instruction_enceinte(Instruction):
         Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
         self.enceinte.change_volume(volume_final)
         self.enceinte.unlock()
+        Logger.debug("unlock enceinte")
  
 
 

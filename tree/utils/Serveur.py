@@ -1,7 +1,6 @@
 import socket
 import pickle
 from tree.Tree import Tree
-from utils.Data_change.Create_tree import reload_tree
 from threading import Thread
 import io
 import sys, traceback
@@ -39,21 +38,7 @@ def threaded_client(conn):
                 Logger.info(str(conn) + "is disconnect")
                 break
             else:
-                # traitement de l'ordre de la forme "fonction(arg1, arg2)"
-                #print("Received: ", requete)
-                if requete.count("reload_tree"):
-                    reload_tree()
-                    Logger.info("Reloaded")
-                    data = ""
-                else:
-                    try:
-                        data = eval("Tree()."+requete)
-                        #print(data)
-                    except:
-                        traceback.print_tb(sys.exc_info()[2])
-                        Logger.error("On n'a pas recu un message valide : ",sys.exc_info()[1])
-                        data = "Error:la methodes ou les arguments ne sont pas valide \n on veut la forme \"fonction(arg1, arg2)\""
-            #print("pickeled = ", len(pickle.dumps(data)))
+                data = requete.do()
             conn.send(pickle.dumps(data))
         except:
             break

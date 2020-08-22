@@ -17,9 +17,7 @@ class Enceintes:
         self.power = self.zone.power
 
     def change_volume(self, valeur):
-        print("on change le volume")
         if self.ampli.etat():
-            print("on peut")
             if valeur == 0:
                 self.zone.set_power(0)
             elif valeur != 0 and self.zone.power == 0:
@@ -32,11 +30,13 @@ class Enceintes:
 
     def reload(self, etat):
         # on met l'ampli dans le bon etat
+        print("Reload enceinte")
         if etat:
             self.ampli.allumer()
 
             # met le son dans la zone
             inst = Instruction_enceinte(self, self.volume, 5, 0, False)
+            self.volume = self.zone.volume
 
             proc = Thread(target=inst.run, args = [None])
             proc.start()

@@ -27,16 +27,10 @@ class Tree:
         Logger.info("Changement de mode : " + self.get_current_mode().nom)
 
     @classmethod
-    def spotify_inter(self, status):
-        Logger.debug("Spotify : " +status)
-        if (status != "paused"):
-            etat = (status == "playing")
-            # TODO c'est moche, faire une class spotify
-            if etat != self.etat:
-                for env in self.liste_envi:
-                    env.reload_son(etat)
-            self.etat = etat
-
+    def reload_son(self, etat):
+        Logger.debug("Reload son : "+ str(etat)) 
+        for env in self.liste_envi:
+            env.reload_son(etat)
 
     @classmethod
     def press_inter(self, nom_inter, etat):

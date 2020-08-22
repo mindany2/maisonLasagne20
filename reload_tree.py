@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-from utils.Client import Client
+from utils.communication.Client import Client
+from utils.communication.Reload_tree import Reload_tree
 
 client = Client()
-client.send("reload_tree")
+client.send(Reload_tree())

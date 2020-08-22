@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!-- Pour refresh toutes les minutes -->
       <!-- <META HTTP-EQUIV="Refresh" CONTENT="60; URL=/"> -->
-      <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename=tree.send_request("get_current_mode").css_file) }}" />
+      <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename=client.get_current_mode().css_file) }}" />
     </head>
     <body>
             {% block content %}{% endblock %}

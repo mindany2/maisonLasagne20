@@ -3,6 +3,7 @@ from In_out.son.Zone import Zone
 from In_out.cartes.relais.Relais import Etat
 from utils.Logger import Logger
 from time import sleep
+from threading import Lock
 
 class Ampli_6_zones:
     """
@@ -13,6 +14,7 @@ class Ampli_6_zones:
     def init(self, addr, relais):
         self.bus = DAX66(addr)
         self.relais = relais
+        self.mutex = Lock()
         
         self.zones = [Zone(i, self.bus) for i in range(1,7)]
 
@@ -31,15 +33,37 @@ class Ampli_6_zones:
 
     @classmethod
     def allumer(self):
+        self.mutex.acquire()
+        print("etat = " + str(self.etat()))
         if not(self.etat()):
+            Logger.debug("on allume l'ampli")
             self.relais.set(Etat.ON)
-            sleep(5)
+            sleep(1)
+            conn = self.bus.connect()
+            if not(conn):
+                self.relais.set(Etat.OFF)
+
+            for zone in self.zones:
+                zone.get_infos()
+            print("etat = " + str(self.etat()))
+        self.mutex.release()
 
     @classmethod
     def eteindre(self):
+        Logger.debug("on eteint l'ampli")
+        self.mutex.acquire()
+        print("etat = " + str(self.etat()))
         if self.etat():
+            Logger.debug("on eteint l'ampli")
             # on attend que toutes les zones soient eteintes
-            for zone in self.zones:
-                if zone.power:
-                    return
+            test = True
+            while test:
+                test = False
+                for zone in self.zones:
+                    if zone.power:
+                        test = True
+                sleep(1)
+            self.bus.deconnect()
             self.relais.set(Etat.OFF)
+            print("etat = " + str(self.etat()))
+        self.mutex.release()

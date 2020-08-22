@@ -1,5 +1,5 @@
 from In_out.interruptions.inter.Interruption import TYPE_INTER
-from utils.Client import Client
+from utils.communication.Client import Client
 import RPi.GPIO as GPIO
 from utils.Logger import Logger
 

@@ -10,6 +10,7 @@ class Liste_instructions:
     def __init__(self):
         self.liste = []
         self.liste_barrier = [0]
+        self.liste_thread = []
 
     def add(self, inst):
         self.liste.append(inst)
@@ -36,7 +37,7 @@ class Liste_instructions:
 
     def do(self):
         #on fait toute les instructions
-        liste_thread = []
+        self.liste_thread = []
         liste_barrieres = [Barrier(i) for i in self.liste_barrier]
         cummulative_somme = cumsum(self.liste_barrier)
         # on demarre toutes les instructions
@@ -46,11 +47,11 @@ class Liste_instructions:
             n = sum([int(i+1 > j) for j in cummulative_somme])
             bar = liste_barrieres[n]
             process = Thread(target=inst.run, args=[bar])
-            liste_thread.append(process)
+            self.liste_thread.append(process)
             process.start()
 
         #on attend qu'ils aient tous terminé
-        for proc in liste_thread:
+        for proc in self.liste_thread:
             proc.join()
 
 
