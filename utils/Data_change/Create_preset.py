@@ -136,7 +136,7 @@ def get_inst(env, infos):
         etat = int(infos[2])
         type_bt = infos[3]
         temps_init = int(infos[4])
-        if (type_bt != "deco"):
+        if (type_bt != "deco" and type_bt != "unique"):
             raise(Exception("Type bouton non supporter {} : {}".format(env.nom, type_bt)))
 
         return Instruction_bouton(nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro)

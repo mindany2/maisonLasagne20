@@ -28,11 +28,11 @@ class Preset:
         bt = self.get_bouton(nom_inter)
         if bt != None:
             scenar = bt.press(etat)
-            if scenar != None:
-                self.change_select(scenar)
+            self.change_select(scenar)
 
     def change_select(self, scenar):
-        self.liste_scénario.change_select(scenar)
+        if scenar != None:
+            self.liste_scénario.change_select(scenar)
 
     def change(self):
         self.etat = not(self.etat)
@@ -45,7 +45,8 @@ class Preset:
 
     def press_bouton_html(self, index):
         bt = self.liste_boutons_html[index]
-        self.liste_scénario.change_select(bt.press())
+        scenar = bt.press()
+        self.change_select(scenar)
 
     def get_bouton_html(self, index):
         return self.liste_boutons_html[index]

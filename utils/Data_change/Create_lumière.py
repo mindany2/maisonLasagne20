@@ -77,7 +77,7 @@ def get_lumiere(infos):
             zone = Ampli_6_zones.get_zone(int(zone))
             if not(zone):
                 raise(Exception("Il y a des enceintes sans ampli"))
-            return Enceintes(nom, Ampli_6_zones, zone)
+            return Enceintes(nom, Ampli_6_zones, zone, option_lumiere)
 
             
 

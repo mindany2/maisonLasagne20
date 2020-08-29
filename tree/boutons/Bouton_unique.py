@@ -2,6 +2,8 @@ from threading import Thread
 from tree.boutons.Bouton import Bouton
 from tree.scenario.Scenario import MARQUEUR
 
+from utils.Logger import Logger
+
 class Bouton_unique(Bouton):
     """
     Il ne renvoie pas de scenario,
@@ -21,11 +23,13 @@ class Bouton_unique(Bouton):
         return self.scenar_on.get_marqueur()
 
     def press(self, etat = None):
+        Logger.debug("on press bt unique etat = "+str(etat))
+
         # on fait le scénario s'il n'est pas on
         if etat == None:
-            etat = self.etat()
+            etat = not(self.etat())
 
-        if not(etat):
+        if etat:
             self.scenar_on.do()
             self.scenar_on.etat = True
             self.scenar_off.etat = False

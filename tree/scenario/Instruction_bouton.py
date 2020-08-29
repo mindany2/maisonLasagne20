@@ -35,6 +35,7 @@ class Instruction_bouton(Instruction):
             self.env = Tree.get_env(self.nom_env) 
             self.preset = self.env.get_preset(self.nom_preset)
             self.scenars = [self.preset.get_scenar(nom_scenar) for nom_scenar in self.nom_scenars]
+            Logger.debug(self.scenars)
             for scenar in self.scenars:
                 assert(scenar)
 
@@ -43,10 +44,10 @@ class Instruction_bouton(Instruction):
                 .format(self.nom_env, self.nom_env, self.nom_preset)))
 
         if self.type_bt == "deco":
-            self.bouton = Bouton_deco(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenar, self.env, self.scenar[0])
+            self.bouton = Bouton_deco(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.env, self.scenars[0])
         elif self.type_bt == "unique":
-            self.bouton = Bouton_unique(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenar,
-                    self.env, self.scenars[0], self.scenars[1])
+            self.bouton = Bouton_unique(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0],
+                    self.scenars[0], self.scenars[1])
 
         else:
             raise(Exception("Type non pris en charge"))

@@ -2,6 +2,7 @@ from utils.Logger import Logger
 from tree.Tree import Tree
 from threading import Thread
 from time import sleep
+import os
 
 class Spotify:
     """
@@ -24,8 +25,6 @@ class Spotify:
                 self.process.start()
         self.etat = etat
 
-
-
     @classmethod
     def inst(self):
         print("on attend")
@@ -34,5 +33,9 @@ class Spotify:
             Tree().reload_son(False)
             self.etat = False
 
+    @classmethod
+    def kill(self):
+        os.system("sudo systemctl restart raspotify.service")
+        self.etat = False
 
 

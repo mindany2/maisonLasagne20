@@ -1,6 +1,7 @@
 from In_out.utils.DAX66 import DAX66
 from In_out.son.Zone import Zone
 from In_out.cartes.relais.Relais import Etat
+from tree.utils.Spotify import Spotify
 from utils.Logger import Logger
 from time import sleep
 from threading import Lock
@@ -30,7 +31,6 @@ class Ampli_6_zones:
             Logger.error("L'ampli n'est pas initialiser")
             return None
             
-
     @classmethod
     def allumer(self):
         self.mutex.acquire()
@@ -50,20 +50,16 @@ class Ampli_6_zones:
 
     @classmethod
     def eteindre(self):
-        Logger.debug("on eteint l'ampli")
         self.mutex.acquire()
-        print("etat = " + str(self.etat()))
         if self.etat():
-            Logger.debug("on eteint l'ampli")
-            # on attend que toutes les zones soient eteintes
+            # on check si toutes les zones sont eteintes
             test = True
-            while test:
-                test = False
-                for zone in self.zones:
-                    if zone.power:
-                        test = True
-                sleep(1)
-            self.bus.deconnect()
-            self.relais.set(Etat.OFF)
-            print("etat = " + str(self.etat()))
+            for zone in self.zones:
+                if zone.power:
+                    test = False
+            if test:
+                self.bus.deconnect()
+                self.relais.set(Etat.OFF)
+                Logger.debug("on eteint l'ampli")
+                Spotify.kill()
         self.mutex.release()

@@ -14,7 +14,7 @@ class Instruction_enceinte(Instruction):
         self.enceinte = enceinte
 
 
-    def run(self, barrier):
+    def run(self, barrier, save_valeurs=True):
 
         try:
             self.enceinte.lock()
@@ -32,13 +32,14 @@ class Instruction_enceinte(Instruction):
             debut = time()
             for _ in range(0,nb_points):
                 temps = time()
-                self.enceinte.change_volume(int(val))
+                self.enceinte.change_volume(int(val), save_valeurs)
                 val += ecart/nb_points
                 dodo = 1/RESOLUTION-(time()-temps)
                 if dodo > 0:
                     sleep(dodo)
             Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
-            self.enceinte.change_volume(volume_final)
+            self.enceinte.change_volume(volume_final, save_valeurs)
+            self.enceinte.ampli.eteindre() # on eteint si toutes les zones sont eteintes
         finally:
             self.enceinte.unlock()
  
