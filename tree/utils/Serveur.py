@@ -39,7 +39,6 @@ def threaded_client(conn):
                 break
             try:
                 data = requete.do()
-                Logger.debug(data)
             except e:
                 Logger.error("Exception during client message: ")
                 Logger.error(e)

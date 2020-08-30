@@ -1,5 +1,6 @@
 from tree.boutons.html.style.Style import Style
 from tree.boutons.html.style.Gradient import Gradient
+from copy import copy
 
 def set_styles(env, preset):
     """
@@ -7,28 +8,32 @@ def set_styles(env, preset):
     """
     nb_boutons = len(preset.liste_boutons_html)
     liste_couleur = env.couleurs[1].generate_array(env.couleurs[0], nb_boutons+1)
-    diff_position = -5
-    taille_caractère = 17
+    taille_caractère = 11
     for i, bt in enumerate(preset.liste_boutons_html):
         grad = Gradient(liste_couleur[i],liste_couleur[i+1])
         nb_caractère = len(bt.nom)
+
+        style = Style(size = (taille_caractère*nb_caractère,50),
+                    background_image=grad,
+                    margin = [-5, 0])
+
+
+        bt.style_off = copy(style)
+        bt.style_off.font_weight = "light"
+        bt.style_off.font_size = 10
+
+        bt.style_on = copy(style)
+        bt.style_on.font_weight = "bolder"
+        bt.style_on.font_size = 18
+
         if i == 0:
+            print("premier : "+bt.nom)
             # le premier
-            bt.style_off = Style(size = (taille_caractère*nb_caractère,50), background_image=grad,borders_radius_etat=(True, False),font_weight = "light",
-                    borders_etat=(True, False))
-            bt.style_on = Style(size = (taille_caractère*nb_caractère,50), background_image=grad,font_weight = "bolder", font_size = 23,
-                    borders_radius_etat=(True, False), borders_etat=(True, False))
+            bt.style_off.set_border((True, False),(True, False))
+            bt.style_on.set_border((True, False),(True, False))
+
         elif i == nb_boutons-1:
+            print("dernier : "+bt.nom)
             # le dernier
-            bt.style_off = Style(size = (taille_caractère*nb_caractère,50), position = (0,diff_position*i),font_weight = "light",
-                    background_image=grad,borders_radius_etat=(False, True), borders_etat=(False, True))
-            bt.style_on = Style(size = (taille_caractère*nb_caractère,50), position = (0,diff_position*i),font_size = 23,
-                    font_weight = "bolder",background_image=grad,borders_radius_etat=(False, True), borders_etat=(False, True))
-
-        else:
-            #les autres
-            bt.style_off = Style(size = (taille_caractère*nb_caractère,50), position = (0,diff_position*i),font_weight = "light", background_image=grad)
-            bt.style_on = Style(size = (taille_caractère*nb_caractère,50), position = (0,diff_position*i),
-                    font_size = 23,font_weight = "bolder",background_image=grad)
-
-
+            bt.style_off.set_border((False, True),(False, True))
+            bt.style_on.set_border((False, True),(False, True))
