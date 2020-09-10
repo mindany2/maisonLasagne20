@@ -13,7 +13,7 @@ du programme (récupérations des infos)
 """
 def reload_tree():
     for env in Tree().liste_envi:
-        reload_env(env)
+        reload_env(env, Tree().liste_modes)
         
 
 
@@ -27,9 +27,10 @@ def get_tree():
     for mode in lire(ouvrir("modes.data")):
         nom_mode = mode.split(":")[0]
         css_file = mode.split(":")[1]
-        tree.add_mode(Mode(nom_mode, css_file))
+        couleur = mode.split(":")[2]
+        tree.add_mode(Mode(nom_mode, css_file, couleur))
 
     # on va chercher les environnements
     # et on les remplits
     for nom in trouver_dossier(""):
-        tree.liste_envi.add(get_env(nom))
+        tree.liste_envi.add(get_env(nom, tree.liste_modes))

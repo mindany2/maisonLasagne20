@@ -14,11 +14,15 @@ class Instruction_enceinte(Instruction):
         self.enceinte = enceinte
 
 
-    def run(self, barrier, save_valeurs=True):
+    def run(self, barrier, save_valeurs=True, volume_ref = True):
 
         try:
             self.enceinte.lock()
             super().run()
+
+            if volume_ref:
+                self.enceinte.volume_ref = self.volume
+
             volume_initial = self.enceinte.volume
             volume_final = self.volume
             ecart = volume_final - volume_initial
@@ -39,9 +43,10 @@ class Instruction_enceinte(Instruction):
                     sleep(dodo)
             Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
             self.enceinte.change_volume(volume_final, save_valeurs)
-            self.enceinte.ampli.eteindre() # on eteint si toutes les zones sont eteintes
         finally:
             self.enceinte.unlock()
+            sleep(60) # on attend
+            self.enceinte.ampli.eteindre() # on eteint si toutes les zones sont eteintes
  
 
 

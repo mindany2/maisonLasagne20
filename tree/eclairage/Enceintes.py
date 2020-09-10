@@ -16,6 +16,7 @@ class Enceintes:
         self.nom_env = nom_env
 
         self.volume = self.zone.volume
+        self.volume_ref = self.volume
         self.power = self.zone.power
 
     def change_volume(self, valeur, save_valeurs):
@@ -33,7 +34,7 @@ class Enceintes:
 
     def reload(self, etat):
         # on met l'ampli dans le bon etat
-        print("Reload enceinte")
+        print("Reload enceinte " + str(self.volume_ref))
 
         self.mutex.acquire()
 

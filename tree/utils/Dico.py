@@ -1,3 +1,7 @@
+
+def get_rang(element):
+    return element.get_rang()
+
 class Dico:
     """
     C'est un dictionnaire avec quelques fonctions utiles
@@ -24,6 +28,10 @@ class Dico:
         assert(find)
         return list(self.liste.values())[0]
 
+
+    def sort(self):
+        # trie la liste suivant l'argument "rang" de l'élément
+        return sorted(list(self.liste.values()),key=get_rang)
 
 
     def get_key(self, element):
