@@ -8,12 +8,11 @@ class Enceintes:
     ( lier a une zone )
     """
 
-    def __init__(self, nom, ampli, zone, nom_env):
+    def __init__(self, nom, ampli, zone):
         self.nom = nom
         self.ampli = ampli
         self.zone = zone
         self.mutex = Lock()
-        self.nom_env = nom_env
 
         self.volume = self.zone.volume
         self.volume_ref = self.volume
