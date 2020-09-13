@@ -7,6 +7,7 @@ from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Carte_relais_extender import Carte_relais_extender
 from In_out.utils.ST_nucleo import ST_nucleo
 from In_out.son.Ampli_6_zones import Ampli_6_zones
+from In_out.dmx.Controleur_dmx import Controleur_dmx
 from utils.Data_change.utils.Read import ouvrir, lire
 from utils.Logger import Logger
 
@@ -75,7 +76,9 @@ def get_config_carte():
 
                 Ampli_6_zones.init(addr, relais)
 
-
+        elif mode == "dmx":
+            null, addr = ligne.split("=")
+            Controleur_dmx().init(addr)
 
         elif mode == "cartes":
             if not(st_nucleo):
