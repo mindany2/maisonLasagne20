@@ -43,6 +43,5 @@ class Instruction_projecteur(Instruction_lumiere):
         self.lumière.deconnect()
         self.lumière.unlock()
 
-
     def show(self):
         print("projo = ",self.lumière.nom, " | dimmeur = ", self.dimmeur, " | duree = ", self.duree)

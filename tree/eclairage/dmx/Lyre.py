@@ -18,34 +18,42 @@ class Lyre(Lumiere):
         self.gobo = GOBO.rond
 
     def set_position(self, pan, tilt):
+        if self.pan != pan:
+            self.dmx.set(CHANNEL.pan, pan)
+        if self.tilt != tilt:
+            self.dmx.set(CHANNEL.tilt, tilt)
         self.pan = pan
         self.tilt = tilt
-        self.dmx.set(CHANNEL.pan, pan)
-        self.dmx.set(CHANNEL.tilt, tilt)
 
     def set_couleur(self, couleur):
+        if self.couleur != couleur:
+            self.dmx.set(CHANNEL.couleur, couleur.value)
         self.couleur = couleur
-        self.dmx.set(CHANNEL.couleur, couleur.value)
 
     def set_gobo(self, gobo):
+        if self.gobo != gobo:
+            self.dmx.set(CHANNEL.gobo, gobo.value)
         self.gobo = gobo
-        self.dmx.set(CHANNEL.gobo, gobo.value)
 
     def set_strombo(self, strombo):
+        if self.strombo != strombo:
+            self.dmx.set(CHANNEL.strombo, strombo)
         self.strombo = strombo
-        self.dmx.set(CHANNEL.strombo, strombo)
 
     def set_dimmeur(self, dimmeur):
+        if self.dimmeur != dimmeur:
+            self.dmx.set(CHANNEL.dimmeur, dimmeur)
         self.dimmeur = dimmeur
-        self.dmx.set(CHANNEL.dimmeur, dimmeur)
 
     def set_vitesse(self, vitesse):
+        if self.vitesse != vitesse:
+            self.dmx.set(CHANNEL.vitesse, vitesse)
         self.vitesse = vitesse
-        self.dmx.set(CHANNEL.vitesse, vitesse)
 
     def set_vitesse_moteur(self, vitesse_moteur):
+        if self.vitesse_moteur != vitesse_moteur:
+            self.dmx.set(CHANNEL.vitesse_moteur, vitesse_moteur)
         self.vitesse_moteur = vitesse_moteur
-        self.dmx.set(CHANNEL.vitesse_moteur, vitesse_moteur)
 
 
 class COULEUR(Enum):

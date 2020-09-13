@@ -7,6 +7,9 @@ from In_out.bluetooth_devices.LEDBLE import LEDBLE
 from In_out.bluetooth_devices.ELK_BLEDOM import ELK_BLEDOM
 from In_out.bluetooth_devices.TRIONES import TRIONES
 from In_out.wifi_devices.LEDnet import LEDnet
+from In_out.dmx.Device_dmx import Device_dmx
+from In_out.dmx.Controleur_dmx import Controleur_dmx
+from tree.eclairage.dmx.Lyre import Lyre
 from tree.eclairage.Projecteur import Projecteur, LAMPE
 
 def get_addr(addr):
@@ -78,6 +81,10 @@ def get_lumiere(infos):
             if not(zone):
                 raise(Exception("Il y a des enceintes sans ampli"))
             return Enceintes(nom, Ampli_6_zones, zone)
+
+    elif type_lumière == "lyre":
+        return Lyre(nom, Device_dmx(Controleur_dmx(), addr_bluetooth_ou_ip))
+
 
             
 

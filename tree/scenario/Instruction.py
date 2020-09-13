@@ -6,7 +6,6 @@ class Attente(Enum):
     CONTINUE = 0
     WAIT = 1
 
-
 class Instruction():
     """
     Juste une class qui est vide pour
