@@ -15,7 +15,7 @@
         {% set style = infos[1] %}
         {% set nb_boutons = infos[2] %}
         {% if nb_boutons != 0%}
-            <label style= {{ style }}> {{ env}} </label>
+        <label style="{{style}}"> {{env}} </label>
         {% endif %}
         <form  action="" method="POST">
                 {{ form.hidden_tag() }}

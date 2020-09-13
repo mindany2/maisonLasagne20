@@ -1,5 +1,6 @@
 from tree.scenario.Instruction_enceinte import Instruction_enceinte
 from threading import Thread, Lock
+from tree.scenario.Scenario import MARQUEUR
 
 class Enceintes:
     """
@@ -14,9 +15,10 @@ class Enceintes:
         self.mutex = Lock()
 
         self.volume = self.zone.volume
+        self.volume_ref = self.volume
         self.power = self.zone.power
 
-    def change_volume(self, valeur):
+    def change_volume(self, valeur, save_valeurs):
         if self.ampli.etat():
             if valeur == 0:
                 self.zone.set_power(0)
@@ -25,12 +27,16 @@ class Enceintes:
 
             # si l'ampli est allumer
             self.zone.set_volume(valeur)
-        self.volume = valeur
-        self.power = (valeur != 0)
+        if save_valeurs:
+            self.volume = valeur
+            self.power = (valeur != 0)
 
     def reload(self, etat):
         # on met l'ampli dans le bon etat
-        print("Reload enceinte")
+        print("Reload enceinte " + str(self.volume_ref))
+
+        self.mutex.acquire()
+
         if etat:
             self.ampli.allumer()
 
@@ -44,15 +50,12 @@ class Enceintes:
         else:
             # enleve le son dans la zone
             inst = Instruction_enceinte(self, 0, 5, 0, False)
-            proc = Thread(target=inst.run, args = [None])
+            proc = Thread(target=inst.run, args = [None, False])
             proc.start()
-
-            self.ampli.eteindre()
+        self.mutex.release()
 
     def show(self):
         print("Enceinte " + str(self.zone.numero))
-
-
 
     def lock(self):
         self.mutex.acquire()

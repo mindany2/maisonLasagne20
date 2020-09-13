@@ -22,17 +22,23 @@ class Environnement:
         self.liste_presets = Liste_radios()
         # table de hashage entre mode et preset
         self.liste_presets_choisis = Dico()
-        self.style = None
+        self.style = Liste_radios()
+        self.rang = 0 # rang 0 le plus bas, 1 le plus haut, 2 ect...
+
+    def get_rang(self):
+        if self.rang == 0:
+            # pour trier du plus gd nb de bouton
+            return 10-len(self.liste_presets.selected().liste_boutons_html)
+        return self.rang
 
     def reset_preset(self):
         self.liste_presets = Liste_radios()
         self.liste_presets_choisis = Dico()
-        self.style = None
+        self.style = Liste_radios()
         self.couleurs = None
 
     def reload_style(self):
-        self.style = Style(position=(13*sum([len(bt.nom) for bt in self.get_preset_select().liste_boutons_html]),0),
-            couleur_texte = "red")
+        self.style.change_select(self.style.get(Tree.get_current_mode().nom))
 
     def reload_son(self, etat):
         for enceinte in self.liste_lumières:
@@ -40,8 +46,6 @@ class Environnement:
                 enceinte.reload(etat)
 
     def get_style(self):
-        if self.style == None:
-            self.reload_style()
         return self.style
 
     def add_lumiere(self, lum):

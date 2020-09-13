@@ -37,7 +37,10 @@ class Client:
         try:
             self.mutex.acquire()
             self.client.send(pickle.dumps(msg))
-            data = pickle.loads(self.client.recv(4048))
+            raw_data = self.client.recv(4048)
+            data = ""
+            if raw_data != b'':
+                data = pickle.loads(raw_data)
             self.mutex.release()
             return data
 

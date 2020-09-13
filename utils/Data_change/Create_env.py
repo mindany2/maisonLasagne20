@@ -4,15 +4,15 @@ from utils.Data_change.Create_lumière import get_lumiere
 from utils.Data_change.Create_preset import get_preset
 from utils.Data_change.utils.Read import ouvrir, lire, trouver_dossier
 from tree.utils.Couleur import Couleur
-from utils.Data_change.Create_styles import set_styles
+from utils.Data_change.Create_styles import set_styles, set_env_style
 
-def reload_env(env):
+def reload_env(env, liste_modes):
     env.reset_preset()
-    get_infos(env)
+    get_infos(env, liste_modes)
 
 
 
-def get_env(nom):
+def get_env(nom, liste_modes):
     """
     retourne un environnement complet
     """
@@ -22,11 +22,11 @@ def get_env(nom):
     for lumière in lire(ouvrir(nom+"/lumieres.data")):
         env.add_lumiere(get_lumiere(lumière.split("|")))
 
-    get_infos(env)
+    get_infos(env, liste_modes)
 
     return env
 
-def get_infos(env):
+def get_infos(env, liste_modes):
     nom = env.nom
     # on recupére les presets
     for dossier in trouver_dossier("/"+nom+"/preset"):
@@ -55,12 +55,14 @@ def get_infos(env):
                 if arg1 == "couleurs":
                     coul1, coul2 = arg2.split(",")
                     env.couleurs = (Couleur(coul1), Couleur(coul2))
-                pass
     
+                elif arg1 == "rang":
+                    env.rang = int(arg2)
 
     # on met tous les styles pour avoir de joli boutons html
     for preset in env.liste_presets:
-        set_styles(env,preset)
+        set_styles(env, preset)
+    set_env_style(env, liste_modes)
 
 
     # on met le même mode que le tree

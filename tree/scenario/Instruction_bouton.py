@@ -1,5 +1,6 @@
 from tree.scenario.Instruction import Instruction
 from tree.boutons.Bouton_deco import Bouton_deco
+from tree.boutons.Bouton_unique import Bouton_unique
 from tree.Tree import Tree
 from utils.Logger import Logger
 
@@ -7,11 +8,11 @@ class Instruction_bouton(Instruction):
     """
     Une instruction appellant un bouton d'un autre environnement
     """
-    def __init__(self, nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro):
+    def __init__(self, nom_env, nom_preset, nom_scenars, etat, type_bt, temps_init, synchro):
         Instruction.__init__(self, 0, temps_init, synchro)
         self.nom_env = nom_env
         self.nom_preset = nom_preset
-        self.nom_scenar = nom_scenar
+        self.nom_scenars = nom_scenars.split(",")
         self.type_bt = type_bt
         self.etat = etat
 
@@ -33,21 +34,23 @@ class Instruction_bouton(Instruction):
         try:
             self.env = Tree.get_env(self.nom_env) 
             self.preset = self.env.get_preset(self.nom_preset)
-            self.scenar = self.preset.get_scenar(self.nom_scenar)
-            assert(self.scenar)
+            self.scenars = [self.preset.get_scenar(nom_scenar) for nom_scenar in self.nom_scenars]
+            Logger.debug(self.scenars)
+            for scenar in self.scenars:
+                assert(scenar)
 
         except:
             raise(Exception("Not found exection scenar {} env {} preset {} n'existe pas"
                 .format(self.nom_env, self.nom_env, self.nom_preset)))
 
         if self.type_bt == "deco":
-            self.bouton = Bouton_deco(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenar, self.env, self.scenar)
+            self.bouton = Bouton_deco(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.env, self.scenars[0])
+        elif self.type_bt == "unique":
+            self.bouton = Bouton_unique(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0],
+                    self.scenars[0], self.scenars[1])
 
         else:
             raise(Exception("Type non pris en charge"))
-
-            
-
 
     def __eq__(self, other):
         if isinstance(other, Instruction_bouton):
