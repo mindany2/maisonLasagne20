@@ -15,11 +15,10 @@ class Scenario:
     La base d'un bouton, juste un état
     """
 
-    def __init__(self, nom, marqueur):
+    def __init__(self, nom, marqueur, boucle = False):
         self.nom = nom
-        self.liste_inst = Liste_instructions()
+        self.liste_inst = Liste_instructions(boucle)
         self.marqueur = marqueur
-        self.etat = False
 
     def __eq__(self, obj):
         if isinstance(obj, Scenario):
@@ -33,8 +32,11 @@ class Scenario:
     def get_marqueur(self):
         return self.marqueur
 
+    def etat(self):
+        return self.liste_inst.etat
+
     def change(self):
-        self.etat = not(self.etat)
+        self.liste_inst.change_etat()
 
     def do(self, join = False):
         proc = Thread(target=self.liste_inst.do)

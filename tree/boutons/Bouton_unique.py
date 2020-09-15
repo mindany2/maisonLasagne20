@@ -17,7 +17,7 @@ class Bouton_unique(Bouton):
         self.scenar_off = scenar_off
 
     def etat(self):
-        return self.scenar_on.etat
+        return self.scenar_on.etat()
 
     def get_marqueur(self):
         return self.scenar_on.get_marqueur()

@@ -83,7 +83,7 @@ def get_lumiere(infos):
             return Enceintes(nom, Ampli_6_zones, zone)
 
     elif type_lumière == "lyre":
-        return Lyre(nom, Device_dmx(Controleur_dmx(), addr_bluetooth_ou_ip))
+        return Lyre(nom, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
 
 
             

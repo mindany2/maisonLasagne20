@@ -8,10 +8,15 @@ class Liste_instructions:
     """
     Contient une succession d'instructions
     """
-    def __init__(self):
+    def __init__(self, boucle):
         self.liste = []
         self.liste_barrier = [0]
         self.liste_thread = []
+        self.boucle = boucle
+        self.etat = False
+
+    def change_etat(self):
+        self.etat = not(self.etat)
 
     def add(self, inst):
         self.liste.append(inst)
@@ -37,24 +42,27 @@ class Liste_instructions:
         return self.liste.__iter__()
 
     def do(self):
-        #on fait toute les instructions
-        self.liste_thread = []
-        liste_barrieres = [Barrier(i) for i in self.liste_barrier]
-        cummulative_somme = cumsum(self.liste_barrier)
-        # on demarre toutes les instructions
-        for i,inst in enumerate(self.liste):
-            # chaque instruction est un thread
-            # on le demarre
-            n = sum([int(i+1 > j) for j in cummulative_somme])
-            bar = liste_barrieres[n]
-            process = Thread(target=inst.run, args=[bar])
-            self.liste_thread.append(process)
-            process.start()
+        while True:
+            #on fait toute les instructions
+            self.liste_thread = []
+            liste_barrieres = [Barrier(i) for i in self.liste_barrier]
+            cummulative_somme = cumsum(self.liste_barrier)
+            # on demarre toutes les instructions
+            for i,inst in enumerate(self.liste):
+                # chaque instruction est un thread
+                # on le demarre
+                n = sum([int(i+1 > j) for j in cummulative_somme])
+                bar = liste_barrieres[n]
+                process = Thread(target=inst.run, args=[bar])
+                self.liste_thread.append(process)
+                process.start()
 
-        #on attend qu'ils aient tous terminé
-        for proc in self.liste_thread:
-            proc.join()
-
+            #on attend qu'ils aient tous terminé
+            for proc in self.liste_thread:
+                proc.join()
+            print("tout est fini !!")
+            if not(self.boucle and self.etat):
+                break
 
 
 

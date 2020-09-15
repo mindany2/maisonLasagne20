@@ -3,15 +3,23 @@ from tree.Preset import Preset
 from tree.eclairage.Led import Led
 from tree.eclairage.Lampe import Lampe
 from tree.eclairage.Enceintes import Enceintes
+from tree.eclairage.dmx.Lyre import Lyre, COULEUR, GOBO
 from tree.eclairage.Trappe import Trappe
+
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.scenario.Instruction_bouton import Instruction_bouton
 from tree.scenario.Instruction_trappe import Instruction_trappe
 from tree.scenario.Instruction_enceinte import Instruction_enceinte
+from tree.scenario.dmx.Instruction_position import Instruction_position
+from tree.scenario.dmx.Instruction_gobo import Instruction_gobo
+from tree.scenario.dmx.Instruction_dimmeur import Instruction_dimmeur
+from tree.scenario.dmx.Instruction_couleur import Instruction_couleur
+from tree.scenario.dmx.Instruction_strombo import Instruction_strombo
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario,MARQUEUR
+
 from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_principal import Bouton_principal
 from tree.boutons.Bouton_poussoir import Bouton_poussoir
@@ -48,8 +56,12 @@ def get_preset(env, nom):
                     marqueur = MARQUEUR.ON
                 else:
                     marqueur = MARQUEUR.OFF
+            if ligne.count("*") == 0:
+                boucle = False
+            else:
+                boucle = True
             # on créer donc un nv scenar
-            scenar = Scenario(nom_scenar, marqueur)
+            scenar = Scenario(nom_scenar.replace("*",""), marqueur, boucle)
             preset.add_scenar(scenar)
         elif scenar != None:
             inst = get_inst(env,ligne.split("|"))
@@ -125,7 +137,7 @@ def get_inst(env, infos):
     Créer une instruction
     """
     nom_lampe = infos[1]
-    temps_init = int(infos[4])
+    temps_init = infos[4]
     try:
         synchro = infos[6] == "oui"
     except:
@@ -141,11 +153,8 @@ def get_inst(env, infos):
 
         return Instruction_bouton(nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro)
 
-
-
-
     dimmeur = infos[2]
-    duree = int(infos[3])
+    duree = float(infos[3])
     couleur = infos[5]
     
     lumière = env.get_lumiere(nom_lampe)
@@ -160,6 +169,25 @@ def get_inst(env, infos):
         return Instruction_trappe(action,duree, temps_init, synchro)
     elif isinstance(lumière, Enceintes):
         return Instruction_enceinte(lumière, int(dimmeur), duree, temps_init, synchro) 
+
+    elif isinstance(lumière, Lyre):
+        type_inst = dimmeur
+        args = couleur
+        if type_inst == "position":
+            return Instruction_position(lumière, eval(args), duree, temps_init, synchro)
+        elif type_inst == "couleur":
+            couleur = COULEUR[args]
+            return Instruction_couleur(lumière, couleur, duree, temps_init, synchro)
+        elif type_inst == "gobo":
+            gobo = GOBO[args]
+            return Instruction_gobo(lumière, gobo, duree, temps_init, synchro)
+        elif type_inst == "dimmeur":
+            return Instruction_dimmeur(lumière, int(args), duree, temps_init, synchro)
+        elif type_inst == "strombo":
+            return Instruction_strombo(lumière, int(args), duree, temps_init, synchro)
+
+
+
 
     return None
 

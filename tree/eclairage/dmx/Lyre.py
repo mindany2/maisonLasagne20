@@ -1,9 +1,11 @@
 from enum import Enum
+from threading import Lock
 from tree.eclairage.Lumiere import Lumiere
 
 class Lyre(Lumiere):
     """
     Une petite lyre en 11 channel
+    il y a plein de lock, le principal est le mouvement
     """
     def __init__(self, nom, controleur):
         Lumiere.__init__(self, nom)
@@ -16,6 +18,9 @@ class Lyre(Lumiere):
 
         self.couleur = COULEUR.blanc
         self.gobo = GOBO.rond
+        
+        self.mutex_dimmeur = Lock()
+        self.test_lock_dimmeur = 0
 
     def set_position(self, pan, tilt):
         if self.pan != pan:
@@ -54,6 +59,25 @@ class Lyre(Lumiere):
         if self.vitesse_moteur != vitesse_moteur:
             self.dmx.set(CHANNEL.vitesse_moteur, vitesse_moteur)
         self.vitesse_moteur = vitesse_moteur
+
+    def get_position(self):
+        return (self.pan, self.tilt)
+
+    def lock_dimmeur(self):
+        if self.mutex_dimmeur.locked():
+            # on donne l'ordre de kill the thread en cours
+            self.test_lock_dimmeur += 1
+        self.mutex_dimmeur.acquire()
+        if self.test_lock_dimmeur > 0:
+            self.test_lock_dimmeur -= 1
+
+    def test_dimmeur(self):
+        return self.test_lock_dimmeur>0
+
+    def unlock_dimmer(self):
+        self.mutex_dimmeur.release()
+
+
 
 
 class COULEUR(Enum):

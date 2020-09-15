@@ -10,4 +10,4 @@ class Device_dmx:
 
     def set(self, option, valeur):
         # option = channel de l'option en enum
-        self.dmx.set_channel(self.addr.value + option - 1, valeur)
+        self.dmx.set(self.addr + option.value - 1, valeur)

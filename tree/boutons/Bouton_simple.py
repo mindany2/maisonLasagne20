@@ -12,7 +12,7 @@ class Bouton_simple(Bouton):
         self.scenar = scénar
 
     def etat(self):
-        return self.scenar.etat
+        return self.scenar.etat()
 
     def get_marqueur(self):
         return self.scenar.get_marqueur()
