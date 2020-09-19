@@ -16,17 +16,26 @@ class Instruction():
         self.temps_init = temps_init
         self.duree = duree
         self.synchro = synchro
+        self.id_liste = 0
+        self.calculateur = None
 
     def run(self, temps_ecouler = 0):
+        self.duree=self.eval(self.duree)
         if self.temps_init.count("bpm") == 0:
-            if temps_ecouler < int(self.temps_init):
-                sleep(int(self.temps_init)-temps_ecouler)
+            if temps_ecouler < self.eval(self.temps_init):
+                sleep(self.calculateur.eval(self.temps_init)-temps_ecouler)
         else:
             # on doit attendre le bpm
-            numero = int(self.temps_init.split("_")[1])
+            numero = self.calculateur.eval(self.temps_init.split("_")[1])
             Spotify.wait_for_beat(numero)
+            if self.temps_init.count(","):
+                # on doit attendre en plus
+                sleep(self.eval(self.temps_init.split(",")[0]))
+
         # le reste est dans les sous-classes
 
+    def eval(self, string):
+        return self.calculateur.eval(string)
 
     def eclairage(self):
         return None

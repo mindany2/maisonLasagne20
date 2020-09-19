@@ -15,9 +15,9 @@ class Scenario:
     La base d'un bouton, juste un état
     """
 
-    def __init__(self, nom, marqueur, boucle = False):
+    def __init__(self, nom, marqueur,calculateur, boucle = False):
         self.nom = nom
-        self.liste_inst = Liste_instructions(boucle)
+        self.liste_inst = Liste_instructions(boucle, calculateur)
         self.marqueur = marqueur
 
     def __eq__(self, obj):
@@ -37,6 +37,9 @@ class Scenario:
 
     def change(self):
         self.liste_inst.change_etat()
+
+    def reset(self):
+        self.liste_inst.etat = False
 
     def do(self, join = False):
         proc = Thread(target=self.liste_inst.do)

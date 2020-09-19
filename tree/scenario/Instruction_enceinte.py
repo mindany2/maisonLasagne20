@@ -24,7 +24,7 @@ class Instruction_enceinte(Instruction):
                 self.enceinte.volume_ref = self.volume
 
             volume_initial = self.enceinte.volume
-            volume_final = self.volume
+            volume_final = self.eval(self.volume)
             ecart = volume_final - volume_initial
 
             if ecart == 0:

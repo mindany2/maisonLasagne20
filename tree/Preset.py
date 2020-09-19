@@ -14,6 +14,10 @@ class Preset:
         self.etat = False
         self.lien_inter_bouton = Dico()
 
+    def reset(self):
+        for scenar in self.liste_scénario:
+            scenar.reset()
+
     def add_lien_inter(self, nom_inter, bouton):
         self.lien_inter_bouton.add(nom_inter, bouton)
 

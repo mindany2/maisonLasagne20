@@ -21,7 +21,7 @@ class Instruction_dimmeur(Instruction_lumiere):
             temps_init = time()
  
             dimmeur_initial = self.lumière.dimmeur
-            dimmeur_final = self.dimmeur
+            dimmeur_final = self.eval(self.dimmeur)
             if self.duree == 0:
                 return
             nb_points = RESOLUTION*self.duree

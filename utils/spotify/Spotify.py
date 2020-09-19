@@ -36,14 +36,19 @@ class Spotify:
 
     @classmethod
     def wait_for_beat(self, number):
+        print(self.track)
         if self.track != None:
             cond = self.track.beat
             try:
                 cond.acquire()
                 for _ in range(number):
                     cond.wait()
+                    if self.track == None:
+                        break
             finally:
                 cond.release()
+        else:
+            sleep(0.1)
 
     @classmethod
     def inter(self, status, volume, track, position):
@@ -72,10 +77,10 @@ class Spotify:
             print("nv volume = "+str(volume))
 
         elif status == "change":
+            track = Track(self.sp, self.player, track)
             if self.track != None:
                 self.track.kill()
-                self.track = None
-            self.track = Track(self.sp, self.player, track)
+            self.track = track
 
         if etat != self.etat:
             if etat:

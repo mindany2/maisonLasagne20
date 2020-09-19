@@ -1,17 +1,16 @@
 from tree.scenario.Instruction import Instruction
-from tree.eclairage.dmx.Lyre import GOBO
 from time import sleep, time
 import numpy as np
 from utils.Logger import Logger
 
-class Instruction_gobo(Instruction):
+class Instruction_vitesse(Instruction):
     """
     On set un projecteur
     """
-    def __init__(self, lumière, gobo, duree, temps_init, synchro):
+    def __init__(self, lumière, valeur, duree, temps_init, synchro):
         Instruction.__init__(self, duree, temps_init, synchro)
         self.lumière = lumière
-        self.gobo = gobo
+        self.valeur = valeur
 
     def run(self, barrier):
         """
@@ -19,8 +18,7 @@ class Instruction_gobo(Instruction):
         """
         super().run(temps_ecouler=0)
         barrier.wait()
-        liste = [i.name for i in GOBO]
-        self.lumière.set_gobo(GOBO[liste[self.eval(self.gobo)]])
+        self.lumière.set_vitesse(self.eval(self.valeur))
 
     def show(self):
-        print("projo = ",self.lumière.nom, " | gobo = ", self.gobo, " | duree = ", self.duree)
+        print("projo = ",self.lumière.nom, " | program = ", self.valeur, " | duree = ", self.duree)

@@ -7,6 +7,8 @@ from tree.eclairage.Projecteur import Projecteur
 from tree.eclairage.Enceintes import Enceintes
 from tree.scenario.Scenario import MARQUEUR
 from utils.Logger import Logger
+from tree.utils.Calculateur import Calculateur
+from tree.utils.Variable import Variable
 import sys
 
 
@@ -24,6 +26,7 @@ class Environnement:
         self.liste_presets_choisis = Dico()
         self.style = Liste_radios()
         self.rang = 0 # rang 0 le plus bas, 1 le plus haut, 2 ect...
+        self.calculateur = Calculateur()
 
     def get_rang(self):
         if self.rang == 0:
@@ -32,6 +35,8 @@ class Environnement:
         return self.rang
 
     def reset_preset(self):
+        for preset in self.liste_presets:
+            preset.reset()
         self.liste_presets = Liste_radios()
         self.liste_presets_choisis = Dico()
         self.style = Liste_radios()
@@ -49,7 +54,10 @@ class Environnement:
         return self.style
 
     def add_lumiere(self, lum):
-        self.liste_lumières.add(lum)
+        if isinstance(lum, Variable):
+            self.calculateur.add(lum)
+        else:
+            self.liste_lumières.add(lum)
 
     def etat(self):
         # retourne si l'état correspondant au marqueur du scénario en cours
@@ -98,7 +106,11 @@ class Environnement:
         return self.liste_presets.get(nom)
 
     def get_lumiere(self, nom):
-        return self.liste_lumières.get(nom)
+        lum = self.liste_lumières.get(nom)
+        if lum:
+            return lum
+        # ce peut être une variable
+        return self.calculateur.get(nom)
 
     def get_scenar(self, nom):
         return self.get_preset_select().get_scenar(nom)

@@ -5,10 +5,12 @@ from tree.eclairage.Lampe import Lampe
 from tree.eclairage.Enceintes import Enceintes
 from tree.eclairage.dmx.Lyre import Lyre, COULEUR, GOBO
 from tree.eclairage.Trappe import Trappe
+from tree.utils.Variable import Variable
 
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
+from tree.scenario.Instruction_variable import Instruction_variable, TYPE_INST
 from tree.scenario.Instruction_bouton import Instruction_bouton
 from tree.scenario.Instruction_trappe import Instruction_trappe
 from tree.scenario.Instruction_enceinte import Instruction_enceinte
@@ -17,8 +19,13 @@ from tree.scenario.dmx.Instruction_gobo import Instruction_gobo
 from tree.scenario.dmx.Instruction_dimmeur import Instruction_dimmeur
 from tree.scenario.dmx.Instruction_couleur import Instruction_couleur
 from tree.scenario.dmx.Instruction_strombo import Instruction_strombo
+from tree.scenario.dmx.Instruction_program import Instruction_program
+from tree.scenario.dmx.Instruction_vitesse import Instruction_vitesse
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario,MARQUEUR
+from tree.eclairage.dmx.Boule import Boule
+from tree.eclairage.dmx.Laser import Laser
+from tree.eclairage.dmx.Strombo import Strombo
 
 from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_principal import Bouton_principal
@@ -61,7 +68,7 @@ def get_preset(env, nom):
             else:
                 boucle = True
             # on créer donc un nv scenar
-            scenar = Scenario(nom_scenar.replace("*",""), marqueur, boucle)
+            scenar = Scenario(nom_scenar.replace("*",""), marqueur, env.calculateur, boucle)
             preset.add_scenar(scenar)
         elif scenar != None:
             inst = get_inst(env,ligne.split("|"))
@@ -145,46 +152,72 @@ def get_inst(env, infos):
     if (nom_lampe.count(".") != 0):
         # on a une instruction bouton
         nom_env, nom_preset, nom_scenar = nom_lampe.split(".")
-        etat = int(infos[2])
+        etat = infos[2]
         type_bt = infos[3]
-        temps_init = int(infos[4])
+        temps_init = infos[4]
         if (type_bt != "deco" and type_bt != "unique"):
             raise(Exception("Type bouton non supporter {} : {}".format(env.nom, type_bt)))
 
         return Instruction_bouton(nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro)
 
     dimmeur = infos[2]
-    duree = float(infos[3])
+    duree = infos[3]
     couleur = infos[5]
     
     lumière = env.get_lumiere(nom_lampe)
     if isinstance(lumière, Projecteur):
-        return Instruction_projecteur(lumière, int(dimmeur), duree, temps_init, synchro)
+        return Instruction_projecteur(lumière, dimmeur, duree, temps_init, synchro)
     elif isinstance(lumière, Led):
-        return Instruction_led(lumière, int(dimmeur), duree, temps_init, synchro, couleur)
+        return Instruction_led(lumière, dimmeur, duree, temps_init, synchro, couleur)
     elif isinstance(lumière, Lampe):
-        return Instruction_lampe(lumière, int(dimmeur), temps_init, synchro)
+        return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
     elif isinstance(lumière, Trappe):
         action = dimmeur
         return Instruction_trappe(action,duree, temps_init, synchro)
     elif isinstance(lumière, Enceintes):
-        return Instruction_enceinte(lumière, int(dimmeur), duree, temps_init, synchro) 
+        return Instruction_enceinte(lumière, dimmeur, duree, temps_init, synchro) 
 
     elif isinstance(lumière, Lyre):
         type_inst = dimmeur
         args = couleur
         if type_inst == "position":
-            return Instruction_position(lumière, eval(args), duree, temps_init, synchro)
+            return Instruction_position(lumière, args, duree, temps_init, synchro)
         elif type_inst == "couleur":
-            couleur = COULEUR[args]
-            return Instruction_couleur(lumière, couleur, duree, temps_init, synchro)
+            args = couleur
+            return Instruction_couleur(lumière, args, duree, temps_init, synchro)
         elif type_inst == "gobo":
-            gobo = GOBO[args]
-            return Instruction_gobo(lumière, gobo, duree, temps_init, synchro)
+            args = couleur
+            return Instruction_gobo(lumière, args, duree, temps_init, synchro)
         elif type_inst == "dimmeur":
-            return Instruction_dimmeur(lumière, int(args), duree, temps_init, synchro)
+            return Instruction_dimmeur(lumière, args, duree, temps_init, synchro)
         elif type_inst == "strombo":
-            return Instruction_strombo(lumière, int(args), duree, temps_init, synchro)
+           return Instruction_strombo(lumière, args, duree, temps_init, synchro)
+ 
+    elif isinstance(lumière, Boule):
+        type_inst = dimmeur
+        args = couleur
+        if type_inst == "program":
+            return Instruction_program(lumière, args, duree, temps_init, synchro)
+        elif type_inst == "vitesse":
+            return Instruction_vitesse(lumière, args, duree, temps_init, synchro)
+        elif type_inst == "strombo":
+            return Instruction_strombo(lumière, args, duree, temps_init, synchro)
+ 
+    elif isinstance(lumière, Strombo):
+        type_inst = dimmeur
+        args = couleur
+        if type_inst == "dimmeur":
+            return Instruction_dimmeur(lumière, args, duree, temps_init, synchro)
+        elif type_inst == "strombo":
+            return Instruction_strombo(lumière, args, duree, temps_init, synchro)
+
+
+
+    elif isinstance(lumière, Variable):
+            type_inst = dimmeur
+            args = couleur
+            return Instruction_variable(lumière, TYPE_INST[type_inst], args, temps_init, synchro, duree)
+
 
 
 

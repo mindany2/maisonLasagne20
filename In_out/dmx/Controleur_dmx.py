@@ -17,8 +17,6 @@ class Controleur_dmx:
 
     @classmethod
     def set(self, channel, value):
-        self.mutex.acquire()
         if self.dmx:
             self.dmx.set_channel(channel, value)
-        self.mutex.release()
 

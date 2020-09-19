@@ -3,23 +3,28 @@ from threading import Thread, Barrier
 from numpy import cumsum
 from time import time, sleep
 from multiprocessing import Process
+from random import random
 
 class Liste_instructions:
     """
     Contient une succession d'instructions
     """
-    def __init__(self, boucle):
+    def __init__(self, boucle, calculateur):
         self.liste = []
         self.liste_barrier = [0]
         self.liste_thread = []
         self.boucle = boucle
         self.etat = False
+        self.id_liste = random()
+        self.calculateur = calculateur
 
     def change_etat(self):
         self.etat = not(self.etat)
 
     def add(self, inst):
         self.liste.append(inst)
+        inst.id_liste = self.id_liste
+        inst.calculateur = self.calculateur
         self.liste_barrier[-1] += 1
         if not(inst.synchro):
             # on a une nouvelle barrière

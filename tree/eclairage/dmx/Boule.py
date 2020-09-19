@@ -15,17 +15,17 @@ class Boule(Lumiere):
         self.vitesse = 0
 
     def set_program(self, value):
-        if self.program != value and value<43:
-            self.dmx.set(CHANNEL.program, value*6)
+        if self.program != value:
+            self.dmx.set(CHANNEL.program, value)
         self.program = value
 
     def set_strombo(self, value):
-        if self.strombo != value and value<43:
+        if self.strombo != value:
             self.dmx.set(CHANNEL.strombo, value)
         self.strombo = value
 
     def set_vitesse(self, value):
-        if self.vitesse != value and value<43:
+        if self.vitesse != value:
             self.dmx.set(CHANNEL.vitesse, value)
         self.vitesse = value
 

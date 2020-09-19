@@ -21,9 +21,10 @@ class Instruction_led(Instruction_lumiere):
         try:
             self.lumière.lock()
      
-            dimmeur_final = self.dimmeur
+            dimmeur_final = self.eval(self.dimmeur)
             dimmeur_initial = self.lumière.dimmeur
             nb_points = RESOLUTION*self.duree
+            self.couleur = self.eval(self.couleur)
             if dimmeur_initial != dimmeur_final:
                 liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, (dimmeur_final-dimmeur_initial)/nb_points)
             else:

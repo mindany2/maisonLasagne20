@@ -6,6 +6,8 @@ class Lyre(Lumiere):
     """
     Une petite lyre en 11 channel
     il y a plein de lock, le principal est le mouvement
+    9 couleurs
+    9 gobos
     """
     def __init__(self, nom, controleur):
         Lumiere.__init__(self, nom)
@@ -102,6 +104,7 @@ class GOBO(Enum):
     points = 80
     tatouage = 95
     rayure = 110
+    roue = 110
 
 class CHANNEL(Enum):
     pan = 1

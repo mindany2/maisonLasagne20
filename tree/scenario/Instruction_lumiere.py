@@ -10,11 +10,11 @@ class Instruction_lumiere(Instruction):
     def __init__(self, lumière, dimmeur, duree, temps_init, synchro):
         Instruction.__init__(self, duree, temps_init, synchro)
         self.dimmeur = dimmeur
-        self.duree = duree
         self.lumière = lumière
 
     def run(self, temps_ecouler=0):
         super().run(temps_ecouler)
+        self.dimmeur = self.eval(self.dimmeur)
 
     def eclairage(self):
         return self.lumière
