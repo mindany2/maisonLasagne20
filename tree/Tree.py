@@ -24,12 +24,6 @@ class Tree:
         Logger.info("Changement de mode : " + self.get_current_mode().nom)
 
     @classmethod
-    def reload_son(self, etat):
-        Logger.debug("Reload son : "+ str(etat))
-        for env in self.liste_envi:
-            env.reload_son(etat)
-
-    @classmethod
     def press_inter(self, nom_inter, etat):
         Logger.debug("on press l'inter "+nom_inter)
         for env in self.liste_envi:

@@ -35,7 +35,9 @@ class Instruction():
         # le reste est dans les sous-classes
 
     def eval(self, string):
-        return self.calculateur.eval(string)
+        if self.calculateur:
+            return self.calculateur.eval(string)
+        return int(string)
 
     def eclairage(self):
         return None

@@ -32,6 +32,9 @@ class Scenario:
     def get_marqueur(self):
         return self.marqueur
 
+    def set_etat(self, etat):
+        self.liste_inst.etat = etat
+
     def etat(self):
         return self.liste_inst.etat
 

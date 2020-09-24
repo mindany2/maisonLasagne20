@@ -14,6 +14,7 @@ from tree.scenario.Instruction_variable import Instruction_variable, TYPE_INST
 from tree.scenario.Instruction_bouton import Instruction_bouton
 from tree.scenario.Instruction_trappe import Instruction_trappe
 from tree.scenario.Instruction_enceinte import Instruction_enceinte
+from tree.scenario.Instruction_spotify import Instruction_spotify, TYPE_INST_SPOTIFY
 from tree.scenario.dmx.Instruction_position import Instruction_position
 from tree.scenario.dmx.Instruction_gobo import Instruction_gobo
 from tree.scenario.dmx.Instruction_dimmeur import Instruction_dimmeur
@@ -59,7 +60,7 @@ def get_preset(env, nom):
             else:
                 nom_scenar = ligne
                 # on suppose que c'est on
-                if nom_scenar != "eteindre":
+                if nom_scenar.count("eteindre") == 0:
                     marqueur = MARQUEUR.ON
                 else:
                     marqueur = MARQUEUR.OFF
@@ -144,7 +145,7 @@ def get_inst(env, infos):
     Créer une instruction
     """
     nom_lampe = infos[1]
-    temps_init = infos[4]
+    dimmeur = infos[2]
     try:
         synchro = infos[6] == "oui"
     except:
@@ -155,14 +156,18 @@ def get_inst(env, infos):
         etat = infos[2]
         type_bt = infos[3]
         temps_init = infos[4]
-        if (type_bt != "deco" and type_bt != "unique"):
+        if type_bt not in ("déco","unique","simple"):
             raise(Exception("Type bouton non supporter {} : {}".format(env.nom, type_bt)))
 
         return Instruction_bouton(nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro)
 
-    dimmeur = infos[2]
+    elif nom_lampe == "spotify":
+        return Instruction_spotify(TYPE_INST_SPOTIFY[dimmeur], temps_init, synchro, duree)
+
     duree = infos[3]
+    temps_init = infos[4]
     couleur = infos[5]
+
     
     lumière = env.get_lumiere(nom_lampe)
     if isinstance(lumière, Projecteur):

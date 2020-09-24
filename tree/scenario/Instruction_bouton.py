@@ -1,6 +1,7 @@
 from tree.scenario.Instruction import Instruction
 from tree.boutons.Bouton_deco import Bouton_deco
 from tree.boutons.Bouton_unique import Bouton_unique
+from tree.boutons.Bouton_simple import Bouton_simple
 from tree.Tree import Tree
 from utils.Logger import Logger
 
@@ -27,7 +28,7 @@ class Instruction_bouton(Instruction):
             self.get_bt()
 
         if(self.env.get_preset_select() == self.preset):
-            self.preset.change_select(self.bouton.press(self.etat))
+            self.preset.change_select(self.bouton.press(self.eval(self.etat)))
 
 
     def get_bt(self):
@@ -43,11 +44,13 @@ class Instruction_bouton(Instruction):
             raise(Exception("Not found exection scenar {} env {} preset {} n'existe pas"
                 .format(self.nom_env, self.nom_env, self.nom_preset)))
 
-        if self.type_bt == "deco":
+        if self.type_bt == "déco":
             self.bouton = Bouton_deco(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.env, self.scenars[0])
         elif self.type_bt == "unique":
             self.bouton = Bouton_unique(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0],
                     self.scenars[0], self.scenars[1])
+        elif self.type_bt == "simple":
+            self.bouton = Bouton_simple(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.scenars[0])
 
         else:
             raise(Exception("Type non pris en charge"))

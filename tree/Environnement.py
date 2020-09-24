@@ -45,11 +45,6 @@ class Environnement:
     def reload_style(self):
         self.style.change_select(self.style.get(Tree.get_current_mode().nom))
 
-    def reload_son(self, etat):
-        for enceinte in self.liste_lumières:
-            if isinstance(enceinte, Enceintes):
-                enceinte.reload(etat)
-
     def get_style(self):
         return self.style
 

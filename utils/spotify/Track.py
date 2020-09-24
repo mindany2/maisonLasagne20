@@ -18,7 +18,7 @@ class Track:
         self.beat = Condition()
         self.calcul_beats()
         pc = Thread(target=self.beats_action)
-        pc.start()
+        #pc.start()
         
     def kill(self):
         try:

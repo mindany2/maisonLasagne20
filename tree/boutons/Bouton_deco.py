@@ -12,7 +12,6 @@ class Bouton_deco(Bouton):
 
     def press(self, etat = None):
         pile = self.env.get_preset_select().get_pile()
-        print(etat)
         if not(etat):
             # on doit eteindre
             if pile.selected() == self.scenar_deco:

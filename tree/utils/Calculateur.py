@@ -1,5 +1,7 @@
 from tree.utils.Liste import Liste
 from random import randint
+from tree.Tree import Tree
+from utils.spotify.Spotify import Spotify
 
 class Calculateur:
     """
@@ -15,6 +17,11 @@ class Calculateur:
         if string != "":
             for var in self.variables:
                 vars()[var.nom] = var.get()
+            for env in Tree().liste_envi:
+                for var in env.calculateur.variables:
+                    vars()[env.nom+"."+var.nom] = var.get()
+            vars()["volume_spotify"] = Spotify().volume
+            vars()["etat_spotify"] = Spotify().etat
             return eval(string)
         return 0
 

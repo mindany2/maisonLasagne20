@@ -31,11 +31,11 @@ class Bouton_unique(Bouton):
 
         if etat:
             self.scenar_on.do()
-            self.scenar_on.etat = True
-            self.scenar_off.etat = False
+            self.scenar_on.set_etat(True)
+            self.scenar_off.set_etat(False)
         else:
             self.scenar_off.do()
-            self.scenar_on.etat = False
-            self.scenar_off.etat = True
+            self.scenar_on.set_etat(False)
+            self.scenar_off.set_etat(True)
 
         return None
