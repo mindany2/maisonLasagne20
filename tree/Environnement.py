@@ -20,6 +20,7 @@ class Environnement:
     def __init__(self, nom):
         self.nom = nom
         self.couleurs = None
+        self.scenar_reload = None
         self.liste_lumières = Liste()
         self.liste_presets = Liste_radios()
         # table de hashage entre mode et preset
@@ -44,6 +45,12 @@ class Environnement:
 
     def reload_style(self):
         self.style.change_select(self.style.get(Tree.get_current_mode().nom))
+
+    def reload_scenar(self):
+        if self.scenar_reload:
+            scenar = self.get_preset_select().get_scenar(self.scenar_reload)
+            if scenar:
+                scenar.do()
 
     def get_style(self):
         return self.style
@@ -71,15 +78,19 @@ class Environnement:
     def change_mode(self):
         nv_preset = self.liste_presets_choisis.get(Tree.get_current_mode())
         # on met le premier sénario qui correspond au même mode que celui en cours
-        for scenar in nv_preset.liste_scénario:
-            if scenar.get_marqueur() == self.etat():
-                nv_preset.change_select(scenar)
-                if self.etat() != MARQUEUR.OFF:
-                    scenar.do()
-                # sinon pas besoin on est éteint
-                break
-        # on change de preset
-        self.change_preset_select(nv_preset)
+        if nv_preset != self.get_preset_select():
+            etat = self.etat()
+            if etat == MARQUEUR.DECO:
+                etat = MARQUEUR.OFF
+            for scenar in nv_preset.liste_scénario:
+                if scenar.get_marqueur() == etat:
+                    nv_preset.change_select(scenar)
+                    if self.etat() != MARQUEUR.OFF:
+                        scenar.do()
+                    # sinon pas besoin on est éteint
+                    break
+            # on change de preset
+            self.change_preset_select(nv_preset)
 
     def change_scenario_select(self, scenar):
         self.get_preset_select().change_select(scenar)
@@ -110,6 +121,13 @@ class Environnement:
     def get_scenar(self, nom):
         return self.get_preset_select().get_scenar(nom)
 
+    def press_inter(self, nom_inter, etat):
+        self.get_preset_select().press_inter(nom_inter, etat)
+        self.reload_scenar()
+    
+    def press_bouton_html(self, index):
+        self.get_preset_select().press_bouton_html(index)
+        self.reload_scenar()
 
     def show(self):
         print("----- Environnement "+self.nom +" -----")

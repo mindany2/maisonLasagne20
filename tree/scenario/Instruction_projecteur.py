@@ -22,7 +22,7 @@ class Instruction_projecteur(Instruction_lumiere):
             nb_points = self.eval(self.duree)*RESOLUTION
 
             if dimmeur_initial == dimmeur_final:
-                Logger.info("on fait rien pour {}".format(self.lumière.nom))
+                #Logger.info("on fait rien pour {}".format(self.lumière.nom))
                 return
 
             self.lumière.connect()

@@ -9,8 +9,8 @@ class Bouton_unique_html(Bouton_unique):
     le bouton de l'application web pour les global
     """
 
-    def __init__(self, nom, scenar_on, scenar_off):
-        Bouton_unique.__init__(self, nom, scenar_on, scenar_off)
+    def __init__(self, nom, env, scenar_on, scenar_off):
+        Bouton_unique.__init__(self, nom, env, scenar_on, scenar_off)
         # tous les style sont initialisé après avec preset.set_styles
         self.style_on = None
         self.style_off = None

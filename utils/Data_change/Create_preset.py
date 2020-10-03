@@ -11,7 +11,7 @@ from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.scenario.Instruction_variable import Instruction_variable, TYPE_INST
-from tree.scenario.Instruction_bouton import Instruction_bouton
+from tree.scenario.Instruction_bouton import Instruction_bouton, TYPE_BOUTON
 from tree.scenario.Instruction_trappe import Instruction_trappe
 from tree.scenario.Instruction_enceinte import Instruction_enceinte
 from tree.scenario.Instruction_spotify import Instruction_spotify, TYPE_INST_SPOTIFY
@@ -87,13 +87,13 @@ def get_preset(env, nom):
             if mode == "simple":
                scenar = preset.get_scenar(nom_scenar)
                check(env, preset,scenar, nom_scenar)
-               bt = Bouton_simple_html(nom_bt, scenar)
+               bt = Bouton_simple_html(nom_bt, env, scenar)
             if mode == "unique":
                scenar_on = preset.get_scenar(nom_scenar.split(",")[0])
                scenar_off = preset.get_scenar(nom_scenar.split(",")[1])
                check(env, preset, scenar_on, nom_scenar)
                check(env, preset, scenar_off, nom_scenar)
-               bt = Bouton_unique_html(nom_bt, scenar_on, scenar_off)
+               bt = Bouton_unique_html(nom_bt, env, scenar_on, scenar_off)
             preset.add_boutons_html(bt)
         elif type_bt == "inter":
             if mode == "principal":
@@ -144,8 +144,10 @@ def get_inst(env, infos):
     """
     Créer une instruction
     """
+
     nom_lampe = infos[1]
     dimmeur = infos[2]
+    duree = infos[3]
     try:
         synchro = infos[6] == "oui"
     except:
@@ -153,18 +155,26 @@ def get_inst(env, infos):
     if (nom_lampe.count(".") != 0):
         # on a une instruction bouton
         nom_env, nom_preset, nom_scenar = nom_lampe.split(".")
-        etat = infos[2]
-        type_bt = infos[3]
-        temps_init = infos[4]
-        if type_bt not in ("déco","unique","simple"):
-            raise(Exception("Type bouton non supporter {} : {}".format(env.nom, type_bt)))
+        type_bt = infos[2]
+        temps_init = infos[3]
+        try:
+            condition = infos[4]
+            if condition == "":
+                condition = True
+        except:
+            condition = True
+        if type_bt == "déco" or type_bt == "deco":
+            type_bt = TYPE_BOUTON.deco
+        elif type_bt == "scenar":
+            type_bt = TYPE_BOUTON.scenar
+        elif type_bt == "poussoir":
+            type_bt = TYPE_BOUTON.poussoir
 
-        return Instruction_bouton(nom_env, nom_preset, nom_scenar, etat, type_bt, temps_init, synchro)
+        return Instruction_bouton(nom_env, nom_preset, nom_scenar, type_bt, temps_init, synchro, condition)
 
     elif nom_lampe == "spotify":
         return Instruction_spotify(TYPE_INST_SPOTIFY[dimmeur], temps_init, synchro, duree)
 
-    duree = infos[3]
     temps_init = infos[4]
     couleur = infos[5]
 

@@ -25,9 +25,10 @@ class Tree:
 
     @classmethod
     def press_inter(self, nom_inter, etat):
-        Logger.debug("on press l'inter "+nom_inter)
+        Logger.info("on press l'inter "+nom_inter)
         for env in self.liste_envi:
-            env.get_preset_select().press_inter(nom_inter, etat)
+            env.press_inter(nom_inter, etat)
+
 
     @classmethod
     def add_mode(self, mode):
@@ -60,7 +61,7 @@ class Tree:
     def press_bouton_html(self, nom_env, index):
         if nom_env != "mode":
             Logger.info("On press le bouton html : "+nom_env +"."+str(index))
-            self.get_env(nom_env).get_preset_select().press_bouton_html(index)
+            self.get_env(nom_env).press_bouton_html(index)
         else:
             self.liste_modes.selected().press_bouton_mode()
 

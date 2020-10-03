@@ -16,25 +16,24 @@ class Led(Lumiere):
         self.relais =  relais
         self.controleur = controleur
         self.connecté = False
-        self.planté = False  # indique si la led à eu un problème dernièrement (pas de connection à l'éteignage)
 
     def connect(self):
         if not(self.connecté):
             Logger.info("on essaie de se co a "+self.nom)
-            if self.couleur.is_black() or self.planté:
+            if self.couleur.is_black():
                 self.relais.set(Etat.ON)
                 sleep(1)
-            self.planté = False
             self.connecté = not(self.controleur.connect())
+            if not(self.connecté):
+                # la led à planté
+                self.relais.set(Etat.OFF)
         return not(self.connecté)
 
     def deconnect(self, planté = False):
-        print(self.connecté)
         if self.connecté:
             sleep(0.5)
             self.controleur.deconnect(is_black = self.couleur.is_black())
-            if self.couleur.is_black() or planté:
-                self.planté = True
+            if self.couleur.is_black():
                 self.relais.set(Etat.OFF)
             self.connecté = False
         # TODO on enregistre la couleur de la led

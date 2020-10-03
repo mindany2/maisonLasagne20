@@ -11,8 +11,9 @@ class Bouton_unique(Bouton):
     pour faire les boutons html global
     """
 
-    def __init__(self, nom, scenar_on, scenar_off):
+    def __init__(self, nom, env, scenar_on, scenar_off):
         Bouton.__init__(self, nom)
+        self.env = env
         self.scenar_on = scenar_on
         self.scenar_off = scenar_off
 
@@ -23,7 +24,6 @@ class Bouton_unique(Bouton):
         return self.scenar_on.get_marqueur()
 
     def press(self, etat = None):
-        Logger.debug("on press bt unique etat = "+str(etat))
 
         # on fait le scénario s'il n'est pas on
         if etat == None:
@@ -37,5 +37,3 @@ class Bouton_unique(Bouton):
             self.scenar_off.do()
             self.scenar_on.set_etat(False)
             self.scenar_off.set_etat(True)
-
-        return None

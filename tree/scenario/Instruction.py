@@ -34,6 +34,9 @@ class Instruction():
 
         # le reste est dans les sous-classes
 
+    def finish(self):
+        pass
+
     def eval(self, string):
         if self.calculateur:
             return self.calculateur.eval(string)

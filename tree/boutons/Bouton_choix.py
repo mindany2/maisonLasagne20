@@ -19,7 +19,9 @@ class Bouton_choix(Bouton):
                 if select == len(self.liste_scenar):
                     select = 0
                 break
-        return self.liste_scenar[select].do()
+        scenar = self.liste_scenar[select]
+        pile.change_select(scenar)
+        scenar.do()
 
 
 

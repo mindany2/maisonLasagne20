@@ -19,7 +19,13 @@ class Liste_instructions:
         self.calculateur = calculateur
 
     def change_etat(self):
+        if self.etat:
+            # vire ce scénario
+            # on enleve les scénario qu'on a allumer
+            for inst in self.liste:
+                inst.finish()
         self.etat = not(self.etat)
+
 
     def add(self, inst):
         self.liste.append(inst)
@@ -32,13 +38,15 @@ class Liste_instructions:
 
     def __eq__(self, other):
         if isinstance(other, Liste_instructions):
+            if len(self.liste) == 0 or len(other.liste) == 0:
+                return False
+
             for inst1 in self.liste:
                 for inst2 in other.liste:
                     if inst1.eclairage() == inst2.eclairage(): # si elles ont le même eclairage  
                         if not(inst1 == inst2): # si elle finissent pas pareil
                             return False
             return True
-
         return False
 
 
@@ -65,7 +73,6 @@ class Liste_instructions:
             #on attend qu'ils aient tous terminé
             for proc in self.liste_thread:
                 proc.join()
-            print("tout est fini !!")
             if not(self.boucle and self.etat):
                 break
 

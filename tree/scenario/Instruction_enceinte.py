@@ -26,7 +26,7 @@ class Instruction_enceinte(Instruction):
             ecart = volume_final - volume_initial
 
             if ecart == 0:
-                Logger.info("on fait rien pour l'enceinte {}".format(self.enceinte.nom))
+                #Logger.info("on fait rien pour l'enceinte {}".format(self.enceinte.nom))
                 return
             nb_points = self.duree*RESOLUTION
             self.enceinte.connect()

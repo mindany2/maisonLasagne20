@@ -10,6 +10,7 @@ class Pile_radio(Liste_radios):
 
     def clear(self):
         self.pile = []
+        print([el.nom for el in self.pile])
 
     def is_present(self, element):
         return self.pile.count(element) == 1
@@ -17,14 +18,19 @@ class Pile_radio(Liste_radios):
     def push_select(self):
         self.push(self.selected())
 
-    def push(self, element):
-        self.pile.append(element)
+    def push(self, element, index=0):
+        if index == 0:
+            self.pile.append(element)
+        else:
+            self.pile.insert(index, element)
+        print([el.nom for el in self.pile])
 
     def remove(self, element):
         try:
             self.pile.remove(element)
         except:
             pass
+        print([el.nom for el in self.pile])
 
     def pop(self):
         element = self.top()

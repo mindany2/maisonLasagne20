@@ -30,7 +30,6 @@ def get_config_music():
                 Spotify.set_pi_id(arg)
             elif nom == "start":
                 env, preset, scenar = arg.split(".")
-                print(Tree().get_env(env).get_preset(preset).get_scenar(scenar))
                 Spotify().set_scenar_start(Tree().get_env(env).get_preset(preset).get_scenar(scenar))
             elif nom == "stop":
                 env, preset, scenar = arg.split(".")

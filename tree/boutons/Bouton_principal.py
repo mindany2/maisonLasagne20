@@ -13,15 +13,19 @@ class Bouton_principal(Bouton):
 
     def press(self, etat = None):
         pile = self.env.get_pile_scenarios()
+        scenar = None
         if self.env.etat() != MARQUEUR.ON:
             pile.push_select()
-            return self.scenar_on.do()
+            scenar = self.scenar_on
         # sinon on met le precedent
-        if pile.top() != None:
-            if pile.top().marqueur == MARQUEUR.DECO:
-                return pile.pop().do()
-        pile.pop()
-        return self.scenar_off.do()
+        elif pile.top().get_marqueur() != MARQUEUR.OFF:
+            scenar = pile.pop()
+        else:
+            scenar = self.scenar_off
 
+        print(scenar == pile.selected())
+        if scenar and scenar != pile.selected():
+            pile.change_select(scenar)
+            scenar.do()
 
 

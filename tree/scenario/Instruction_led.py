@@ -33,7 +33,7 @@ class Instruction_led(Instruction_lumiere):
             if couleur != self.lumière.couleur:
                 liste_couleur = couleur.generate_array(self.lumière.couleur, nb_points)
             else:
-                Logger.debug("on fait rien pour {}".format(self.lumière.nom))
+                #Logger.debug("on fait rien pour {}".format(self.lumière.nom))
                 self.lumière.deconnect() # on la deco si besoin
                 barrier.wait()
                 return

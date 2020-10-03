@@ -4,7 +4,6 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from utils.Logger import Logger
 from utils.spotify.Player import Player
 from utils.spotify.Track import Track
-from tree.Tree import Tree
 from threading import Thread
 from time import sleep
 import os
@@ -91,7 +90,6 @@ class Spotify:
                 print("music = {} : player = {} : diff = {}".format(position, self.player.temps, int(position)-self.player.temps))
                 self.player.set(int(position))
             if not(self.etat) and self.SCENAR_START:
-                print("on do")
                 self.SCENAR_START.do()
             self.etat = True
 
