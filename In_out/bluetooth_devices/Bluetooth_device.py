@@ -30,10 +30,8 @@ class Bluetooth_device:
                 compt += 1
                 Logger.warn("La led n'arrive pas à ce connecter : tentaive n°" + str(compt))
                 sleep(1)
-            """
             if compt == 10:
                 Bluetooth.restart()
-            """
             if compt > 20:
                 return 1
         self.char = Bluetooth().get_char(self.periph, self.uuid, self.char_id)

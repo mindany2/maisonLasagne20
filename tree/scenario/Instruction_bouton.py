@@ -70,6 +70,8 @@ class Instruction_bouton(Instruction):
             self.bouton = Bouton_poussoir(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.env, self.scenars[0])
         elif self.type_bt == TYPE_BOUTON.scenar:
             self.bouton = 1
+        else:
+            raise(Exception("Erreur type bouton : {}".format(self.type_bt)))
 
     def finish(self):
         if self.type_bt == TYPE_BOUTON.deco:
@@ -78,6 +80,8 @@ class Instruction_bouton(Instruction):
     def __eq__(self, other):
         if isinstance(other, Instruction_bouton):
             if self.type_bt == other.type_bt:
+                self.get_bt()
+                other.get_bt()
                 if self.type_bt != TYPE_BOUTON.scenar:
                     return (self.bouton == other.bouton)
                 else:

@@ -7,11 +7,16 @@ class Couleur:
     """
     Permet d'avoir la couleur en rgb
     """
-    def __init__(self, entier):
+    def __init__(self, entier, dimmeur = 100):
         try:
             self.valeur = "0x"+(8-len(hex(entier)))*"0"+hex(entier)[2:]
         except:
             self.valeur = entier
+        self.int_to_rgb()
+        r = int(self.r* float(dimmeur)/100)
+        g = int(self.g* float(dimmeur)/100)
+        b = int(self.b* float(dimmeur)/100)
+        self.valeur = rgb_to_hexa(r,g,b)
 
     def set(self, couleur):
         self.valeur = couleur.valeur

@@ -32,28 +32,28 @@ def threaded_client(conn):
     while True:
         try:
             requete = pickle.loads(conn.recv(4048))
-            # requete est un ordre, une fonction à éxécuter
-            data = None
-            if not requete:
-                Logger.info(str(conn) + "is disconnect")
-                break
-            try:
-                data = requete.do()
-            except e:
-                Logger.error("Exception during client message: ")
-                Logger.error(e)
-                break
-            try:
-                conn.send(pickle.dumps(data))
-            except e:
-                Logger.error("Exception during response send: ")
-                Logger.error(e)
-                break
-
-        except : #e
+        except : #e:
             Logger.error("Exception during request: rajouter le log de e dans serveur")
             #Logger.error(e)
             break
+        # requete est un ordre, une fonction à éxécuter
+        data = None
+        if not requete:
+            Logger.info(str(conn) + "is disconnect")
+            break
+        try:
+            data = requete.do()
+        except e:
+            Logger.error("Exception during client message: ")
+            Logger.error(e)
+            break
+        try:
+            conn.send(pickle.dumps(data))
+        except e:
+            Logger.error("Exception during response send: ")
+            Logger.error(e)
+            break
+
 
     Logger.info("Lost connection")
     conn.close()

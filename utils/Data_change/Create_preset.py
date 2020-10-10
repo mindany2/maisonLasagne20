@@ -165,7 +165,7 @@ def get_inst(env, infos):
             condition = True
         if type_bt == "déco" or type_bt == "deco":
             type_bt = TYPE_BOUTON.deco
-        elif type_bt == "scenar":
+        elif type_bt == "scenar" or type_bt == "scénar":
             type_bt = TYPE_BOUTON.scenar
         elif type_bt == "poussoir":
             type_bt = TYPE_BOUTON.poussoir

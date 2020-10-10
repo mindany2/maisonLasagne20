@@ -118,12 +118,15 @@ class Environnement:
         # ce peut être une variable
         return self.calculateur.get(nom)
 
-    def get_scenar(self, nom):
+    def get_scenar(self, nom, preset=None):
+        if preset:
+            return self.get_preset(preset).get_scenar(nom)
         return self.get_preset_select().get_scenar(nom)
 
     def press_inter(self, nom_inter, etat):
-        self.get_preset_select().press_inter(nom_inter, etat)
-        self.reload_scenar()
+        # si on a qqc à faire dans cet environnement
+        if self.get_preset_select().press_inter(nom_inter, etat):
+            self.reload_scenar()
     
     def press_bouton_html(self, index):
         self.get_preset_select().press_bouton_html(index)

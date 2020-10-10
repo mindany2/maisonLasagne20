@@ -77,5 +77,5 @@ class Tree:
         return self.liste_modes.selected().bouton_change_html
 
     @classmethod
-    def get_scenar(self, nom_env, nom_scenar):
-        return self.get_env(nom_env).get_scenar(nom_scenar)
+    def get_scenar(self, nom_env, nom_scenar, preset=None):
+        return self.get_env(nom_env).get_scenar(nom_scenar, preset)

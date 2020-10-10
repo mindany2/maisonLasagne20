@@ -18,12 +18,11 @@ class Bouton_principal(Bouton):
             pile.push_select()
             scenar = self.scenar_on
         # sinon on met le precedent
-        elif pile.top().get_marqueur() != MARQUEUR.OFF:
+        elif pile.top() and pile.top().get_marqueur() != MARQUEUR.OFF:
             scenar = pile.pop()
         else:
             scenar = self.scenar_off
 
-        print(scenar == pile.selected())
         if scenar and scenar != pile.selected():
             pile.change_select(scenar)
             scenar.do()

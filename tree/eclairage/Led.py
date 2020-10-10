@@ -40,8 +40,8 @@ class Led(Lumiere):
 
     def set(self, dimmeur, couleur):
         err1, err2 = 0,0
-        if self.couleur != Couleur(couleur):
-            self.couleur = Couleur(couleur)
+        if self.couleur != Couleur(couleur, dimmeur):
+            self.couleur = Couleur(couleur, dimmeur)
             err1 = self.controleur.send_color(self.couleur)
         if self.dimmeur != dimmeur:
             self.dimmeur = dimmeur

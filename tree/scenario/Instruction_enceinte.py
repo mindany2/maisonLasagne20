@@ -43,8 +43,8 @@ class Instruction_enceinte(Instruction):
                     sleep(dodo)
             self.enceinte.change_volume(volume_final)
             self.enceinte.deconnect()
-        finally:
             Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
+        finally:
             self.enceinte.unlock()
  
 
