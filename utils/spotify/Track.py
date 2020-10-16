@@ -14,9 +14,12 @@ class Track:
         self.player = player
         self.id = id_track
         self.analysis = self.sp.audio_analysis(self.id)
-        self.infos = self.sp.audio_features(self.id)
+        self.infos = self.sp.audio_features(self.id)[0]
         self.beat = Condition()
         self.calcul_beats()
+        print(self.infos)
+        self.bpm = float(self.infos["tempo"])
+
         pc = Thread(target=self.beats_action)
         pc.start()
         

@@ -92,6 +92,12 @@ class Spotify:
         self.etat = etat
 
     @classmethod
+    def get_bpm(self):
+        if self.track:
+            return self.track.bpm
+        return 0
+
+    @classmethod
     def inst(self):
         print("on attend")
         sleep(30)
