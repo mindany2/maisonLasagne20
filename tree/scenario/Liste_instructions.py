@@ -12,14 +12,19 @@ class Liste_instructions:
     def __init__(self, boucle, calculateur):
         self.liste = []
         self.liste_barrier = [0]
-        self.liste_thread = []
         self.boucle = boucle
         self.etat = False
         self.id_liste = random()
         self.calculateur = calculateur
 
     def change_etat(self):
+        if self.etat:
+            # vire ce scénario
+            # on enleve les scénario qu'on a allumer
+            for inst in self.liste:
+                inst.finish()
         self.etat = not(self.etat)
+
 
     def add(self, inst):
         self.liste.append(inst)
@@ -32,13 +37,15 @@ class Liste_instructions:
 
     def __eq__(self, other):
         if isinstance(other, Liste_instructions):
+            if len(self.liste) == 0 or len(other.liste) == 0:
+                return False
+
             for inst1 in self.liste:
                 for inst2 in other.liste:
                     if inst1.eclairage() == inst2.eclairage(): # si elles ont le même eclairage  
                         if not(inst1 == inst2): # si elle finissent pas pareil
                             return False
             return True
-
         return False
 
 
@@ -49,7 +56,7 @@ class Liste_instructions:
     def do(self):
         while True:
             #on fait toute les instructions
-            self.liste_thread = []
+            liste_thread = []
             liste_barrieres = [Barrier(i) for i in self.liste_barrier]
             cummulative_somme = cumsum(self.liste_barrier)
             # on demarre toutes les instructions
@@ -59,13 +66,12 @@ class Liste_instructions:
                 n = sum([int(i+1 > j) for j in cummulative_somme])
                 bar = liste_barrieres[n]
                 process = Thread(target=inst.run, args=[bar])
-                self.liste_thread.append(process)
+                liste_thread.append(process)
                 process.start()
 
             #on attend qu'ils aient tous terminé
-            for proc in self.liste_thread:
+            for proc in liste_thread:
                 proc.join()
-            print("tout est fini !!")
             if not(self.boucle and self.etat):
                 break
 

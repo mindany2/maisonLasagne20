@@ -9,37 +9,39 @@ class Led(Lumiere):
     """
     led en bluetooth
     """
-    def __init__(self, nom, relais, controleur, couleur = "0x000000"):
+    def __init__(self, nom, relais, controleur, couleur = 0):
         Lumiere.__init__(self, nom)
         self.couleur = Couleur(couleur)
         self.dimmeur = 0
         self.relais =  relais
         self.controleur = controleur
-        self.planté = False  # indique si la led à eu un problème dernièrement (pas de connection à l'éteignage)
+        self.connecté = False
 
     def connect(self):
-        Logger.info("on essaie de se co a "+self.nom)
-        if self.couleur.is_black() or self.planté:
-            self.relais.set(Etat.ON)
-            sleep(1)
-        self.planté = False
-        return self.controleur.connect()
+        if not(self.connecté):
+            Logger.info("on essaie de se co a "+self.nom)
+            if self.couleur.is_black():
+                self.relais.set(Etat.ON)
+                sleep(1)
+            self.connecté = not(self.controleur.connect())
+            if not(self.connecté):
+                # la led à planté
+                self.relais.set(Etat.OFF)
+        return not(self.connecté)
 
     def deconnect(self, planté = False):
-        sleep(1)
-        self.controleur.deconnect(is_black = self.couleur.is_black())
-        if self.couleur.is_black() or planté:
-            self.planté = True
-            sleep(2)
-            self.relais.set(Etat.OFF)
-            sleep(1)
+        if self.connecté:
+            sleep(0.5)
+            self.controleur.deconnect(is_black = self.couleur.is_black())
+            if self.couleur.is_black():
+                self.relais.set(Etat.OFF)
+            self.connecté = False
         # TODO on enregistre la couleur de la led
-
 
     def set(self, dimmeur, couleur):
         err1, err2 = 0,0
-        if self.couleur != Couleur(couleur):
-            self.couleur = Couleur(couleur)
+        if self.couleur != Couleur(couleur, dimmeur):
+            self.couleur = Couleur(couleur, dimmeur)
             err1 = self.controleur.send_color(self.couleur)
         if self.dimmeur != dimmeur:
             self.dimmeur = dimmeur

@@ -2,6 +2,7 @@
 import os
 from utils.communication.Client import Client
 from utils.communication.Spotify_inter import Spotify_inter
+from time import sleep
 
 event = os.environ.get("PLAYER_EVENT")
 volume = os.environ.get("VOLUME")

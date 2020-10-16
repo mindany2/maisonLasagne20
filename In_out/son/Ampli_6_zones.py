@@ -46,6 +46,8 @@ class Ampli_6_zones:
             for zone in self.zones:
                 zone.get_infos()
             print("etat = " + str(self.etat()))
+            print("on start spotify")
+            Spotify().start()
         self.mutex.release()
 
     @classmethod

@@ -9,7 +9,36 @@ from In_out.utils.ST_nucleo import ST_nucleo
 from In_out.son.Ampli_6_zones import Ampli_6_zones
 from In_out.dmx.Controleur_dmx import Controleur_dmx
 from utils.Data_change.utils.Read import ouvrir, lire
+from utils.spotify.Spotify import Spotify
 from utils.Logger import Logger
+from tree.Tree import Tree
+
+def get_config_music():
+    # configure spotify
+    mode = ""
+    for ligne in lire(ouvrir("config.data", False)):
+        if ligne.count("---") != 0:
+            mode = ligne.split("---")[1]
+            continue
+
+        if mode == "spotify":
+            nom, arg = ligne.split("=")
+            if nom == "analysis":
+                Spotify.ANALYSIS = (arg == "oui")
+            elif nom == "pi_id":
+                Spotify.set_pi_id(arg)
+            elif nom == "start":
+                env, preset, scenar = arg.split(".")
+                Spotify().set_scenar_start(Tree().get_env(env).get_preset(preset).get_scenar(scenar))
+            elif nom == "stop":
+                env, preset, scenar = arg.split(".")
+                Spotify().set_scenar_stop(Tree().get_env(env).get_preset(preset).get_scenar(scenar))
+            elif nom == "reload":
+                env, preset, scenar = arg.split(".")
+                Spotify().set_scenar_reload(Tree().get_env(env).get_preset(preset).get_scenar(scenar))
+
+    Spotify().init()
+
 
 def get_config_inter():
     # lis la configuration des interruptions pour remplir Gestionnaire_interruptions

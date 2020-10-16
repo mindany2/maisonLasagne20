@@ -58,6 +58,9 @@ def get_infos(env, liste_modes):
     
                 elif arg1 == "rang":
                     env.rang = int(arg2)
+                elif arg1 == "reload":
+                    env.scenar_reload = arg2
+
 
     # on met tous les styles pour avoir de joli boutons html
     for preset in env.liste_presets:

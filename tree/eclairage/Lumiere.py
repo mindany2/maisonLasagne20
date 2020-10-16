@@ -15,6 +15,7 @@ class Lumiere:
     def lock(self, id_liste=0):
         if self.mutex.locked() and id_liste != self.id_scenar:
             # on donne l'ordre de kill the thread en cours
+            print("on demande de kill")
             self.test_lock += 1
         self.mutex.acquire()
         self.id_scenar = id_liste

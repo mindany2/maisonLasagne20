@@ -24,16 +24,11 @@ class Tree:
         Logger.info("Changement de mode : " + self.get_current_mode().nom)
 
     @classmethod
-    def reload_son(self, etat):
-        Logger.debug("Reload son : "+ str(etat))
-        for env in self.liste_envi:
-            env.reload_son(etat)
-
-    @classmethod
     def press_inter(self, nom_inter, etat):
-        Logger.debug("on press l'inter "+nom_inter)
+        Logger.info("on press l'inter "+nom_inter)
         for env in self.liste_envi:
-            env.get_preset_select().press_inter(nom_inter, etat)
+            env.press_inter(nom_inter, etat)
+
 
     @classmethod
     def add_mode(self, mode):
@@ -66,7 +61,7 @@ class Tree:
     def press_bouton_html(self, nom_env, index):
         if nom_env != "mode":
             Logger.info("On press le bouton html : "+nom_env +"."+str(index))
-            self.get_env(nom_env).get_preset_select().press_bouton_html(index)
+            self.get_env(nom_env).press_bouton_html(index)
         else:
             self.liste_modes.selected().press_bouton_mode()
 
@@ -82,5 +77,5 @@ class Tree:
         return self.liste_modes.selected().bouton_change_html
 
     @classmethod
-    def get_scenar(self, nom_env, nom_scenar):
-        return self.get_env(nom_env).get_scenar(nom_scenar)
+    def get_scenar(self, nom_env, nom_scenar, preset=None):
+        return self.get_env(nom_env).get_scenar(nom_scenar, preset)

@@ -28,7 +28,11 @@ def get_tree():
         nom_mode = mode.split(":")[0]
         css_file = mode.split(":")[1]
         couleur = mode.split(":")[2]
-        tree.add_mode(Mode(nom_mode, css_file, couleur))
+        try:
+            scenar = mode.split(":")[3]
+        except:
+            scenar = None
+        tree.add_mode(Mode(nom_mode, css_file, couleur, scenar))
 
     # on va chercher les environnements
     # et on les remplits
