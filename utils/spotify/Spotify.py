@@ -48,7 +48,9 @@ class Spotify:
                                 client_secret = '1db71ff1ff9d4dadb071aa85df0a58a3',
                                 redirect_uri = 'http://localhost:8888/callback')
         self.sp = spotipy.Spotify(auth=self.token)
+        print("on a init")
         if self.ANALYSIS:
+            print("ooooooooooooooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkk")
             self.player = Player(self.sp)
             self.player.start()
             self.track = None

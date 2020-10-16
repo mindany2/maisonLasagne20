@@ -15,7 +15,6 @@ from tree.Tree import Tree
 
 def get_config_music():
     # configure spotify
-    Spotify().init()
     mode = ""
     for ligne in lire(ouvrir("config.data", False)):
         if ligne.count("---") != 0:
@@ -25,7 +24,7 @@ def get_config_music():
         if mode == "spotify":
             nom, arg = ligne.split("=")
             if nom == "analysis":
-                Spotify().ANALYSIS = (arg == "oui")
+                Spotify.ANALYSIS = (arg == "oui")
             elif nom == "pi_id":
                 Spotify.set_pi_id(arg)
             elif nom == "start":
@@ -38,6 +37,7 @@ def get_config_music():
                 env, preset, scenar = arg.split(".")
                 Spotify().set_scenar_reload(Tree().get_env(env).get_preset(preset).get_scenar(scenar))
 
+    Spotify().init()
 
 
 def get_config_inter():

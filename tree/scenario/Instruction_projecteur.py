@@ -27,6 +27,9 @@ class Instruction_projecteur(Instruction_lumiere):
 
             self.lumière.connect()
             super().run(temps_ecouler=(time()-temps_init))
+            if ecart != 0 and self.duree == 0:
+                self.lumière.set(dimmeur_final)
+                return
             barrier.wait()
             val = dimmeur_initial
             debut = time()
