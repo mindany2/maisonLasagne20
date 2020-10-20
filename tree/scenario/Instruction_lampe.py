@@ -19,7 +19,6 @@ class Instruction_lampe(Instruction_lumiere):
         self.dimmeur = self.eval(self.dimmeur)
         if self.lumière.etat() != (self.dimmeur != 0):
             self.lumière.set(self.dimmeur != 0)
-        Logger.debug("on met la lampe {} a {}".format(self.lumière, self.dimmeur))
         self.lumière.unlock()
 
 
