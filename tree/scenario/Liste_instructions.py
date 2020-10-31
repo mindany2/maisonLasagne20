@@ -71,7 +71,7 @@ class Liste_instructions:
 
             #on attend qu'ils aient tous terminé
             for proc in liste_thread:
-                proc.join()
+                proc.join(timeout=20)
             if not(self.boucle and self.etat):
                 break
 

@@ -85,6 +85,7 @@ class Environnement:
             for scenar in nv_preset.liste_scénario:
                 if scenar.get_marqueur() == etat:
                     nv_preset.change_select(scenar)
+                    print("oooooooooooookkkkkkkkkkkkk", self.nom, scenar.nom)
                     if self.etat() != MARQUEUR.OFF:
                         scenar.do()
                     # sinon pas besoin on est éteint
@@ -126,12 +127,11 @@ class Environnement:
     def press_inter(self, nom_inter, etat):
         # si on a qqc à faire dans cet environnement
         if self.get_preset_select().press_inter(nom_inter, etat):
-            pass
-            #self.reload_scenar()
+            self.reload_scenar()
     
     def press_bouton_html(self, index):
         self.get_preset_select().press_bouton_html(index)
-        #self.reload_scenar()
+        self.reload_scenar()
 
     def show(self):
         print("----- Environnement "+self.nom +" -----")

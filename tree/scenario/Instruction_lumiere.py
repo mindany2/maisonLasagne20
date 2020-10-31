@@ -14,7 +14,6 @@ class Instruction_lumiere(Instruction):
 
     def run(self, temps_ecouler=0):
         super().run(temps_ecouler)
-        self.dimmeur = self.eval(self.dimmeur)
 
     def eclairage(self):
         return self.lumière

@@ -36,6 +36,7 @@ class Liste_interruptions_extender:
 
     def add(self, inter, index):
         self.liste_inter.add(index,inter)
+        print(inter.nom, index)
 
     def get_inter(self, nom):
         print(self.liste_inter)

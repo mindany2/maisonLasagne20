@@ -4,6 +4,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from utils.Logger import Logger
 from utils.spotify.Player import Player
 from utils.spotify.Track import Track
+from tree.Tree import Tree
 from threading import Thread
 from time import sleep
 import os
@@ -18,6 +19,7 @@ class Spotify:
     """
     etat = False
     process = None
+    track = None
     volume = 50
     
     PI_ID, ANALYSIS, SCENAR_START, SCENAR_STOP = None, None, None, None
@@ -32,6 +34,12 @@ class Spotify:
         self.SCENAR_STOP = scenar_stop
 
     @classmethod
+    def get_bpm(self):
+        if self.track:
+            return self.track.bpm
+        return 0
+
+    @classmethod
     def set_scenar_reload(self, scenar):
         self.SCENAR_RELOAD = scenar
 
@@ -44,11 +52,11 @@ class Spotify:
 
         self.token = util.prompt_for_user_token("salle",
                                 SCOPE,
+                                cache_path = ".cache-salle",
                                 client_id = '34eb7c4796fd4c85bd09804bf27011dc',
                                 client_secret = '1db71ff1ff9d4dadb071aa85df0a58a3',
                                 redirect_uri = 'http://localhost:8888/callback')
         self.sp = spotipy.Spotify(auth=self.token)
-        print("on a init")
         if self.ANALYSIS:
             print("ooooooooooooooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkk")
             self.player = Player(self.sp)
@@ -117,27 +125,13 @@ class Spotify:
                 self.SCENAR_RELOAD.do()
                 self.volume = volume
 
+
         elif status == "change":
             if self.ANALYSIS:
                 track = Track(self.sp, self.player, track)
                 if self.track != None:
                     self.track.kill()
                 self.track = track
-
-
-    @classmethod
-    def get_bpm(self):
-        if self.track:
-            return self.track.bpm
-        return 0
-
-    @classmethod
-    def inst(self):
-        print("on attend")
-        sleep(30)
-        if not(self.etat):
-            Tree().reload_son(False)
-            self.etat = False
 
     @classmethod
     def kill(self):
@@ -154,8 +148,11 @@ class Spotify:
         try:
             self.sp.transfer_playback(self.PI_ID, force_play=True)
             self.sp.repeat("context", device_id=self.PI_ID)
+            self.SCENAR_START.do()
         except spotipy.exceptions.SpotifyException:
             self.refresh_token()
+            os.system("sudo systemctl restart raspotify.service")
+            sleep(2)
             self.start()
         self.etat = True
 

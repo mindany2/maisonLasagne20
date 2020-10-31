@@ -34,7 +34,6 @@ class Ampli_6_zones:
     @classmethod
     def allumer(self):
         self.mutex.acquire()
-        print("etat = " + str(self.etat()))
         if not(self.etat()):
             Logger.debug("on allume l'ampli")
             self.relais.set(Etat.ON)
@@ -43,10 +42,11 @@ class Ampli_6_zones:
             if not(conn):
                 self.relais.set(Etat.OFF)
 
+            """
             for zone in self.zones:
                 zone.get_infos()
-            print("etat = " + str(self.etat()))
-            print("on start spotify")
+            """
+            Logger.info("on start spotify")
             Spotify().start()
         self.mutex.release()
 

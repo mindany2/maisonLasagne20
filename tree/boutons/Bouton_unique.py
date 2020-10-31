@@ -26,8 +26,7 @@ class Bouton_unique(Bouton):
     def press(self, etat = None):
 
         # on fait le scénario s'il n'est pas on
-        if etat == None:
-            etat = not(self.etat())
+        etat = not(self.etat())
 
         if etat:
             self.scenar_on.do()

@@ -34,7 +34,7 @@ class Bouton_deco(Bouton):
             else:
                 pile.push(self.scenar_deco)
 
-        if scenar and scenar != pile.selected():
+        if scenar:
             pile.change_select(scenar)
             scenar.do()
 

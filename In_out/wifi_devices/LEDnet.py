@@ -19,9 +19,6 @@ class LEDnet(Wifi_device):
             sleep(0.5)
         return err
 
-
-
-
     def send_color(self, couleur):
         r,g,b = couleur.int_to_rgb()
         self.controleur.update_device(r,g,b,0)

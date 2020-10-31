@@ -22,13 +22,16 @@ class ST_nucleo:
     Carte pour les triacs
     """
 
-    def __init__(self, addr):
+    def __init__(self, nom, addr, decal = 0):
         self.port = Serial(addr, baudrate=9600)
+        self.nom = nom
         self.mutex = Lock()
+        self.decal = decal
         self.addr = addr
 
     def set_triac(self, carte, triac, valeur, etat):
         self.mutex.acquire()
+        carte = carte - self.decal
         v1 = valeur // 255 +1 
         v2 = valeur  % 255 +1
         if v1 > 255:

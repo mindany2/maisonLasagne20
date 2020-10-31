@@ -16,11 +16,20 @@ class Led(Lumiere):
         self.relais =  relais
         self.controleur = controleur
         self.connecté = False
+        self.force = False
+
+    def force_relais(self, force):
+        # oblige à mettre le relais ON
+        self.force = force
+        if force:
+            self.relais.set(Etat.ON)
+        elif not(self.connecté):
+            self.relais.set(Etat.OFF)
 
     def connect(self):
         if not(self.connecté):
             Logger.info("on essaie de se co a "+self.nom)
-            if self.couleur.is_black():
+            if self.couleur.is_black() and not(self.force):
                 self.relais.set(Etat.ON)
                 sleep(1)
             self.connecté = not(self.controleur.connect())
@@ -33,7 +42,7 @@ class Led(Lumiere):
         if self.connecté:
             sleep(0.5)
             self.controleur.deconnect(is_black = self.couleur.is_black())
-            if self.couleur.is_black():
+            if self.couleur.is_black() and not(self.force):
                 self.relais.set(Etat.OFF)
             self.connecté = False
         # TODO on enregistre la couleur de la led

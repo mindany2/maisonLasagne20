@@ -11,7 +11,8 @@ class Interrupteur(Interruption):
     # mode pousoir par défaut
 
     def __init__(self, nom, pin, client, type_inter):
-        Interruption.__init__(self, nom, pin, client, type_inter)
+        Interruption.__init__(self, nom, client, type_inter)
+        self.pin = pin
         self.temps = time()
 
     def press(self, etat = 1):
@@ -22,5 +23,5 @@ class Interrupteur(Interruption):
             self.temps = time() 
 
     def show(self):
-        print(self.nom + " : " + str(self.pin) + " : ")
+        print(self.nom)
 

@@ -31,6 +31,7 @@ from tree.eclairage.dmx.Strombo import Strombo
 from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_principal import Bouton_principal
 from tree.boutons.Bouton_poussoir import Bouton_poussoir
+from tree.boutons.Bouton_unique import Bouton_unique
 from tree.boutons.Bouton_deco import Bouton_deco
 from tree.boutons.Bouton_etat import Bouton_etat
 from tree.boutons.Bouton_choix import Bouton_choix
@@ -125,10 +126,10 @@ def get_preset(env, nom):
                 liste_scenar = [check(env, preset, preset.get_scenar(nom), nom) for nom in liste_nom]
                 bt = Bouton_choix(nom_bt, env, liste_scenar)
 
-            elif mode == "simple":
-               scenar = preset.get_scenar(nom_scenar)
-               check(env, preset,scenar, nom_scenar)
-               bt = Bouton_simple(nom_bt, scenar)
+            elif mode == "unique":
+               liste_nom = nom_scenar.split(",")
+               liste_scenar = [check(env, preset, preset.get_scenar(nom), nom) for nom in liste_nom]
+               bt = Bouton_unique(nom_bt, env, liste_scenar[0], liste_scenar[1])
             else:
                 raise(Exception("Le type de bouton \"{}\" dans la preset {} de {} n'existe pas".format(mode,preset.nom,env.nom)))
             preset.add_lien_inter(nom_bt, bt)

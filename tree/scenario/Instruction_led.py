@@ -18,14 +18,28 @@ class Instruction_led(Instruction_lumiere):
         """
         temps_init = time()
         err, err1 = False, False
+        
+        if self.dimmeur.count("force"):
+            self.lumière.force_relais(int(self.dimmeur.split("=")[1]))
+            Logger.info("on a forcer la led {} à l'etat {}".format(self.lumière.nom, self.dimmeur))
+            return
 
         try:
             self.lumière.lock(self.id_liste)
      
             dimmeur_final = self.eval(self.dimmeur)
             dimmeur_initial = self.lumière.dimmeur
-            nb_points = RESOLUTION*self.eval(self.duree)
             couleur = Couleur(self.eval(self.couleur))
+            if self.eval(self.duree) == 0:
+
+                super().run(temps_ecouler=(time()-temps_init))
+                self.lumière.connect()
+                self.lumière.set(dimmeur_final, couleur.valeur)
+                return
+
+
+
+            nb_points = RESOLUTION*self.eval(self.duree)
             if dimmeur_initial != dimmeur_final:
                 liste_dimmeur = np.arange(dimmeur_initial, dimmeur_final, (dimmeur_final-dimmeur_initial)/nb_points)
             else:

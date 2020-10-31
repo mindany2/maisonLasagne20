@@ -80,6 +80,7 @@ def get_config_inter():
 def get_config_carte():
     # lit la config des différentes cartes relais et triac avec lequel le rpi peut communiquer
     mode = ""
+    st_nucleos = {}
     
     for ligne in lire(ouvrir("config.data", False)):
 
@@ -87,9 +88,9 @@ def get_config_carte():
             mode = ligne.split("---")[1]
             continue
 
-        if mode == "stnucleo":
-            st_addr = ligne.split("=")[1]
-            st_nucleo = ST_nucleo(st_addr)
+        if mode == "stnucleos":
+            st_nom, st_addr, decal = ligne.split("=")[1].split(",")
+            st_nucleos[st_nom] = ST_nucleo(st_nom, st_addr, int(decal))
 
 
         elif mode == "ampli":
@@ -110,7 +111,7 @@ def get_config_carte():
             Controleur_dmx().init(addr)
 
         elif mode == "cartes":
-            if not(st_nucleo):
+            if not(st_nucleos):
                 Logger.error("Pas de carte ST")
                 Logger.warn("Veuillez la definir avant les cartes")
                 continue
@@ -132,9 +133,7 @@ def get_config_carte():
                 else:
                     raise("TODO")
             elif carte == "triac":
-                if type_conn != "st_nucleo":
-                    raise("Les triacs ne fonctionne que sur la st")
-                carte = Carte_triac(numero, st_nucleo) # les cartes ont tjrs 8 triacs
+                carte = Carte_triac(numero, st_nucleos[type_conn]) # les cartes ont tjrs 8 triacs
 
             else:
                 raise("Type de carte inconnu")
