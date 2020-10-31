@@ -12,7 +12,7 @@ from tree.scenario.Instruction_projecteur import Instruction_projecteur
 from tree.scenario.Instruction_lampe import Instruction_lampe
 from tree.scenario.Instruction_variable import Instruction_variable, TYPE_INST
 from tree.scenario.Instruction_bouton import Instruction_bouton, TYPE_BOUTON
-from tree.scenario.Instruction_trappe import Instruction_trappe
+from tree.scenario.Instruction_trappe import Instruction_trappe, INST_TRAPPE
 from tree.scenario.Instruction_enceinte import Instruction_enceinte
 from tree.scenario.Instruction_spotify import Instruction_spotify, TYPE_INST_SPOTIFY
 from tree.scenario.dmx.Instruction_position import Instruction_position
@@ -189,7 +189,11 @@ def get_inst(env, infos):
         return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
     elif isinstance(lumière, Trappe):
         action = dimmeur
-        return Instruction_trappe(action,duree, temps_init, synchro)
+        try:
+            action = INST_TRAPPE[action]
+        except:
+            raise(Exception("Erreur trappe : l'instruction {} n'existe pas".format(action)))
+        return Instruction_trappe(lumière, action,duree, temps_init, synchro)
     elif isinstance(lumière, Enceintes):
         return Instruction_enceinte(lumière, dimmeur, duree, temps_init, synchro) 
 
