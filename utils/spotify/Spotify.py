@@ -153,7 +153,7 @@ class Spotify:
             self.refresh_token()
             os.system("sudo systemctl restart raspotify.service")
             sleep(2)
-            self.start()
+            #self.start()
         self.etat = True
 
 

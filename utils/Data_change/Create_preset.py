@@ -185,8 +185,6 @@ def get_inst(env, infos):
         return Instruction_projecteur(lumière, dimmeur, duree, temps_init, synchro)
     elif isinstance(lumière, Led):
         return Instruction_led(lumière, dimmeur, duree, temps_init, synchro, couleur)
-    elif isinstance(lumière, Lampe):
-        return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
     elif isinstance(lumière, Trappe):
         action = dimmeur
         try:
@@ -212,6 +210,8 @@ def get_inst(env, infos):
             return Instruction_dimmeur(lumière, args, duree, temps_init, synchro)
         elif type_inst == "strombo":
            return Instruction_strombo(lumière, args, duree, temps_init, synchro)
+        elif type_inst == "relais":
+            return Instruction_lampe(lumière, args, temps_init, synchro)
  
     elif isinstance(lumière, Boule):
         type_inst = dimmeur
@@ -222,6 +222,8 @@ def get_inst(env, infos):
             return Instruction_vitesse(lumière, args, duree, temps_init, synchro)
         elif type_inst == "strombo":
             return Instruction_strombo(lumière, args, duree, temps_init, synchro)
+        elif type_inst == "relais":
+            return Instruction_lampe(lumière, args, temps_init, synchro)
  
     elif isinstance(lumière, Strombo):
         type_inst = dimmeur
@@ -230,7 +232,11 @@ def get_inst(env, infos):
             return Instruction_dimmeur(lumière, args, duree, temps_init, synchro)
         elif type_inst == "strombo":
             return Instruction_strombo(lumière, args, duree, temps_init, synchro)
+        elif type_inst == "relais":
+            return Instruction_lampe(lumière, args, temps_init, synchro)
 
+    elif isinstance(lumière, Lampe):
+        return Instruction_lampe(lumière, dimmeur, temps_init, synchro)
 
 
     elif isinstance(lumière, Variable):

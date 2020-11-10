@@ -12,6 +12,7 @@ class LAMPE(Enum):
     type_64 = (430,180)
     type_73 = (400,130)
     type_61 = (430,250)
+    type_200 = (370,130)
 
 
 class Projecteur(Lumiere):

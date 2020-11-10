@@ -54,7 +54,6 @@ def threaded_client(conn):
             Logger.error(e)
             break
 
-
     Logger.info("Lost connection")
     conn.close()
 

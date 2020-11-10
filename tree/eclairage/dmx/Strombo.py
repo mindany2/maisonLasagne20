@@ -1,12 +1,12 @@
-from tree.eclairage.Lumiere import Lumiere
+from tree.eclairage.Lampe import Lampe
 from enum import Enum
 
-class Strombo(Lumiere):
+class Strombo(Lampe):
     """
     Petit strombo
     """
-    def __init__(self, nom, controleur):
-        Lumiere.__init__(self, nom)
+    def __init__(self, nom, relais, controleur):
+        Lampe.__init__(self, nom, relais)
         self.dmx = controleur
 
         self.dimmeur = 0

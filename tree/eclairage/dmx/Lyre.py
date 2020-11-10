@@ -1,16 +1,16 @@
 from enum import Enum
 from threading import Lock
-from tree.eclairage.Lumiere import Lumiere
+from tree.eclairage.Lampe import Lampe
 
-class Lyre(Lumiere):
+class Lyre(Lampe):
     """
     Une petite lyre en 11 channel
     il y a plein de lock, le principal est le mouvement
     9 couleurs
     9 gobos
     """
-    def __init__(self, nom, controleur):
-        Lumiere.__init__(self, nom)
+    def __init__(self, nom, relais, controleur):
+        Lampe.__init__(self, nom, relais)
         self.dmx = controleur
         self.pan = 0
         self.tilt = 0

@@ -49,6 +49,8 @@ def get_lumiere(infos):
             spec = LAMPE.type_61
         elif option_lumiere == "A65":
             spec = LAMPE.type_65
+        elif option_lumiere == "A200":
+            spec = LAMPE.type_200
         else:
             spec = None
         
@@ -93,11 +95,23 @@ def get_lumiere(infos):
             return Enceintes(nom, Ampli_6_zones, zone)
 
     elif type_lumière == "lyre":
-        return Lyre(nom, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        if addr_relais != None:
+            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+        else:
+            relais = None
+        return Lyre(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "boule":
-        return Boule(nom, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        if addr_relais != None:
+            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+        else:
+            relais = None
+        return Boule(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "strombo":
-        return Strombo(nom, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        if addr_relais != None:
+            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+        else:
+            relais = None
+        return Strombo(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
 
     elif type_lumière == "variable":
         return Variable(nom, int(addr_bluetooth_ou_ip))
