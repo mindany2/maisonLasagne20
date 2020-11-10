@@ -1,4 +1,4 @@
-from In_out.cartes.Gestionnaire_de_cartes import Gestionnaire_de_cartes
+from In_out.Gestionnaire_peripheriques import Gestionnaire_peripheriques
 from In_out.son.Ampli_6_zones import Ampli_6_zones
 from tree.eclairage.Led import Led
 from tree.utils.Variable import Variable
@@ -55,12 +55,12 @@ def get_lumiere(infos):
             spec = None
         
         if addr_triac != None:
-            triac = Gestionnaire_de_cartes().get_triac(int(addr_triac[1]), int(addr_triac[0]))
+            triac = Gestionnaire_peripheriques().get_triac(int(addr_triac[1]), int(addr_triac[0]))
         else:
             triac = None
 
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
         return Projecteur(nom, triac, spec , relais = relais)
@@ -75,13 +75,13 @@ def get_lumiere(infos):
         elif option_lumiere == "lednet":
             controleur = LEDnet(addr_bluetooth_ou_ip)
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
         return Led(nom, relais, controleur)
     elif type_lumière == "lampe":
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
         return Lampe(nom, relais)
@@ -96,37 +96,37 @@ def get_lumiere(infos):
 
     elif type_lumière == "lyre":
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Lyre(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
+        return Lyre(nom, relais, Device_dmx(Gestionnaire_peripheriques().get_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "boule":
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Boule(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
+        return Boule(nom, relais, Device_dmx(Gestionnaire_peripheriques().get_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "strombo":
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Strombo(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
+        return Strombo(nom, relais, Device_dmx(Gestionnaire_peripheriques().get_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "decoupe":
         if addr_relais != None:
-            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+            relais = Gestionnaire_peripheriques().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Decoupe(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
+        return Decoupe(nom, relais, Device_dmx(Gestionnaire_peripheriques().get_dmx(), int(addr_bluetooth_ou_ip)))
 
     elif type_lumière == "variable":
         return Variable(nom, int(addr_bluetooth_ou_ip))
 
     elif type_lumière == "trappe":
         monte, descend, aimant, capteur = get_addr(infos[2]), get_addr(infos[3]), get_addr(infos[4]), get_addr(infos[5])
-        relais_monte = Gestionnaire_de_cartes().get_relais(monte[1], int(monte[0]))
-        relais_descend = Gestionnaire_de_cartes().get_relais(descend[1], int(descend[0]))
-        relais_aimant = Gestionnaire_de_cartes().get_relais(aimant[1], int(aimant[0]))
+        relais_monte = Gestionnaire_peripheriques().get_relais(monte[1], int(monte[0]))
+        relais_descend = Gestionnaire_peripheriques().get_relais(descend[1], int(descend[0]))
+        relais_aimant = Gestionnaire_peripheriques().get_relais(aimant[1], int(aimant[0]))
         if capteur[1] == "gpio":
             capteur_trappe = Capteur_GPIO("Capteur Trappe",int(capteur[0]))
         return Trappe(nom, relais_monte, relais_descend, relais_aimant, capteur_trappe)

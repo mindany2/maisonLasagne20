@@ -1,4 +1,4 @@
-from In_out.cartes.Gestionnaire_de_cartes import Gestionnaire_de_cartes
+from In_out.Gestionnaire_peripheriques import Gestionnaire_peripheriques
 from utils.communication.Message import Message
 
 class Set_DMX(Message):
@@ -8,4 +8,4 @@ class Set_DMX(Message):
         self.value = value
 
     def do(self):
-        Gestionnaire_de_cartes().get_dmx().set(self.addr, self.value)
+        Gestionnaire_peripheriques().get_dmx().set(self.addr, self.value)

@@ -8,7 +8,8 @@ class KingDMX(Controleur_dmx):
     Le controleur dmx kingDMX
     """
     def __init__(self, addr):
-        Controleur_dmx.__init__(self, addr)
+        Controleur_dmx.__init__(self)
+        self.addr = addr
         self.dmx = DMX(addr, auto_submit=True)
         self.dmx.clear_channels()
 

@@ -16,18 +16,16 @@ class Port_extender:
     vers la carte sur le rasperry pour augmenter le
     nombre de ports
     """
-    #TODO passer en non-static en utilisant le gestionnaire de cartes
-    i2c = I2C()
-    mutex = Lock()
+    def __init__(self):
+        self.i2c = I2C()
+        self.mutex = Lock()
 
-    @classmethod
     def write(self, ip, register, data):
         self.mutex.acquire()
         self.i2c.write_reg(ip, register, data)
         self.mutex.release()
         #print("on ecrit donc "+bin(data) + " dans resgistre "+hex(register)+" ip "+hex(ip))
 
-    @classmethod
     def write_pin(self, ip, register, numero, valeur):
         self.mutex.acquire()
         data =  self.i2c.read_reg(ip, register)
@@ -39,7 +37,6 @@ class Port_extender:
         self.i2c.write_reg(ip, register, data)
         self.mutex.release()
 
-    @classmethod
     def read(self, ip, register):
         data =  self.i2c.read_reg(ip, register)
         if data != None:

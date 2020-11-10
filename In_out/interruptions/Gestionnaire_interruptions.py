@@ -3,6 +3,7 @@ from utils.communication.Client import Client
 from apscheduler.schedulers.blocking import BlockingScheduler
 import RPi.GPIO as GPIO
 from utils.Logger import Logger
+from In_out.utils.Port_extender import Port_extender
 
 
 class Gestionnaire_interruptions:
@@ -13,6 +14,11 @@ class Gestionnaire_interruptions:
     listes_inters_extender = []
     liste_inters_rpi = []
     listes_inters_date = []
+    extender = Port_extender()
+
+    @classmethod
+    def get_extender(self):
+        return self.extender
 
     @classmethod
     def init(self):

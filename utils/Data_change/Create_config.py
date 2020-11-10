@@ -1,11 +1,13 @@
 from In_out.interruptions.Gestionnaire_interruptions import Gestionnaire_interruptions
-from In_out.cartes.Gestionnaire_de_cartes import Gestionnaire_de_cartes
+from In_out.Gestionnaire_peripheriques import Gestionnaire_peripheriques
 from In_out.interruptions.inter.Interruption import TYPE_INTER
 from In_out.interruptions.Liste_interruptions_extender import Liste_interruptions_extender
 from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Carte_relais_extender import Carte_relais_extender
 from In_out.utils.ST_nucleo import ST_nucleo
+from In_out.Rpi import Rpi
+from In_out.utils.Port_extender import Port_extender
 from In_out.son.Ampli_6_zones import Ampli_6_zones
 from In_out.dmx.controleurs.KingDMX import KingDMX
 from In_out.dmx.controleurs.RpiDMX import RpiDMX
@@ -70,7 +72,7 @@ def get_config_inter():
                 except:
                     raise("Erreur dans le fichier de config : les arguments de l'extender ne sont pas valide")
 
-                liste = Liste_interruptions_extender(port, port_bus, registre)
+                liste = Liste_interruptions_extender(Gestionnaire_interruptions().get_extender(), port, port_bus, registre)
 
                 Gestionnaire_interruptions().configure(liste, TYPE_INTER.extender)
 
@@ -81,7 +83,6 @@ def get_config_inter():
 def get_config_carte():
     # lit la config des différentes cartes relais et triac avec lequel le rpi peut communiquer
     mode = ""
-    st_nucleos = {}
     
     for ligne in lire(ouvrir("config.data", False)):
 
@@ -89,17 +90,23 @@ def get_config_carte():
             mode = ligne.split("---")[1]
             continue
 
+        if mode == "rpis":
+            nom, addr = ligne.split("=")[1].split(",")
+            Gestionnaire_peripheriques().configure(Rpi(nom, addr))
+
         if mode == "stnucleos":
             st_nom, st_addr, decal = ligne.split("=")[1].split(",")
-            st_nucleos[st_nom] = ST_nucleo(st_nom, st_addr, int(decal))
+            Gestionnaire_peripheriques().configure(ST_nucleo(st_nom, st_addr, int(decal)))
 
+        if mode == "extender":
+            Gestionnaire_peripheriques().configure(Port_extender())
 
         elif mode == "ampli":
             type_ampli, args = ligne.split("=")
             addr, relais = args.split(",")
 
             if (type_ampli == "dax66"):
-                relais = Gestionnaire_de_cartes.get_relais(relais[2], relais[0])
+                relais = Gestionnaire_peripheriques.get_relais(relais[2], relais[0])
 
                 if not(relais):
                     Logger.error("Definir d'abord les cartes avant l'ampli")
@@ -113,15 +120,10 @@ def get_config_carte():
             if type_dmx == "kingDMX":
                 dmx = KingDMX(addr)
             elif type_dmx == "rpiDMX":
-                dmx = RpiDMX(addr)
-            Gestionnaire_de_cartes.configure(dmx)
+                dmx = RpiDMX(Gestionnaire_peripheriques().get_rpi(addr))
+            Gestionnaire_peripheriques.configure(dmx)
 
         elif mode == "cartes":
-            if not(st_nucleos):
-                Logger.error("Pas de carte ST")
-                Logger.warn("Veuillez la definir avant les cartes")
-                continue
-
             numero, carte, type_conn , nb_ports, args = ligne.split("|")
 
             try:
@@ -135,12 +137,12 @@ def get_config_carte():
                         port_bus = int(args,16)
                     except:
                         raise("Erreur dans le fichier de config : le port_bus n'est pas entier")
-                    carte = Carte_relais_extender(numero,port_bus,nb_ports)
+                    carte = Carte_relais_extender(Gestionnaire_peripheriques().get_extender(), numero,port_bus,nb_ports)
                 else:
                     raise("TODO")
             elif carte == "triac":
-                carte = Carte_triac(numero, st_nucleos[type_conn]) # les cartes ont tjrs 8 triacs
+                carte = Carte_triac(numero, Gestionnaire_peripheriques().get_st_nucleo(type_conn)) # les cartes ont tjrs 8 triacs
 
             else:
                 raise("Type de carte inconnu")
-            Gestionnaire_de_cartes.configure(carte)
+            Gestionnaire_peripheriques.configure(carte)

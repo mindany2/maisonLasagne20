@@ -7,11 +7,11 @@ class Liste_interruptions_extender:
     """
     Contient la liste des intérupteurs d'un pin d'intéruption
     """
-    def __init__(self, port_interrupt, port_bus, registre): # le registre vaut 0 si A, 1 si B (extender)
+    def __init__(self, extender, port_interrupt, port_bus, registre): # le registre vaut 0 si A, 1 si B (extender)
         self.port_bus = port_bus
         self.port_interrupt = port_interrupt
         self.liste_inter = Dico()
-        self.bus = Port_extender()
+        self.bus = extender
         self.add_registre = registre
 
         # GPINTEN = mettre les intérruptions

@@ -8,8 +8,8 @@ class Controleur_dmx:
     """
     mutex = Lock()
 
-    def __init__(self, addr):
-        self.addr = addr
+    def __init__(self):
+        pass
 
     def set(self, channel, value):
         pass

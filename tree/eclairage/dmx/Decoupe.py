@@ -1,4 +1,5 @@
 from tree.eclairage.Lampe import Lampe
+from time import sleep
 from enum import Enum
 
 class Decoupe(Lampe):
@@ -14,6 +15,13 @@ class Decoupe(Lampe):
         if self.dimmeur != value:
             self.dmx.set(CHANNEL.dimmeur, value)
         self.dimmeur = value
+
+    def set(self, value):
+        super().set(value)
+        if value == True:
+            # on doit attendre que le projo s'initialise
+            sleep(4)
+
 
     def lock_dimmeur(self):
         super().lock()

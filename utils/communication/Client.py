@@ -46,6 +46,9 @@ class Client:
 
         except socket.error as e:
             Logger.error(e)
+
+    def deconnect(self):
+        self.send("kill me")
         
 
 
