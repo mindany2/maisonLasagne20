@@ -7,6 +7,8 @@ from tree.eclairage.Projecteur import Projecteur
 from tree.eclairage.Enceintes import Enceintes
 from tree.scenario.Scenario import MARQUEUR
 from utils.Logger import Logger
+from tree.utils.Calculateur import Calculateur
+from tree.utils.Variable import Variable
 import sys
 
 
@@ -18,34 +20,46 @@ class Environnement:
     def __init__(self, nom):
         self.nom = nom
         self.couleurs = None
+        self.scenar_reload = None
         self.liste_lumières = Liste()
         self.liste_presets = Liste_radios()
         # table de hashage entre mode et preset
         self.liste_presets_choisis = Dico()
-        self.style = None
+        self.style = Liste_radios()
+        self.rang = 0 # rang 0 le plus bas, 1 le plus haut, 2 ect...
+        self.calculateur = Calculateur()
+
+    def get_rang(self):
+        if self.rang == 0:
+            # pour trier du plus gd nb de bouton
+            return 10-len(self.liste_presets.selected().liste_boutons_html)
+        return self.rang
 
     def reset_preset(self):
+        for preset in self.liste_presets:
+            preset.reset()
         self.liste_presets = Liste_radios()
         self.liste_presets_choisis = Dico()
-        self.style = None
+        self.style = Liste_radios()
         self.couleurs = None
 
     def reload_style(self):
-        self.style = Style(position=(13*sum([len(bt.nom) for bt in self.get_preset_select().liste_boutons_html]),0),
-            couleur_texte = "red")
+        self.style.change_select(self.style.get(Tree.get_current_mode().nom))
 
-    def reload_son(self, etat):
-        for enceinte in self.liste_lumières:
-            if isinstance(enceinte, Enceintes):
-                enceinte.reload(etat)
+    def reload_scenar(self):
+        if self.scenar_reload:
+            scenar = self.get_preset_select().get_scenar(self.scenar_reload)
+            if scenar:
+                scenar.do()
 
     def get_style(self):
-        if self.style == None:
-            self.reload_style()
         return self.style
 
     def add_lumiere(self, lum):
-        self.liste_lumières.add(lum)
+        if isinstance(lum, Variable):
+            self.calculateur.add(lum)
+        else:
+            self.liste_lumières.add(lum)
 
     def etat(self):
         # retourne si l'état correspondant au marqueur du scénario en cours
@@ -64,15 +78,20 @@ class Environnement:
     def change_mode(self):
         nv_preset = self.liste_presets_choisis.get(Tree.get_current_mode())
         # on met le premier sénario qui correspond au même mode que celui en cours
-        for scenar in nv_preset.liste_scénario:
-            if scenar.get_marqueur() == self.etat():
-                nv_preset.change_select(scenar)
-                if self.etat() != MARQUEUR.OFF:
-                    scenar.do()
-                # sinon pas besoin on est éteint
-                break
-        # on change de preset
-        self.change_preset_select(nv_preset)
+        if nv_preset != self.get_preset_select():
+            etat = self.etat()
+            if etat == MARQUEUR.DECO:
+                etat = MARQUEUR.OFF
+            for scenar in nv_preset.liste_scénario:
+                if scenar.get_marqueur() == etat:
+                    nv_preset.change_select(scenar)
+                    print("oooooooooooookkkkkkkkkkkkk", self.nom, scenar.nom)
+                    if self.etat() != MARQUEUR.OFF:
+                        scenar.do()
+                    # sinon pas besoin on est éteint
+                    break
+            # on change de preset
+            self.change_preset_select(nv_preset)
 
     def change_scenario_select(self, scenar):
         self.get_preset_select().change_select(scenar)
@@ -94,11 +113,25 @@ class Environnement:
         return self.liste_presets.get(nom)
 
     def get_lumiere(self, nom):
-        return self.liste_lumières.get(nom)
+        lum = self.liste_lumières.get(nom)
+        if lum:
+            return lum
+        # ce peut être une variable
+        return self.calculateur.get(nom)
 
-    def get_scenar(self, nom):
+    def get_scenar(self, nom, preset=None):
+        if preset:
+            return self.get_preset(preset).get_scenar(nom)
         return self.get_preset_select().get_scenar(nom)
 
+    def press_inter(self, nom_inter, etat):
+        # si on a qqc à faire dans cet environnement
+        if self.get_preset_select().press_inter(nom_inter, etat):
+            self.reload_scenar()
+    
+    def press_bouton_html(self, index):
+        self.get_preset_select().press_bouton_html(index)
+        self.reload_scenar()
 
     def show(self):
         print("----- Environnement "+self.nom +" -----")

@@ -7,9 +7,6 @@ class Tree:
     liste_envi = Liste()
     liste_modes = Liste_radios()
 
-    # TODO vraiment IMMONDE
-    etat = False
-
     @classmethod
     def show(self):
         print("modes : ")
@@ -27,16 +24,11 @@ class Tree:
         Logger.info("Changement de mode : " + self.get_current_mode().nom)
 
     @classmethod
-    def reload_son(self, etat):
-        Logger.debug("Reload son : "+ str(etat)) 
-        for env in self.liste_envi:
-            env.reload_son(etat)
-
-    @classmethod
     def press_inter(self, nom_inter, etat):
-        Logger.debug("on press l'inter "+nom_inter)
+        Logger.info("on press l'inter "+nom_inter)
         for env in self.liste_envi:
-            env.get_preset_select().press_inter(nom_inter, etat)
+            env.press_inter(nom_inter, etat)
+
 
     @classmethod
     def add_mode(self, mode):
@@ -63,12 +55,13 @@ class Tree:
 
     @classmethod
     def get_infos_envi(self):
-        return [[env.nom,env.style, env.nb_boutons_html()] for env in self.liste_envi]
+        return [[env.nom, str(env.style.selected()), env.nb_boutons_html()] for env in self.liste_envi.sort()]
 
     @classmethod
     def press_bouton_html(self, nom_env, index):
         if nom_env != "mode":
-            self.get_env(nom_env).get_preset_select().press_bouton_html(index)
+            Logger.info("On press le bouton html : "+nom_env +"."+str(index))
+            self.get_env(nom_env).press_bouton_html(index)
         else:
             self.liste_modes.selected().press_bouton_mode()
 
@@ -81,9 +74,8 @@ class Tree:
     def get_bouton_html(self, nom_env, index):
         if nom_env != "mode":
             return self.get_env(nom_env).get_preset_select().get_bouton_html(index)
-        else:
-            return self.liste_modes.selected().bouton_change_html
+        return self.liste_modes.selected().bouton_change_html
 
     @classmethod
-    def get_scenar(self, nom_env, nom_scenar):
-        return self.get_env(nom_env).get_scenar(nom_scenar)
+    def get_scenar(self, nom_env, nom_scenar, preset=None):
+        return self.get_env(nom_env).get_scenar(nom_scenar, preset)

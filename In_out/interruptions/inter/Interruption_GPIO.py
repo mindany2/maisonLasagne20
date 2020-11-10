@@ -12,7 +12,8 @@ class Interruption_GPIO(Interrupteur):
     # mode pousoir par défaut
 
     def __init__(self, nom, pin, client, type_inter):
-        Interrupteur.__init__(self, nom, pin, client, type_inter)
+        Interrupteur.__init__(self, nom, client, type_inter)
+        self.pin = pin
         GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.add_event_detect(pin, GPIO.BOTH, callback=self.press)
         self.valeur = GPIO.input(pin)

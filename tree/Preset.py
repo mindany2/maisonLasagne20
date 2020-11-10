@@ -14,6 +14,10 @@ class Preset:
         self.etat = False
         self.lien_inter_bouton = Dico()
 
+    def reset(self):
+        for scenar in self.liste_scénario:
+            scenar.reset()
+
     def add_lien_inter(self, nom_inter, bouton):
         self.lien_inter_bouton.add(nom_inter, bouton)
 
@@ -27,11 +31,13 @@ class Preset:
     def press_inter(self, nom_inter, etat):
         bt = self.get_bouton(nom_inter)
         if bt != None:
-            scenar = bt.press(etat)
-            self.change_select(scenar)
+            bt.press(etat)
+            return True
+        return False
 
     def change_select(self, scenar):
-        self.liste_scénario.change_select(scenar)
+        if scenar != None:
+            self.liste_scénario.change_select(scenar)
 
     def change(self):
         self.etat = not(self.etat)
@@ -44,7 +50,7 @@ class Preset:
 
     def press_bouton_html(self, index):
         bt = self.liste_boutons_html[index]
-        self.liste_scénario.change_select(bt.press())
+        bt.press()
 
     def get_bouton_html(self, index):
         return self.liste_boutons_html[index]

@@ -19,7 +19,6 @@ class Zone:
 
     def get_infos(self):
         values = self.output.get_all_infos(self.numero)
-        print(values)
 
         if values:
             pa, self.power,bpower, self.mute, self.distrub, self.volume, self.treble, self.bass, self.balance, self.source, ls = values

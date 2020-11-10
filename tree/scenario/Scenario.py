@@ -1,6 +1,7 @@
 from tree.scenario.Liste_instructions import Liste_instructions
 from threading import Thread
 from enum import Enum
+from utils.Logger import Logger
 
 class MARQUEUR(Enum):
     """
@@ -15,11 +16,10 @@ class Scenario:
     La base d'un bouton, juste un état
     """
 
-    def __init__(self, nom, marqueur):
+    def __init__(self, nom, marqueur,calculateur, boucle = False):
         self.nom = nom
-        self.liste_inst = Liste_instructions()
+        self.liste_inst = Liste_instructions(boucle, calculateur)
         self.marqueur = marqueur
-        self.etat = False
 
     def __eq__(self, obj):
         if isinstance(obj, Scenario):
@@ -33,15 +33,24 @@ class Scenario:
     def get_marqueur(self):
         return self.marqueur
 
+    def set_etat(self, etat):
+        self.liste_inst.etat = etat
+
+    def etat(self):
+        return self.liste_inst.etat
+
     def change(self):
-        self.etat = not(self.etat)
+        self.liste_inst.change_etat()
+
+    def reset(self):
+        self.liste_inst.etat = False
 
     def do(self, join = False):
+        Logger.info("On fait le scénario "+self.nom)
         proc = Thread(target=self.liste_inst.do)
         proc.start()
         if join:
             proc.join()
-        return self
 
     def show(self):
         print(self.nom)

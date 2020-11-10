@@ -28,4 +28,4 @@ class Relais:
         pass
 
     def show(self):
-        print( "port bus : {} | relais numero {}".format(hex(self.port_bus), self.numero))
+        print( "port bus : {} | relais numero {}".format(hex(self.etat), self.nombre_lumière))

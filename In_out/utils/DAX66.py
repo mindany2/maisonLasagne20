@@ -48,7 +48,7 @@ class DAX66:
         self.mutex.acquire()
         self.port.write(("<1" + str(zone) + action.value + (value < 10)*"0" +  str(value) + "\r").encode('ascii') + bytes(0x0d))
 
-        print(self.port.readline()) # useless
+        self.port.readline()# useless
         sleep(0.1)
         self.mutex.release()
 
@@ -57,9 +57,8 @@ class DAX66:
             return None
         self.mutex.acquire()
         self.port.write(("?1" + str(zone) + "\r").encode("ascii") + bytes(0x0d))
-        print(self.port.readline()) # useless
+        self.port.readline() # useless
         output = self.port.readline()
-        print(output)
         try:
             output = str(output).split(">")[1].replace("\\r","").replace("\\n","").replace("'","")
         except:
@@ -77,7 +76,6 @@ class DAX66:
         self.port.write(("?1" + str(zone) + action.value + "\r").encode("ascii") + bytes(0x0d))
         self.port.readline() # useless
         output = self.port.readline()
-        print(output)
         sleep(0.1)
         self.mutex.release()
 

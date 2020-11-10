@@ -6,15 +6,17 @@ from utils.Logger import Logger
 
 class Lampe(Lumiere):
     """
-    led en bluetooth
+    Juste un lampe on/off
     """
-    def __init__(self, nom, relais):
+    def __init__(self, nom, relais, invert = False):
         Lumiere.__init__(self, nom)
         self.relais =  relais
-        self.mutex = Lock()
+        self.invert = invert
 
     def set(self, on_off):
-        self.mutex.acquire()
+        if self.invert:
+            on_off = not(on_off)
+
         if on_off:
             etat = Etat.ON
         else:
@@ -22,7 +24,6 @@ class Lampe(Lumiere):
         Logger.info("on met la lampe {} a {}".format(self.nom, etat))
         if self.relais.etat != etat:
             self.relais.set(etat)
-        self.mutex.release()
 
     def etat(self):
         return self.relais.etat

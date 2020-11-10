@@ -16,33 +16,36 @@ class Instruction_enceinte(Instruction):
 
     def run(self, barrier):
 
-        Logger.debug("lancer enceinte")
-        self.enceinte.lock()
-        Logger.debug("lock enceinte")
-        super().run()
-        volume_initial = self.enceinte.volume
-        volume_final = self.volume
-        ecart = volume_final - volume_initial
-
-        if ecart == 0:
-            Logger.info("on fait rien pour l'enceinte {}".format(self.enceinte.nom))
-            self.enceinte.unlock()
-            return
-        nb_points = self.duree*RESOLUTION
-
-        val = volume_initial
         debut = time()
-        for _ in range(0,nb_points):
-            temps = time()
-            self.enceinte.change_volume(int(val))
-            val += ecart/nb_points
-            dodo = 1/RESOLUTION-(time()-temps)
-            if dodo > 0:
-                sleep(dodo)
-        Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
-        self.enceinte.change_volume(volume_final)
-        self.enceinte.unlock()
-        Logger.debug("unlock enceinte")
+        try:
+            self.enceinte.lock()
+            super().run()
+
+            volume_initial = self.enceinte.volume()
+            volume_final = self.eval(self.volume)
+            ecart = volume_final - volume_initial
+
+            if ecart == 0:
+                #Logger.info("on fait rien pour l'enceinte {}".format(self.enceinte.nom))
+                return
+            nb_points = self.duree*RESOLUTION
+            self.enceinte.connect()
+
+            val = volume_initial
+            for _ in range(0,nb_points):
+                if self.enceinte.test():
+                    raise SystemExit("kill inst")
+                temps = time()
+                self.enceinte.change_volume(int(val))
+                val += ecart/nb_points
+                dodo = 1/RESOLUTION-(time()-temps)
+                if dodo > 0:
+                    sleep(dodo)
+            self.enceinte.change_volume(volume_final)
+            self.enceinte.deconnect()
+            Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
+        finally:
+            self.enceinte.unlock()
  
 
 

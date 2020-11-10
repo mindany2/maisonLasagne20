@@ -9,8 +9,8 @@ class Bouton_simple_html(Bouton_simple):
     le bouton de l'application web
     """
 
-    def __init__(self, nom, scenar):
-        Bouton_simple.__init__(self, nom, scenar)
+    def __init__(self, nom, env, scenar):
+        Bouton_simple.__init__(self, nom, env, scenar)
         # tous les style sont initialisé après avec preset.set_styles
         self.style_on = None
         self.style_off = None

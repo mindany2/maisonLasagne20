@@ -16,4 +16,5 @@ class Bouton_poussoir(Bouton):
             pile.clear()
         else:
             pile.push_select()
-        return self.scenar.do()
+        pile.change_select(self.scenar)
+        self.scenar.do()
