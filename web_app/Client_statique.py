@@ -1,6 +1,6 @@
 from utils.communication.Client import Client
-from utils.communication.Get_infos_envs import Get_infos_envs
-from utils.communication.Get_current_mode import Get_current_mode
+from utils.communication.get.Get_infos_envs import Get_infos_envs
+from utils.communication.get.Get_current_mode import Get_current_mode
 
 class Client_statique:
     client = Client()

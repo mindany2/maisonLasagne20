@@ -47,7 +47,7 @@ class Instruction_dimmeur(Instruction_lumiere):
             Logger.info("L'instruction sur {} a ete kill".format(self.lumière.nom))
 
         finally:
-            self.lumière.set_dimmeur(self.dimmeur)
+            self.lumière.set_dimmeur(dimmeur_final)
             Logger.info("{} a mis 0s a s'allumer au lieu de {}".format(self.lumière.nom, self.duree))
             self.lumière.unlock_dimmer()
 

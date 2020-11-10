@@ -27,6 +27,7 @@ from tree.scenario.Scenario import Scenario,MARQUEUR
 from tree.eclairage.dmx.Boule import Boule
 from tree.eclairage.dmx.Laser import Laser
 from tree.eclairage.dmx.Strombo import Strombo
+from tree.eclairage.dmx.Decoupe import Decoupe
 
 from tree.boutons.Bouton_simple import Bouton_simple
 from tree.boutons.Bouton_principal import Bouton_principal
@@ -225,7 +226,7 @@ def get_inst(env, infos):
         elif type_inst == "relais":
             return Instruction_lampe(lumière, args, temps_init, synchro)
  
-    elif isinstance(lumière, Strombo):
+    elif isinstance(lumière, Strombo) or isinstance(lumière, Decoupe):
         type_inst = dimmeur
         args = couleur
         if type_inst == "dimmeur":

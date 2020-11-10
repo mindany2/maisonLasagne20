@@ -1,5 +1,5 @@
 from tree.utils.Liste import Liste
-from utils.communication.Press_inter import Press_inter
+from utils.communication.interrupt.Press_inter import Press_inter
 from utils.Logger import Logger
 from tree.Tree import Tree
 from time import time

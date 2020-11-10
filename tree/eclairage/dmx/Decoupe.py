@@ -18,6 +18,9 @@ class Decoupe(Lampe):
     def lock_dimmeur(self):
         super().lock()
 
+    def test_dimmeur(self):
+        return super().test()
+
     def unlock_dimmer(self):
         super().unlock()
 

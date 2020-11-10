@@ -2,7 +2,7 @@ from time import time
 from tree.Tree import Tree
 from In_out.interruptions.inter.Interruption import Interruption
 from utils.Logger import Logger
-from utils.communication.Press_inter import Press_inter
+from utils.communication.interrupt.Press_inter import Press_inter
 
 class Interrupteur(Interruption):
     """

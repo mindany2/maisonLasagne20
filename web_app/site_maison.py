@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, request, render_template
 from web_app.Formulaire import Formulaire
 from web_app.Client_statique import Client_statique
 from time import sleep
-from utils.communication.Press_bt_html import Press_bt_html
+from utils.communication.interrupt.Press_bt_html import Press_bt_html
 from utils.communication.Reload_html import Reload_html
 
 class Site_maison:

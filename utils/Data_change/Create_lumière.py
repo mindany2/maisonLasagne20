@@ -10,7 +10,6 @@ from In_out.bluetooth_devices.ELK_BLEDOM import ELK_BLEDOM
 from In_out.bluetooth_devices.TRIONES import TRIONES
 from In_out.wifi_devices.LEDnet import LEDnet
 from In_out.dmx.Device_dmx import Device_dmx
-from In_out.dmx.Controleur_dmx import Controleur_dmx
 from In_out.capteurs.Capteur_GPIO import Capteur_GPIO
 from tree.eclairage.dmx.Lyre import Lyre
 from tree.eclairage.dmx.Boule import Boule
@@ -100,25 +99,25 @@ def get_lumiere(infos):
             relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Lyre(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        return Lyre(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "boule":
         if addr_relais != None:
             relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Boule(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        return Boule(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "strombo":
         if addr_relais != None:
             relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Strombo(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        return Strombo(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
     elif type_lumière == "decoupe":
         if addr_relais != None:
             relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
         else:
             relais = None
-        return Decoupe(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+        return Decoupe(nom, relais, Device_dmx(Gestionnaire_de_cartes().get_dmx(), int(addr_bluetooth_ou_ip)))
 
     elif type_lumière == "variable":
         return Variable(nom, int(addr_bluetooth_ou_ip))

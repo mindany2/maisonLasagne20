@@ -1,22 +1,17 @@
 from In_out.utils.DMX import DMX
+from In_out.dmx.controleurs.Controleur_dmx import Controleur_dmx
 from threading import Lock
 from utils.Logger import Logger
 
-class Controleur_dmx:
+class KingDMX(Controleur_dmx):
     """
     Le controleur dmx kingDMX
     """
-    dmx = None
-    mutex = Lock()
-
-    @classmethod
-    def init(self, addr):
+    def __init__(self, addr):
+        Controleur_dmx.__init__(self, addr)
         self.dmx = DMX(addr, auto_submit=True)
-        self.addr = addr
         self.dmx.clear_channels()
 
-    @classmethod
     def set(self, channel, value):
         if self.dmx:
             self.dmx.set_channel(channel, int(value))
-

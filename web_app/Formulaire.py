@@ -2,8 +2,8 @@ from flask_wtf import Form
 from wtforms import StringField
 from wtforms.widgets import HTMLString, html_params
 from web_app.Client_statique import Client_statique
-from utils.communication.Get_infos_envs import Get_infos_envs
-from utils.communication.Get_bt_html import Get_bt_html
+from utils.communication.get.Get_infos_envs import Get_infos_envs
+from utils.communication.get.Get_bt_html import Get_bt_html
 
 
 class Boutons(object):

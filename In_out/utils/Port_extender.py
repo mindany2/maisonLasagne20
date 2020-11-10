@@ -16,6 +16,7 @@ class Port_extender:
     vers la carte sur le rasperry pour augmenter le
     nombre de ports
     """
+    #TODO passer en non-static en utilisant le gestionnaire de cartes
     i2c = I2C()
     mutex = Lock()
 

@@ -2,15 +2,21 @@ from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Relais_GPIO import Relais_GPIO
 from In_out.cartes.relais.Relais_arduino import Relais_arduino, MESSAGE_MASTER
+from In_out.dmx.controleurs.Controleur_dmx import Controleur_dmx
 
 
 class Gestionnaire_de_cartes:
     """
-    Ceci est une classe static
+    Ceci est une classe static qui permet de gérer les différentes cartes
+    ajouter sur le rpi
     """
     liste_carte_relais = []
     liste_carte_triac = []
+    dmx = None
 
+    @classmethod
+    def get_dmx(self):
+        return self.dmx
 
     @classmethod
     def get_relais(self, carte, indice_relais):
@@ -37,3 +43,6 @@ class Gestionnaire_de_cartes:
             self.liste_carte_triac.append(carte)
         elif isinstance(carte, Carte_relais):
             self.liste_carte_relais.append(carte)
+        elif isinstance(carte, Controleur_dmx):
+            self.dmx = carte
+
