@@ -16,6 +16,7 @@ from tree.eclairage.dmx.Lyre import Lyre
 from tree.eclairage.dmx.Boule import Boule
 from tree.eclairage.dmx.Laser import Laser
 from tree.eclairage.dmx.Strombo import Strombo
+from tree.eclairage.dmx.Decoupe import Decoupe
 from tree.eclairage.Projecteur import Projecteur, LAMPE
 
 def get_addr(addr):
@@ -112,6 +113,12 @@ def get_lumiere(infos):
         else:
             relais = None
         return Strombo(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
+    elif type_lumière == "decoupe":
+        if addr_relais != None:
+            relais = Gestionnaire_de_cartes().get_relais(addr_relais[1], int(addr_relais[0]))
+        else:
+            relais = None
+        return Decoupe(nom, relais, Device_dmx(Controleur_dmx(), int(addr_bluetooth_ou_ip)))
 
     elif type_lumière == "variable":
         return Variable(nom, int(addr_bluetooth_ou_ip))
