@@ -42,7 +42,7 @@ def threaded_client(conn):
             Logger.info(str(conn) + "is disconnect")
             break
         if requete == "kill me":
-            Logger.info(str(conn) + " demande de kill")
+            Logger.info(str(conn.laddr) + " demande de kill")
             break
         try:
             data = requete.do()

@@ -15,11 +15,11 @@ class Rpi:
         self.timeout = 0
 
     def send(self, message):
+        self.timeout = time()
         if not(self.client):
             self.client = Client(self.addr)
             Thread(target=self.check_for_deconnection).start()
         self.client.send(message)
-        self.timeout = time()
 
     def check_for_deconnection(self):
         """

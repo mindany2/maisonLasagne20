@@ -1,3 +1,4 @@
+from utils.Data_change.Create_lumière import get_relais, get_addr
 from In_out.interruptions.Gestionnaire_interruptions import Gestionnaire_interruptions
 from In_out.Gestionnaire_peripheriques import Gestionnaire_peripheriques
 from In_out.interruptions.inter.Interruption import TYPE_INTER
@@ -106,7 +107,7 @@ def get_config_carte():
             addr, relais = args.split(",")
 
             if (type_ampli == "dax66"):
-                relais = Gestionnaire_peripheriques.get_relais(relais[2], relais[0])
+                relais = get_relais(get_addr(relais))
 
                 if not(relais):
                     Logger.error("Definir d'abord les cartes avant l'ampli")

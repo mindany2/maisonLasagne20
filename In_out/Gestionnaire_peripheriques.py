@@ -1,6 +1,5 @@
 from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
-from In_out.cartes.relais.Relais_GPIO import Relais_GPIO
 from In_out.cartes.relais.Relais_arduino import Relais_arduino, MESSAGE_MASTER
 from In_out.dmx.controleurs.Controleur_dmx import Controleur_dmx
 from In_out.utils.ST_nucleo import ST_nucleo
@@ -38,18 +37,8 @@ class Gestionnaire_peripheriques:
         return self.port_extender
 
     @classmethod
-    def get_relais(self, carte, indice_relais):
-        indice_relais = int(indice_relais)
-        try:
-            if carte == "gpio":
-                # l'indice du relais joue le role du port gpio
-                return Relais_GPIO(indice_relais)
-            else:
-                # c'est une carte
-                indice_carte = int(carte)
-                return self.liste_carte_relais[indice_carte-1].get_relais(indice_relais)
-        except:
-            return None
+    def get_relais(self, indice_carte, indice_relais):
+        return self.liste_carte_relais[indice_carte-1].get_relais(indice_relais)
 
     @classmethod
     def get_triac(self, indice_carte, indice_triac):
