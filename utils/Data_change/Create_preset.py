@@ -6,6 +6,8 @@ from tree.eclairage.Enceintes import Enceintes
 from tree.eclairage.dmx.Lyre import Lyre, COULEUR, GOBO
 from tree.eclairage.Trappe import Trappe
 from tree.utils.Variable import Variable
+from In_out.communication.PC import PC, ACTIONS
+from In_out.Gestionnaire_peripheriques import Gestionnaire_peripheriques
 
 from tree.scenario.Instruction_led import Instruction_led
 from tree.scenario.Instruction_projecteur import Instruction_projecteur
@@ -22,6 +24,7 @@ from tree.scenario.dmx.Instruction_couleur import Instruction_couleur
 from tree.scenario.dmx.Instruction_strombo import Instruction_strombo
 from tree.scenario.dmx.Instruction_program import Instruction_program
 from tree.scenario.dmx.Instruction_vitesse import Instruction_vitesse
+from tree.scenario.communication.Instruction_PC import Instruction_PC
 from tree.eclairage.Projecteur import Projecteur
 from tree.scenario.Scenario import Scenario,MARQUEUR
 from tree.eclairage.dmx.Boule import Boule
@@ -174,11 +177,15 @@ def get_inst(env, infos):
 
         return Instruction_bouton(nom_env, nom_preset, nom_scenar, type_bt, temps_init, synchro, condition)
 
-    elif nom_lampe == "spotify":
-        return Instruction_spotify(TYPE_INST_SPOTIFY[dimmeur], temps_init, synchro, duree)
-
     temps_init = infos[4]
     couleur = infos[5]
+    if nom_lampe == "spotify":
+        return Instruction_spotify(TYPE_INST_SPOTIFY[dimmeur], temps_init, synchro, duree)
+    elif nom_lampe in Gestionnaire_peripheriques().connections:
+        conn = Gestionnaire_peripheriques().get_connections(nom_lampe)
+        if isinstance(conn, PC):
+            return Instruction_PC(conn, ACTIONS[dimmeur], couleur, duree, temps_init, synchro)
+
 
     
     lumière = env.get_lumiere(nom_lampe)

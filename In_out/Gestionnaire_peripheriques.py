@@ -4,7 +4,7 @@ from In_out.cartes.relais.Relais_arduino import Relais_arduino, MESSAGE_MASTER
 from In_out.dmx.controleurs.Controleur_dmx import Controleur_dmx
 from In_out.utils.ST_nucleo import ST_nucleo
 from In_out.utils.Port_extender import Port_extender
-from In_out.Rpi import Rpi
+from In_out.communication.Connection import Connection
 
 
 class Gestionnaire_peripheriques:
@@ -17,11 +17,11 @@ class Gestionnaire_peripheriques:
     dmx = None
     port_extender = None
     st_nucleos = {}
-    rpis = {}
+    connections = {}
 
     @classmethod
-    def get_rpi(self, nom):
-        return self.rpis[nom]
+    def get_connections(self, nom):
+        return self.connections[nom]
 
 
     @classmethod
@@ -57,7 +57,7 @@ class Gestionnaire_peripheriques:
             self.port_extender = carte
         elif isinstance(carte, ST_nucleo):
             self.st_nucleos[carte.nom] = carte
-        elif isinstance(carte, Rpi):
-            self.rpis[carte.nom] = carte
+        elif isinstance(carte, Connection):
+            self.connections[carte.nom] = carte
 
 

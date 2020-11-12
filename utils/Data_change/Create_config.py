@@ -7,7 +7,8 @@ from In_out.cartes.Carte_triac import Carte_triac
 from In_out.cartes.relais.Carte_relais import Carte_relais
 from In_out.cartes.relais.Carte_relais_extender import Carte_relais_extender
 from In_out.utils.ST_nucleo import ST_nucleo
-from In_out.Rpi import Rpi
+from In_out.communication.Rpi import Rpi
+from In_out.communication.PC import PC
 from In_out.utils.Port_extender import Port_extender
 from In_out.son.Ampli_6_zones import Ampli_6_zones
 from In_out.dmx.controleurs.KingDMX import KingDMX
@@ -91,9 +92,15 @@ def get_config_carte():
             mode = ligne.split("---")[1]
             continue
 
-        if mode == "rpis":
-            nom, addr = ligne.split("=")[1].split(",")
-            Gestionnaire_peripheriques().configure(Rpi(nom, addr))
+        if mode == "connections":
+            nom, type_com, args = ligne.split("=")[1].split(",")
+            com = None
+            if type_com == "rpi":
+                com = Rpi(nom, addr)
+            elif type_com == "pc":
+                addr_ip, addr_mac, user, password = args.split("/")
+                com = PC(nom, addr_mac.replace(".",":"), addr_ip, user, password)
+            Gestionnaire_peripheriques().configure(com)
 
         if mode == "stnucleos":
             st_nom, st_addr, decal = ligne.split("=")[1].split(",")
@@ -121,7 +128,7 @@ def get_config_carte():
             if type_dmx == "kingDMX":
                 dmx = KingDMX(addr)
             elif type_dmx == "rpiDMX":
-                dmx = RpiDMX(Gestionnaire_peripheriques().get_rpi(addr))
+                dmx = RpiDMX(Gestionnaire_peripheriques().get_connections(addr))
             Gestionnaire_peripheriques.configure(dmx)
 
         elif mode == "cartes":
