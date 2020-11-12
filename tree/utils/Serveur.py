@@ -4,7 +4,11 @@ from tree.Tree import Tree
 from threading import Thread
 import io
 import sys, traceback
-import netifaces as ni
+WITH_NETIFACE = True
+try:
+    import netifaces as ni
+except:
+    WITH_NETIFACE = False
 from utils.Logger import Logger
 
 """
@@ -12,8 +16,11 @@ Ceci est le serveur de socket, il permet à tous les périphériques clients
 de se connecté et d'avoir accès à l'arbre
 """
 
-ni.ifaddresses('eth0')
-ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+if WITH_NETIFACE:
+    ni.ifaddresses('eth0')
+    ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+else:
+    ip_address = socket.gethostbyname(socket.gethostname())
 
 port = 5555
 

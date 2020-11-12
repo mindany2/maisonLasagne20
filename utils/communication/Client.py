@@ -2,7 +2,12 @@ import socket
 import pickle
 from threading import Lock
 from time import time, sleep
-import netifaces as ni
+WITH_NETIFACE = True
+try:
+    import netifaces as ni
+except:
+    WITH_NETIFACE = False
+
 from utils.Logger import Logger
 
 class Client:
@@ -11,10 +16,13 @@ class Client:
     def __init__(self, ip_address = None):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not(ip_address): # == None
-            # on utilise l'ip de ce rpi
-            ni.ifaddresses('eth0')
-            self.ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
-            Logger.debug("ip addresse = {}".format(self.ip_address))
+            if WITH_NETIFACE:
+                # on utilise l'ip de ce rpi
+                ni.ifaddresses('eth0')
+                self.ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+                Logger.debug("ip addresse = {}".format(self.ip_address))
+            else:
+                self.ip_address = socket.gethostbyname(socket.gethostname())
         else:
             self.ip_address = ip_address
 
