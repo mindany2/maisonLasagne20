@@ -29,7 +29,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     s.bind((ip_address, port))
 except socket.error as e:
-    str(e)
+    print(str(e))
 
 s.listen(2)
 Logger.info("Waiting for a connection, Server Started")
@@ -39,17 +39,18 @@ def threaded_client(conn):
     while True:
         try:
             requete = pickle.loads(conn.recv(4048))
-        except : #e:
+        except e:
             Logger.error("Exception during request: rajouter le log de e dans serveur")
-            #Logger.error(e)
+            Logger.error(e)
             break
         # requete est un ordre, une fonction à éxécuter
         data = None
+        print(requete)
         if not requete:
             Logger.info(str(conn) + "is disconnect")
             break
         if requete == "kill me":
-            Logger.info(" demande de kill")
+            Logger.info("demande de kill")
             break
         try:
             data = requete.do()

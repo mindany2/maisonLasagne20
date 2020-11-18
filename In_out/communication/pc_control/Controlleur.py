@@ -1,8 +1,9 @@
-try:
-    from pynput.keyboard import Key, Controller as Key_controller
-    from pynput.mouse import Button, Controller as Mouse_controller
-except:
-    pass
+
+from pynput.keyboard import Key
+from pynput.keyboard import Controller as Key_controller
+from pynput.mouse import Button
+from pynput.mouse import Controller as Mouse_controller
+
 from utils.Logger import Logger
 
 class Controlleur:
@@ -14,11 +15,11 @@ class Controlleur:
         self.mouse = Mouse_controller()
 
     def press_key(self, key):
+        touche = key
         try:
             touche = Key[key]
         except:
             Logger.error("Wrong press_key demand : "+key)
-            return
         self.keyboard.press(touche)
         self.keyboard.release(touche)
 
