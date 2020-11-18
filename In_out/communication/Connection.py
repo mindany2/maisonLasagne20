@@ -34,7 +34,11 @@ class Connection(Locker):
         """
         while (time() - self.timeout) < TIME_OUT:
             sleep(1)
+        self.deconnect()
+
+    def deconnect(self):
         if self.client:
             self.client.deconnect()
         self.client = None
+
 

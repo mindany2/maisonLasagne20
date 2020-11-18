@@ -1,7 +1,7 @@
 import os
 from time import sleep
-from In_out.utils.SSH import SSH
 from In_out.communication.Connection import Connection
+from utils.communication.control.Cmd import Cmd
 from utils.Logger import Logger
 from enum import Enum
 from threading import Thread
@@ -21,8 +21,6 @@ class PC(Connection):
         Connection.__init__(self, nom, addr_ip)
         self.addr_mac = addr_mac
         self.addr_ip = addr_ip
-        self.user = user
-        self.ssh = SSH(addr_ip, user, password)
 
     def start(self):
         Logger.info("On allume le PC "+self.nom)
@@ -37,27 +35,17 @@ class PC(Connection):
         if not(self.etat()):
             self.start()
             sleep(75)
-
-        # on start le serveur python sur le PC distant
-        Logger.debug("connection ssh à "+self.nom)
-        self.ssh.connect()
-        """
-        Thread(target=self.start_serveur).start()
-        """
+        # le serveur python devrait être lancé automatiquement au démarrage
         self.unlock()
-
-
-    def start_serveur(self):
-        self.ssh.command("C:\\Users\\{}\\Documents\\Leo\\maison\\Main_PC_control.py".format(self.user))
 
     def deconnect(self):
         self.lock()
         print("check_for_deconnection")
         self.check_for_deconnection()
         print("shutdown")
-        self.ssh.command("shutdown -s -t 0")
+        self.send(Cmd("shutdown -s -t 0"))
         print("deconnect")
-        self.ssh.deconnect()
+        self.deconnect()
         self.unlock()
 
 
