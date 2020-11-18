@@ -20,7 +20,9 @@ class Connection(Locker):
         self.lock()
         self.timeout = time()
         if not(self.client):
+            print("on tente de se co")
             self.client = Client(self.addr)
+            print("on est co")
             Thread(target=self.check_for_deconnection).start()
         self.client.send(message)
         self.unlock()

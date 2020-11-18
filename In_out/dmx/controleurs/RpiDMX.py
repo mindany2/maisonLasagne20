@@ -12,5 +12,6 @@ class RpiDMX(Controleur_dmx):
         self.rpi = rpi
 
     def set(self, channel, value):
+        super().set(channel, value)
         self.rpi.send(Set_DMX(channel, value))
 

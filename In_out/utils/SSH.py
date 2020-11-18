@@ -1,4 +1,5 @@
 import paramiko
+from utils.Logger import Logger
 
 class SSH:
     """
@@ -13,11 +14,14 @@ class SSH:
         self.ssh = paramiko.SSHClient()
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) 
         self.ssh.connect(hostname=self.host, username=self.user, password=self.password, port=22)
+        Logger.info("ssh connected to "+self.host)
 
     def command(self, command):
-        stdin, stdout, stderr = self.ssh.exec_command("cmd.exe /c "+command)
+        stdin, stdout, stderr = self.ssh.exec_command(command)
+        Logger.info("ssh command : "+command + "\n" + str(stdout.read()))
         return str(stdout.read())
 
     def deconnect(self):
         self.ssh.close()
+        Logger.info("ssh deconnected to "+self.host)
 

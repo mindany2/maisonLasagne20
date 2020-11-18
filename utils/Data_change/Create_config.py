@@ -13,6 +13,7 @@ from In_out.utils.Port_extender import Port_extender
 from In_out.son.Ampli_6_zones import Ampli_6_zones
 from In_out.dmx.controleurs.KingDMX import KingDMX
 from In_out.dmx.controleurs.RpiDMX import RpiDMX
+from In_out.dmx.Transmetteur import Transmetteur
 from utils.Data_change.utils.Read import ouvrir, lire
 from utils.spotify.Spotify import Spotify
 from utils.Logger import Logger
@@ -123,10 +124,16 @@ def get_config_carte():
                 Ampli_6_zones.init(addr, relais)
 
         elif mode == "dmx":
-            type_dmx, addr = ligne.split("=")[1].split(",")
+            vals = ligne.split("=")[1].split(",")
+            type_dmx, addr = vals[0], vals[1]
             dmx = None
+            transmetter = None
+            if len(vals) > 2:
+                addr_relais, mini, maxi = vals[2].split("/")
+                relais = get_relais(get_addr(addr_relais))
+                transmetter = Transmetteur(relais, int(mini), int(maxi))
             if type_dmx == "kingDMX":
-                dmx = KingDMX(addr)
+                dmx = KingDMX(addr, transmetter)
             elif type_dmx == "rpiDMX":
                 dmx = RpiDMX(Gestionnaire_peripheriques().get_connections(addr))
             Gestionnaire_peripheriques.configure(dmx)

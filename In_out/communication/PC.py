@@ -4,6 +4,7 @@ from In_out.utils.SSH import SSH
 from In_out.communication.Connection import Connection
 from utils.Logger import Logger
 from enum import Enum
+from threading import Thread
 
 class ACTIONS(Enum):
     allumer = 0
@@ -35,19 +36,27 @@ class PC(Connection):
         self.lock()
         if not(self.etat()):
             self.start()
-            sleep(30)
+            sleep(75)
 
         # on start le serveur python sur le PC distant
         Logger.debug("connection ssh à "+self.nom)
         self.ssh.connect()
-        self.ssh.command("cd C:\\Users\\{}\\Documents\\Leo\\maison".format(self.user))
-        self.ssh.command("python Main_PC_control.py")
+        """
+        Thread(target=self.start_serveur).start()
+        """
         self.unlock()
+
+
+    def start_serveur(self):
+        self.ssh.command("C:\\Users\\{}\\Documents\\Leo\\maison\\Main_PC_control.py".format(self.user))
 
     def deconnect(self):
         self.lock()
+        print("check_for_deconnection")
         self.check_for_deconnection()
+        print("shutdown")
         self.ssh.command("shutdown -s -t 0")
+        print("deconnect")
         self.ssh.deconnect()
         self.unlock()
 
