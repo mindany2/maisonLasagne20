@@ -1,34 +1,24 @@
 from tree.utils.Liste_radios import Liste_radios
+from tree.Environnement import Environnement
 from tree.utils.Liste import Liste
 from threading import Thread
 from utils.Logger import Logger
 
 class Tree:
-    liste_envi = Liste()
+    environnement_global = Environnement("GENERAL")
     liste_modes = Liste_radios()
-
-    @classmethod
-    def show(self):
-        print("modes : ")
-        self.liste_modes.show()
-        print("Environnements : ")
-        self.liste_envi.show()
 
     @classmethod
     def get_mode(self, nom_mode):
         return self.liste_modes.get(nom_mode)
 
     @classmethod
-    def change_mode_select(self, mode):
-        self.liste_modes.change_select(mode)
+    def change_mode(self, nom_mode):
+        mode_select = self.liste_modes.get(nom_mode)
+        self.liste_modes.change_select(mode_select)
         Logger.info("Changement de mode : " + self.get_current_mode().nom)
-
-    @classmethod
-    def press_inter(self, nom_inter, etat):
-        Logger.info("on press l'inter "+nom_inter)
-        for env in self.liste_envi:
-            env.press_inter(nom_inter, etat)
-
+        # on met les environnements dans le même mode
+        self.environnement_global.change_mode(mode_select)
 
     @classmethod
     def add_mode(self, mode):
@@ -37,50 +27,25 @@ class Tree:
     @classmethod
     def repair(self):
         # permet de reset les leds si necessaires
-        for env in self.liste_envi:
-            env.repair()
+        self.environnement_global.repair()
 
     @classmethod
     def get_current_mode(self):
         return self.liste_modes.selected()
 
     @classmethod
-    def reload_modes(self):
-        self.change_mode_select(self.get_current_mode())
-        # on met les environnements dans le même mode
-        for env in self.liste_envi:
-            env.change_mode()
-
-    @classmethod
-    def get_env(self, env):
-        return self.liste_envi.get(env)
+    def get_env(self, nom_env):
+        path = nom_env.split(".")
+        return self.environnement_global.get_env(path)
 
     @classmethod
     def get_noms_envi(self):
-        return [env.nom for env in self.liste_envi]
+        return self.environnement_global.get_noms_envi()
 
     @classmethod
-    def get_infos_envi(self):
-        return [[env.nom, str(env.style.selected()), env.nb_boutons_html()] for env in self.liste_envi.sort()]
-
-    @classmethod
-    def press_bouton_html(self, nom_env, index):
-        if nom_env != "mode":
-            Logger.info("On press le bouton html : "+nom_env +"."+str(index))
-            self.get_env(nom_env).press_bouton_html(index)
-        else:
-            self.liste_modes.selected().press_bouton_mode()
-
-    @classmethod
-    def reload_html(self):
-        for env in self.liste_envi:
-            env.get_preset_select().reload_html()
-
-    @classmethod
-    def get_bouton_html(self, nom_env, index):
-        if nom_env != "mode":
-            return self.get_env(nom_env).get_preset_select().get_bouton_html(index)
-        return self.liste_modes.selected().bouton_change_html
+    def press_inter(self, nom_env, nom):
+        Logger.info("press inter {}, env = {}".format(nom_env, nom))
+        self.get_env(nom_env).press_inter(nom)
 
     @classmethod
     def get_scenar(self, nom_env, nom_scenar, preset=None):

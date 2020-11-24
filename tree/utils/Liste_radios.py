@@ -2,7 +2,8 @@ from tree.utils.Liste import Liste
 
 class Liste_radios(Liste):
     """
-    une liste de boutons lié entre eux comme des radios
+    Permet de gérer les listes radios
+    un seul élément selectionner à la fois
     """
     def __init__(self):
         Liste.__init__(self)
@@ -13,18 +14,18 @@ class Liste_radios(Liste):
         if self.element_select == None:
             self.element_select = element
             if change:
-                # on met le bouton selectionner à On
-                self.element_select.change()
+                # on indique a l'element qu'il est allumer
+                self.element_select.etat(True)
 
     def selected(self):
         return self.element_select
 
     def change_select(self, element):
-        self.element_select.change()
+        self.element_select.etat(False)
         self.element_select = element
-        element.change()
+        self.element_select.etat(True)
 
     def next(self):
-        self.change_select(Liste.next(self, self.element_select))
+        self.change_select(super().next(self.element_select))
 
         

@@ -4,7 +4,7 @@ def get_rang(element):
 
 class Dico:
     """
-    C'est un dictionnaire avec quelques fonctions utiles
+    Redefinition du dictionnaire python avec quelques fonctions utiles
     """
     def __init__(self):
         self.liste = {}
@@ -50,7 +50,6 @@ class Dico:
     def est_vide(self):
         return self.liste.keys() == []
 
-    def show(self):
-        for element in self.liste.values():
-            element.show()
+    def __str__(self):
+        return str(self.liste.values)
 

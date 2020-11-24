@@ -2,7 +2,8 @@ from tree.utils.Dico import Dico
 
 class Liste(Dico):
     """
-    Ceci est un dictionnaire, mais ayant pour clef le nom de l'élément
+    Permet simplement de stocker un élément
+    directement avec son nom
     """
     def __init__(self):
         Dico.__init__(self)
