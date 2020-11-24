@@ -28,3 +28,5 @@ class Lumiere:
     def test(self):
         return self.test_lock > 0
     
+    def repair(self):
+        return False

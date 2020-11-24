@@ -9,6 +9,7 @@ from tree.scenario.Scenario import MARQUEUR
 from utils.Logger import Logger
 from tree.utils.Calculateur import Calculateur
 from tree.utils.Variable import Variable
+from In_out.utils.Magic_Home_init import check_for_reset
 import sys
 
 
@@ -34,6 +35,26 @@ class Environnement:
             # pour trier du plus gd nb de bouton
             return 10-len(self.liste_presets.selected().liste_boutons_html)
         return self.rang
+
+    def repair(self):
+        hs = list(self.liste_lumières)
+        count = 0
+        Logger.info("On reparre l'environnement " +self.nom)
+        while hs != [] and count < 3:
+            hs = []
+            for lum in self.liste_lumières:
+                Logger.info("On repare la lumières " + lum.nom)
+                if lum.repair():
+                    hs.append(lum)
+            # on reset le wifi
+            if hs != []:
+                count += 1
+                check_for_reset()
+        if hs != []:
+            Logger.error("--------------  Environnement : {} --------------".format(self.nom))
+            for lum in hs:
+                Logger.error(" ---------- LED {} est totalement HS ----------".format(lum.nom))
+            
 
     def reset_preset(self):
         for preset in self.liste_presets:
