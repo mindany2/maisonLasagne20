@@ -30,7 +30,7 @@ def get_relais(addr_relais):
             # relais rpi
             rpi, carte = carte.split(",")
             addr = (int(carte), int(indice_relais))
-            return Relais_rpi(Gestionnaire_peripheriques().rpis[rpi], addr)
+            return Relais_rpi(Gestionnaire_peripheriques().get_connections(rpi), addr)
         else:
             # c'est une carte
             indice_carte = int(carte)

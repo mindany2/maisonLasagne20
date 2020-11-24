@@ -1,13 +1,11 @@
-from tree.utils.Locker import Locker
+from threading import Lock
 
-class Lumiere(Locker):
+class Locker:
     """
-    Classe mère de toute les lumières
+    Permet de lock des lumières et périphérique
+    et de kill les instructions si necessaire
     """
-    def __init__(self, nom):
-        Locker.__init__(self)
-        self.nom = nom
-        self.dimmeur = 0 #éteint
+    def __init__(self):
         self.mutex = Lock()
 
         self.id_scenar = 0
@@ -29,6 +27,3 @@ class Lumiere(Locker):
     def test(self):
         return self.test_lock > 0
     
-    def repair(self):
-        return False
-        

@@ -52,3 +52,5 @@ WTForms==2.2.1
 zipp==3.1.0
 APScheduler
 wifi
+paramiko
+pynput

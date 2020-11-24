@@ -4,13 +4,14 @@ from utils.Logger import Logger
 
 class Controleur_dmx:
     """
-    Le controleur dmx kingDMX
+    Le controleur dmx
     """
     mutex = Lock()
 
-    def __init__(self):
-        pass
+    def __init__(self, transmetter = None):
+        self.transmetter = transmetter
 
     def set(self, channel, value):
-        pass
+        if self.transmetter:
+            self.transmetter.test(channel)
 
