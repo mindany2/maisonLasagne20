@@ -1,4 +1,5 @@
 from tree.utils.Locker import Locker
+from threading import Lock
 
 class Lumiere(Locker):
     """

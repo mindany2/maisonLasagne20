@@ -1,8 +1,11 @@
 
-from pynput.keyboard import Key
-from pynput.keyboard import Controller as Key_controller
-from pynput.mouse import Button
-from pynput.mouse import Controller as Mouse_controller
+try:
+    from pynput.keyboard import Key
+    from pynput.keyboard import Controller as Key_controller
+    from pynput.mouse import Button
+    from pynput.mouse import Controller as Mouse_controller
+except:
+    print("no pynput")
 
 from utils.Logger import Logger
 

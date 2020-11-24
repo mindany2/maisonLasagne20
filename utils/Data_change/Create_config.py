@@ -97,7 +97,7 @@ def get_config_carte():
             nom, type_com, args = ligne.split("=")[1].split(",")
             com = None
             if type_com == "rpi":
-                com = Rpi(nom, addr)
+                com = Rpi(nom, args)
             elif type_com == "pc":
                 addr_ip, addr_mac, user, password = args.split("/")
                 com = PC(nom, addr_mac.replace(".",":"), addr_ip, user, password)
