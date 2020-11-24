@@ -18,7 +18,7 @@ class I2C:
             self.bus.write_byte_data(ip, register, data)
         except Exception as e:
             Logger.error("Erreur sur le bus I2C...."+str(e))
-        sleep(0.01)
+        sleep(0.1)
         self.mutex.release()
 
     @classmethod

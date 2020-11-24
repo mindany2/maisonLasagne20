@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 from utils.communication.Client import Client
-from utils.communication.Spotify_inter import Spotify_inter
+from utils.communication.interrupt.Spotify_inter import Spotify_inter
 from time import sleep
 
 event = os.environ.get("PLAYER_EVENT")

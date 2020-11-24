@@ -35,6 +35,12 @@ class Tree:
         self.liste_modes.add(mode)
 
     @classmethod
+    def repair(self):
+        # permet de reset les leds si necessaires
+        for env in self.liste_envi:
+            env.repair()
+
+    @classmethod
     def get_current_mode(self):
         return self.liste_modes.selected()
 

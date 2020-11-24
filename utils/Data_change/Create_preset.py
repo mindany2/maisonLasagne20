@@ -60,6 +60,8 @@ def get_preset(env, nom):
                     marqueur = MARQUEUR.DECO
                 elif marqueur == "off":
                     marqueur = MARQUEUR.OFF
+                elif marqueur == "vide":
+                    marqueur = MARQUEUR.NULL
                 else:
                     marqueur = MARQUEUR.ON
             else:

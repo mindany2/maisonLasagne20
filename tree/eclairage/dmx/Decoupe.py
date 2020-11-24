@@ -22,15 +22,18 @@ class Decoupe(Lampe):
             # on doit attendre que le projo s'initialise
             sleep(4)
 
-
     def lock_dimmeur(self):
         super().lock()
+        if self.dimmeur == 0:
+            self.set(1)
 
     def test_dimmeur(self):
         return super().test()
 
     def unlock_dimmer(self):
         super().unlock()
+        if self.dimmeur == 0:
+            self.set(0)
 
 class CHANNEL(Enum):
     dimmeur = 1

@@ -11,4 +11,4 @@ class Relais_rpi(Relais):
         self.addresse = addresse
 
     def reload(self):
-        self.rpi.send(Set_relais(self.addresse, self.etat.value))
+        self.rpi.send(Set_relais(self.addresse, self.etat))

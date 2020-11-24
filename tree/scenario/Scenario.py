@@ -10,6 +10,7 @@ class MARQUEUR(Enum):
     OFF = 0
     ON = 1
     DECO = 2
+    NULL = 3
 
 class Scenario:
     """

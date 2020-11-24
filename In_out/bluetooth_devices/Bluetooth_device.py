@@ -21,8 +21,6 @@ class Bluetooth_device:
         self.char_id = char_id
 
     def connect(self):
-        # pour eviter d'avoir le son qui saute
-        return 0
         compt = 0
         while self.periph == None:
             self.periph = Bluetooth().connect(self.addr)
