@@ -99,8 +99,8 @@ def get_config_carte():
             if type_com == "rpi":
                 com = Rpi(nom, addr)
             elif type_com == "pc":
-                addr_ip, addr_mac, user, password = args.split("/")
-                com = PC(nom, addr_mac.replace(".",":"), addr_ip, user, password)
+                addr_ip, addr_mac, = args.split("/")
+                com = PC(nom, addr_mac.replace(".",":"), addr_ip)
             Gestionnaire_peripheriques().configure(com)
 
         if mode == "stnucleos":

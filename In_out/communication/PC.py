@@ -17,7 +17,7 @@ class PC(Connection):
     PC distant
     """
     
-    def __init__(self, nom, addr_mac, addr_ip, user, password):
+    def __init__(self, nom, addr_mac, addr_ip):
         Connection.__init__(self, nom, addr_ip)
         self.addr_mac = addr_mac
         self.addr_ip = addr_ip
@@ -40,13 +40,11 @@ class PC(Connection):
 
     def deconnect(self):
         self.lock()
-        print("check_for_deconnection")
-        self.check_for_deconnection()
         print("shutdown")
-        self.send(Cmd("shutdown -s -t 0"))
-        print("deconnect")
-        self.deconnect()
         self.unlock()
+        self.send(Cmd("shutdown -s -t 15"))
+        print("deconnect")
+        self.check_for_deconnection()
 
 
 
