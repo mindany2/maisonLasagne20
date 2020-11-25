@@ -1,15 +1,11 @@
+from tree.utils.Dico import Dico
 from tree.utils.Liste import Liste
 from tree.utils.Liste_radios import Liste_radios
-from tree.utils.Dico import Dico
-from tree.Tree import Tree
-from tree.boutons.html.style.Style import Style
-from tree.eclairage.Projecteur import Projecteur
-from tree.eclairage.Enceintes import Enceintes
 from tree.scenario.Scenario import MARQUEUR
-from utils.Logger import Logger
 from tree.utils.Calculateur import Calculateur
 from tree.utils.Variable import Variable
 from In_out.utils.Magic_Home_init import check_for_reset
+from utils.Logger import Logger
 import sys
 
 

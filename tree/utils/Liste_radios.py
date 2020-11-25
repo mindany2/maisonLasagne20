@@ -21,9 +21,9 @@ class Liste_radios(Liste):
         return self.element_select
 
     def change_select(self, element):
-        self.element_select.etat(False)
+        self.element_select.change_etat(False)
         self.element_select = element
-        self.element_select.etat(True)
+        self.element_select.change_etat(True)
 
     def next(self):
         self.change_select(super().next(self.element_select))
