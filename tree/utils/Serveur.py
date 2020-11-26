@@ -45,7 +45,6 @@ def threaded_client(conn):
             break
         # requete est un ordre, une fonction à éxécuter
         data = None
-        print(requete)
         if not requete:
             Logger.info(str(conn) + "is disconnect")
             break

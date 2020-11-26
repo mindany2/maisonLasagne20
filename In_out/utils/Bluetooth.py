@@ -49,7 +49,6 @@ class Bluetooth:
                     return None
     @classmethod
     def restart(self):
-        """
         self.mutex_reset.acquire()
         if not(self.reset):
             Logger.info("on reset le bluetooth")
@@ -69,8 +68,7 @@ class Bluetooth:
             self.mutex_reset.acquire()
             self.reset = False
         self.mutex_reset.release()
-        """
-        pass
+
     @classmethod
     def get_char(self, periph, uuid, indice):
         try:

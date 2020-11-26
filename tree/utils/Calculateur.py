@@ -16,14 +16,16 @@ class Calculateur:
 
     def int(self, string):
         if string != "":
+            # les variables locals
             for var in self.variables:
                 vars()[var.nom] = var.get()
-            # on ajoute aussi les variable de spotify
-            vars()["bpm"] = Spotify.get_bpm()
+            # les variables des autres environnements
             for env in Tree().liste_envi:
                 vars()[env.nom+"_etat"] = (env.etat() == MARQUEUR.ON)
                 for var in env.calculateur.variables:
                     vars()[env.nom+"_"+var.nom] = var.get()
+            # on ajoute aussi les variable de spotify
+            vars()["bpm"] = Spotify.get_bpm()
             vars()["volume_spotify"] = Spotify().volume
             vars()["etat_spotify"] = Spotify().etat
             return eval(string)

@@ -60,7 +60,7 @@ class Led(Lumiere):
 
     def deconnect(self, planté = False):
         if self.connecté:
-            sleep(0.5)
+            sleep(3)
             self.controleur.deconnect(is_black = self.couleur.is_black())
             if self.couleur.is_black() and not(self.force):
                 self.relais.set(Etat.OFF)
