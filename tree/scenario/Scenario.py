@@ -3,7 +3,7 @@ from threading import Thread
 from enum import Enum
 from utils.Logger import Logger
 
-class MARQUEUR(Enum):
+class MARKER(Enum):
     """
     Permet de type les scenarios
     """
@@ -40,11 +40,8 @@ class Scenario:
     def etat(self):
         return self.liste_inst.etat
 
-    def change(self):
-        self.liste_inst.change_etat()
-
-    def reset(self):
-        self.liste_inst.etat = False
+    def set_etat(self, etat):
+        self.liste_inst.set_etat(etat)
 
     def do(self, join = False):
         Logger.info("On fait le scénario "+self.nom)

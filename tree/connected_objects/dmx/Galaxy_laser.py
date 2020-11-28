@@ -1,6 +1,6 @@
 
 
-class Laser:
+class Galaxy_laser:
     
     # TODO
     def __init__(self):

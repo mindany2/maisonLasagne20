@@ -1,6 +1,7 @@
 from tree.utils.Liste import Liste
 from tree.utils.Dico import Dico
 from tree.scenario.Scenario import MARQUEUR
+from tree.scenario.Gestionnaire_scenario import Gestionnaire_scenario
 from tree.boutons.Bouton_principal import Bouton_principal
 
 class Preset:
@@ -11,7 +12,7 @@ class Preset:
     def __init__(self, nom):
         self.nom = nom
         self.liste_scénario = Liste()
-        self.
+        self.gestion_scenar = None
         self.etat = False
         self.lien_inter_bouton = Dico()
 
@@ -28,28 +29,25 @@ class Preset:
             return True
         return False
 
-    def change_select(self, scenar):
-        if scenar != None:
-            self.liste_scénario.change_select(scenar)
-
     def change_etat(self, etat):
         self.etat = etat
 
     def add_scenar(self, scenar):
         self.liste_scénario.add(scenar)
+        # on initialise le gestionnaire de scenario
+        # avec le premier scenario OFF trouvé
+        if not(self.gestion_scenar) and scenar.get_marqueur() == MARQUEUR.OFF:
+            self.gestion_scenar = Gestionnaire_scenario(scenar)
 
     def get_scenar(self, nom):
         return self.liste_scénario.get(nom)
 
-    def get_pile(self):
-        return self.liste_scénario
+    def get_gestionnaire(self):
+        return self.gestion_scenar
 
     def get_marqueur(self):
-        return self.liste_scénario.selected().get_marqueur()
+        return self.gestion_scenar.get_marqueur()
 
-    def do(self):
-        self.liste_scénario.selected().do()
-    
     def reset(self):
         for scenar in self.liste_scénario:
-            scenar.reset()
+            scenar.set_etat(False)

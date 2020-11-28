@@ -1,8 +1,7 @@
-from tree.utils.Liste_radios import Liste_radios
 from tree.Environnement import Environnement
-from tree.utils.Liste import Liste
 from threading import Thread
 from utils.Logger import Logger
+from tree.utils.Liste_radios import Liste_radios
 
 class Tree:
     environnement_global = Environnement("GENERAL")

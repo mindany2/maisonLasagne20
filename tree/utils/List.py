@@ -9,5 +9,8 @@ class Liste(Dico):
         Dico.__init__(self)
 
     def add(self, element):
-        Dico.add(self, element.nom, element)
+        super().add(element.nom, element)
+
+    def remove(self, element):
+        super().remove(element.nom)
 

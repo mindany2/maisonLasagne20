@@ -28,6 +28,8 @@ class Dico:
         assert(find)
         return list(self.liste.values())[0]
 
+    def last(self):
+        return self.liste.values()[-1]
 
     def sort(self):
         # trie la liste suivant l'argument "rang" de l'élément
@@ -40,7 +42,6 @@ class Dico:
                 return clef
         return None
 
-
     def __iter__(self):
         return self.liste.values().__iter__()
 
@@ -52,4 +53,7 @@ class Dico:
 
     def __str__(self):
         return str(self.liste.values)
+
+    def remove(self, key):
+        del self.liste[key]
 

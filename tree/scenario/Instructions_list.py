@@ -17,13 +17,13 @@ class Liste_instructions:
         self.id_liste = random()
         self.calculateur = calculateur
 
-    def change_etat(self):
+    def set_etat(self, etat):
         if self.etat:
             # vire ce scénario
             # on enleve les scénario qu'on a allumer
             for inst in self.liste:
                 inst.finish()
-        self.etat = not(self.etat)
+        self.etat = etat
 
 
     def add(self, inst):

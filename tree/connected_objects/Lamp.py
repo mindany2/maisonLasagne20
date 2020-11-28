@@ -4,7 +4,7 @@ from threading import Lock
 from In_out.cartes.relais.Relais import Etat
 from utils.Logger import Logger
 
-class Lampe(Lumiere):
+class Lamp(Lumiere):
     """
     Juste un lampe on/off
     """

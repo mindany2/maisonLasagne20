@@ -11,8 +11,6 @@ class Mode:
         self.nom = nom
         self.etat = False
         self.bouton_change_html = Bouton_html_modes(self.nom)
-        self.css_file = css_file
-        self.couleur = couleur
         self.scenar_init = scenar_init
 
     def press_bouton_mode(self):

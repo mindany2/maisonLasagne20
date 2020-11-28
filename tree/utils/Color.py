@@ -3,7 +3,7 @@ import numpy as np
 def rgb_to_hexa(r, g, b):
     return "0x"+hex(r)[2:4].zfill(2)+hex(g)[2:4].zfill(2)+hex(b)[2:4].zfill(2)
 
-class Couleur:
+class Color:
     """
     Permet d'avoir la couleur en rgb
     """
