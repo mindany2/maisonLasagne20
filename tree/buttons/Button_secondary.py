@@ -10,11 +10,11 @@ class Button_secondary(Button):
         Button.__init__(self, name, manager)
         self.scenar = scenar
 
-    def etat(self):
-        return self.scenar.etat()
+    def state(self):
+        return self.scenar.state()
 
-    def press(self, etat = True):
-        if etat:
+    def press(self, state = True):
+        if state:
             # do the scenario
             self.manager.do_scenar_secondaire(self.scenar)
         else:

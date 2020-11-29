@@ -2,9 +2,9 @@ from tree.scenario.instructions.light.Instruction_light import Instruction_light
 from time import sleep
 from utils.Logger import Logger
 
-class Instruction_lamp(Instruction_light):
+class Instruction_force(Instruction_light):
     """
-    Power ON or OFF a lamp
+    Force a relay of a lamp to be always ON 
     """
     def __init__(self, calculator, light, dimmer, delay, synchro, duration = 0):
         Instruction_light.__init__(self, calculator, light, dimmer, duration, delay, synchro)
@@ -14,5 +14,6 @@ class Instruction_lamp(Instruction_light):
         super().run()
         self.dimmer = self.eval(self.dimmer)
         if self.light.etat() != (self.dimmer != 0):
-            self.light.set(self.dimmer != 0)
+            self.light.force(self.dimmer != 0)
         self.light.unlock()
+

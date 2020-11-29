@@ -1,51 +1,52 @@
-from tree.scenario.Instruction import Instruction
+from tree.scenario.instructions.Instruction import Instruction
 from utils.Logger import Logger
 from time import time, sleep
 
 RESOLUTION = 10
 
-class Instruction_enceinte(Instruction):
+class Instruction_speaker(Instruction):
     """
-    Une instruction appellant un bouton d'un autre environnement
+    Change de volume of speakers
     """
-    def __init__(self, enceinte, volume, duree, temps_init, synchro):
-        Instruction.__init__(self, duree, temps_init, synchro)
+    def __init__(self, calculator, speaker, volume, duration, delay, synchro):
+        Instruction.__init__(self, calculator, duration, delay, synchro)
         self.volume = volume
-        self.enceinte = enceinte
-
+        self.speaker = speaker
 
     def run(self, barrier):
-
+        """
+        Setup a try/finally to allow kill from another instruction
+        """
         debut = time()
         try:
-            self.enceinte.lock()
+            self.speaker.lock()
             super().run()
 
-            volume_initial = self.enceinte.volume()
+            volume_initial = self.speaker.volume()
             volume_final = self.eval(self.volume)
-            ecart = volume_final - volume_initial
+            gap = volume_final - volume_initial
 
-            if ecart == 0:
-                #Logger.info("on fait rien pour l'enceinte {}".format(self.enceinte.nom))
+            if gap == 0:
                 return
-            nb_points = self.duree*RESOLUTION
-            self.enceinte.connect()
+
+            nb_dots = self.duration*RESOLUTION
+            self.speaker.connect()
 
             val = volume_initial
-            for _ in range(0,nb_points):
-                if self.enceinte.test():
+            for _ in range(0,nb_dots):
+                if self.speaker.test():
                     raise SystemExit("kill inst")
                 temps = time()
-                self.enceinte.change_volume(int(val))
-                val += ecart/nb_points
+                self.speaker.change_volume(int(val))
+                val += gap/nb_dots
                 dodo = 1/RESOLUTION-(time()-temps)
                 if dodo > 0:
                     sleep(dodo)
-            self.enceinte.change_volume(volume_final)
-            self.enceinte.deconnect()
-            Logger.info(" l'enceinte {} a mis {} s a s'allumer au lieu de {}".format(self.enceinte.nom, time()-debut, self.duree))
+            self.speaker.change_volume(volume_final)
+            self.speaker.disconnect()
+            Logger.info("The speaker {} took {}s to power instead of {}s".format(self.speaker.name, time()-debut, self.duration))
         finally:
-            self.enceinte.unlock()
+            self.speaker.unlock()
  
 
 

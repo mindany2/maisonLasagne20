@@ -1,49 +1,52 @@
-from tree.eclairage.Lumiere import Lumiere
-from tree.eclairage.Lampe import Lampe
+from tree.connected_objects.Connected_object import Connected_object
+from tree.connected_objects.Lamp import Lamp
 from enum import Enum
 from time import sleep
 from threading import Lock
 
-class ETAT(Enum):
-    haut = 1
-    bas = 2
-    en_cours = 3
+class STATE(Enum):
+    up = 1
+    down = 2
+    in_process = 3
 
-class Trappe(Lumiere):
+class Trap(Connected_object):
     """
-    modélise la trappe
+    This is a automated trapdoor in the midle of the house to cut the sound between two levels
+    It is control with a distributor of compressed air with 2 states
+    There are also an magnet when the trap is open to prevent for air issues
+    There are also some sensor to securise the process
     """
-    def __init__(self,nom, relais_distrib_montée, relais_distrib_descente, relais_aimant, capteur_fermeture):
-        """
-        L'aimant est inversé
-        """
-        Lumiere.__init__(self, nom)
-        self.distrib_montée = Lampe("distrib_montée",relais_distrib_montée)
-        self.distrib_descente = Lampe("distrib_descente",relais_distrib_descente)
-        self.aimant = Lampe("aimant",relais_aimant, invert=True)
-        self.capteur_fermeture = capteur_fermeture
-        etat = self.capteur_fermeture.capture() 
-        if etat:
-            self.etat = ETAT.haut
+    def __init__(self,name, relay_distrib_up, relay_distrib_down, relay_magnet, closed_sensor):
+        Connected_object.__init__(self, name)
+        self.distrib_up = Lamp("distrib_up",relay_distrib_up)
+        self.distrib_down = Lamp("distrib_down",relay_distrib_down)
+        self.magnet = Lamp("magnet",relay_magnet, invert=True) # the relay is inverted (magnet is by default ON)
+        self.closed_sensor = closed_sensor
+        state = self.closed_sensor.capture() 
+        if state:
+            self.state = STATE.up
         else:
-            self.etat = ETAT.bas
-        print("la trappe est {}".format(self.etat))
+            self.state = STATE.down
+        print("the trap is {}".format(self.state))
 
-    def set_aimant(self, etat):
-        self.aimant.set(etat)
+    def get_state(self):
+        return self.state
 
-    def descendre(self):
-        self.distrib_descente.set(True)
+    def set_magnet(self, state):
+        self.magnet.set(state)
+
+    def go_down(self):
+        self.distrib_down.set(True)
         sleep(0.5)
-        self.distrib_descente.set(False)
+        self.distrib_down.set(False)
 
-    def monter(self):
-        self.distrib_montée.set(True)
+    def go_up(self):
+        self.distrib_up.set(True)
         sleep(0.5)
-        self.distrib_montée.set(False)
+        self.distrib_up.set(False)
 
-    def change(self, etat):
-        self.etat = etat
+    def change(self, state):
+        self.state = state
 
 
 

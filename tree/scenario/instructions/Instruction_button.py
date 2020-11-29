@@ -1,77 +1,81 @@
-from tree.scenario.Instruction import Instruction
-from tree.boutons.Bouton_secondaire import Bouton_secondaire
-from tree.boutons.Bouton_principal import Bouton_principal
+from tree.scenario.instructions.Instruction import Instruction
+from tree.buttons.Button_secondary import Button_secondary
+from tree.buttons.Button_principal import Button_principal
 from tree.Tree import Tree
 from utils.Logger import Logger
 from enum import Enum
 
-class TYPE_BOUTON(Enum):
+class TYPE_BUTTON(Enum):
     principal = 0
-    secondaire = 1
+    secondary = 1
 
-class Instruction_bouton(Instruction):
+class Instruction_button(Instruction):
     """
-    Une instruction appellant un bouton d'un autre environnement
+    The instruction call a button for another environnement
     """
-    def __init__(self, nom_env, nom_preset, nom_scenars, type_bt, temps_init, synchro, condition):
-        Instruction.__init__(self, 0, temps_init, synchro)
-        self.nom_env = nom_env
-        self.nom_preset = nom_preset
-        self.nom_scenars = nom_scenars.split(",")
+    def __init__(self,calculator, name_env, name_preset, list_name_scenars, type_bt, delay, synchro, condition):
+        Instruction.__init__(self,calculator, 0, delay, synchro)
+        self.name_env = name_env
+        self.name_preset = name_preset
+        self.name_scenars = list_name_scenars
         self.type_bt = type_bt
         self.condition = condition
 
-        self.bouton = None
+        self.button = None
         self.preset = None
         self.env = None
 
     def run(self, barrier = None):
         super().run()
-
-        if self.bouton == None:
-            self.get_bt()
+        self.get_bt()
 
         condition = self.eval(self.condition)
-        # on verifie que l'on est dans la bonne preset selectionner, sinon on ne fait rien
+        # check if it is the right preset, if not just pass
         if(self.env.get_preset_select() == self.preset):
-            if len(self.nom_scenars) == 1 and condition:
-                # on fait le scenar que si la condition est remplie
-                self.bouton.press()
-            else:
-                # sinon on fait le on ou le off suivant la condition
-                # on a obligatoirement un scenario principal
-                self.bouton.press(etat=condition)
+            # if there are only one scenario, just do it if the condition is True
+            if len(self.name_scenars) == 1 and condition:
+                self.button.press()
+            elif len(self.name_scenars) > 1:
+                # if not, just press the button with the condition like state
+                # it is necessary a principal button
+                self.button.press(state=condition)
 
     def get_bt(self):
+        """
+        Need to find the button after all the tree is created
+        """
+        if self.button:
+            return
         try:
-            self.env = Tree.get_env(self.nom_env) 
-            self.preset = self.env.get_preset(self.nom_preset)
-            self.scenars = [self.preset.get_scenar(nom_scenar) for nom_scenar in self.nom_scenars]
+            # get the scenarios
+            self.env = Tree.get_env(self.name_env) 
+            self.preset = self.env.get_preset(self.name_preset)
+            self.scenars = [self.preset.get_scenar(name_scenar) for name_scenar in self.name_scenars]
             for scenar in self.scenars:
                 assert(scenar)
 
         except:
-            raise(Exception("Not found exeption le scenario {} dans l'environnement {} preset {} n'existe pas"
-                .format(self.nom_scenars, self.nom_env, self.nom_preset)))
+            raise(Exception("Not found exeption scenario : {}, in the environnement {}, preset : {}"
+                .format(self.name_scenars, self.name_env, self.name_preset)))
 
-        if self.type_bt == TYPE_BOUTON.principal:
+        if self.type_bt == TYPE_BUTTON.principal:
             scenar_off = None
             if (len(self.scenars) > 1):
                 scenar_off = self.scenars[1]
-            self.bouton = Bouton_principal(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.env, self.scenars[0], scenar_off)
-        elif self.type_bt == TYPE_BOUTON.secondaire:
-            self.bouton = Bouton_secondaire(self.nom_env + "."+ self.nom_preset +"." + self.nom_scenars[0], self.env, self.scenars[0])
+            self.button = Button_principal(self.name_env + "."+ self.name_preset +"." + self.name_scenars[0], self.env, self.scenars[0], scenar_off)
+        elif self.type_bt == TYPE_BUTTON.secondary:
+            self.button = Button_secondary(self.name_env + "."+ self.name_preset +"." + self.name_scenars[0], self.env, self.scenars[0])
         else:
-            raise(Exception("Erreur type bouton : {}".format(self.type_bt)))
+            raise(Exception("Error type button : {}".format(self.type_bt)))
 
     def finish(self):
-        if self.type_bt == TYPE_BOUTON.secondaire:
-            self.bouton.press(etat=False)
+        if self.type_bt == TYPE_BUTTON.secondary:
+            self.button.press(state=False)
 
     def __eq__(self, other):
-        if isinstance(other, Instruction_bouton):
+        if isinstance(other, Instruction_button):
             if self.type_bt == other.type_bt:
                 self.get_bt()
                 other.get_bt()
-                return (self.bouton == other.bouton)
+                return (self.button == other.button)
         return False

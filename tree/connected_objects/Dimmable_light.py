@@ -1,4 +1,4 @@
-from tree.connected_objects.Light import Light
+from tree.connected_objects.Connected_object import Connected_object
 from In_out.cartes.relais.Relais import Etat
 from In_out.utils.ST_nucleo import ETAT_TRIAC
 from enum import Enum
@@ -7,6 +7,7 @@ from time import sleep
 class BULD(Enum):
     """
     Each dimmable light have is own range of dimmer
+    type is define by the last number of the serial number of the buld
     """
     # type  = (maxi,mini)
     type_63 = (400,80)
@@ -18,14 +19,13 @@ class BULD(Enum):
     type_200 = (370,130)
 
 
-class Dimmable_light(Light):
+class Dimmable_light(Connected_object):
     """
     A dimmable light control by a triac
     """
-    def __init__(self, name, triac, type_buld, relay = None):
-        Light.__init__(self, name)
+    def __init__(self, name, triac, type_buld):
+        Connected_object.__init__(self, name)
         self.triac = triac
-        self.relay = relay
         self.type_buld = type_buld
         self.dimmer = 0
         # power off the light
@@ -51,6 +51,15 @@ class Dimmable_light(Light):
         value = self.convert(dimmer)
         self.triac.set(value)
         self.dimmer = int(dimmer)
+
+    def lock_dimmer(self):
+        self.lock()
+
+    def test_dimmer(self):
+        return self.test()
+
+    def unlock_dimmer(self):
+        self.unlock()
 
     def convert(self, dimmer):
         # convert dimmer value to triac value

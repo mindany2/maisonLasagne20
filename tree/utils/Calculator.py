@@ -1,10 +1,10 @@
-from tree.utils.Liste import Liste
+from tree.utils.List import List
 from random import randint
 from tree.Tree import Tree
 from tree.scenario.Scenario import MARQUEUR
 from utils.spotify.Spotify import Spotify
 
-class Calculateur:
+class Calculator:
     """
     Permet de calculer des expression régulière
     """

@@ -1,25 +1,17 @@
-from tree.scenario.Instruction import Instruction, Attente
-from tree.eclairage.Lumiere import Lumiere
+from tree.scenario.instructions.Instruction import Instruction, STATE
 
 RESOLUTION = 10
 
-class Instruction_lumiere(Instruction):
+class Instruction_light(Instruction):
     """
-    Une instruction de type allumage
+    Instruction with a dimmer and a light
     """
-    def __init__(self, lumière, dimmeur, duree, temps_init, synchro):
-        Instruction.__init__(self, duree, temps_init, synchro)
-        self.dimmeur = dimmeur
-        self.lumière = lumière
-
-    def run(self, temps_ecouler=0):
-        super().run(temps_ecouler)
-
-    def eclairage(self):
-        return self.lumière
+    def __init__(self, calculator, light, dimmer, duration, delay, synchro):
+        Instruction.__init__(self, calculator, duration, delay, synchro)
+        self.dimmer = dimmer
+        self.light = light
 
     def __eq__(self, other):
-        if isinstance(other, Instruction_lumiere):
-            return (self.dimmeur == other.dimmeur) and (self.lumière == other.lumière) 
-
+        if isinstance(other, Instruction_light):
+            return (self.dimmer == other.dimmer) and (self.light == other.light) 
         return False

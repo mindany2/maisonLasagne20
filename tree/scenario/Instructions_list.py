@@ -1,78 +1,69 @@
-from tree.scenario.Instruction import Instruction
+from tree.scenario.instructions.Instruction import Instruction
 from threading import Thread, Barrier
 from numpy import cumsum
 from time import time, sleep
 from multiprocessing import Process
-from random import random
+import uuid
 
-class Liste_instructions:
+class Instructions_list:
     """
-    Contient une succession d'instructions
+    Manage a list of instructions
+    with an id_list to compare scenario
     """
-    def __init__(self, boucle, calculateur):
-        self.liste = []
-        self.liste_barrier = [0]
-        self.boucle = boucle
-        self.etat = False
-        self.id_liste = random()
-        self.calculateur = calculateur
+    def __init__(self, loop, calculator):
+        self.list = []
+        self.list_barrier = [0]
+        self.loop = loop
+        self.state = False
+        self.calculator = calculator
 
-    def set_etat(self, etat):
-        if self.etat:
-            # vire ce scénario
-            # on enleve les scénario qu'on a allumer
-            for inst in self.liste:
+    def set_state(self, state):
+        if self.state:
+            # finish all the instruction in process
+            for inst in self.list:
                 inst.finish()
-        self.etat = etat
-
+        self.state = state
 
     def add(self, inst):
-        self.liste.append(inst)
-        inst.id_liste = self.id_liste
-        inst.calculateur = self.calculateur
-        self.liste_barrier[-1] += 1
+        self.list.append(inst)
+        self.list_barrier[-1] += 1
         if not(inst.synchro):
-            # on a une nouvelle barrière
-            self.liste_barrier.append(0)
+            # need a new barrier
+            self.list_barrier.append(0)
 
     def __eq__(self, other):
         if isinstance(other, Liste_instructions):
-            if len(self.liste) == 0 or len(other.liste) == 0:
+            if len(self.list) == 0 or len(other.list) == 0:
                 return False
 
-            for inst1 in self.liste:
-                for inst2 in other.liste:
-                    if inst1.eclairage() == inst2.eclairage(): # si elles ont le même eclairage  
-                        if not(inst1 == inst2): # si elle finissent pas pareil
-                            return False
+            for inst1 in self.list:
+                for inst2 in other.list:
+                    if not(inst1 == inst2):
+                        return False
             return True
         return False
 
-
-
     def __iter__(self):
-        return self.liste.__iter__()
+        return self.list.__iter__()
 
     def do(self):
         while True:
-            #on fait toute les instructions
-            liste_thread = []
-            liste_barrieres = [Barrier(i) for i in self.liste_barrier]
-            cummulative_somme = cumsum(self.liste_barrier)
-            # on demarre toutes les instructions
-            for i,inst in enumerate(self.liste):
-                # chaque instruction est un thread
-                # on le demarre
-                n = sum([int(i+1 > j) for j in cummulative_somme])
-                bar = liste_barrieres[n]
+            #do all the instructions
+            list_thread = []
+            list_barriers = [Barrier(i) for i in self.list_barrier]
+            cummulative_sum = cumsum(self.list_barrier)
+            # start all the thread
+            for i,inst in enumerate(self.list):
+                n = sum([int(i+1 > j) for j in cummulative_sum])
+                bar = list_barriers[n]
                 process = Thread(target=inst.run, args=[bar])
-                liste_thread.append(process)
+                list_thread.append(process)
                 process.start()
 
-            #on attend qu'ils aient tous terminé
-            for proc in liste_thread:
-                proc.join(timeout=20)
-            if not(self.boucle and self.etat):
+            # waiting for all thread to finish
+            for proc in list_thread:
+                proc.join()
+            if not(self.loop and self.state):
                 break
 
 

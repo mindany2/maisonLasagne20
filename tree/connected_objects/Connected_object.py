@@ -1,8 +1,8 @@
 from tree.utils.Locker import Locker
 
-class Light(Locker):
+class Connected_object(Locker):
     """
-    Parent class of all lights
+    Parent class of all connected objects
     """
     def __init__(self, name):
         Locker.__init__(self)
@@ -10,4 +10,5 @@ class Light(Locker):
    
     def repair(self):
         return False
-        
+
+

@@ -7,7 +7,7 @@ class Button:
         self.name = name
         self.manager = manager
 
-    def etat(self):
+    def state(self):
         return False
 
     def press(self):

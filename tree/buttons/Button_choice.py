@@ -9,7 +9,7 @@ class Button_choice(Button):
         Button.__init__(self, name, manager)
         self.list_scenar = list_scenar
 
-    def press(self, etat= None):
+    def press(self, state= None):
         select = 0
         for i,scenar in enumerate(self.list_scenar):
             if self.manager.get_scenar_en_cours() == scenar:

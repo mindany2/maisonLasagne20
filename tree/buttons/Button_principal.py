@@ -11,16 +11,16 @@ class Button_principal(Button):
         self.scenar_on = scenar_on
         self.scenar_off = scenar_off
 
-    def etat(self):
-        return self.scenar_on.etat()
+    def state(self):
+        return self.scenar_on.state()
 
-    def press(self, etat = None):
+    def press(self, state = None):
         if self.scenar_off:
             # if there are 2 scenarios
-            if not(etat):
-                etat = (self.manager.get_marker() == MARKER.ON)
+            if not(state):
+                state = (self.manager.get_marker() == MARKER.ON)
 
-            if etat:
+            if state:
                 self.manager.do_scenar_principal(self.scenar_off)
             else:
                 self.manager.do_scenar_principal(self.scenar_on)

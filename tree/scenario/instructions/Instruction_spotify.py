@@ -1,5 +1,5 @@
 import numpy as np
-from tree.scenario.Instruction import Instruction
+from tree.scenario.instructions.Instruction import Instruction
 from utils.spotify.Spotify import Spotify
 from time import sleep
 from utils.Logger import Logger
@@ -12,16 +12,14 @@ class TYPE_INST_SPOTIFY(Enum):
 
 class Instruction_spotify(Instruction):
     """
-    On set un projecteur
+    Modifie spotify values like volumes, play/pause..
     """
-    def __init__(self, type_inst, temps_init, synchro, duree = 0):
-        Instruction.__init__(self, duree, temps_init, synchro)
+    #TODO volume
+    def __init__(self,calculator, type_inst, delay, synchro, duration = 0):
+        Instruction.__init__(self,calculator, duration, delay, synchro)
         self.type_inst = type_inst
 
     def run(self, barrier):
-        """
-        On s'occupe de faire l'instruction
-        """
         super().run()
         if self.type_inst == TYPE_INST_SPOTIFY.start:
             Spotify().start()

@@ -1,6 +1,6 @@
 from enum import Enum
-from threading import Lock
 from tree.connected_objects.Lamp import Lamp
+from tree.utils.Locker import Locker
 
 class Lyre(Lamp):
     """
@@ -24,8 +24,7 @@ class Lyre(Lamp):
         self.color = COLOR.white
         self.gobo = GOBO.simple_round
         
-        self.mutex_dimmer = Lock()
-        self.test_lock_dimmer = 0
+        self.locker_dimmer = Locker()
 
     def set_position(self, pan, tilt):
         if self.pan != pan:
@@ -69,24 +68,20 @@ class Lyre(Lamp):
         return (self.pan, self.tilt)
 
     def lock_dimmer(self):
-        if self.mutex_dimmer.locked():
-            # on donne l'ordre de kill the thread en cours
-            self.test_lock_dimmer += 1
-        self.mutex_dimmer.acquire()
-        if self.test_lock_dimmer > 0:
-            self.test_lock_dimmer -= 1
+        self.locker_dimmer.lock()
 
     def test_dimmer(self):
-        return self.test_lock_dimmer>0
+        return self.locker_dimmer.test()
 
     def unlock_dimmer(self):
-        self.mutex_dimmer.release()
+        self.locker_dimmer.unlock()
 
 
 
 
 class COLOR(Enum):
-    # il manque les milieux
+    # the full color
+    #TODO midle color
     white = 0
     red = 15
     orange = 25
@@ -98,7 +93,8 @@ class COLOR(Enum):
     wheel = 255
 
 class GOBO(Enum):
-    # il manque les gobos qui bougent
+    # static gobos
+    #TODO shaked gobos
     simple_round = 0
     breaking_round = 20
     flower = 40
@@ -110,6 +106,7 @@ class GOBO(Enum):
     wheel = 110
 
 class CHANNEL(Enum):
+    # 11 channels
     pan = 1
     tilt = 2
     ajustment_pan = 3

@@ -48,8 +48,11 @@ class Dico:
     def keys(self):
         return self.liste.keys().__iter__()
 
-    def est_vide(self):
+    def is_empty(self):
         return self.liste.keys() == []
+
+    def clear(self):
+        self.list = {}
 
     def __str__(self):
         return str(self.liste.values)

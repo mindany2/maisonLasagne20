@@ -1,5 +1,4 @@
-from tree.scenario.Instruction import Instruction, Attente
-from tree.eclairage.Lumiere import Lumiere
+from tree.scenario.instructions.Instruction import Instruction, STATE
 from In_out.communication.PC import ACTIONS
 from utils.communication.control.Press_key import Press_key
 from utils.communication.control.Press_mouse import Press_mouse
@@ -8,10 +7,11 @@ from utils.Logger import Logger
 
 class Instruction_PC(Instruction):
     """
-    Pertmet de commander un PC
+    Allow to control an external personnal computer
+    (if there are a serveur running at the startup of this PC
     """
-    def __init__(self, pc, action, args, duree, temps_init, synchro):
-        Instruction.__init__(self, duree, temps_init, synchro)
+    def __init__(self, calculator, pc, action, args, duration, delay, synchro):
+        Instruction.__init__(self, calculator, duration, delay, synchro)
         self.pc = pc
         self.action = action
         self.args = args
@@ -20,26 +20,25 @@ class Instruction_PC(Instruction):
         super().run()
         if self.action == ACTIONS.allumer:
             self.pc.connect()
-            Logger.info("on allume le pc")
+            Logger.info("Power on {}".format(self.pc.nom))
 
         elif self.action == ACTIONS.eteindre:
             self.pc.deconnect()
-            Logger.info("on eteint le pc")
+            Logger.info("Power off {}".format(self.pc.nom))
 
         elif self.action == ACTIONS.key:
-            self.pc.send(Press_key(self.args))
-            Logger.info("on press "+self.args)
+            self.pc.send(Press_key(self.args[0]))
+            Logger.info("press "+self.args[0])
 
         elif self.action == ACTIONS.mouse:
-            args = self.args.split(",")
             double_clic = False
             clic_right = False
-            x, y = args[0:2]
-            if len(args) > 2:
-                double_clic = (args[3] == "double")
-                clic_right = (args[3] == "droit")
+            x, y = self.args[0:2]
+            if len(self.args) > 2:
+                double_clic = (self.args[3] == "double")
+                clic_right = (self.args[3] == "droit")
             self.pc.send(Press_mouse(x, y, clic_right, double_clic))
-            Logger.info("on clic "+self.args)
+            Logger.info("clic "+self.args)
 
 
 

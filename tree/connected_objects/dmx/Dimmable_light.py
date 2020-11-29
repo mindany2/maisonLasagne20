@@ -16,8 +16,8 @@ class Dimmable_light(Lamp):
             self.dmx.set(CHANNEL.dimmer, value)
         self.dimmer = value
 
-    def set(self, value):
-        super().set(value)
+    def set(self, on_off):
+        super().set(on_off)
         # TODO
         """
         if value == True:

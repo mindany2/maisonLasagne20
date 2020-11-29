@@ -1,6 +1,6 @@
 from tree.utils.Dico import Dico
 
-class Liste(Dico):
+class List(Dico):
     """
     Permet simplement de stocker un élément
     directement avec son nom
@@ -13,4 +13,3 @@ class Liste(Dico):
 
     def remove(self, element):
         super().remove(element.nom)
-

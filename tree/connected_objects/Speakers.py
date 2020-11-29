@@ -1,17 +1,14 @@
-from tree.scenario.Instruction_enceinte import Instruction_enceinte
-from tree.eclairage.Lumiere import Lumiere
+from tree.connected_objects.Connected_object import Connected_object
 from threading import Thread, Lock
-from tree.scenario.Scenario import MARQUEUR
 
-class Enceintes(Lumiere):
+class Speakers(Connected_object):
     """
-    Gère une paire d'enceinte
-    ( lier a une zone )
+    A pair of speakers, link to a zone and an amp
     """
 
-    def __init__(self, nom, ampli, zone):
-        Lumiere.__init__(self, nom)
-        self.ampli = ampli
+    def __init__(self, name, amp, zone):
+        Connected_object.__init__(self, name)
+        self.amp = amp
         self.zone = zone
         self.connected = False
 
@@ -20,21 +17,19 @@ class Enceintes(Lumiere):
 
     def connect(self):
         if not(self.connected) and self.volume() == 0:
-            self.ampli.allumer()
+            self.amp.power_on()
             self.connected = True
 
-    def deconnect(self):
+    def disconnect(self):
         if self.connected and self.volume() == 0:
-            self.ampli.eteindre()
+            self.amp.power_off()
             self.connected = False
 
-    def change_volume(self, valeur):
-        if valeur == 0:
+    def change_volume(self, value):
+        if value == 0:
             self.zone.set_power(0)
-        elif valeur != 0 and self.zone.power == 0:
+        elif value != 0 and self.zone.power == 0:
             self.zone.set_power(1)
-        self.zone.set_volume(valeur)
+        self.zone.set_volume(value)
 
-    def show(self):
-        print("Enceinte " + str(self.zone.numero))
 

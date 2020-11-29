@@ -1,78 +1,67 @@
-from tree.eclairage.Trappe import ETAT
-from tree.scenario.Instruction import Instruction
+from tree.connected_objects.Trap import STATE
+from tree.scenario.instructions.Instruction import Instruction
 from enum import Enum
 from time import time, sleep
 
-class INST_TRAPPE(Enum):
-    monter = 1
-    descendre = 2
+class INST_TRAP(Enum):
+    up = 1
+    down = 2
 
-class Instruction_trappe(Instruction):
+class Instruction_trap(Instruction):
     """
-    On set un projecteur
+    Up or down the trap
     """
-    def __init__(self,trappe, action, duree, temps_init, synchro):
-        Instruction.__init__(self, duree, temps_init, synchro)
+    def __init__(self,calculator, trap, action, duration, delay, synchro):
+        Instruction.__init__(self, calculator, duration, delay, synchro)
         self.action = action
-        self.trappe = trappe
+        self.trap = trap
 
     def run(self, barrier):
         """
-        On s'occupe de faire l'instruction
+        Setup a try/finally to allow kill from another instruction
         """
         try:
-            print("on lock")
-            self.trappe.lock(self.id_liste)
-            print("on est lock")
-            if self.action == INST_TRAPPE.descendre and self.trappe.etat != ETAT.bas:
-                # on descend
-                self.trappe.set_aimant(False)
-                if self.trappe.etat == ETAT.haut:
-                    self.trappe.change(ETAT.en_cours)
+            self.trap.lock()
+            if self.action == INST_TRAP.down and self.trap.get_state() != STATE.down:
+                # descend the trap
+                self.trap.set_magnet(False)
+                if self.trap.get_state() == STATE.up:
+                    self.trap.change(STATE.in_process)
                     super().run()
 
-                if self.trappe.test():
-                    # on m'a kill
+                if self.trap.test():
+                    # this inst was kill, just finish
                     raise SystemExit("kill inst")
-                self.trappe.descendre()
-                temps = time()
-                while(time()-temps < self.eval(self.duree)):
-                    sleep(0.1)
-                    if self.trappe.test():
+                self.trap.go_down()
+                time_up = time()
+                while(time()-time_up < self.eval(self.duration)):
+                    sleep(0.1) # wait resolution
+                    if self.trap.test():
                         raise SystemExit("kill inst")
-                self.trappe.change(ETAT.bas)
+                self.trap.change(STATE.down)
 
-            elif self.action == INST_TRAPPE.monter and self.trappe.etat != ETAT.haut:
-                # on monte
-                if self.trappe.etat == ETAT.bas:
-                    self.trappe.change(ETAT.en_cours)
+            elif self.action == INST_TRAP.up and self.trap.get_state() != STATE.up:
+                # rise the trap
+                if self.trap.get_state() == STATE.down:
+                    self.trap.change(STATE.in_process)
                     super().run()
 
-                if self.trappe.test():
-                    # on m'a kill
+                if self.trap.test():
+                    # this inst was kill, just finish
                     raise SystemExit("kill inst")
-                self.trappe.monter()
-                self.trappe.set_aimant(True)
-                temps = time()
-                while(time()-temps < self.eval(self.duree)):
+                self.trap.go_up()
+                self.trap.set_magnet(True)
+                time_up = time()
+                while(time()-time_up < self.eval(self.duration)):
                     sleep(0.1)
-                    if self.trappe.test():
+                    if self.trap.test():
                         raise SystemExit("kill inst")
-                self.trappe.change(ETAT.haut)
+                self.trap.change(STATE.up)
 
         finally:
-            print("la trappe est {}".format(self.trappe.etat))
-            self.trappe.unlock()
+            print("the trap is {}".format(self.trap.state))
+            self.trap.unlock()
 
+    def finish(self):
+        self.trap.kill()
 
-
-
-
-
-
-
-    def eclairage(self):
-        return self.trappe
-
-    def show(self):
-        print("on {} la trappe a {}".format(self.action, self.temps_init))
