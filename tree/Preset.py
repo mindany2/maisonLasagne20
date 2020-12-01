@@ -1,53 +1,48 @@
-from tree.utils.Liste import Liste
+from tree.utils.List import List
 from tree.utils.Dico import Dico
-from tree.scenario.Scenario import MARQUEUR
-from tree.scenario.Gestionnaire_scenario import Gestionnaire_scenario
-from tree.boutons.Bouton_principal import Bouton_principal
+from tree.scenario.Scenario import MARKER
+from tree.scenario.Scenario_manager import Scenario_manager
 
 class Preset:
     """
-    Stocke une liste de scenario
-    et d'interruptions
+    Store a list of scenario, and a list of insterrupt to run them
     """
-    def __init__(self, nom):
-        self.nom = nom
-        self.liste_scénario = Liste()
-        self.gestion_scenar = None
-        self.etat = False
-        self.lien_inter_bouton = Dico()
+    def __init__(self, name):
+        self.name = name
+        self.list_scenario = List()
+        self.inter_to_buttons = Dico()
 
-    def add_lien_inter(self, nom_inter, bouton):
-        self.lien_inter_bouton.add(nom_inter, bouton)
+        self.manager = None
+        self.state = False
 
-    def get_bouton(self, nom_inter):
-        return self.lien_inter_bouton.get(nom_inter)
+    def add_link_inter(self, name_inter, button):
+        self.inter_to_buttons.add(name_inter, button)
 
-    def press_inter(self, nom_inter, etat):
-        bt = self.get_bouton(nom_inter)
+    def get_button(self, name_inter):
+        return self.inter_to_buttons.get(name_inter)
+
+    def press_inter(self, name_inter, state):
+        bt = self.get_button(name_inter)
         if bt != None:
-            bt.press(etat)
-            return True
-        return False
+            bt.press(state)
 
-    def change_etat(self, etat):
-        self.etat = etat
+    def change_state(self, state):
+        self.state = state
 
     def add_scenar(self, scenar):
-        self.liste_scénario.add(scenar)
-        # on initialise le gestionnaire de scenario
-        # avec le premier scenario OFF trouvé
-        if not(self.gestion_scenar) and scenar.get_marqueur() == MARQUEUR.OFF:
-            self.gestion_scenar = Gestionnaire_scenario(scenar)
+        self.list_scenario.add(scenar)
+        # initialise the manager with the first scenario OFF found
+        # /!\ Need to have obligatory a scenario OFF in the preset
+        if not(self.manager) and scenar.get_marker() == MARKER.OFF:
+            self.manager = Scenario_manager(scenar)
 
-    def get_scenar(self, nom):
-        return self.liste_scénario.get(nom)
+    def get_scenar(self, name):
+        return self.list_scenario.get(name)
 
     def get_gestionnaire(self):
-        return self.gestion_scenar
+        if self.manager:
+            return self.manager
+        raise(ValueError("Need to setup a OFF scenario in the preset "+self.name)) 
 
-    def get_marqueur(self):
-        return self.gestion_scenar.get_marqueur()
-
-    def reset(self):
-        for scenar in self.liste_scénario:
-            scenar.set_etat(False)
+    def get_marker(self):
+        return self.manager.get_marker()

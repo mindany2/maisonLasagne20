@@ -2,8 +2,8 @@ from threading import Lock
 
 class Locker:
     """
-    Permet de lock des lumières et périphérique
-    et de kill les instructions si necessaire
+    Allow the connected_objects to be use by only one
+    thread, but also to be kill if another thread need it
     """
     def __init__(self):
         self.mutex = Lock()

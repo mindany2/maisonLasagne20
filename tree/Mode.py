@@ -1,32 +1,24 @@
-from tree.boutons.html.Bouton_html_modes import Bouton_html_modes
 from tree.Tree import Tree
 from tree.utils.Dico import Dico
 
 class Mode:
     """
-    Ceci est un mode qui permet de changer rapidement
-    de preset
+    This is a mode of the tree, this allow to change all the preset in
+    all the environnements in the tree (normal, evenning..)
     """
-    def __init__(self, nom, css_file, couleur, scenar_init):
-        self.nom = nom
-        self.etat = False
-        self.bouton_change_html = Bouton_html_modes(self.nom)
+    def __init__(self, name, color, scenar_init):
+        self.name = name
+        self.state = False
         self.scenar_init = scenar_init
 
-    def press_bouton_mode(self):
-        self.bouton_change_html.press()
-        Tree().reload_modes()
-
-    def show(self):
-        print(self.nom)
-
     def __str__(self):
-        return self.nom
+        return self.name
 
     def change(self):
-        self.etat = not(self.etat)
-        if self.etat and self.scenar_init:
-            env, preset, nom = self.scenar_init.split(".")
-            scenar = Tree().get_scenar(env, nom, preset = preset)
+        self.state = not(self.state)
+        if self.state and self.scenar_init:
+            # do the scenar_init
+            env, preset, name = self.scenar_init.split(".")
+            scenar = Tree().get_scenar(env, name, preset = preset)
             if scenar:
                 scenar.do()

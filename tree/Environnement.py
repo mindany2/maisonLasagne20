@@ -1,134 +1,108 @@
 from tree.utils.Dico import Dico
-from tree.utils.Liste import Liste
-from tree.utils.Liste_radios import Liste_radios
-from tree.scenario.Scenario import MARQUEUR
-from tree.utils.Calculateur import Calculateur
-from tree.utils.Variable import Variable
-from In_out.utils.Magic_Home_init import check_for_reset
+from tree.utils.List import List
+from tree.utils.List_radio import List_radio
+from tree.scenario.Scenario import MARKER
+from tree.utils.calculs.Calculator import Calculator
+from tree.utils.calculs.Variable import Variable
 from utils.Logger import Logger
 import sys
 
 
 class Environnement:
     """
-    Definit une zone avec toutes ses
-    lumières et boutons
+    Define a group of light that works with a list of preset
+    Also can define sub-environnements 
     """
-    def __init__(self, nom):
-        self.nom = nom
-        self.liste_lumières = Liste()
-        self.liste_sous_envs = Liste()
-        self.liste_presets = Liste_radios()
-        # table de hashage entre mode et preset
-        self.liste_presets_choisis = Dico()
-        self.calculateur = Calculateur()
+    def __init__(self, name):
+        self.name = name
+        self.list_lights = Liste()
+        self.list_sub_env = Liste()
+        self.list_presets = Liste_radios()
+        # hash table between mode and preset
+        self.list_presets_chosen = Dico()
+        self.calculator = Calculateur()
 
-    def add_lumiere(self, lum):
+    def add_light(self, lum):
         if isinstance(lum, Variable):
-            self.calculateur.add(lum)
+            self.calculator.add(lum)
         else:
-            self.liste_lumières.add(lum)
+            self.list_lights.add(lum)
 
     def add_env(self, env):
-        self.liste_sous_envs.add(env)
+        self.list_sub_env.add(env)
 
     def add_preset(self, preset):
-        self.liste_presets.add(preset)
+        self.list_presets.add(preset)
 
-    def etat(self):
-        # retourne si un marqueur du scénario en cours
-        # pour savoir si l'environnement est dans un état allumer, eteint ou juste décoratif
-        return self.get_preset_select().get_marqueur()
+    def state(self):
+        # return the marker of the principal scenario
+        # it tells if the scenario is ON/OFF/DECO
+        return self.get_preset_select().get_marker()
 
     def est_on(self):
-        # retourne si vrai si cet environnement ou au moins un 
-        # des sous_environnements est ON
-        for env in self.liste_sous_envs:
+        # return true if this environnement is ON or 
+        # at least one of it's sub-environnement
+        for env in self.list_sub_env:
             if env.est_on():
                 return True
-        return self.etat() == MARQUEUR.ON
+        return self.state() == MARKER.ON
 
     def get_preset_select(self):
-        return self.liste_presets.selected()
+        return self.list_presets.selected()
 
     def change_mode(self, mode):
-        nv_preset = self.liste_presets_choisis.get(mode)
+        nv_preset = self.list_presets_chosen.get(mode)
         if nv_preset != self.get_preset_select():
-            if self.etat() == MARQUEUR.ON:
-                # on est ON, on cherche donc le premier scénario ON dans la nouvelle preset
-                for scenar in nv_preset.liste_scénario:
-                    if scenar.get_marqueur() == MARQUEUR.ON:
+            if self.state() == MARKER.ON:
+                # we need a ON scenario, search the first we find in the new preset
+                for scenar in nv_preset.get_list_scenars():
+                    if scenar.get_marker() == MARKER.ON:
                         nv_preset.change_select(scenar)
                         scenar.do()
-            # on change de preset
+            # just change the preset
             self.change_preset_select(nv_preset)
-        # on fait la même chose dans les sous_environnements
-        for env in self.liste_sous_envs:
+        # do it in all the sub-envs
+        for env in self.list_sub_env:
             env.change_mode(mode)
 
 
     def change_preset_select(self, preset):
-        self.liste_presets.change_select(preset)
+        self.list_presets.change_select(preset)
 
-    def add_mode(self, mode, nom_preset):
-        self.liste_presets_choisis.add(mode, self.get_preset(nom_preset))
+    def add_mode(self, mode, name_preset):
+        self.list_presets_chosen.add(mode, self.get_preset(name_preset))
 
-    def get_preset(self, nom):
-        return self.liste_presets.get(nom)
+    def get_preset(self, name):
+        return self.list_presets.get(name)
 
     def get_env(self, path):
         if len(path) > 1:
-            # c'est dans un sous_env
-            return self.liste_sous_envs.get(path[0]).get_env(path[1:])
-        elif path[0] == self.nom:
+            # it is a sub-environnement
+            return self.list_sub_env.get(path[0]).get_env(path[1:])
+        elif path[0] == self.name:
             return self
         return None
 
-    def get_lumiere(self, nom):
-        lum = self.liste_lumières.get(nom)
+    def get_light(self, name):
+        lum = self.list_lights.get(name)
         if lum:
             return lum
-        # ce peut être une variable
-        return self.calculateur.get(nom)
+        # it could be a variable
+        return self.calculator.get(name)
 
-    def get_noms_envi(self):
-        liste_nom = [self.nom]
-        for env in self.liste_sous_envs:
-            noms = env.get_noms_envi()
-            for nom in noms:
-                liste_nom.append("{}.{}".format(self.nom, nom))
-        return liste_nom
+    def get_names_envi(self):
+        list_name = [self.name]
+        for env in self.list_sub_env:
+            names = env.get_names_envi()
+            for name in names:
+                list_name.append("{}.{}".format(self.name, name))
+        return list_name
 
-    def get_scenar(self, nom, preset=None):
+    def get_scenar(self, name, preset=None):
         if preset:
-            return self.get_preset(preset).get_scenar(nom)
-        return self.get_preset_select().get_scenar(nom)
+            return self.get_preset(preset).get_scenar(name)
+        return self.get_preset_select().get_scenar(name)
 
-    def press_inter(self, nom_inter, etat):
-        self.get_preset_select().press_inter(nom_inter, etat)
+    def press_inter(self, name_inter, state):
+        self.get_preset_select().press_inter(name_inter, state)
     
-    def reset_preset(self):
-        for preset in self.liste_presets:
-            preset.reset()
-        self.liste_presets = Liste_radios()
-        self.liste_presets_choisis = Dico()
-
-    def repair(self):
-        hs = list(self.liste_lumières)
-        count = 0
-        Logger.info("On reparre l'environnement " +self.nom)
-        while hs != [] and count < 3:
-            hs = []
-            for lum in self.liste_lumières:
-                Logger.info("On repare la lumières " + lum.nom)
-                if lum.repair():
-                    hs.append(lum)
-            # on reset le wifi
-            if hs != []:
-                count += 1
-                check_for_reset()
-        if hs != []:
-            Logger.error("--------------  Environnement : {} --------------".format(self.nom))
-            for lum in hs:
-                Logger.error(" ---------- LED {} est totalement HS ----------".format(lum.nom))
-            

@@ -5,52 +5,52 @@ def rgb_to_hexa(r, g, b):
 
 class Color:
     """
-    Permet d'avoir la couleur en rgb
+    RGB color
     """
-    def __init__(self, entier, dimmeur = 100):
+    def __init__(self, interger, dimmer = 100):
         try:
-            self.valeur = "0x"+(8-len(hex(entier)))*"0"+hex(entier)[2:]
+            self.value = "0x"+(8-len(hex(interger)))*"0"+hex(interger)[2:]
         except:
-            self.valeur = entier
+            self.value = interger
         self.int_to_rgb()
-        r = int(self.r* float(dimmeur)/100)
-        g = int(self.g* float(dimmeur)/100)
-        b = int(self.b* float(dimmeur)/100)
-        self.valeur = rgb_to_hexa(r,g,b)
+        r = int(self.r* float(dimmer)/100)
+        g = int(self.g* float(dimmer)/100)
+        b = int(self.b* float(dimmer)/100)
+        self.value = rgb_to_hexa(r,g,b)
 
-    def set(self, couleur):
-        self.valeur = couleur.valeur
+    def set(self, color):
+        self.value = color.value
 
     def int_to_rgb(self):
-        self.r = int("0x"+self.valeur[2:4].zfill(2),16)
-        self.g = int("0x"+self.valeur[4:6].zfill(2),16)
-        self.b = int("0x"+self.valeur[6:8].zfill(2),16)
+        self.r = int("0x"+self.value[2:4].zfill(2),16)
+        self.g = int("0x"+self.value[4:6].zfill(2),16)
+        self.b = int("0x"+self.value[6:8].zfill(2),16)
         return [self.r, self.g, self.b]
 
-    def get_liste(self, variable_init, variable_self, nb_points):
+    def get_list(self, variable_init, variable_self, nb_dots):
         if variable_init != variable_self:
-            return np.arange(variable_init, variable_self, float((variable_self - variable_init))/nb_points)
-        return [variable_init]*nb_points
+            return np.arange(variable_init, variable_self, float((variable_self - variable_init))/nb_dots)
+        return [variable_init]*nb_dots
 
     def __str__(self):
-        return str(self.valeur)
+        return str(self.value)
 
     def get_with_hash(self):
-        return "#"+str(self.valeur)[2::]
+        return "#"+str(self.value)[2::]
 
     def __eq__(self, other):
-        return int(self.valeur,16) == int(other.valeur,16)
+        return int(self.value,16) == int(other.value,16)
 
-    def generate_array(self, couleur_init, nb_points):
+    def generate_array(self, color_init, nb_dots):
         self.int_to_rgb()
-        couleur_init.int_to_rgb()
-        liste_rouge = self.get_liste(couleur_init.r, self.r, nb_points)
-        liste_vert = self.get_liste(couleur_init.g, self.g, nb_points)
-        liste_bleu = self.get_liste(couleur_init.b, self.b, nb_points)
-        return [rgb_to_hexa(int(r),int(g),int(b)) for r,g,b in zip(liste_rouge, liste_vert, liste_bleu)]
+        color_init.int_to_rgb()
+        list_red = self.get_list(color_init.r, self.r, nb_dots)
+        list_green = self.get_list(color_init.g, self.g, nb_dots)
+        list_blue = self.get_list(color_init.b, self.b, nb_dots)
+        return [rgb_to_hexa(int(r),int(g),int(b)) for r,g,b in zip(list_red, list_green, list_blue)]
 
     def is_black(self):
-        return int(self.valeur,16) == 0
+        return int(self.value,16) == 0
     
 
 

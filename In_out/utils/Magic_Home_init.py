@@ -4,6 +4,12 @@ import time
 from wifi import Cell, Scheme
 import os
 
+"""
+Check if there are any magic home led uninitialise
+and setup them to the wifi
+/!\ need to setup somes files before
+"""
+#TODO change wifi, config files
 def send(text):
     ip = "10.10.123.3"
     port = 48899

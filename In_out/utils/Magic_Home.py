@@ -13,7 +13,7 @@ import socket
 import csv
 import struct
 import datetime
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 
 class MagicHomeApi:
@@ -57,7 +57,7 @@ class MagicHomeApi:
             self.send_bytes(0x81, 0x8A, 0x8B, 0x96)
             return self.s.recv(14)
 
-    def deconnect(self):
+    def disconnect(self):
         self.s.close()
 
     def update_device(self, r=0, g=0, b=0, white1=None, white2=None):

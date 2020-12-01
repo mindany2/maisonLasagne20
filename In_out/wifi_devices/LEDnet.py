@@ -4,7 +4,8 @@ from time import sleep
 
 class LEDnet(Wifi_device):
     """
-    type de controleur led wifi
+    Wifi led controller
+    https://tinyurl.com/magichomecontroller
     """
     def __init__(self, ip):
         Wifi_device.__init__(self, ip)
@@ -14,7 +15,7 @@ class LEDnet(Wifi_device):
         for _ in range(0,attempts):
             err = self.controleur.connect()
             if not(err):
-                # la led est arrivé à se co
+                # the led success to connect
                 break
             sleep(0.5)
         return err
@@ -24,10 +25,10 @@ class LEDnet(Wifi_device):
         self.controleur.update_device(r,g,b,0)
 
     def send_dimmeur(self, dimmeur):
-        # on a pas de dimmeur sur ce controleur
+        # there are no dimmer in this led
         pass
 
-    def deconnect(self, is_black=True):
+    def disconnect(self, is_black=True):
         if is_black:
-            self.controleur.deconnect()
+            self.controleur.disconnect()
         

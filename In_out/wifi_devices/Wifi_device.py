@@ -1,9 +1,9 @@
 
 class Wifi_device:
     """
-    Module general wifi
+    Wifi device with ip and controler
     """
 
     def __init__(self, ip):
         self.ip = ip
-        self.controleur = None
+        self.controler = None

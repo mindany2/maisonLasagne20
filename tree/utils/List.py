@@ -2,8 +2,7 @@ from tree.utils.Dico import Dico
 
 class List(Dico):
     """
-    Permet simplement de stocker un élément
-    directement avec son nom
+    Allows to store automically the name to optimise search
     """
     def __init__(self):
         Dico.__init__(self)

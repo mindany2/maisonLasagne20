@@ -1,6 +1,6 @@
 from tree.connected_objects.Connected_object import Connected_object
 from In_out.cartes.relais.Relais import Etat
-from In_out.utils.ST_nucleo import ETAT_TRIAC
+from In_out. import ETAT_TRIAC
 from enum import Enum
 from time import sleep
 

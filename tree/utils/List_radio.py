@@ -1,20 +1,18 @@
-from tree.utils.Liste import Liste
+from tree.utils.List import List
 
-class Liste_radios(Liste):
+class List_radio(List):
     """
-    Permet de gérer les listes radios
-    un seul élément selectionner à la fois
+    Manage the list to have only one selected item at the time
     """
     def __init__(self):
-        Liste.__init__(self)
+        List.__init__(self)
         self.element_select = None
 
     def add(self, element, change = True):
-        Liste.add(self, element)
+        List.add(self, element)
         if self.element_select == None:
             self.element_select = element
             if change:
-                # on indique a l'element qu'il est allumer
                 self.element_select.etat(True)
 
     def selected(self):

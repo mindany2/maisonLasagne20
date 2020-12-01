@@ -1,17 +1,17 @@
 from enum import Enum
 from In_out.utils.Bluetooth import Bluetooth
 from time import sleep
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 
 def hex_to_byte(valeur):
-        # converti un string hex en byte
-        valeur = int(valeur,16)
-        return valeur.to_bytes((valeur.bit_length()+7)//8,'big')
+   # convert hex to byte
+   valeur = int(valeur,16)
+   return valeur.to_bytes((valeur.bit_length()+7)//8,'big')
 
 class Bluetooth_device:
     """
-    Petit boitier bluetooth pour les leds connectées
+    Contains all the info to connect to a bluetooth device
     """
     def __init__(self, addr, uuid, char_id):
         self.addr = addr
@@ -28,7 +28,7 @@ class Bluetooth_device:
                 break
             else:
                 compt += 1
-                Logger.warn("La led n'arrive pas à ce connecter : tentaive n°" + str(compt))
+                Logger.warn("The device failed to connect : attempt n°" + str(compt))
                 sleep(1)
             if compt == 10:
                 Bluetooth.restart()
@@ -40,18 +40,17 @@ class Bluetooth_device:
     def send(self, valeur):
         err = Bluetooth().send(self.char, hex_to_byte(valeur))
         if err:
-            # on a une erreur de connection
-            # on se deconnect
-            self.deconnect()
+            # there are a connection error
+            self.disconnect()
             sleep(1)
-            # on se reconnect
+            # trying to reconnect
             self.connect()
             err = Bluetooth().send(self.char, hex_to_byte(valeur))
             if err:
                 return 1
         return 0
 
-    def deconnect(self, is_black = True):
+    def disconnect(self, is_black = True):
         Bluetooth().deconnect(self.periph)
         if Bluetooth.nb_connection == 0:
             Bluetooth.restart()

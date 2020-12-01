@@ -1,9 +1,9 @@
 import paramiko
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class SSH:
     """
-    Permet de se connecté au SSH d'un host distant
+    Allow to connect in ssh to a remote device
     """
     def __init__(self, host, user, password):
         self.host = host
@@ -21,7 +21,7 @@ class SSH:
         Logger.info("ssh command : "+command + "\n" + str(stdout.read()))
         return str(stdout.read())
 
-    def deconnect(self):
+    def disconnect(self):
         self.ssh.close()
-        Logger.info("ssh deconnected to "+self.host)
+        Logger.info("ssh disconnected to "+self.host)
 

@@ -12,9 +12,8 @@ def binbits(x, n):
 
 class Port_extender:
     """
-    Ceci est le bus de donnée
-    vers la carte sur le rasperry pour augmenter le
-    nombre de ports
+    This is a bus to talk with the port extender :
+    https://tinyurl.com/rpi-port-extender
     """
     def __init__(self):
         self.i2c = I2C()
@@ -24,15 +23,12 @@ class Port_extender:
         self.mutex.acquire()
         self.i2c.write_reg(ip, register, data)
         self.mutex.release()
-        #print("on ecrit donc "+bin(data) + " dans resgistre "+hex(register)+" ip "+hex(ip))
 
     def write_pin(self, ip, register, numero, valeur):
         self.mutex.acquire()
         data =  self.i2c.read_reg(ip, register)
-        print("on a lut {}".format(data))
         data = binbits(data,8)
         data = data[0:(numero-1)]+str(1-valeur)+data[(numero)::]
-        print("on ecrit donc "+data + " dans resgistre "+hex(register)+" ip "+hex(ip))
         data = int(data,2)
         self.i2c.write_reg(ip, register, data)
         self.mutex.release()
@@ -41,7 +37,6 @@ class Port_extender:
         data =  self.i2c.read_reg(ip, register)
         if data != None:
             data = binbits(data, 8)
-            #print("data = {}".format(data))
             return [pin for pin in data]
 
 

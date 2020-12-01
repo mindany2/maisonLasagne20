@@ -1,16 +1,12 @@
 from enum import Enum
 from time import sleep
 from threading import Lock, Thread
+from serial import Serial
 
-try:
-    from serial import Serial
-except:
-    pass
-
-class ETAT_TRIAC(Enum):
+class STATE_TRIAK(Enum):
     """
-    Donne l'ordre au triac de rester allumer
-    si on met une valeur impossible à atteindre
+    Manage the triak to be always ON or OFF
+    or dimmable
     """
     dimmer = 3
     on = 1
@@ -19,17 +15,19 @@ class ETAT_TRIAC(Enum):
 
 class ST_nucleo:
     """
-    Carte pour les triacs
+    Talk to a ST_nucleo card with the triak program on it:
+    https://tinyurl.com/stnucleo
+    dev_file/st_nucleo/Maison.bin
     """
 
-    def __init__(self, nom, addr, decal = 0):
+    def __init__(self, name, addr, decal = 0):
         self.port = Serial(addr, baudrate=9600)
-        self.nom = nom
+        self.name = name
         self.mutex = Lock()
         self.decal = decal
         self.addr = addr
 
-    def set_triac(self, carte, triac, valeur, etat):
+    def set_triac(self, carte, triac, valeur, state):
         self.mutex.acquire()
         carte = carte - self.decal
         v1 = valeur // 255 +1 
@@ -38,9 +36,7 @@ class ST_nucleo:
             v1 = 255
         if chr(v2) == "\n":
             v2 += 1
-        #print("on envoie ",[chr(carte), chr(triac), chr(v1),chr(v2),chr(etat.value)])
-        self.port.write([carte, triac, v1, v2, etat.value])
-        #print(self.port.readline())
-        sleep(0.02)
+        self.port.write([carte, triac, v1, v2, state.value])
+        sleep(0.02) # time needed to make sure all data succeed
         self.mutex.release()
 
