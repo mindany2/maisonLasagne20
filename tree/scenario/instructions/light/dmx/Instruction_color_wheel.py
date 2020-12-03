@@ -1,7 +1,7 @@
 from tree.scenario.instructions.Instruction import Instruction
 from tree.connected_objects.dmx.Lyre import COLOR
 from time import sleep, time
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class Instruction_color_wheel(Instruction):
     """

@@ -1,7 +1,7 @@
 import os
 from time import sleep
 from In_out.network.Connection import Connection
-from In_out.network.communication.control.Cmd import Cmd
+from In_out.network.messages.control.Cmd import Cmd
 from enum import Enum
 from threading import Thread
 
@@ -17,7 +17,7 @@ class PC(Connection):
     Launch Main_PC_control.py
     """
     
-    def __init__(self, name, addr_mac, addr_ip, user, password):
+    def __init__(self, name, addr_mac, addr_ip):
         Connection.__init__(self, name, addr_ip)
         self.addr_mac = addr_mac
         self.addr_ip = addr_ip

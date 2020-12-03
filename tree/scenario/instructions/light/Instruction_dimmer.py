@@ -1,6 +1,6 @@
 from tree.scenario.instructions.light.Instruction_light import Instruction_light, RESOLUTION
 from time import sleep, time
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class Instruction_dimmer(Instruction_light):
     """
@@ -36,7 +36,7 @@ class Instruction_dimmer(Instruction_light):
                 if self.light.test():
                     raise SystemExit("kill inst")
                 temps = time()
-                self.light.set(val)
+                self.light.set_dimmer(val)
                 val += gap/nb_dots
                 dodo = 1/RESOLUTION-(time()-temps)
                 if dodo > 0:

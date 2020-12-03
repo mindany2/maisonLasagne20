@@ -1,5 +1,5 @@
 from tree.scenario.instructions.Instruction import Instruction
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 from time import time, sleep
 
 RESOLUTION = 10

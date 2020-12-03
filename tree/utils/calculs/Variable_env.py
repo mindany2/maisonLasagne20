@@ -1,15 +1,15 @@
 from tree.utils.calculs.Variable import Variable
-from tree.Tree import Tree
 
-class Variables_env(Variable):
+class Variable_env(Variable):
     """
     Allow to find a variable in another env
     """
-    def __init__(self):
-        Variable.__init__(self, "general", 0)
+    def __init__(self, tree):
+        Variable.__init__(self, "environnements", 0)
+        self.tree = tree
 
     def get(self, path_env, variable_name):
-        env = Tree().get_env(path_env)
+        env = self.tree.get_env(path_env)
         var = env.get_variable(variable_name)
         if var:
             return var.get()

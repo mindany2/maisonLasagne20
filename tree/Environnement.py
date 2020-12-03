@@ -4,7 +4,7 @@ from tree.utils.List_radio import List_radio
 from tree.scenario.Scenario import MARKER
 from tree.utils.calculs.Calculator import Calculator
 from tree.utils.calculs.Variable import Variable
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 import sys
 
 
@@ -13,20 +13,20 @@ class Environnement:
     Define a group of light that works with a list of preset
     Also can define sub-environnements 
     """
-    def __init__(self, name):
+    def __init__(self, name, tree):
         self.name = name
-        self.list_lights = Liste()
-        self.list_sub_env = Liste()
-        self.list_presets = Liste_radios()
+        self.list_objects = List()
+        self.list_sub_env = List()
+        self.list_presets = List_radio()
         # hash table between mode and preset
         self.list_presets_chosen = Dico()
-        self.calculator = Calculateur()
+        self.calculator = Calculator(tree)
 
-    def add_light(self, lum):
-        if isinstance(lum, Variable):
-            self.calculator.add(lum)
+    def add_object(self, obj):
+        if isinstance(obj, Variable):
+            self.calculator.add(obj)
         else:
-            self.list_lights.add(lum)
+            self.list_objects.add(obj)
 
     def add_env(self, env):
         self.list_sub_env.add(env)
@@ -73,22 +73,25 @@ class Environnement:
         self.list_presets_chosen.add(mode, self.get_preset(name_preset))
 
     def get_preset(self, name):
-        return self.list_presets.get(name)
+        preset = self.list_presets.get(name)
+        if preset: return preset
+        raise(NameError("The preset {} doesn't exist in the environnement {}".format(name, self.name)))
 
     def get_env(self, path):
         if len(path) > 1:
-            # it is a sub-environnement
+            # it is in a sub-environnement
             return self.list_sub_env.get(path[0]).get_env(path[1:])
         elif path[0] == self.name:
             return self
         return None
 
-    def get_light(self, name):
-        lum = self.list_lights.get(name)
-        if lum:
-            return lum
+    def get_object(self, name):
+        obj = self.list_objects.get(name)
+        if obj: return obj
         # it could be a variable
-        return self.calculator.get(name)
+        var = self.calculator.get(name)
+        if var: return var
+        raise(NameError("The object {} is doesn't exist in the environnement {}".format(name, self.name)))
 
     def get_names_envi(self):
         list_name = [self.name]
@@ -100,9 +103,16 @@ class Environnement:
 
     def get_scenar(self, name, preset=None):
         if preset:
-            return self.get_preset(preset).get_scenar(name)
-        return self.get_preset_select().get_scenar(name)
+            scenar = self.get_preset(preset).get_scenar(name)
+        else:
+            scenar = self.get_preset_select().get_scenar(name)
+        if scenar: return scenar
+        raise(NameError("The scenario {} is doesn't exist in the preset {} in the environnement {}".format(name, preset, self.name)))
 
     def press_inter(self, name_inter, state):
         self.get_preset_select().press_inter(name_inter, state)
+        # also press it also in all the sub-environnements
+        for env in self.list_sub_env:
+            env.press_inter(name_inter, state)
+
     

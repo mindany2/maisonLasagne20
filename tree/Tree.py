@@ -1,6 +1,6 @@
 from tree.Environnement import Environnement
 from threading import Thread
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 from tree.utils.List_radio import List_radio
 
 class Tree:
@@ -9,16 +9,21 @@ class Tree:
     It also manage modes
     """
 
-    global_environnement = Environnement("GENERAL")
-    list_modes = Liste_radio()
+    @classmethod
+    def __init__(self):
+        global_environnement = Environnement("environnements", self)
+        list_modes = List_radio()
 
     @classmethod
     def get_mode(self, name_mode):
-        return self.list_modes.get(name_mode)
+        mode = self.list_modes.get(name_mode)
+        if mode:
+            return mode
+        raise(NameError("Could not find the mode {} in the tree".format(name_mode)))
 
     @classmethod
     def change_mode(self, name_mode):
-        mode_select = self.list_modes.get(name_mode)
+        mode_select = self.get_mode(name_mode)
         self.list_modes.change_select(mode_select)
         self.global_environnement.change_mode(mode_select)
 
@@ -33,7 +38,10 @@ class Tree:
     @classmethod
     def get_env(self, path):
         path = path.split(".")
-        return self.global_environnement.get_env(path)
+        env = self.global_environnement.get_env(path)
+        if env:
+            return env
+        raise(NameError("The environnement research : {} is not present in the tree".format(path))) 
 
     @classmethod
     def get_names_envi(self):

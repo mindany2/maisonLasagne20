@@ -1,8 +1,8 @@
 from tree.connected_objects.Connected_object import Connected_object
 from time import sleep
 from threading import Lock
-from In_out.cartes.relais.Relais import Etat
-from utils.Logger import Logger
+from In_out.external_boards.relay.Relay import STATE
+from tree.utils.Logger import Logger
 
 class Lamp(Connected_object):
     """
@@ -34,18 +34,18 @@ class Lamp(Connected_object):
         # force the relay always to ON
         self.force = force
         if force:
-            self.set_relay(Etat.ON)
+            self.set_relay(STATE.ON)
         elif not(self.connected):
-            self.set_relay(Etat.OFF)
+            self.set_relay(STATE.OFF)
 
     def set_relay(self, on_off):
         if self.invert:
             on_off = not(on_off)
 
         if on_off:
-            etat = Etat.ON
+            etat = STATE.ON
         else:
-            etat = Etat.OFF
+            etat = STATE.OFF
         if self.relay.etat != etat:
             self.relay.set(etat)
 

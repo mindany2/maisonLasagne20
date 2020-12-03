@@ -1,9 +1,9 @@
 from tree.scenario.instructions.Instruction import Instruction, STATE
-from In_out.communication.PC import ACTIONS
-from utils.communication.control.Press_key import Press_key
-from utils.communication.control.Press_mouse import Press_mouse
+from In_out.network.PC import ACTIONS
+from In_out.network.messages.control.Press_key import Press_key
+from In_out.network.messages.control.Press_mouse import Press_mouse
 from enum import Enum
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class Instruction_PC(Instruction):
     """
@@ -18,11 +18,11 @@ class Instruction_PC(Instruction):
 
     def run(self, barrier):
         super().run()
-        if self.action == ACTIONS.allumer:
+        if self.action == ACTIONS.power_on:
             self.pc.connect()
             Logger.info("Power on {}".format(self.pc.nom))
 
-        elif self.action == ACTIONS.eteindre:
+        elif self.action == ACTIONS.power_off:
             self.pc.deconnect()
             Logger.info("Power off {}".format(self.pc.nom))
 

@@ -9,8 +9,9 @@ class Amp:
     A amp with somes channels
     """
 
-    def __init__(self, relay, output, nb_channels = 6):
+    def __init__(self, name, relay, output, nb_channels = 6):
         self.relay = relay
+        self.name = name
         self.mutex = Lock()
         self.channels = [Channel(i, output) for i in range(1,nb_channels+1)]
 

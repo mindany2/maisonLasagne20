@@ -1,4 +1,4 @@
-from In_out.network.communication.Client import Client
+from In_out.network.Client import Client
 import RPi.GPIO as GPIO
 
 

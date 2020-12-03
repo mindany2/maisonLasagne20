@@ -2,7 +2,7 @@ import numpy as np
 from tree.scenario.instructions.light.Instruction_light import Instruction_light, RESOLUTION
 from tree.utils.Color import Color
 from time import sleep,time
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class Instruction_color(Instruction_light):
     """
@@ -24,7 +24,7 @@ class Instruction_color(Instruction_light):
             if self.eval(self.duration) == 0:
                 super().run(time_spent=(time()-delay))
                 self.light.connect()
-                self.light.set(dimmer_final, color.value)
+                self.light.set_color(dimmer_final, color.value)
                 return
 
             nb_dots = RESOLUTION*self.eval(self.duration)
@@ -55,13 +55,13 @@ class Instruction_color(Instruction_light):
                 if self.light.test():
                     raise SystemExit("kill inst")
                 if not(err):
-                    err1 = self.light.set(dim, value_color)
+                    err1 = self.light.set_color(dim, value_color)
                     if err1:
                         break
                 sleep(1/RESOLUTION)
                 barrier.wait()
             if (not(err) and not(err1)):
-                self.light.set(dimmer_final, color.value)
+                self.light.set_color(dimmer_final, color.value)
                 self.light.disconnect()
 
         finally:

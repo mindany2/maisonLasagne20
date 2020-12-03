@@ -1,7 +1,7 @@
 from In_out.Peripheric_manager import Peripheric_manager
 from In_out.network.messages.Message import Message
 
-class Set_relais(Message):
+class Set_relay(Message):
 
     def __init__(self, addr, value):
         self.addr = addr

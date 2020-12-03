@@ -32,7 +32,7 @@ class Instructions_list:
             self.list_barrier.append(0)
 
     def __eq__(self, other):
-        if isinstance(other, Liste_instructions):
+        if isinstance(other, Instructions_list):
             if len(self.list) == 0 or len(other.list) == 0:
                 return False
 

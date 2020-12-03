@@ -8,7 +8,7 @@ class List(Dico):
         Dico.__init__(self)
 
     def add(self, element):
-        super().add(element.nom, element)
+        super().add(element.name, element)
 
     def remove(self, element):
-        super().remove(element.nom)
+        super().remove(element.name)

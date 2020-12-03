@@ -3,8 +3,8 @@ class Variable:
     """
     Store a value
     """
-    def __init__(self, nom, val):
-        self.nom = nom
+    def __init__(self, name, val):
+        self.name = name
         self.val = val
 
     def get(self, args = None):

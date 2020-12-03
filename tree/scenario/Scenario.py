@@ -1,7 +1,7 @@
 from tree.scenario.Instructions_list import Instructions_list
 from threading import Thread
 from enum import Enum
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class MARKER(Enum):
     """

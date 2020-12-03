@@ -1,6 +1,6 @@
 from tree.connected_objects.Connected_object import Connected_object
-from In_out.cartes.relais.Relais import Etat
-from In_out. import ETAT_TRIAC
+from In_out.external_boards.relay.Relay import STATE
+from In_out.external_boards.Triak import STATE_TRIAK
 from enum import Enum
 from time import sleep
 
@@ -29,7 +29,7 @@ class Dimmable_light(Connected_object):
         self.type_buld = type_buld
         self.dimmer = 0
         # power off the light
-        self.triac.set(10**9,ETAT_TRIAC.off)
+        self.triac.set(10**9,STATE_TRIAK.off)
 
     def connect(self):
         # setup dimmer if it is necessary
@@ -42,12 +42,12 @@ class Dimmable_light(Connected_object):
         #disconnect if it is necessary
         if self.dimmer == 0:
             # setup dimmer
-            self.triac.set(10**9, ETAT_TRIAC.off)
+            self.triac.set(10**9, STATE_TRIAK.off)
         elif self.dimmer == 100:
             # remove dimmer
-            self.triac.set(10**9, ETAT_TRIAC.on)
+            self.triac.set(10**9, STATE_TRIAK.on)
 
-    def set(self, dimmer):
+    def set_dimmer(self, dimmer):
         value = self.convert(dimmer)
         self.triac.set(value)
         self.dimmer = int(dimmer)

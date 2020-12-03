@@ -1,4 +1,4 @@
-from utils.spotify.Spotify import Spotify
+from In_out.Peripheric_manager import Peripheric_manager
 from time import sleep
 
 class Delay:
@@ -14,5 +14,5 @@ class Delay:
         if self.wait_for_beat != 0:
             # we need to wait some beats
             numero = calculator.eval(self.wait_for_beat)
-            Spotify.wait_for_beat(numero)
+            Peripheric_manager.get_spotify().wait_for_beat(numero)
         sleep(calculator.eval(self.str_val)-time_spent)

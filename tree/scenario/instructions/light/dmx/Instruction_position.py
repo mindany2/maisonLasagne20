@@ -1,7 +1,7 @@
 from tree.scenario.instructions.Instruction import Instruction
 from time import sleep, time
 import numpy as np
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 RESOLUTION = 10
 
 class Instruction_position(Instruction):

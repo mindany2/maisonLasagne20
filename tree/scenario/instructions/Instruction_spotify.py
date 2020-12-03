@@ -1,8 +1,8 @@
 import numpy as np
 from tree.scenario.instructions.Instruction import Instruction
-from utils.spotify.Spotify import Spotify
+from In_out.spotify.Spotify import Spotify
 from time import sleep
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 from enum import Enum
 from random import randint
 

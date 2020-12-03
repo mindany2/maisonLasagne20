@@ -1,6 +1,5 @@
 from tree.utils.List import List
 from random import randint
-from tree.Tree import Tree
 from tree.scenario.Scenario import MARKER
 from tree.utils.calculs.Variable_env import Variable_env
 from tree.utils.calculs.Variable_spotify import Variable_spotify
@@ -10,11 +9,11 @@ class Calculator:
     """
     Calculate the expressions
     """
-    def __init__(self):
+    def __init__(self, tree):
         self.variables = List()
         # just add the common variables
         self.variables.add(Variable_spotify())
-        self.variables.add(Variable_env())
+        self.variables.add(Variable_env(tre))
 
     def add(self, var):
         self.variables.add(var)
@@ -39,5 +38,5 @@ class Calculator:
         except:
             return self.int(string)
 
-    def get(self, nom):
-        return self.variables.get(nom)
+    def get(self, name):
+        return self.variables.get(name)

@@ -39,10 +39,10 @@ class Preset:
     def get_scenar(self, name):
         return self.list_scenario.get(name)
 
-    def get_gestionnaire(self):
+    def get_manager(self):
         if self.manager:
             return self.manager
         raise(ValueError("Need to setup a OFF scenario in the preset "+self.name)) 
 
     def get_marker(self):
-        return self.manager.get_marker()
+        return self.get_manager().get_marker()

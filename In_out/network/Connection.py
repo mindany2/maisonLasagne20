@@ -1,4 +1,4 @@
-from In_out.network.communication.Client import Client
+from In_out.network.Client import Client
 from tree.utils.Locker import Locker
 from threading import Thread
 from time import sleep,time

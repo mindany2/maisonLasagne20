@@ -1,6 +1,6 @@
 from tree.scenario.instructions.light.Instruction_light import Instruction_light
 from time import sleep
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class Instruction_lamp(Instruction_light):
     """

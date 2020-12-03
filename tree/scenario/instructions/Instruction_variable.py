@@ -1,6 +1,6 @@
 from tree.scenario.instructions.Instruction import Instruction
 from time import sleep
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 from enum import Enum
 from random import randint
 

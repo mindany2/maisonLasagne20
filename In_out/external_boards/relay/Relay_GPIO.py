@@ -1,7 +1,10 @@
-from In_out.utils.Arduino import Arduino, MESSAGE_MASTER
 from In_out.external_boards.relay.Relay import Relay
 from enum import Enum
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    # we are not on a rpi
+    pass
 
 class Relay_GPIO(Relay):
     """

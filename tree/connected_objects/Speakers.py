@@ -1,5 +1,4 @@
 from tree.connected_objects.Connected_object import Connected_object
-from threading import Thread, Lock
 
 class Speakers(Connected_object):
     """

@@ -2,7 +2,7 @@ from tree.scenario.instructions.Instruction import Instruction
 from tree.buttons.Button_secondary import Button_secondary
 from tree.buttons.Button_principal import Button_principal
 from tree.Tree import Tree
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 from enum import Enum
 
 class TYPE_BUTTON(Enum):

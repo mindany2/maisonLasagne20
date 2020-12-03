@@ -10,7 +10,9 @@ class Board_relay(Board):
         self.list_relay = []
 
     def get_relay(self, index_relay):
-        return self.list_relay[index_relay-1]
+        if index_relay-1 < len(self.list_relay):
+            return self.list_relay[index_relay-1]
+        return None
         
 
 

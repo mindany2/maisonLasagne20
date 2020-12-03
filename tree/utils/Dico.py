@@ -1,7 +1,4 @@
 
-def get_rank(element):
-    return element.get_rank()
-
 class Dico:
     """
     Redeffinition of dict with usefull methods

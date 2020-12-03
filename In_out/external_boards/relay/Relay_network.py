@@ -1,5 +1,5 @@
 from In_out.external_boards.relay.Relay import Relay
-from In_out.network.communication.set.Set_relay import Set_relay
+from In_out.network.messages.set.Set_relay import Set_relay
 
 class Relay_network(Relay):
     """
