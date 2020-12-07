@@ -57,6 +57,9 @@ class Bluetooth_device:
         self.periph = None
         self.char = None
 
+    def __str__(self):
+        return self.addr
+
 
 
 

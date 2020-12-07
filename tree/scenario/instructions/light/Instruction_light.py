@@ -4,14 +4,18 @@ RESOLUTION = 10
 
 class Instruction_light(Instruction):
     """
-    Instruction with a dimmer and a light
+    Instruction with a value and a light
     """
-    def __init__(self, calculator, light, dimmer, duration, delay, synchro):
+    def __init__(self, calculator, light, duration, delay, synchro):
         Instruction.__init__(self, calculator, duration, delay, synchro)
-        self.dimmer = dimmer
         self.light = light
 
     def __eq__(self, other):
         if isinstance(other, Instruction_light):
-            return (self.dimmer == other.dimmer) and (self.light == other.light) 
+            return (self.light == other.light) 
         return False
+
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Light : {}\n".format(self.light.name))
+        return string

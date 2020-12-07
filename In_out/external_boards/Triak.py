@@ -16,3 +16,6 @@ class Triak:
         if self.value != value:
             self.stnucleo.set_triak(self.number_board, self.number_triak, value, state)
             self.value = value
+
+    def __str__(self):
+        return "{}({})".format(self.number_triak,self.number_board)

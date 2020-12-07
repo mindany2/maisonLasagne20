@@ -12,3 +12,5 @@ class Connected_object(Locker):
         return False
 
 
+    def __str__(self):
+        return self.name + "\n"

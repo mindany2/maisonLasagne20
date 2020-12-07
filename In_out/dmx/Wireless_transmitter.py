@@ -31,4 +31,8 @@ class Wireless_transmitter:
         while time()-self.tps < TIME_OUT:
             sleep(1)
         self.relay.set(STATE.OFF)
-        
+  
+    def __str__(self):
+        return "Relay : {} in range ({},{})".format(self.relay, self.addr_min, self.addr_max)  
+
+       

@@ -1,5 +1,4 @@
 from tree.buttons.Button import Button
-from tree.scenario.Scenario import MARKER
 
 class Button_secondary(Button):
     """
@@ -20,5 +19,12 @@ class Button_secondary(Button):
         else:
             # remove the scenario
             self.manager.remove(self.scenar)
+
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : secondary\n")
+        string += "".join("- scenar : {}\n".format(self.scenar.name))
+        return string
+
 
 

@@ -3,7 +3,7 @@ from tree.scenario.instructions.Instruction import Instruction
 from enum import Enum
 from time import time, sleep
 
-class INST_TRAP(Enum):
+class TYPE_INST_TRAP(Enum):
     up = 1
     down = 2
 
@@ -22,7 +22,7 @@ class Instruction_trap(Instruction):
         """
         try:
             self.trap.lock()
-            if self.action == INST_TRAP.down and self.trap.get_state() != STATE.down:
+            if self.action == TYPE_INST_TRAP.down and self.trap.get_state() != STATE.down:
                 # descend the trap
                 self.trap.set_magnet(False)
                 if self.trap.get_state() == STATE.up:
@@ -40,7 +40,7 @@ class Instruction_trap(Instruction):
                         raise SystemExit("kill inst")
                 self.trap.change(STATE.down)
 
-            elif self.action == INST_TRAP.up and self.trap.get_state() != STATE.up:
+            elif self.action == TYPE_INST_TRAP.up and self.trap.get_state() != STATE.up:
                 # rise the trap
                 if self.trap.get_state() == STATE.down:
                     self.trap.change(STATE.in_process)
@@ -65,3 +65,8 @@ class Instruction_trap(Instruction):
     def finish(self):
         self.trap.kill()
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : trap\n")
+        string += "".join("- Action : {}\n".format(self.action))
+        return string

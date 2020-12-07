@@ -9,8 +9,9 @@ class Instruction_color(Instruction_light):
     Instruction for a RBG colors light
     """
     def __init__(self, calculator, light, dimmer, duration, delay, synchro, color):
-        Instruction_light.__init__(self, calculator, light, dimmer, duration, delay, synchro)
+        Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.color = color
+        self.dimmer = dimmer
 
     def run(self, barrier):
         delay = time()
@@ -67,8 +68,12 @@ class Instruction_color(Instruction_light):
         finally:
             Logger.info(" la led {} a mis {} s a s'allumer au lieu de {}".format(self.light.name, time()-delay, self.duration))
             self.light.unlock()
-    
-    def show(self):
-        print("led = ",self.light.name, " | dimmer = ", self.dimmer, " | duration = ", self.duration, " | color = ",self.color)
+ 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : color\n")
+        string += "".join("- Color : {}\n".format(self.color))
+        string += "".join("- Dimmer : {}\n".format(self.dimmer))
+        return string   
 
 

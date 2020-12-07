@@ -29,3 +29,8 @@ class Instruction():
 
     def __eq__(self, other):
         return True
+
+    def __str__(self):
+        string = "- Duration : {}\n".format(self.duration)
+        string += "".join("- Delay : {}\n".format(self.delay))
+        return string

@@ -2,7 +2,7 @@ from tree.connected_objects.Lamp import Lamp
 from time import sleep
 from enum import Enum
 
-class Dimmable_light(Lamp):
+class Dmx_dimmable_light(Lamp):
     """
     Simple dimmer light in dmx
     """
@@ -37,6 +37,14 @@ class Dimmable_light(Lamp):
         super().unlock()
         if self.dimmer == 0:
             self.set(0)
+
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : Dmx_dimmable_light\n")
+        string += "".join("- Dmx : {}\n".format(self.dmx))
+        return string
+
+
 
 class CHANNEL(Enum):
     dimmer = 1

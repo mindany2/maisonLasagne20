@@ -62,4 +62,10 @@ class Led(Lamp):
             self.set_relay(STATE.OFF)
         return False
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : led\n")
+        string += "".join("- Controler : {}\n".format(self.controler))
+        return string
+
 

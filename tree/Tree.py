@@ -11,8 +11,12 @@ class Tree:
 
     @classmethod
     def __init__(self):
-        global_environnement = Environnement("environnements", self)
-        list_modes = List_radio()
+        self.global_environnement = Environnement("environnements", self)
+        self.list_modes = List_radio()
+
+    @classmethod
+    def get_global_env(self):
+        return self.global_environnement
 
     @classmethod
     def get_mode(self, name_mode):
@@ -55,3 +59,12 @@ class Tree:
     @classmethod
     def get_scenar(self, name_env, name_scenar, preset=None):
         return self.get_env(name_env).get_scenar(name_scenar, preset)
+
+    @classmethod
+    def __str__(self):
+        string = "-"*10 + "Tree"+"-"*10 + "\n"
+        string += "-Modes\n"
+        string += "".join(["|  {}\n".format(string) for string in str(self.list_modes).split("\n")])
+        string += "-Environnements\n"
+        string += "".join(["|  {}\n".format(string) for string in str(self.global_environnement).split("\n")])
+        return string

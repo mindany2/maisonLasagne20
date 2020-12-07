@@ -19,3 +19,6 @@ class Relay_GPIO(Relay):
 
     def reload(self):
         GPIO.output(self.pin,(self.state.value * GPIO.LOW) + (not(self.state.value) *  GPIO.HIGH))
+
+    def __str__(self):
+        return self.pin

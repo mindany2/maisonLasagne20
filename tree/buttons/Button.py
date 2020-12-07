@@ -22,5 +22,5 @@ class Button:
         return False
 
     def __str__(self):
-        return self.name
+        return self.name + "\n"
 

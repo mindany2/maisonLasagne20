@@ -51,3 +51,10 @@ class Lamp(Connected_object):
 
     def etat(self):
         return self.relay.etat
+
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : lamp\n")
+        string += "".join("- Relay : {}\n".format(self.relay))
+        return string
+

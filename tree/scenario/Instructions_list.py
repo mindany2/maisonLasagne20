@@ -1,4 +1,3 @@
-from tree.scenario.instructions.Instruction import Instruction
 from threading import Thread, Barrier
 from numpy import cumsum
 from time import time, sleep
@@ -66,5 +65,13 @@ class Instructions_list:
             if not(self.loop and self.state):
                 break
 
+    def __str__(self):
+        string = ""
+        if self.loop:
+            string += "".join("- Loop : {}\n".format(self.loop))
+        for inst in self.list:
+            string += "\n"
+            string += "".join(["   |{}\n".format(string) for string in str(inst).split("\n")])
+        return string
 
 

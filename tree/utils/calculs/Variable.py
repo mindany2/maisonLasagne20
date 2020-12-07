@@ -18,3 +18,6 @@ class Variable:
 
     def __add__(self, integer):
         return int(self)+integer
+
+    def __str__(self):
+        return "{} = {}\n".format(self.name, self.val)

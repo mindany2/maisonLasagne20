@@ -29,6 +29,13 @@ class Crazy_2(Lamp):
             self.dmx.set(CHANNEL.speed, value)
         self.speed = value
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : Crazy_2\n")
+        string += "".join("- Dmx : {}\n".format(self.dmx))
+        return string
+
+
 class CHANNEL(Enum):
     program = 1
     speed = 2

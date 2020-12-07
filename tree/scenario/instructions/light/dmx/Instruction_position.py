@@ -1,17 +1,16 @@
-from tree.scenario.instructions.Instruction import Instruction
+from tree.scenario.instructions.light.Instruction_light import Instruction_light
 from time import sleep, time
 import numpy as np
 from tree.utils.Logger import Logger
 RESOLUTION = 10
 
-class Instruction_position(Instruction):
+class Instruction_position(Instruction_light):
     """
     Change position of a lyre
     """
     def __init__(self, calculator, light, position_final, duration, delay, synchro):
-        Instruction.__init__(self, calculator, duration, delay, synchro)
+        Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.position_final = position_final
-        self.light = light
 
     def run(self, barrier):
         """
@@ -54,3 +53,11 @@ class Instruction_position(Instruction):
             Logger.info("{} took {}s to move instead of {}s".format(self.light.name, time()-delay, self.duration))
             self.light.set_position(x_final, y_final)
             self.light.unlock()
+ 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : position\n")
+        string += "".join("- Position : {}\n".format(self.position_final))
+        return string   
+
+

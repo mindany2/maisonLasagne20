@@ -40,6 +40,12 @@ class Instruction_PC(Instruction):
             self.pc.send(Press_mouse(x, y, clic_right, double_clic))
             Logger.info("clic "+self.args)
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : PC\n")
+        string += "".join("- Action : {}\n".format(self.action))
+        string += "".join("- Args : {}\n".format(self.args))
+        return string
 
 
 

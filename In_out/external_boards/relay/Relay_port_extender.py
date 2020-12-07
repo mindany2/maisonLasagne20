@@ -14,3 +14,6 @@ class Relay_port_extender(Relay):
 
     def reload(self):
         self.bus.write_pin(self.port_bus, self.registre, self.number, self.state.value)
+
+    def __str__(self):
+        return str(self.number)

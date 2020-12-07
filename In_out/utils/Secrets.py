@@ -14,6 +14,8 @@ class Secrets:
         with open(PATH, "rb") as file_pass:
             source = file_pass.read()
             key = os.environ.get(VARIABLE)
+            if not(key):
+                raise(ValueError("The {} is not on environnement variable..".format(VARIABLE)))
             self.secrets = decrypt(key, source).decode("utf-8")
         # cut the secrets
         self.secrets = yaml.safe_load(self.secrets)

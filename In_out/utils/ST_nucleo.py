@@ -26,6 +26,7 @@ class ST_nucleo:
             self.port = Serial(addr, baudrate=9600)
         except:
             Logger.error("The st_nucleo {} could not open it's port {}".format(name, addr))
+            self.port = None
 
         self.name = name
         self.mutex = Lock()
@@ -39,11 +40,12 @@ class ST_nucleo:
         return len(self.list_boards_triak)
 
     def get_board_triak(self, index):
-        if index < len(self.list_boards_triak):
+        try:
             return self.list_boards_triak[index]
-        return None
+        except:
+            return None
 
-    def set_triac(self, index_board, triac, valeur, state):
+    def set_triak(self, index_board, triak, valeur, state):
         self.mutex.acquire()
         carte = self.list_boards_triak[index_board]
         v1 = valeur // 255 +1 
@@ -52,7 +54,15 @@ class ST_nucleo:
             v1 = 255
         if chr(v2) == "\n":
             v2 += 1
-        self.port.write([carte, triac, v1, v2, state.value])
+        if self.port:
+            self.port.write([carte, triak, v1, v2, state.value])
         sleep(0.02) # time needed to make sure all data succeed
         self.mutex.release()
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("- Addr : {}\n".format(self.addr))
+        string += "".join("- Boards :\n")
+        string += "".join(["|-{}\n".format(string) for string in self.list_boards_triak.values()])
+        return string
 

@@ -20,6 +20,13 @@ class Button_choice(Button):
         scenar = self.list_scenar[select]
         self.manager.do_scenar_principal(scenar)
 
+    def __str__(self):
+        string = super().__str__()
+        string += "- Type : choice\n"
+        string += "- Scenarios\n"
+        string += "".join(["|-{}\n".format(scenar.name) for scenar in self.list_scenar])
+        return string
+
 
 
 

@@ -1,18 +1,25 @@
-from tree.scenario.instructions.Instruction import Instruction
+from tree.scenario.instructions.light.Instruction_light import Instruction_light
 from time import sleep, time
 import numpy as np
 from tree.utils.Logger import Logger
 
-class Instruction_speed(Instruction):
+class Instruction_speed(Instruction_light):
     """
     Setup the speed of a dmx light (mouvement, patern_speed..)
     """
     def __init__(self, calculator, light, value, duration, delay, synchro):
-        Instruction.__init__(self, calculator, duration, delay, synchro)
-        self.light = light
+        Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.value = value
 
     def run(self, barrier):
         super().run()
         barrier.wait()
         self.light.set_speed(self.eval(self.value))
+ 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : speed\n")
+        string += "".join("- Speed : {}\n".format(self.value))
+        return string   
+
+

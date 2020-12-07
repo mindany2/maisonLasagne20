@@ -1,5 +1,8 @@
 from enum import Enum
-from bluepy.btle import Peripheral, Scanner
+try:
+    from bluepy.btle import Peripheral, Scanner
+except ModuleNotFoundError:
+    print("No bluetooth")
 from threading import Lock
 from time import sleep,time
 import os

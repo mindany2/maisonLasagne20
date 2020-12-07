@@ -1,5 +1,4 @@
 from tree.buttons.Button import Button
-from tree.scenario.Scenario import MARKER
 
 class Button_principal(Button):
     """
@@ -18,7 +17,7 @@ class Button_principal(Button):
         if self.scenar_off:
             # if there are 2 scenarios
             if not(state):
-                state = (self.manager.get_marker() == MARKER.ON)
+                state = self.manager.get_principal_state()
 
             if state:
                 self.manager.do_scenar_principal(self.scenar_off)
@@ -27,5 +26,13 @@ class Button_principal(Button):
         else:
             # simple button, juste do the scenar_on
             self.manager.do_scenar_principal(self.scenar_on)
+
+    def __str__(self):
+        string = super().__str__()
+        string = string.join("- Type : principal\n")
+        string = string.join("- ON : {}\n".format(self.scenar_on.name))
+        string = string.join("- OFF : {}\n".format(self.scenar_off.name))
+        return string
+
 
 

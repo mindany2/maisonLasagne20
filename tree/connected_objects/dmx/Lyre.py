@@ -76,8 +76,11 @@ class Lyre(Lamp):
     def unlock_dimmer(self):
         self.locker_dimmer.unlock()
 
-
-
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : Lyre\n")
+        string += "".join("- Dmx : {}\n".format(self.dmx))
+        return string
 
 class COLOR(Enum):
     # the full color

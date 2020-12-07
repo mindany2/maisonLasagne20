@@ -31,4 +31,11 @@ class Speakers(Connected_object):
             self.zone.set_power(1)
         self.zone.set_volume(value)
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : speakers\n")
+        string += "".join("- Zone : {}\n".format(self.zone))
+        string += "".join("- Amp : {}\n".format(self.amp))
+        return string
+
 

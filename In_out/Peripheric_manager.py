@@ -78,6 +78,8 @@ class Peripheric_manager:
 
     @classmethod
     def get_relay(self, index_board, index_relay):
+        if index_board < 1:
+            raise(IndexError("Invalid index board {}, it starts from 1".format(index_board)))
         board = self.list_boards_relay[index_board-1]
         if board: 
             relay = board.get_relay(index_relay)
@@ -88,14 +90,25 @@ class Peripheric_manager:
     @classmethod
     def get_triak(self, index_board, index_triak):
         # search witch st is it
-        for st in self.st_nucleos:
+        for st in self.st_nucleos.values():
             board = st.get_board_triak(index_board)
-            if board:
-                break
-            else:
-                index_board -= st.nb_boards()
-        if board: 
-            triak = board.get_relay(index_triak)
-            if triak: return triak
-            raise(IndexError("There are no relay number {} in the board index {} ".format(index_triak, index_board)))
+            if board: 
+                triak = board.get_triak(index_triak)
+                if triak: return triak
+                raise(IndexError("There are no relay number {} in the board index {} ".format(index_triak, index_board)))
         raise(IndexError("There are no board with the index {}".format(index_board)))
+
+    @classmethod
+    def __str__(self):
+        string  = "---- Peripheric manager ----\n"
+        string += "Relay boards : {}\n".format(self.list_boards_relay)
+        string += "Dmx : {}\n".format(self.dmx)
+        string += "Port_extender : {}\n".format(self.port_extender)
+        string += "Spotify : {}\n".format(self.spotify)
+        string += "Amps : {}\n".format(self.amps)
+        string += "ST_nucleos :\n"
+        string += "".join(["|-{}\n".format(string) for string in self.st_nucleos.values()])
+        string += "".join("Connections : {}\n".format(self.connections))
+        return string
+
+

@@ -15,3 +15,5 @@ class Dmx_controller:
         for transmit in self.transmitters:
             transmit.test(channel)
 
+    def __str__(self):
+        return "".join([str(trans) for trans in self.transmitters])

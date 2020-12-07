@@ -7,7 +7,8 @@ class Instruction_dimmer(Instruction_light):
     Dim a light
     """
     def __init__(self, calculator, light, dimmer, duration, delay, synchro):
-        Instruction_light.__init__(self, calculator, light, dimmer, duration, delay, synchro)
+        Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
+        self.dimmer = dimmer
 
     def run(self, barrier):
         """
@@ -47,6 +48,11 @@ class Instruction_dimmer(Instruction_light):
         finally:
             self.light.disconnect()
             self.light.unlock()
+ 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : dimmer\n")
+        string += "".join("- Dimmer : {}\n".format(self.dimmer))
+        return string   
 
-    def show(self):
-        print("projo = ",self.light.name, " | dimmer = ", self.dimmer, " | duration = ", self.duration)
+

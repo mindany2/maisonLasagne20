@@ -12,3 +12,6 @@ class Relay_network(Relay):
 
     def reload(self):
         self.rpi.send(Set_relay(self.address, self.state))
+
+    def __str__(self):
+        return self.address

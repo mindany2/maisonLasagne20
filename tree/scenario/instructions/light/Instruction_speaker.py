@@ -47,6 +47,14 @@ class Instruction_speaker(Instruction):
             Logger.info("The speaker {} took {}s to power instead of {}s".format(self.speaker.name, time()-debut, self.duration))
         finally:
             self.speaker.unlock()
- 
+  
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : speaker\n")
+        string += "".join("- Speakers : {}\n".format(self.speaker.name))
+        string += "".join("- Volume : {}\n".format(self.volume))
+        return string   
+
+
 
 

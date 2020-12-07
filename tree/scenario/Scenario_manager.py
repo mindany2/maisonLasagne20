@@ -84,7 +84,10 @@ class Scenario_manager:
     def top(self):
         return self.stack.last()
 
+    def get_principal_state(self):
+        return self.scenario_select.get_marker() == MARKER.ON
+
     def get_marker(self):
-        return self.scenario_select.get_marker()
+        return self.current_scenar.get_marker()
 
 

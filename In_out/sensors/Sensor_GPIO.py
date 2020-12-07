@@ -1,5 +1,8 @@
 from In_out.sensors.Sensor import Sensor
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    print("No GPIO")
 from time import sleep,time
 
 class Sensor_GPIO(Sensor):

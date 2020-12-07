@@ -11,8 +11,11 @@ class Delay:
         self.wait_for_beat = wait_for_beat
 
     def wait(self, calculator, time_spent = 0):
-        if self.wait_for_beat != 0:
+        if calculator.eval(self.wait_for_beat) != 0:
             # we need to wait some beats
-            numero = calculator.eval(self.wait_for_beat)
-            Peripheric_manager.get_spotify().wait_for_beat(numero)
+            number = calculator.eval(self.wait_for_beat)
+            Peripheric_manager.get_spotify().wait_for_beat(number)
         sleep(calculator.eval(self.str_val)-time_spent)
+
+    def __str__(self):
+        return self.str_val

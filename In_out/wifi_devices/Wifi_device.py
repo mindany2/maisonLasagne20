@@ -7,3 +7,6 @@ class Wifi_device:
     def __init__(self, ip):
         self.ip = ip
         self.controler = None
+
+    def __str__(self):
+        return self.ip

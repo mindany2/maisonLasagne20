@@ -23,10 +23,10 @@ class Environnement:
         self.calculator = Calculator(tree)
 
     def add_object(self, obj):
-        if isinstance(obj, Variable):
-            self.calculator.add(obj)
-        else:
-            self.list_objects.add(obj)
+        self.list_objects.add(obj)
+
+    def add_variable(self, var):
+        self.calculator.add(var)
 
     def add_env(self, env):
         self.list_sub_env.add(env)
@@ -109,10 +109,25 @@ class Environnement:
         if scenar: return scenar
         raise(NameError("The scenario {} is doesn't exist in the preset {} in the environnement {}".format(name, preset, self.name)))
 
+    def get_calculator(self):
+        return self.calculator
+
     def press_inter(self, name_inter, state):
         self.get_preset_select().press_inter(name_inter, state)
         # also press it also in all the sub-environnements
         for env in self.list_sub_env:
             env.press_inter(name_inter, state)
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("-Objects\n")
+        string += "".join(["|  {}\n".format(string) for string in str(self.list_objects).split("\n")])
+        string += "".join("-Presets\n")
+        string += "".join(["|  {}\n".format(string) for string in str(self.list_presets).split("\n")])
+        string += "".join("-Variables\n")
+        string += "".join(["|  {}\n".format(string) for string in str(self.calculator).split("\n")])
+        string += "".join("-Sub-environnements\n")
+        string += "".join(["|  {}\n".format(string) for string in str(self.list_sub_env).split("\n")])
+        return string
 
     

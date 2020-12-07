@@ -31,10 +31,13 @@ class Preset:
 
     def add_scenar(self, scenar):
         self.list_scenario.add(scenar)
+        # TODO setup this in the initialisation like inst button
         # initialise the manager with the first scenario OFF found
         # /!\ Need to have obligatory a scenario OFF in the preset
+        """
         if not(self.manager) and scenar.get_marker() == MARKER.OFF:
             self.manager = Scenario_manager(scenar)
+        """
 
     def get_scenar(self, name):
         return self.list_scenario.get(name)
@@ -46,3 +49,11 @@ class Preset:
 
     def get_marker(self):
         return self.get_manager().get_marker()
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("- Scenarios\n")
+        string += "".join(["  |{}\n".format(string) for string in str(self.list_scenario).split("\n")])
+        string += "".join("- Buttons\n")
+        string += "".join(["  |{}\n".format(string) for string in str(self.inter_to_buttons).split("\n")])
+        return string

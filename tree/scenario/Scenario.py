@@ -45,3 +45,10 @@ class Scenario:
             # si les list_inst finissent pareil
             return self.list_inst == obj.list_inst
         return False
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("- Marker : {}\n".format(self.marker))
+        string += "".join("- List Instructions :\n")
+        string += "".join(["  {}\n".format(string) for string in str(self.list_inst).split("\n")])
+        return string

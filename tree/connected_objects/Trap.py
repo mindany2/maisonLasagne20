@@ -48,5 +48,11 @@ class Trap(Connected_object):
     def change(self, state):
         self.state = state
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : trap\n")
+        return string
+
+
 
 

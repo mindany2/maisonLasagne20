@@ -23,3 +23,5 @@ class Variable_spotify(Variable):
     def set(self, val):
         raise(ReferenceError("Cannot set an this variable"))
         
+    def __str__(self):
+        return ""

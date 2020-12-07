@@ -29,6 +29,14 @@ class Strombo(Lamp):
     def unlock_dimmer(self):
         super().unlock()
 
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : Strombo\n")
+        string += "".join("- Dmx : {}\n".format(self.dmx))
+        return string
+
+
+
 class CHANNEL(Enum):
     dimmer = 1
     program = 2

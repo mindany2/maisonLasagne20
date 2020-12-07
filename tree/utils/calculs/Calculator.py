@@ -13,7 +13,7 @@ class Calculator:
         self.variables = List()
         # just add the common variables
         self.variables.add(Variable_spotify())
-        self.variables.add(Variable_env(tre))
+        self.variables.add(Variable_env(tree))
 
     def add(self, var):
         self.variables.add(var)
@@ -40,3 +40,7 @@ class Calculator:
 
     def get(self, name):
         return self.variables.get(name)
+
+    def __str__(self):
+        return str(self.variables)
+

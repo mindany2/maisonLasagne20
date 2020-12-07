@@ -22,3 +22,6 @@ class Variable_env(Variable):
         raise(Exception("Cannot set an this variable"))
         
 
+    def __str__(self):
+        return ""
+

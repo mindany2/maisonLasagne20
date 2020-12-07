@@ -79,3 +79,8 @@ class Instruction_button(Instruction):
                 other.get_bt()
                 return (self.button == other.button)
         return False
+
+    def __str__(self):
+        string = "".join("- Type : Bouton\n")
+        string += super().__str__()
+        return string

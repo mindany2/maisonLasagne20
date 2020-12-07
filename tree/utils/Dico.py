@@ -52,7 +52,7 @@ class Dico:
         self.list = {}
 
     def __str__(self):
-        return str(self.list.values)
+        return "".join([str(value) + "\n" for value in self.list.values()])
 
     def remove(self, key):
         del self.list[key]

@@ -25,3 +25,9 @@ class Instruction_spotify(Instruction):
             Spotify().start()
         elif self.type_inst == TYPE_INST_SPOTIFY.stop:
             Spotify().kill()
+
+    def __str__(self):
+        string = super().__str__()
+        string += "".join("- Type : spotify\n")
+        string += "".join("- Action : {}\n".format(self.type_inst))
+        return string

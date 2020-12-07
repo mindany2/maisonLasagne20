@@ -28,3 +28,4 @@ class Relay:
     def reload(self):
         # set the relay to the current state
         pass
+
