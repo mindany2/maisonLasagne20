@@ -1,4 +1,3 @@
-from In_out.Peripheric_manager import Peripheric_manager
 from In_out.network.messages.Message import Message
 
 class Set_relay(Message):
@@ -7,5 +6,5 @@ class Set_relay(Message):
         self.addr = addr
         self.value = value
 
-    def do(self):
-        Peripheric_manager().get_relais(self.addr[0], self.addr[1]).set(self.value)
+    def do(self, getter):
+        getter.get_manager().get_relais(self.addr[0], self.addr[1]).set(self.value)

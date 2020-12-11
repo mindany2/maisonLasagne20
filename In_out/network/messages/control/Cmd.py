@@ -6,5 +6,5 @@ class Cmd(Message):
     def __init__(self, command):
         self.command = command
 
-    def do(self):
+    def do(self, getter):
         os.system(self.command)

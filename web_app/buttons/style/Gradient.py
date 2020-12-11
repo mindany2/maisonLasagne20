@@ -1,12 +1,12 @@
-from tree.utils.Couleur import Couleur
+from tree.utils.Color import Color
 
 class Gradient:
     """
     un dégrader linéaire 
     """
     def __init__(self, color_left, color_right, direction = "left"):
-        self.color_left = Couleur(color_left)
-        self.color_right = Couleur(color_right)
+        self.color_left = Color(color_left)
+        self.color_right = Color(color_right)
         self.direction = direction
 
     def __str__(self):

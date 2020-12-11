@@ -13,14 +13,14 @@ class Environnement:
     Define a group of light that works with a list of preset
     Also can define sub-environnements 
     """
-    def __init__(self, name, tree):
+    def __init__(self, name):
         self.name = name
         self.list_objects = List()
         self.list_sub_env = List()
         self.list_presets = List_radio()
         # hash table between mode and preset
         self.list_presets_chosen = Dico()
-        self.calculator = Calculator(tree)
+        self.calculator = Calculator()
 
     def add_object(self, obj):
         self.list_objects.add(obj)
@@ -69,8 +69,8 @@ class Environnement:
     def change_preset_select(self, preset):
         self.list_presets.change_select(preset)
 
-    def add_mode(self, mode, name_preset):
-        self.list_presets_chosen.add(mode, self.get_preset(name_preset))
+    def add_mode(self, mode, preset):
+        self.list_presets_chosen.add(mode, preset)
 
     def get_preset(self, name):
         preset = self.list_presets.get(name)
@@ -78,28 +78,31 @@ class Environnement:
         raise(NameError("The preset {} doesn't exist in the environnement {}".format(name, self.name)))
 
     def get_env(self, path):
-        if len(path) > 1:
+        if path:
             # it is in a sub-environnement
             return self.list_sub_env.get(path[0]).get_env(path[1:])
-        elif path[0] == self.name:
-            return self
-        return None
+        return self
 
     def get_object(self, name):
         obj = self.list_objects.get(name)
-        if obj: return obj
-        # it could be a variable
-        var = self.calculator.get(name)
-        if var: return var
+        if obj:
+            return obj
         raise(NameError("The object {} is doesn't exist in the environnement {}".format(name, self.name)))
 
-    def get_names_envi(self):
-        list_name = [self.name]
+    def get_var(self, name):
+        var = self.calculator.get(name)
+        if var:
+            return var
+        raise(NameError("The variable {} is doesn't exist in the environnement {}".format(name, self.name)))
+
+    def get_list_envs(self):
+        list_env = Dico()
+        list_env.add(self.name, self)
         for env in self.list_sub_env:
-            names = env.get_names_envi()
-            for name in names:
-                list_name.append("{}.{}".format(self.name, name))
-        return list_name
+            list_sub_env = env.get_list_envs()
+            for name in list_sub_env.keys():
+                list_env.add("{}.{}".format(self.name, name), list_sub_env.get(name))
+        return list_env
 
     def get_scenar(self, name, preset=None):
         if preset:
@@ -118,8 +121,16 @@ class Environnement:
         for env in self.list_sub_env:
             env.press_inter(name_inter, state)
 
+    def initialize(self):
+        for preset in self.list_presets:
+            preset.initialize()
+        for env in self.list_sub_env:
+            env.initialize()
+
     def __str__(self):
         string = self.name + "\n"
+        string += "-Link modes\n"
+        string += "".join(["|  {} => {}\n".format(mode.name, self.list_presets_chosen.get(mode).name) for mode in self.list_presets_chosen.keys()])
         string += "".join("-Objects\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.list_objects).split("\n")])
         string += "".join("-Presets\n")

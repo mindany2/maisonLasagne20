@@ -6,5 +6,5 @@ class Press_key(Message):
     def __init__(self, key):
         self.key = key
 
-    def do(self):
+    def do(self, getter):
         Controller().press_key(self.key)

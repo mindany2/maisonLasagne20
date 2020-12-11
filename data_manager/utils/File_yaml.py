@@ -5,8 +5,8 @@ class File_yaml(Reader):
     """
     Read a yaml file
     """
-    def __init__(self, path):
+    def __init__(self, getter, path):
         with open(path, "r") as config_file:
-            Reader.__init__(self, ruamel.yaml.load(config_file, Loader=ruamel.yaml.RoundTripLoader), path)
+            Reader.__init__(self, getter, ruamel.yaml.load(config_file, Loader=ruamel.yaml.RoundTripLoader), path)
 
 

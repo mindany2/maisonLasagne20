@@ -1,6 +1,6 @@
 from time import time
 from In_out.interrupts.inter.Interrupt import Interrupt
-from In_out.network.communication.interrupt.Press_inter import Press_inter
+from In_out.network.messages.interrupt.Press_inter import Press_inter
 
 class Interrupt_extender(Interrupt):
     """

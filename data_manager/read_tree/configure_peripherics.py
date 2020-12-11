@@ -20,14 +20,13 @@ from In_out.utils.Port_extender import Port_extender
 
 from In_out.spotify.Spotify import Spotify
 
-manager = Peripheric_manager()
 
-def config_peripherics():
+def config_peripherics(getter):
     """
     Read the config file in data
     to setup the Peripheric_manager
     """
-    config = File_yaml("data/config.yaml")
+    config = File_yaml(getter, "data/config_tree.yaml")
 
     # BOARDS
     config.get("BOARDS", get_boards)
@@ -40,9 +39,10 @@ def config_peripherics():
 
     #SOUND
     config.get("SOUND", get_sound)
-    print(manager)
+    print(getter.get_manager())
 
 def get_sound(sound):
+    manager = sound.get_getter().get_manager()
     spotify = sound.get("Spotify")
     if spotify:
         manager.set_spotify(Spotify(spotify.get_str("name", mandatory = True),
@@ -62,6 +62,7 @@ def get_sound(sound):
                                     amp.get_addr("relay", mandatory = True).get_relay()))
 
 def get_dmx(dmx):
+    manager = dmx.get_getter().get_manager()
     type_dmx = dmx.get_str("type", mandatory = True)
     wireless = dmx.get("wireless")
     list_transmiters = []
@@ -71,12 +72,13 @@ def get_dmx(dmx):
                                                          transmitter.get_int("mini", mandatory = True),
                                                          transmitter.get_int("maxi", mandatory = True)))
     if type_dmx == "network":
-        rpi = manager.get_connections(dmx.get_str("name", mandatory = True))
+        rpi = manager.get_connection(dmx.get_str("name", mandatory = True))
         manager.set_dmx(Dmx_network(rpi, list_transmiters))
     elif type_dmx == "kingDMX":
         manager.set_dmx(KingDMX(dmx.get_str("addr", mandatory = True), list_transmiters))
 
 def get_network(network_list):
+    manager = network_list.get_getter().get_manager()
     for connection in network_list:
         type_con = connection.get_str("type", mandatory = True)
         if type_con == "rpi":
@@ -94,6 +96,7 @@ def get_boards(boards):
         extender.get("relay_boards", get_relays)
 
 def get_relays(list_boards):
+    manager = list_boards.get_getter().get_manager()
     port_extender = Port_extender()
     manager.set_extender(port_extender)
     for board in list_boards:
@@ -104,6 +107,7 @@ def get_relays(list_boards):
        manager.set_relay_board(Board_relay_extender(port_extender, index, addr, nb_relay))
 
 def get_st(st_list):
+    manager = st_list.get_getter().get_manager()
     for st_config in st_list:
         st = ST_nucleo(st_config.get_str("name", mandatory = True), st_config.get_str("addr", mandatory = True))
         for triak_boards in st_config.get("triak_boards", mandatory = True):
@@ -113,7 +117,4 @@ def get_st(st_list):
             nb_triak = int(nb_triak)
             st.add_board_triak(Board_triak(index, st, nb_triak))
         manager.set_st_nucleo(st)
-
-if __name__ == "__main__":
-    config_peripherics()
 

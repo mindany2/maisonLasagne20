@@ -1,4 +1,3 @@
-from In_out.spotify.Spotify import Spotify
 from In_out.network.messages.Message import Message
 from threading import Thread
 
@@ -10,6 +9,6 @@ class Spotify_inter(Message):
         self.track = track
         self.position = position
 
-    def do(self):
-        proc = Thread(target=Spotify.inter, args = [self.state, self.volume, self.track, self.position])
+    def do(self, getter):
+        proc = Thread(target=getter.get_spotify().inter, args = [self.state, self.volume, self.track, self.position])
         proc.start()

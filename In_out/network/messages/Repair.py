@@ -4,7 +4,7 @@ from In_out.network.messages.Message import Message
 class Repair(Message):
 
     def __init__(self):
-        pass
+        Message.__init__(self)
 
-    def do(self):
-        Tree().repair()
+    def do(self, getter):
+        getter.get_tree().repair()

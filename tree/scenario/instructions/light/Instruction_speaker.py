@@ -13,6 +13,10 @@ class Instruction_speaker(Instruction):
         self.volume = volume
         self.speaker = speaker
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.volume)
+
     def run(self, barrier):
         """
         Setup a try/finally to allow kill from another instruction

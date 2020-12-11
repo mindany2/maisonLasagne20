@@ -1,42 +1,43 @@
 from tree.utils.List import List
 from random import randint
 from tree.scenario.Scenario import MARKER
-from tree.utils.calculs.Variable_env import Variable_env
-from tree.utils.calculs.Variable_spotify import Variable_spotify
 import re
 
 class Calculator:
     """
     Calculate the expressions
     """
-    def __init__(self, tree):
+    def __init__(self):
         self.variables = List()
-        # just add the common variables
-        self.variables.add(Variable_spotify())
-        self.variables.add(Variable_env(tree))
 
     def add(self, var):
         self.variables.add(var)
 
-    def int(self, string):
-        if string != "":
+    def eval(self, expression):
+        string = str(expression)
+        if string:
             # search for variables names
-            for var in re.split("[0-9,\*,\-,\+,\/,\(,\)]", string):
-                if var:
-                    # replace the var_name by it's value
-                    string = string.replace(var,self.get_value(var))
+            for var in re.split("[\*,\-,\+,\/,\(,\)]", string):
+                try:
+                    int(var)
+                except ValueError:
+                    try:
+                        int(var, 16)
+                    except ValueError:
+                        if var not in ("False", "True"):
+                            # replace the var_name by it's value
+                            string = string.replace(var,"self.get_value(\"{}\",expression)".format(var))
             return eval(string)
+                
         return 0
 
-    def get_value(self, var_name):
-        cutted_name = var_name.split(".")
-        return self.variables.get(cutted_name).get(var_name)
-
-    def eval(self, string):
+    def get_value(self, var_name, expression):
+        cutted_name = var_name.split(".")[0]
         try:
-            return int(string)
-        except:
-            return self.int(string)
+            return self.variables.get(cutted_name).get(var_name)
+        except KeyError:
+            expression.raise_error("Could not find the variable {}".format(var_name))
+
 
     def get(self, name):
         return self.variables.get(name)

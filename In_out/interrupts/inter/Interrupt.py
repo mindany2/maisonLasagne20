@@ -1,4 +1,4 @@
-from In_out.network.communication.interrupt.Press_inter import Press_inter
+from In_out.network.messages.interrupt.Press_inter import Press_inter
 from tree.Tree import Tree
 from time import time
 

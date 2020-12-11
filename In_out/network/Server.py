@@ -4,71 +4,64 @@ from tree.Tree import Tree
 from threading import Thread
 import io
 import sys, traceback
-WITH_NETIFACE = True
-# threre are trubleshooting installing netifaces
-try:
-    import netifaces as ni
-except:
-    WITH_NETIFACE = False
 from tree.utils.Logger import Logger
 
-"""
-This is a Server, it allows the client to send message to it
-and it just do that the message need to do and respond to the client
-"""
+class Server:
 
-if WITH_NETIFACE:
-    ni.ifaddresses('eth0')
-    ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
-else:
-    ip_address = socket.gethostbyname(socket.gethostname())
+    def __init__(self, getter, port = 5555):
+        """
+        This is a Server, it allows the client to send message to it
+        and it just do that the message need to do and respond to the client
+        """
+        self.ip_address = socket.gethostbyname(socket.gethostname())
+        self.port = port
+        self.getter = getter
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-port = 5555
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-try:
-    s.bind((ip_address, port))
-except socket.error as e:
-    print(str(e))
-
-s.listen(2)
-Logger.info("Waiting for a connection, Server Started")
-
-def threaded_client(conn):
-    conn.send(pickle.dumps("hello"))
-    while True:
         try:
-            requete = pickle.loads(conn.recv(4048))
-        except : #e:
-            Logger.error("Exception during request")
-            #Logger.error(e)
-            break
-        data = None
-        if not requete:
-            Logger.info(str(conn) + "is disconnect")
-            break
-        if requete == "kill me":
-            Logger.info("demande de kill")
-            break
-        try:
-            data = requete.do()
-        except e:
-            Logger.error("Exception during client message: ")
-            Logger.error(e)
-            break
-        try:
-            conn.send(pickle.dumps(data))
-        except e:
-            Logger.error("Exception during response send: ")
-            Logger.error(e)
-            break
+            self.socket.bind((self.ip_address, self.port))
+        except socket.error as e:
+            print(str(e))
 
-    Logger.info("Lost connection")
-    conn.close()
+        self.socket.listen(2)
+        self.started = False
 
-while True:
-    conn, addr = s.accept()
-    Logger.info("Connected to: "+ str(addr))
-    process = Thread(target=threaded_client, args=[conn])
-    process.start()
+    def start(self):
+        Logger.info("Waiting for a connection, Server Started")
+        self.started = True
+        while self.started:
+            conn, addr = self.socket.accept()
+            Logger.info("Connected to: "+ str(addr))
+            process = Thread(target=self.threaded_client, args=[conn])
+            process.start()
+
+    def kill(self):
+        self.started = False
+
+    def threaded_client(self, conn):
+        conn.send(pickle.dumps("hello"))
+        while True:
+            try:
+                requete = pickle.loads(conn.recv(4048))
+            except : #e:
+                Logger.error("Exception during request")
+                #Logger.error(e)
+                break
+            data = None
+            if not requete:
+                Logger.info(str(conn) + "is disconnect")
+                break
+            if requete == "kill me":
+                Logger.info("demande de kill")
+                break
+            data = requete.do(self.getter)
+            try:
+                conn.send(pickle.dumps(data))
+            except e:
+                Logger.error("Exception during response send: ")
+                Logger.error(e)
+                break
+
+        Logger.info("Lost connection")
+        conn.close()
+

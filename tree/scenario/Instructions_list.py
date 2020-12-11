@@ -65,6 +65,10 @@ class Instructions_list:
             if not(self.loop and self.state):
                 break
 
+    def initialize(self):
+        for inst in self.list:
+            inst.initialize()
+
     def __str__(self):
         string = ""
         if self.loop:

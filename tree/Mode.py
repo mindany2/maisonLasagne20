@@ -6,19 +6,25 @@ class Mode:
     This is a mode of the tree, this allow to change all the preset in
     all the environnements in the tree (normal, evenning..)
     """
-    def __init__(self, name, color, scenar_init):
+    def __init__(self, name, scenar_init = None):
         self.name = name
         self.state = False
-        self.scenar_init = scenar_init
+        self.name_scenar_init = scenar_init
+        self.scenar_init = None
 
-    def __str__(self):
-        return self.name
+    def initialize(self):
+        if self.name_scenar_init:
+            self.scenar_init = self.name_scenar_init.get_scenarios()
 
-    def change(self):
-        self.state = not(self.state)
+    def change_state(self, state):
+        self.state = state
         if self.state and self.scenar_init:
             # do the scenar_init
-            env, preset, name = self.scenar_init.split(".")
-            scenar = Tree().get_scenar(env, name, preset = preset)
-            if scenar:
-                scenar.do()
+            self.scenar_init.do()
+
+    def __str__(self):
+        string = self.name + "\n"
+        if self.name_scenar_init:
+            string += "|  Scenario_init : {}".format(str(self.name_scenar_init))
+        return string
+

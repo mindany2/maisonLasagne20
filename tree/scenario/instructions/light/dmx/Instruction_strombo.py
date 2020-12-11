@@ -9,8 +9,11 @@ class Instruction_strombo(Instruction_light):
     """
     def __init__(self, calculator, light, strombo, duration, delay, synchro):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
-        self.light = light
         self.strombo = strombo
+
+    def initialize(self):
+        super().initialize()
+        self.eval(self.strombo)
 
     def run(self, barrier):
         super().run()

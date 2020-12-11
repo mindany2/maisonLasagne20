@@ -9,5 +9,5 @@ class Press_mouse(Message):
         self.clic_right = clic_right
         self.double_clic = double_clic
 
-    def do(self):
+    def do(self, getter):
         Controller().press_mouse(self.x, self.y, self.clic_right, self.double_clic)

@@ -2,12 +2,6 @@ import socket
 import pickle
 from threading import Lock
 from time import time, sleep
-WITH_NETIFACE = True
-# threre are trubleshooting installing netifaces
-try:
-    import netifaces as ni
-except:
-    WITH_NETIFACE = False
 
 from tree.utils.Logger import Logger
 
@@ -20,19 +14,13 @@ class Client:
     def __init__(self, ip_address = None):
         self.mutex = Lock()
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        if not(ip_address): # == None
-            if WITH_NETIFACE:
-                # use the ip of this rpi
-                ni.ifaddresses('eth0')
-                self.ip_address = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
-                Logger.debug("ip addresse = {}".format(self.ip_address))
-            else:
-                self.ip_address = socket.gethostbyname(socket.gethostname())
-        else:
-            self.ip_address = ip_address
-
+        if not(ip_address):
+            ip_address = socket.gethostbyname(socket.gethostname())
+        self.ip_address = ip_address
         self.port = 5555
         self.addr = (self.ip_address, self.port)
+
+    def start(self):
         hello = self.connect()
         while hello == None:
             hello = self.connect()

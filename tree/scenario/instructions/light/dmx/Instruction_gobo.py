@@ -11,6 +11,10 @@ class Instruction_gobo(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, temps_init, synchro)
         self.gobo = gobo
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.gobo)
+
     def run(self, barrier):
         """
         Setup a try/finally to allow kill from another instruction

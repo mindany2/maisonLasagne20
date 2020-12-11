@@ -43,14 +43,14 @@ class Lamp(Connected_object):
             on_off = not(on_off)
 
         if on_off:
-            etat = STATE.ON
+            state = STATE.ON
         else:
-            etat = STATE.OFF
-        if self.relay.etat != etat:
-            self.relay.set(etat)
+            state = STATE.OFF
+        if self.relay.state != state:
+            self.relay.set(state)
 
-    def etat(self):
-        return self.relay.etat
+    def state(self):
+        return self.relay.state
 
     def __str__(self):
         string = super().__str__()

@@ -5,25 +5,29 @@ class Scenario_manager:
     """
     Manage the scenario order
     """
-    def __init__(self, scenar_init):
+    def __init__(self):
         # the scenario selecter :
         #   this is the choice of the environnement, only a principal button can change it's value
         #   if this scenario is OFF, the top secondary scenario in the stack is done
         #   if the stack is empty, just do the scenar OFF
-        self.scenario_select = scenar_init
+        self.scenario_select = None
         # store in order secondaries scenarios
         self.stack = List()
 
+        self.current_scenar = None
+
+    def initialize(self, scenar_init):
+        self.scenario_select = scenar_init
         self.current_scenar = scenar_init
-        # just to the init scenario
-        self.do(scenar_init)
+        self.current_scenar.set_state(True)
 
     def do(self, scenar):
         # start the scenario
-        self.current_scenar.set_state(False)
-        self.current_scenar = scenar
-        self.current_scenar.set_state(True)
-        self.current_scenar.do()
+        if self.current_scenar != scenar:
+            self.current_scenar.set_state(False)
+            self.current_scenar = scenar
+            self.current_scenar.set_state(True)
+            self.current_scenar.do()
 
     def do_scenar_principal(self, scenar):
         """
@@ -40,8 +44,11 @@ class Scenario_manager:
             # if we are already OFF, so just clear the list an shutdown 
             self.do(scenar)
             self.stack.clear()
-        else: # do the top of the stack if it is not empty
-            if not(self.stack.is_empty()):
+        else: 
+            if self.stack.is_empty():
+                self.do(scenar)
+            else:
+                # do the top of the stack if it is not empty
                 self.do(self.top())
         self.scenario_select = scenar
 

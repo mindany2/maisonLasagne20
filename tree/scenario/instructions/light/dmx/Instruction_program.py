@@ -11,6 +11,10 @@ class Instruction_program(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.number = number
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.number)
+
     def run(self, barrier):
         super().run()
         barrier.wait()

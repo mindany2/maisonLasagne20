@@ -11,6 +11,10 @@ class Instruction_color_wheel(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.color = color
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.color)
+
     def run(self, barrier):
         super().run()
         barrier.wait()

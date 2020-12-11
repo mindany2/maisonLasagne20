@@ -4,14 +4,13 @@ class Style:
     Contient toutes les informations de style
     des boutons html
     """
-    def __init__(self, nom="", padding = (0,0),position = (0,0), size = (50,50),relative = True, background_color = "",
-            font_size = 15, couleur_texte = "white", borders_etat = (False, False), borders_radius_etat = (False, False), 
+    def __init__(self, padding = (0,0),position = (0,0), size = (50,50),relative = True, background_color = "",
+            font_size = 15, font_color = "white", borders_state = (False, False), borders_radius_state = (False, False), 
             background_image = None, box_shadow = False, font_weight = "None", margin = [0,0], type_position = "relative"):
-        self.nom = nom
         self.image = ""
         self.bg_color = background_color
         self.font_size = font_size
-        self.font_color = couleur_texte
+        self.font_color = font_color
         self.padding = padding
         self.bg_image = background_image
         self.font_weight = font_weight
@@ -20,11 +19,8 @@ class Style:
 
         self.set_position(position)
         self.set_size(size)
-        self.set_border(borders_etat, borders_radius_etat)
+        self.set_border(borders_state, borders_radius_state)
         self.set_shadow(box_shadow)
-
-    def change(self):
-        pass
 
     def set_position(self, position):
         self.top, self.left = position[0], position[1]
@@ -32,10 +28,10 @@ class Style:
     def set_size(self, size):
         self.width, self.height = size[0], size[1]
 
-    def set_border(self, borders_etat, borders_radius_etat):
-        self.border_left = ("None", "solid")[borders_etat[0]]
-        self.border_right = ("None", "solid")[borders_etat[1]]
-        self.border_radius = ("0 ", "40px ")[borders_radius_etat[0]]+("0 0 ","40px 40px ")[borders_radius_etat[1]]+("0 ", "40px ")[borders_radius_etat[0]]
+    def set_border(self, borders_state, borders_radius_state):
+        self.border_left = ("None", "solid")[borders_state[0]]
+        self.border_right = ("None", "solid")[borders_state[1]]
+        self.border_radius = ("0 ", "40px ")[borders_radius_state[0]]+("0 0 ","40px 40px ")[borders_radius_state[1]]+("0 ", "40px ")[borders_radius_state[0]]
 
 
     def set_shadow(self, box_shadow):

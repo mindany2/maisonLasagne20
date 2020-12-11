@@ -18,7 +18,7 @@ class Instruction():
 
     def run(self, time_spent = 0):
         self.duration=self.eval(self.duration)
-        self.delay.wait(self.calculator, time_spent)
+        self.delay.wait(time_spent)
         # next in sub-classes
 
     def finish(self):
@@ -26,6 +26,11 @@ class Instruction():
 
     def eval(self, string):
         return self.calculator.eval(string)
+
+    def initialize(self):
+        # verify if the expressions given can be resolved
+        self.delay.initialize()
+        self.eval(self.duration)
 
     def __eq__(self, other):
         return True

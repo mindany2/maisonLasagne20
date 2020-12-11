@@ -6,5 +6,5 @@ class Reload_tree(Message):
     def __init__(self):
         pass
 
-    def do(self):
+    def do(self, getter):
         reload_tree()

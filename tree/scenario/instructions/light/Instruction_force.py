@@ -10,6 +10,10 @@ class Instruction_force(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.state = state
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.state)
+
     def run(self, barrier):
         self.light.lock()
         super().run()

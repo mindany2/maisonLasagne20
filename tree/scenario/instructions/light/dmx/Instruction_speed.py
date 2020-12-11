@@ -11,6 +11,10 @@ class Instruction_speed(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.value = value
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.value)
+
     def run(self, barrier):
         super().run()
         barrier.wait()

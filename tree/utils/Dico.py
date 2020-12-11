@@ -10,10 +10,7 @@ class Dico:
         self.list[key] = element
 
     def get(self, key):
-        try :
-            return self.list[key]
-        except:
-            return None
+        return self.list[key]
 
     def next(self, element):
         find = False
@@ -46,13 +43,16 @@ class Dico:
         return self.list.keys().__iter__()
 
     def is_empty(self):
-        return self.list.keys() == []
+        return self.list == {}
 
     def clear(self):
         self.list = {}
 
     def __str__(self):
         return "".join([str(value) + "\n" for value in self.list.values()])
+
+    def __len__(self):
+        return len(self.list)
 
     def remove(self, key):
         del self.list[key]

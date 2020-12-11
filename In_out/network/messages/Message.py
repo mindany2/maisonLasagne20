@@ -7,5 +7,5 @@ class Message:
     def __init__(self):
         pass
 
-    def do(self):
+    def do(self, getter):
         pass

@@ -29,9 +29,10 @@ class Button_principal(Button):
 
     def __str__(self):
         string = super().__str__()
-        string = string.join("- Type : principal\n")
-        string = string.join("- ON : {}\n".format(self.scenar_on.name))
-        string = string.join("- OFF : {}\n".format(self.scenar_off.name))
+        string += "".join("- Type : principal\n")
+        string += "".join("- ON : {}\n".format(self.scenar_on.name))
+        if self.scenar_off:
+            string += "".join("- OFF : {}\n".format(self.scenar_off.name))
         return string
 
 

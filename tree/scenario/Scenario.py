@@ -46,6 +46,9 @@ class Scenario:
             return self.list_inst == obj.list_inst
         return False
 
+    def initialize(self):
+        self.list_inst.initialize()
+
     def __str__(self):
         string = self.name + "\n"
         string += "".join("- Marker : {}\n".format(self.marker))

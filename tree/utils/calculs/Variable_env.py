@@ -4,9 +4,9 @@ class Variable_env(Variable):
     """
     Allow to find a variable in another env
     """
-    def __init__(self, tree):
+    def __init__(self, getter):
         Variable.__init__(self, "environnements", 0)
-        self.tree = tree
+        self.tree = getter.get_tree()
 
     def get(self, path_env, variable_name):
         env = self.tree.get_env(path_env)

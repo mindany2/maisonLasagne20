@@ -10,7 +10,7 @@ class Interrupt_cron(Interrupt):
         Interrupt.__init__(self, name, client)
         self.date = date
         self.sched = BackgroundScheduler()
-        hour, minutes, second = self.date.split(":")
+        hour, minutes, second = self.date.split(":", 3)
         now = datetime.now().time()
         try:
             # if the hour is already pass today, just do it
@@ -22,3 +22,6 @@ class Interrupt_cron(Interrupt):
         self.sched.add_job(self.press, 'cron', hour=hour, minute = minutes, second = second)
         self.sched.start()
 
+
+    def __str__(self):
+        return "type : cron | date : {}".format(self.date)

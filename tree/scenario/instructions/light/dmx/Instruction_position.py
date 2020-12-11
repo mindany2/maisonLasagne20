@@ -12,6 +12,10 @@ class Instruction_position(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.position_final = position_final
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.position_final)
+
     def run(self, barrier):
         """
         Setup a try/finally to allow kill from another instruction

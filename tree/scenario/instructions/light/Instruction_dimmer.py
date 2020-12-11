@@ -10,6 +10,10 @@ class Instruction_dimmer(Instruction_light):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.dimmer = dimmer
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.dimmer)
+
     def run(self, barrier):
         """
         Setup a try/finally to allow kill from another instruction
@@ -42,7 +46,7 @@ class Instruction_dimmer(Instruction_light):
                 dodo = 1/RESOLUTION-(time()-temps)
                 if dodo > 0:
                     sleep(dodo)
-            self.light.set(dimmer_final)
+            self.light.set_dimmer(dimmer_final)
             Logger.info(" the light {} took {}s to power instead of {}s".format(self.light.name, time()-debut, self.duration))
 
         finally:

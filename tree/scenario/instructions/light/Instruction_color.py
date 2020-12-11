@@ -13,6 +13,11 @@ class Instruction_color(Instruction_light):
         self.color = color
         self.dimmer = dimmer
 
+    def initialize(self):
+        super().initialize()
+        self.eval(self.color)
+        self.eval(self.dimmer)
+
     def run(self, barrier):
         delay = time()
         err, err1 = False, False

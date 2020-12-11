@@ -1,8 +1,12 @@
 from time import time
 from tree.Tree import Tree
 from In_out.interrupts.inter.Interrupt import Interrupt
-import RPi.GPIO as GPIO
 from time import sleep
+try:
+    import RPi.GPIO as GPIO
+except (RuntimeError, ModuleNotFoundError):
+    import fake_rpigpio.utils
+    fake_rpigpio.utils.install()
 
 class Interrupt_GPIO(Interrupt):
     """
@@ -22,3 +26,6 @@ class Interrupt_GPIO(Interrupt):
         if (self.value != GPIO.input(event)):
             self.value = GPIO.input(event)
             super().press(state = not(self.value))
+
+    def __str__(self):
+        return "type : gpio | pin : {}".format(self.pin)
