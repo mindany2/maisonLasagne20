@@ -3,6 +3,7 @@ from In_out.Peripheric_manager import Peripheric_manager
 from data_manager.utils.Getter import Getter
 from data_manager.read_tree.configure_peripherics import config_peripherics
 from data_manager.read_tree.configure_tree import config_tree
+from data_manager.read_tree.reload_tree import reload_tree
 
 from In_out.network.Server import Server
 """

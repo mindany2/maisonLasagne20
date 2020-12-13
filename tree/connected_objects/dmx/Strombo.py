@@ -29,6 +29,19 @@ class Strombo(Lamp):
     def unlock_dimmer(self):
         super().unlock()
 
+    def reload(self, other):
+        if isinstance(other, Strombo):
+            self.dimmer == other.dimmer
+            self.strombo == other.strombo
+
+    def __eq__(self, other):
+        if isinstance(other, Strombo):
+            return super().__eq__(other)\
+                    and self.dmx == other.dmx\
+                    and self.dimmer == other.dimmer\
+                    and self.strombo == other.strombo
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Strombo\n")

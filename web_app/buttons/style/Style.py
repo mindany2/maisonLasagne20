@@ -55,7 +55,6 @@ class Style:
         retour += "font-weight : {};".format(self.font_weight)
         retour += "margin-left : {}px;".format(self.margin[0])
         retour += "margin-right : {}px;".format(self.margin[1])
-        retour += "margin-right : {}px;".format(self.margin[1])
         retour += "position : {};".format(self.type_position)
         if self.bg_image: # != None
             retour += "background-image : {};".format(self.bg_image)

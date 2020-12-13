@@ -16,6 +16,9 @@ class Getter:
     def get_manager(self):
         return self.manager
 
+    def reload_tree(self, tree):
+        self.tree = tree
+
     def get_relay(self, index_relay, board):
         if board == "gpio":
             # the realy index is the gpio port

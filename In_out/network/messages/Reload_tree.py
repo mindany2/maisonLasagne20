@@ -1,4 +1,5 @@
-from utils.Data_change.Create_tree import reload_tree
+from data_manager.read_tree.reload_tree import reload_tree
+from threading import Thread
 from In_out.network.messages.Message import Message
 
 class Reload_tree(Message):
@@ -7,4 +8,5 @@ class Reload_tree(Message):
         pass
 
     def do(self, getter):
-        reload_tree()
+        reload_tree(getter)
+        #Thread(target=reload_tree, args=[getter]).run()

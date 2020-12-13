@@ -30,6 +30,10 @@ class Scenario:
     def state(self):
         return self.list_inst.state
 
+    def reload(self, other):
+        if isinstance(other, Scenario):
+            self.set_state(other.state())
+
     def set_state(self, state):
         self.list_inst.set_state(state)
 

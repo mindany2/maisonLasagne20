@@ -1,4 +1,3 @@
-from tree.Tree import Tree
 from tree.utils.Dico import Dico
 
 class Mode:
@@ -21,6 +20,13 @@ class Mode:
         if self.state and self.scenar_init:
             # do the scenar_init
             self.scenar_init.do()
+
+    def __eq__(self, other):
+        if isinstance(other, Mode):
+            return self.name == other.name\
+                    and self.state == other.state\
+                    and self.scenar_init == other.scenar_init
+        return False
 
     def __str__(self):
         string = self.name + "\n"

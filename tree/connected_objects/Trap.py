@@ -48,6 +48,20 @@ class Trap(Connected_object):
     def change(self, state):
         self.state = state
 
+    def reload(self, other):
+        if isinstance(other, Trap):
+            self.state == other.state
+
+    def __eq__(self, other):
+        if isinstance(other, Trap):
+            return super().__eq__(other)\
+                    and self.distrib_up == other.distrib_up\
+                    and self.distrib_down == other.distrib_down\
+                    and self.magnet == other.magnet\
+                    and self.closed_sensor == other.closed_sensor\
+                    and self.state == other.state
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : trap\n")

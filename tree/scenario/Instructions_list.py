@@ -2,7 +2,6 @@ from threading import Thread, Barrier
 from numpy import cumsum
 from time import time, sleep
 from multiprocessing import Process
-import uuid
 
 class Instructions_list:
     """

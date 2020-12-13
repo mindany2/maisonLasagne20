@@ -20,6 +20,13 @@ class Button_choice(Button):
         scenar = self.list_scenar[select]
         self.manager.do_scenar_principal(scenar)
 
+
+    def __eq__(self, other):
+        if isinstance(other, Button_choice):
+            return super().__eq__(other)\
+                    and self.list_scenar == other.list_scenar
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "- Type : choice\n"

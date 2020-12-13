@@ -43,7 +43,7 @@ def get_modes(modes, env):
     for link in modes:
         mode, preset = link.get_str("mode", mandatory = True), link.get_str("preset", mandatory = True)
         try:
-            mode = getter.get_mode(mode)
+            getter.get_mode(mode)
         except (KeyError, ValueError):
             link.raise_error("Undefine mode {}".format(mode))
         try:

@@ -51,6 +51,13 @@ class Dico:
     def __str__(self):
         return "".join([str(value) + "\n" for value in self.list.values()])
 
+    def __eq__(self, other):
+        if isinstance(other, Dico):
+            shared_item = [key for key in self.list.keys() if key in other.list and self.list[key] == other.list[key]]
+            return len(shared_item) == len(self.list) == len(other.list)
+
+        return False
+
     def __len__(self):
         return len(self.list)
 

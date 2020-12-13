@@ -29,6 +29,21 @@ class Crazy_2(Lamp):
             self.dmx.set(CHANNEL.speed, value)
         self.speed = value
 
+    def reload(self, other):
+        if isinstance(other, Crazy_2):
+            self.program = other.program
+            self.strombo = other.strombo
+            self.speed = other.speed
+
+    def __eq__(self, other):
+        if isinstance(other, Crazy_2):
+            return super().__eq__(other)\
+                    and self.dmx == other.dmx\
+                    and self.program == other.program\
+                    and self.strombo == other.strombo\
+                    and self.speed == other.speed
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Crazy_2\n")

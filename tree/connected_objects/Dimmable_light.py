@@ -67,6 +67,18 @@ class Dimmable_light(Connected_object):
         value = int(mini + (maxi-mini)*(1-dimmer/100))
         return value
 
+    def reload(self, other):
+        if isinstance(other, Dimmable_light):
+            self.dimmer == other.dimmer
+
+    def __eq__(self, other):
+        if isinstance(other, Dimmable_light):
+            return super().__eq__(other)\
+                    and self.triak == other.triak\
+                    and self.dimmer == other.dimmer\
+                    and self.type_buld == other.type_buld
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : dimmable_light\n")

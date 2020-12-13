@@ -42,6 +42,9 @@ class Calculator:
     def get(self, name):
         return self.variables.get(name)
 
+    def get_list_variables(self):
+        return self.variables
+
     def __str__(self):
         return str(self.variables)
 

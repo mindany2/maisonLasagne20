@@ -6,9 +6,9 @@ class Variable_env(Variable):
     """
     def __init__(self, getter):
         Variable.__init__(self, "environnements", 0)
-        self.tree = getter.get_tree()
 
     def get(self, path_env, variable_name):
+        """
         env = self.tree.get_env(path_env)
         var = env.get_variable(variable_name)
         if var:
@@ -17,7 +17,8 @@ class Variable_env(Variable):
         if variable_name.count("state"):
             return env.is_on()
         raise(Exception("The variable {} in the environnement {} doesn't existe".format(variable_name, path_env)))
-
+        """
+        pass
     def set(self, val):
         raise(Exception("Cannot set an this variable"))
         

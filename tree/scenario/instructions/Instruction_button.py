@@ -20,9 +20,6 @@ class Instruction_button(Instruction):
         self.condition = condition
 
         self.button = None
-        self.preset = None
-        self.env = None
-        self.scenars = None
 
     def run(self, barrier = None):
         super().run()
@@ -31,12 +28,13 @@ class Instruction_button(Instruction):
             raise(Exception("Need to initialize the instruction before start"))
 
         condition = self.eval(self.condition)
+        env, preset, scenars = self.name_scenars.get_scenarios(get_all = True)
         # check if it is the right preset, if not just pass
-        if(self.env.get_preset_select() == self.preset):
+        if(env.get_preset_select() == preset):
             # if there are only one scenario, just do it if the condition is True
-            if len(self.scenars) == 1 and condition:
+            if len(scenars) == 1 and condition:
                 self.button.press()
-            elif len(self.scenars) > 1:
+            elif len(scenars) > 1:
                 # if not, just press the button with the condition like state
                 # it is necessary a principal button
                 self.button.press(state=condition)
@@ -48,17 +46,17 @@ class Instruction_button(Instruction):
         super().initialize()
         self.eval(self.condition)
 
-        self.env, self.preset, self.scenars = self.name_scenars.get_scenarios(get_all = True)
+        env, preset, scenars = self.name_scenars.get_scenarios(get_all = True)
 
         if self.type_bt == TYPE_BUTTON.principal:
             scenar_off = None
-            if (len(self.scenars) > 1):
-                scenar_off = self.scenars[1]
-            self.button = Button_principal("{}.{}.{}".format(self.env.name, self.preset.name, self.scenars[0].name),
-                                self.preset.get_manager(), self.scenars[0], scenar_off)
+            if (len(scenars) > 1):
+                scenar_off = scenars[1]
+            self.button = Button_principal("{}.{}.{}".format(env.name, preset.name, scenars[0].name),
+                                preset.get_manager(), scenars[0], scenar_off)
         elif self.type_bt == TYPE_BUTTON.secondary:
-            self.button = Button_secondary("{}.{}.{}".format(self.env.name, self.preset.name, self.scenars[0].name),
-                                self.preset.get_manager(), self.scenars[0])
+            self.button = Button_secondary("{}.{}.{}".format(env.name, preset.name, scenars[0].name),
+                                preset.get_manager(), scenars[0])
         else:
             self.condition.raise_error("Error type button : {}".format(self.type_bt))
 

@@ -31,6 +31,18 @@ class Speakers(Connected_object):
             self.zone.set_power(1)
         self.zone.set_volume(value)
 
+    def reload(self, other):
+        if isinstance(other, Speakers):
+            self.connected == other.connected
+
+    def __eq__(self, other):
+        if isinstance(other, Speakers):
+            return super().__eq__(other)\
+                    and self.amp == other.amp\
+                    and self.zone == other.zone\
+                    and self.connected == other.connected
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : speakers\n")

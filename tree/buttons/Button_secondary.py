@@ -20,6 +20,12 @@ class Button_secondary(Button):
             # remove the scenario
             self.manager.remove(self.scenar)
 
+    def __eq__(self, other):
+        if isinstance(other, Button_secondary):
+            return super().__eq__(other)\
+                    and self.scenar == other.scenar
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : secondary\n")

@@ -22,6 +22,15 @@ class Environnement:
         self.list_presets_chosen = Dico()
         self.calculator = Calculator()
 
+    def get_list_presets(self):
+        return self.list_presets
+
+    def get_list_subs_env(self):
+        return self.list_sub_env
+
+    def get_list_objs(self):
+        return self.list_objects
+
     def add_object(self, obj):
         self.list_objects.add(obj)
 
@@ -51,16 +60,17 @@ class Environnement:
         return self.list_presets.selected()
 
     def change_mode(self, mode):
-        nv_preset = self.list_presets_chosen.get(mode)
-        if nv_preset != self.get_preset_select():
-            if self.state() == MARKER.ON:
-                # we need a ON scenario, search the first we find in the new preset
-                for scenar in nv_preset.get_list_scenars():
-                    if scenar.get_marker() == MARKER.ON:
-                        nv_preset.change_select(scenar)
-                        scenar.do()
-            # just change the preset
-            self.change_preset_select(nv_preset)
+        try:
+            new_preset = self.list_presets_chosen.get(mode.name)
+        except KeyError:
+            # the env haven't a preset selected for this mode, just keep the actual
+            return
+        old_preset = self.get_preset_select()
+        if new_preset is not old_preset:
+            new_preset.initialize(old_preset.get_marker())
+            old_preset.reset()
+            self.change_preset_select(new_preset)
+
         # do it in all the sub-envs
         for env in self.list_sub_env:
             env.change_mode(mode)
@@ -122,15 +132,24 @@ class Environnement:
             env.press_inter(name_inter, state)
 
     def initialize(self):
-        for preset in self.list_presets:
-            preset.initialize()
+        self.get_preset_select().initialize(MARKER.OFF)
         for env in self.list_sub_env:
             env.initialize()
+
+    def __eq__(self, other):
+        if isinstance(other, Environnement):
+            return self.name == other.name\
+                    and self.list_presets_chosen == other.list_presets_chosen\
+                    and self.list_objects == other.list_objects\
+                    and self.list_presets == other.list_presets\
+                    and self.calculator == other.calculator\
+                    and self.list_sub_env == other.list_sub_env
+        return False
 
     def __str__(self):
         string = self.name + "\n"
         string += "-Link modes\n"
-        string += "".join(["|  {} => {}\n".format(mode.name, self.list_presets_chosen.get(mode).name) for mode in self.list_presets_chosen.keys()])
+        string += "".join(["|  {} => {}\n".format(mode, self.list_presets_chosen.get(mode).name) for mode in self.list_presets_chosen.keys()])
         string += "".join("-Objects\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.list_objects).split("\n")])
         string += "".join("-Presets\n")

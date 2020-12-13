@@ -62,6 +62,20 @@ class Led(Lamp):
             self.set_relay(STATE.OFF)
         return False
 
+    def reload(self, other):
+        if isinstance(other, Led):
+            self.dimmer == other.dimmer
+            self.color = other.color
+
+    def __eq__(self, other):
+        if isinstance(other, Led):
+            return super().__eq__(other)\
+                    and self.relay == other.relay\
+                    and self.dimmer == other.dimmer\
+                    and self.color == other.color\
+                    and self.controler == other.controler
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : led\n")

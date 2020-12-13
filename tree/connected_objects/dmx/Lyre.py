@@ -76,6 +76,29 @@ class Lyre(Lamp):
     def unlock_dimmer(self):
         self.locker_dimmer.unlock()
 
+    def reload(self, other):
+        if isinstance(other, Lyre):
+            self.pan  = other.pan
+            self.tilt = other.tilt
+            self.speed_motor = other.speed_motor
+            self.strombo = other.strombo
+            self.dimmer = other.dimmer
+            self.color = other.color
+            self.gobo = other.gobo
+
+    def __eq__(self, other):
+        if isinstance(other, Lyre):
+            return super().__eq__(other)\
+                    and self.pan == other.pan\
+                    and self.tilt == other.tilt\
+                    and self.speed_motor == other.speed_motor\
+                    and self.speed == other.speed\
+                    and self.strombo == other.strombo\
+                    and self.dimmer == other.dimmer\
+                    and self.color == other.color\
+                    and self.gobo == other.gobo
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Lyre\n")

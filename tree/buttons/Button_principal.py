@@ -27,6 +27,13 @@ class Button_principal(Button):
             # simple button, juste do the scenar_on
             self.manager.do_scenar_principal(self.scenar_on)
 
+    def __eq__(self, other):
+        if isinstance(other, Button_principal):
+            return super().__eq__(other)\
+                    and self.scenar_on == other.scenar_on\
+                    and self.scenar_off == other.scenar_off
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : principal\n")

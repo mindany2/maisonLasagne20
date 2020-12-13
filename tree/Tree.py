@@ -58,6 +58,13 @@ class Tree:
         for mode in self.list_modes:
             mode.initialize()
         self.global_environnement.initialize()
+        self.global_environnement.change_mode(self.get_current_mode())
+
+    def __eq__(self, other):
+        if isinstance(other, Tree):
+            return self.list_modes == other.list_modes\
+                    and self.global_environnement == other.global_environnement
+        return False
 
     def __str__(self):
         string = "-"*10 + "Tree"+"-"*10 + "\n"

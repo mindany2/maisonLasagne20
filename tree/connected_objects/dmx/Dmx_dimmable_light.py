@@ -38,6 +38,17 @@ class Dmx_dimmable_light(Lamp):
         if self.dimmer == 0:
             self.set(0)
 
+    def reload(self, other):
+        if isinstance(other, Dmx_dimmable_light):
+            self.dimmer == other.dimmer
+
+    def __eq__(self, other):
+        if isinstance(other, Dmx_dimmable_light):
+            return super().__eq__(other)\
+                    and self.dmx == other.dmx\
+                    and self.dimmer == other.dimmer
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Dmx_dimmable_light\n")

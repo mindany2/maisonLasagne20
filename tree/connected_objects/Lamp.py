@@ -52,6 +52,18 @@ class Lamp(Connected_object):
     def state(self):
         return self.relay.state
 
+    def reload(self, other):
+        if isinstance(other, Lamp):
+            self.force == other.force
+
+    def __eq__(self, other):
+        if isinstance(other, Lamp):
+            return super().__eq__(other)\
+                    and self.relay == other.relay\
+                    and self.force == other.force\
+                    and self.invert == other.invert
+        return False
+
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : lamp\n")

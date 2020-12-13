@@ -45,14 +45,21 @@ class Preset:
     def get_marker(self):
         return self.get_manager().get_marker()
 
-    def initialize(self):
+    def reset(self):
+        self.get_manager().reset()
+
+    def initialize(self, marker):
         # get the first OFF scenario for the manager
-        scenar_off = None
+        scenar_select = None
         for scenar in self.list_scenario:
-            if not(scenar_off) and scenar.get_marker() == MARKER.OFF:
-                scenar_off = scenar
-        if scenar_off:
-            self.manager.initialize(scenar_off)
+            if not(scenar_select) and scenar.get_marker() == marker:
+                scenar_select = scenar
+        if scenar_select:
+            # we have the same marker
+            self.manager.initialize(scenar_select)
+        elif marker != MARKER.OFF:
+            # setup the OFF by default
+            self.initialize(MARKER.OFF)
         else:
             raise(ValueError("Need to setup a OFF scenario in the preset {}".format(self.name)))
 
@@ -60,9 +67,22 @@ class Preset:
         for scenar in self.list_scenario:
             scenar.initialize()
 
+    def reload(self, other):
+        if isinstance(other, Preset):
+            self.state = other.state
+
     def get_buttons(self):
         return self.buttons
 
+    def get_list_scenars(self):
+        return self.list_scenario
+
+    def __eq__(self, other):
+        if isinstance(other, Preset):
+            return self.name == other.name\
+                    and self.list_scenario == other.list_scenario\
+                    and self.buttons == other.buttons
+        return False
 
     def __str__(self):
         string = self.name + "\n"

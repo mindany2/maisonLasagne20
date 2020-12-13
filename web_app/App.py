@@ -15,7 +15,7 @@ class App:
         def press_button():
             jsdata = request.form['javascript_data']
             print(jsdata)
-            line, button = jsdata.split(".")
+            line, button = jsdata.split("-")
             self.manager.press_button(line, button)
             return {"change":[{"id": "myButton2", "name" : "lol"},{"id": jsdata, "name" : "coucou"}]}
 

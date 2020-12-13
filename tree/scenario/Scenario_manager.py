@@ -70,6 +70,21 @@ class Scenario_manager:
     def get_current_scenar(self):
         return self.current_scenar
 
+    def get_stack(self):
+        return self.stack
+
+    def reload_scenar_selected(self, scenario_select):
+        self.scenario_select = scenario_select
+
+    def reload_current_scenar(self, scenario):
+        self.current_scenar = scenario
+
+    def reset(self):
+        self.stack.clear()
+        self.current_scenar.set_state(True)
+        self.current_scenar = None
+        self.scenario_select = None
+
     def push(self, scenar):
         self.stack.add(scenar)
 

@@ -11,6 +11,14 @@ class Connected_object(Locker):
     def repair(self):
         return False
 
+    def reload(self, other):
+        # Allow to get old value for another object
+        pass
+
+    def __eq__(self, other):
+        if isinstance(other, Connected_object):
+            return self.name == other.name
+        return False
 
     def __str__(self):
         return self.name + "\n"

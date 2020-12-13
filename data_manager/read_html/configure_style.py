@@ -2,7 +2,7 @@ from web_app.buttons.style.Gradient import Gradient
 from web_app.buttons.style.Style import Style
 from copy import copy
 
-LONGUEUR = 80
+LONGUEUR = 60
 
 def config_style(line):
     """
@@ -35,7 +35,7 @@ def config_style(line):
             bt.style_off.set_border((False, True),(False, True))
             bt.style_on.set_border((False, True),(False, True))
 
-    line.set_style(Style(position= (0, line.nb_buttons()*LONGUEUR/2-len(line.name)*4),
+    line.set_style(Style(position= (0, line.nb_buttons()*LONGUEUR/2-len(line.name.split(".")[0])*4),
                     font_size = 18,
                     font_color = "black",
                     font_weight = "bolder"))

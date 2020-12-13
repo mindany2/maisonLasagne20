@@ -4,14 +4,19 @@
 
 
 <div>
+    <div> 
+        <input onclick="change(id)" type="button" style=""
+                            value={{manager.get_current_mode().name}} id={{"mode-"+manager.get_current_mode().name}}></input>
+    </div>
+
     {% for line in manager.get_lines() %}
         <div>
-            <label style="{{line.get_style()}}">{{ line.name }}</label>
+            <label style="{{line.get_style()}}">{{ line.name.split(".")[1] }}</label>
         </div>
         <div>
             {% for button in line.get_buttons() %}
                 <input onclick="change(id)" type="button" style="{{button.get_style()}}"
-                            value={{button.name}} id={{line.name + "."+button.name}}></input>
+                            value={{button.name}} id={{line.name + "-"+button.name}}></input>
             {% endfor %}
         </div>
     {% endfor %}
