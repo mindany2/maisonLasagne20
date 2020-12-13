@@ -36,7 +36,7 @@ class Client:
     def connect(self):
         try:
             self.client.connect(self.addr)
-            return pickle.loads(self.client.recv(4048))
+            return pickle.loads(self.client.recv(8048))
         except:
             Logger.error("erreur de connection au serveur")
             sleep(5)
@@ -45,7 +45,7 @@ class Client:
         try:
             self.mutex.acquire()
             self.client.send(pickle.dumps(msg))
-            raw_data = self.client.recv(4048)
+            raw_data = self.client.recv(8048)
             data = ""
             if raw_data != b'':
                 data = pickle.loads(raw_data)

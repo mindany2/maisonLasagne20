@@ -38,7 +38,7 @@ def threaded_client(conn):
     conn.send(pickle.dumps("hello"))
     while True:
         try:
-            requete = pickle.loads(conn.recv(4048))
+            requete = pickle.loads(conn.recv(8048))
         except e:
             Logger.error("Exception during request: rajouter le log de e dans serveur")
             Logger.error(e)
