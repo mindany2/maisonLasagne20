@@ -1,34 +1,39 @@
-from tree.boutons.html.Bouton_html_modes import Bouton_html_modes
-from tree.Tree import Tree
 from tree.utils.Dico import Dico
 
 class Mode:
     """
-    Ceci est un mode qui permet de changer rapidement
-    de preset
+    This is a mode of the tree, this allow to change all the preset in
+    all the environnements in the tree (normal, evenning..)
     """
-    def __init__(self, nom, css_file, couleur, scenar_init):
-        self.nom = nom
-        self.etat = False
-        self.bouton_change_html = Bouton_html_modes(self.nom)
-        self.css_file = css_file
-        self.couleur = couleur
-        self.scenar_init = scenar_init
+    def __init__(self, name, scenar_init = None):
+        self.name = name
+        self.state = False
+        self.name_scenar_init = scenar_init
+        self.scenar_init = None
 
-    def press_bouton_mode(self):
-        self.bouton_change_html.press()
-        Tree().reload_modes()
+    def initialize(self):
+        if self.name_scenar_init:
+            self.scenar_init = self.name_scenar_init.get_scenarios()
 
-    def show(self):
-        print(self.nom)
+    def change_state(self, state):
+        self.state = state
+
+    def do_scenar_init(self):
+        if self.state and self.scenar_init:
+            # do the scenar_init
+            self.scenar_init.do(join = True)
+            # join it
+
+    def __eq__(self, other):
+        if isinstance(other, Mode):
+            return self.name == other.name\
+                    and self.state == other.state\
+                    and self.scenar_init == other.scenar_init
+        return False
 
     def __str__(self):
-        return self.nom
+        string = self.name + "\n"
+        if self.name_scenar_init:
+            string += "|  Scenario_init : {}".format(str(self.name_scenar_init))
+        return string
 
-    def change(self):
-        self.etat = not(self.etat)
-        if self.etat and self.scenar_init:
-            env, preset, nom = self.scenar_init.split(".")
-            scenar = Tree().get_scenar(env, nom, preset = preset)
-            if scenar:
-                scenar.do()

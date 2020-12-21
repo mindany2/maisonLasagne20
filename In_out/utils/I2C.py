@@ -1,13 +1,14 @@
 from smbus import SMBus
 from threading import Lock,Thread
 from time import sleep, time
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
 class I2C:
     try:
         bus = SMBus(1)
+        sleep(0.5)
     except:
-        Logger.warn("pas de bus i2c")
+        Logger.warn("Could not found i2c bus")
     mutex = Lock()
     temps_reset = time()
 
@@ -17,22 +18,20 @@ class I2C:
         try:
             self.bus.write_byte_data(ip, register, data)
         except Exception as e:
-            Logger.error("Erreur sur le bus I2C...."+str(e))
-        sleep(0.1)
+            Logger.error("I2C error : "+str(e))
+        sleep(0.1) # to make sure all the infos are sent
         self.mutex.release()
 
     @classmethod
     def write_data(self, ip, data):
         self.mutex.acquire()
-        #print("on envoie {} sur le port {}".format(data,ip))
         try:
             self.bus.write_i2c_block_data(ip, 0, data)
         except Exception as e:
-            Logger.error("Erreur sur le bus I2C...."+str(e))
-            Logger.error("on a pas pu envoyer {}".format(data))
+            Logger.error("I2C error : "+str(e))
             self.mutex.release()
             return 1
-        sleep(0.02)
+        sleep(0.1)
         self.mutex.release()
         return 0
 
@@ -42,10 +41,10 @@ class I2C:
         try:
             data = self.bus.read_byte_data(ip, register)
         except Exception as e:
-            Logger.error("Erreur sur le bus I2C...."+str(e))
+            Logger.error("I2C error : "+str(e))
             self.mutex.release()
             return None
-        sleep(0.02)
+        sleep(0.1)
         self.mutex.release()
         return data
 

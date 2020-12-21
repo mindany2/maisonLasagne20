@@ -1,16 +1,14 @@
 from enum import Enum
 from time import sleep
 from threading import Lock, Thread
+from tree.utils.Dico import Dico
+from serial import Serial
+from tree.utils.Logger import Logger
 
-try:
-    from serial import Serial
-except:
-    pass
-
-class ETAT_TRIAC(Enum):
+class STATE_TRIAK(Enum):
     """
-    Donne l'ordre au triac de rester allumer
-    si on met une valeur impossible à atteindre
+    Manage the triak to be always ON or OFF
+    or dimmable
     """
     dimmer = 3
     on = 1
@@ -19,28 +17,53 @@ class ETAT_TRIAC(Enum):
 
 class ST_nucleo:
     """
-    Carte pour les triacs
+    Talk to a ST_nucleo card with the triak program on it:
+    https://tinyurl.com/stnucleo
+    dev_file/st_nucleo/Maison.bin
     """
 
-    def __init__(self, nom, addr, decal = 0):
-        self.port = Serial(addr, baudrate=9600)
-        self.nom = nom
-        self.mutex = Lock()
-        self.decal = decal
-        self.addr = addr
+    def __init__(self, name, addr):
+        try:
+            self.port = Serial(addr, baudrate=9600)
+        except:
+            Logger.error("The st_nucleo {} could not open it's port {}".format(name, addr))
+            self.port = None
 
-    def set_triac(self, carte, triac, valeur, etat):
+        self.name = name
+        self.mutex = Lock()
+        self.addr = addr
+        self.list_boards_triak = Dico()
+
+    def add_board_triak(self, board):
+        self.list_boards_triak.add(board.number,board)
+
+    def nb_boards(self):
+        return len(self.list_boards_triak)
+
+    def get_board_triak(self, index):
+        try:
+            return self.list_boards_triak.get(index)
+        except KeyError:
+            return None
+
+    def set_triak(self, index_board, triak, valeur, state):
         self.mutex.acquire()
-        carte = carte - self.decal
+        carte = self.list_boards_triak.get_index(index_board)+1
         v1 = valeur // 255 +1 
         v2 = valeur  % 255 +1
         if v1 > 255:
             v1 = 255
         if chr(v2) == "\n":
             v2 += 1
-        #print("on envoie ",[chr(carte), chr(triac), chr(v1),chr(v2),chr(etat.value)])
-        self.port.write([carte, triac, v1, v2, etat.value])
-        #print(self.port.readline())
-        sleep(0.02)
+        if self.port:
+            self.port.write([carte, triak, v1, v2, state.value])
+        sleep(0.02) # time needed to make sure all data succeed
         self.mutex.release()
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("- Addr : {}\n".format(self.addr))
+        string += "".join("- Boards :\n")
+        string += "".join(["|-{}\n".format(string) for string in self.list_boards_triak])
+        return string
 

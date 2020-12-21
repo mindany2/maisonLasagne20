@@ -1,79 +1,95 @@
-from tree.utils.Pile_radio import Pile_radio
+from tree.utils.List import List
 from tree.utils.Dico import Dico
-from tree.scenario.Scenario import MARQUEUR
-from tree.boutons.Bouton_principal import Bouton_principal
+from tree.scenario.Scenario import MARKER
+from tree.scenario.Scenario_manager import Scenario_manager
 
 class Preset:
     """
-    Il y a une preset par mode
+    Store a list of scenario, and a list of insterrupt to run them
     """
-    def __init__(self, nom):
-        self.nom = nom
-        self.liste_scénario = Pile_radio()
-        self.liste_boutons_html = []
-        self.etat = False
-        self.lien_inter_bouton = Dico()
+    def __init__(self, name):
+        self.name = name
+        self.list_scenario = List()
+        self.buttons = List()
+        self.manager = Scenario_manager()
+        self.state = False
 
-    def reset(self):
-        for scenar in self.liste_scénario:
-            scenar.reset()
+    def add_button(self, button):
+        self.buttons.add(button)
 
-    def add_lien_inter(self, nom_inter, bouton):
-        self.lien_inter_bouton.add(nom_inter, bouton)
+    def get_button(self, name_inter):
+        return self.buttons.get(name_inter)
 
-    def get_bouton(self, nom_inter):
-        return self.lien_inter_bouton.get(nom_inter)
+    def press_inter(self, name_inter, state):
+        try:
+            bt = self.get_button(name_inter)
+            if bt != None:
+                bt.press(state)
+        except KeyError:
+            pass
 
-    def principal(self, nom_inter):
-        # permet de savoir si le bouton est principal pour l'environnement
-        return isinstance(self.get_bouton(nom_inter), Bouton_principal)
-
-    def press_inter(self, nom_inter, etat):
-        bt = self.get_bouton(nom_inter)
-        if bt != None:
-            bt.press(etat)
-            return True
-        return False
-
-    def change_select(self, scenar):
-        if scenar != None:
-            self.liste_scénario.change_select(scenar)
-
-    def change(self):
-        self.etat = not(self.etat)
-
-    def add_boutons_html(self, bt):
-        self.liste_boutons_html.append(bt)
-
-    def get_nb_boutons_html(self):
-        return len(self.liste_boutons_html)
-
-    def press_bouton_html(self, index):
-        bt = self.liste_boutons_html[index]
-        bt.press()
-
-    def get_bouton_html(self, index):
-        return self.liste_boutons_html[index]
-
-    def reload_html(self):
-        for bt in self.liste_boutons_html:
-            bt.reload()
+    def change_state(self, state):
+        self.state = state
 
     def add_scenar(self, scenar):
-        self.liste_scénario.add(scenar)
+        self.list_scenario.add(scenar)
 
-    def get_scenar(self, nom):
-        return self.liste_scénario.get(nom)
+    def get_scenar(self, name):
+        return self.list_scenario.get(name)
 
-    def get_pile(self):
-        return self.liste_scénario
+    def get_manager(self):
+        return self.manager
 
-    def get_marqueur(self):
-        return self.liste_scénario.selected().get_marqueur()
+    def get_marker(self):
+        return self.get_manager().get_marker()
 
-    def do(self):
-        self.liste_scénario.selected().do()
-    
-    def show(self):
-        print("Preset "+self.nom)
-        self.liste_scénario.show()
+    def reset(self):
+        self.get_manager().reset()
+
+    def initialize(self, marker):
+        # get the first MARKER scenario for the manager
+        scenar_select = None
+        for scenar in self.list_scenario:
+            if not(scenar_select) and scenar.get_marker() == marker:
+                scenar_select = scenar
+        if scenar_select:
+            # we have the same marker
+            self.manager.initialize(scenar_select)
+        elif marker != MARKER.OFF:
+            # setup the OFF by default
+            self.initialize(MARKER.OFF)
+        else:
+            raise(ValueError("Need to setup a OFF scenario in the preset {}".format(self.name)))
+
+        # initialize all the scenarios
+        for scenar in self.list_scenario:
+            scenar.initialize()
+
+    def do_current_scenar(self):
+        print(self.name)
+        self.manager.do_current_scenar()
+
+    def reload(self, other):
+        if isinstance(other, Preset):
+            self.state = other.state
+
+    def get_buttons(self):
+        return self.buttons
+
+    def get_list_scenars(self):
+        return self.list_scenario
+
+    def __eq__(self, other):
+        if isinstance(other, Preset):
+            return self.name == other.name\
+                    and self.list_scenario == other.list_scenario\
+                    and self.buttons == other.buttons
+        return False
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("- Scenarios\n")
+        string += "".join(["  |{}\n".format(string) for string in str(self.list_scenario).split("\n")])
+        string += "".join("- Buttons\n")
+        string += "".join(["  |{}\n".format(string) for string in str(self.buttons).split("\n")])
+        return string

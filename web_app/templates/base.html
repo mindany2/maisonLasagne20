@@ -5,7 +5,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!-- Pour refresh toutes les minutes -->
       <!-- <META HTTP-EQUIV="Refresh" CONTENT="60; URL=/"> -->
-      <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename=client.get_current_mode().css_file) }}" />
+      <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='normal_style.css')}}" />
+      <script src="{{url_for('static', filename='script.js')}}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
             {% block content %}{% endblock %}

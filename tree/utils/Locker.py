@@ -2,28 +2,29 @@ from threading import Lock
 
 class Locker:
     """
-    Permet de lock des lumières et périphérique
-    et de kill les instructions si necessaire
+    Allow the connected_objects to be use by only one
+    thread, but also to be kill if another thread need it
     """
     def __init__(self):
         self.mutex = Lock()
+        self.mutex_killer = Lock()
+        self.killer = False
 
-        self.id_scenar = 0
-        self.test_lock = 0
-
-    def lock(self, id_liste=0):
-        if self.mutex.locked() and id_liste != self.id_scenar:
-            # on donne l'ordre de kill the thread en cours
-            print("on demande de kill")
-            self.test_lock += 1
+    def lock(self):
+        if not(self.killer) and self.mutex.locked():
+            self.kill()
         self.mutex.acquire()
-        self.id_scenar = id_liste
-        if self.test_lock > 0:
-            self.test_lock -= 1
+        self.mutex_killer.acquire()
+        self.killer = False
+        self.mutex_killer.release()
 
     def unlock(self):
         self.mutex.release()
 
     def test(self):
-        return self.test_lock > 0
+        return self.killer
     
+    def kill(self):
+        self.mutex_killer.acquire()
+        self.killer = True
+        self.mutex_killer.release()

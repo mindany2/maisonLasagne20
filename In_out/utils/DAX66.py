@@ -1,6 +1,6 @@
 from enum import Enum
 from time import sleep
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 from threading import Lock
 try:
     from serial import Serial
@@ -19,7 +19,7 @@ class ACTION(Enum):
 
 class DAX66:
     """
-    Backend ampli 6 zones bar
+    Backend amp 6 channels
     """
 
     def __init__(self, addr):
@@ -33,13 +33,13 @@ class DAX66:
             try:
                 self.port = Serial(self.addr, baudrate=9600, timeout = 0.1)
             except:
-                Logger.error("Erreur de connection à l'ampli")
+                Logger.error("Fail to connect to the amp")
                 return False
             self.mutex.release()
             return True
 
 
-    def deconnect(self):
+    def disconnect(self):
         self.port = None
 
     def send(self, zone, action, value):
