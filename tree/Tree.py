@@ -1,81 +1,80 @@
-from tree.utils.Liste_radios import Liste_radios
-from tree.utils.Liste import Liste
+from tree.Environnement import Environnement
 from threading import Thread
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
+from tree.utils.List_radio import List_radio
 
 class Tree:
-    liste_envi = Liste()
-    liste_modes = Liste_radios()
+    """
+    This class allow to access all the environnements at any time
+    It also manage modes
+    """
 
-    @classmethod
-    def show(self):
-        print("modes : ")
-        self.liste_modes.show()
-        print("Environnements : ")
-        self.liste_envi.show()
+    def __init__(self):
+        self.global_environnement = Environnement("global")
+        self.list_modes = List_radio()
 
-    @classmethod
-    def get_mode(self, nom_mode):
-        return self.liste_modes.get(nom_mode)
+    def get_global_env(self):
+        return self.global_environnement
 
-    @classmethod
-    def change_mode_select(self, mode):
-        self.liste_modes.change_select(mode)
-        Logger.info("Changement de mode : " + self.get_current_mode().nom)
+    def get_mode(self, name_mode):
+        mode = self.list_modes.get(name_mode)
+        if mode:
+            return mode
+        raise(NameError("Could not find the mode {} in the tree".format(name_mode)))
 
-    @classmethod
-    def press_inter(self, nom_inter, etat):
-        Logger.info("on press l'inter "+nom_inter)
-        for env in self.liste_envi:
-            env.press_inter(nom_inter, etat)
+    def change_mode(self, name_mode):
+        mode_select = self.get_mode(name_mode)
+        self.list_modes.change_select(mode_select)
+        self.global_environnement.change_mode(mode_select)
+        mode_select.do_scenar_init()
+        self.global_environnement.do_current_scenar()
 
+    def do_current_scenars(self):
+        self.global_environnement.do_current_scenar()
 
-    @classmethod
     def add_mode(self, mode):
-        self.liste_modes.add(mode)
+        self.list_modes.add(mode)
 
-    @classmethod
     def get_current_mode(self):
-        return self.liste_modes.selected()
+        return self.list_modes.selected()
 
-    @classmethod
-    def reload_modes(self):
-        self.change_mode_select(self.get_current_mode())
-        # on met les environnements dans le même mode
-        for env in self.liste_envi:
-            env.change_mode()
+    def get_env(self, path):
+        path = path.split(".")
+        if path[0] == self.global_environnement.name:
+            # just removing the global env name
+            path = path[1:]
+        env = self.global_environnement.get_env(path)
+        if env:
+            return env
+        raise(NameError("The environnement research : {} is not present in the tree".format(path))) 
 
-    @classmethod
-    def get_env(self, env):
-        return self.liste_envi.get(env)
+    def get_list_envs(self):
+        return self.global_environnement.get_list_envs()
 
-    @classmethod
-    def get_noms_envi(self):
-        return [env.nom for env in self.liste_envi]
+    def press_inter(self, name_env, name_inter, state):
+        Logger.info("press inter {}, state = {}, env = {}".format(name_inter, state, name_env))
+        self.get_env(name_env).press_inter(name_inter, state)
 
-    @classmethod
-    def get_infos_envi(self):
-        return [[env.nom, str(env.style.selected()), env.nb_boutons_html()] for env in self.liste_envi.sort()]
+    def get_scenar(self, name_env, name_scenar, preset=None):
+        return self.get_env(name_env).get_scenar(name_scenar, preset)
 
-    @classmethod
-    def press_bouton_html(self, nom_env, index):
-        if nom_env != "mode":
-            Logger.info("On press le bouton html : "+nom_env +"."+str(index))
-            self.get_env(nom_env).press_bouton_html(index)
-        else:
-            self.liste_modes.selected().press_bouton_mode()
+    def initialize(self):
+        # function called after all the tree is created
+        self.global_environnement.initialize()
+        for mode in self.list_modes:
+            mode.initialize()
+        self.global_environnement.change_mode(self.get_current_mode())
 
-    @classmethod
-    def reload_html(self):
-        for env in self.liste_envi:
-            env.get_preset_select().reload_html()
+    def __eq__(self, other):
+        if isinstance(other, Tree):
+            return self.list_modes == other.list_modes\
+                    and self.global_environnement == other.global_environnement
+        return False
 
-    @classmethod
-    def get_bouton_html(self, nom_env, index):
-        if nom_env != "mode":
-            return self.get_env(nom_env).get_preset_select().get_bouton_html(index)
-        return self.liste_modes.selected().bouton_change_html
-
-    @classmethod
-    def get_scenar(self, nom_env, nom_scenar, preset=None):
-        return self.get_env(nom_env).get_scenar(nom_scenar, preset)
+    def __str__(self):
+        string = "-"*10 + "Tree"+"-"*10 + "\n"
+        string += "-Modes\n"
+        string += "".join(["|  {}\n".format(string) for string in str(self.list_modes).split("\n")])
+        string += "-Environnements\n"
+        string += "".join(["|  {}\n".format(string) for string in str(self.global_environnement).split("\n")])
+        return string

@@ -1,10 +1,22 @@
 from tree.Tree import Tree
-from utils.Data_change.Create_tree import get_tree
-from utils.Data_change.Create_config import get_config_carte, get_config_music
+from In_out.Peripheric_manager import Peripheric_manager
+from data_manager.utils.Getter import Getter
+from data_manager.read_tree.configure_peripherics import config_peripherics
+from data_manager.read_tree.configure_tree import config_tree
+from data_manager.read_tree.reload_tree import reload_tree
 
-get_config_carte()
-get_tree()
-get_config_music()
+from In_out.network.Server import Server
+"""
+Create the tree and Peripheric_manager
+"""
+tree = Tree()
+manager = Peripheric_manager()
+
+getter = Getter(tree, manager)
+
+config_peripherics(getter)
+config_tree(getter)
+
+Server(getter).start()
 
 
-from tree.utils.Serveur import Serveur

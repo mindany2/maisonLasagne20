@@ -1,58 +1,62 @@
-from tree.scenario.Liste_instructions import Liste_instructions
+from tree.scenario.Instructions_list import Instructions_list
 from threading import Thread
 from enum import Enum
-from utils.Logger import Logger
+from tree.utils.Logger import Logger
 
-class MARQUEUR(Enum):
+class MARKER(Enum):
     """
-    Permet de type les scenarios
+    There are different type of scenario
     """
     OFF = 0
     ON = 1
     DECO = 2
+    NONE = 3
 
 class Scenario:
     """
-    La base d'un bouton, juste un état
+    A Scenario with a list of instructions
     """
-
-    def __init__(self, nom, marqueur,calculateur, boucle = False):
-        self.nom = nom
-        self.liste_inst = Liste_instructions(boucle, calculateur)
-        self.marqueur = marqueur
-
-    def __eq__(self, obj):
-        if isinstance(obj, Scenario):
-            # si les liste_inst finissent pareil
-            return self.liste_inst == obj.liste_inst
-        return False
+    def __init__(self, name, marker,calculator, loop = False):
+        self.name = name
+        self.list_inst = Instructions_list(loop, calculator)
+        self.marker = marker
 
     def add_inst(self, inst):
-        self.liste_inst.add(inst)
+        self.list_inst.add(inst)
 
-    def get_marqueur(self):
-        return self.marqueur
+    def get_marker(self):
+        return self.marker
 
-    def set_etat(self, etat):
-        self.liste_inst.etat = etat
+    def state(self):
+        return self.list_inst.state
 
-    def etat(self):
-        return self.liste_inst.etat
+    def reload(self, other):
+        if isinstance(other, Scenario):
+            self.set_state(other.state())
 
-    def change(self):
-        self.liste_inst.change_etat()
-
-    def reset(self):
-        self.liste_inst.etat = False
+    def set_state(self, state):
+        self.list_inst.set_state(state)
 
     def do(self, join = False):
-        Logger.info("On fait le scénario "+self.nom)
-        proc = Thread(target=self.liste_inst.do)
+        #Logger.info("Start the scenario "+self.name)
+        proc = Thread(target=self.list_inst.do)
         proc.start()
         if join:
             proc.join()
 
-    def show(self):
-        print(self.nom)
-        for inst in self.liste_inst:
-            inst.show()
+    def __eq__(self, obj):
+        if isinstance(obj, Scenario):
+            # si les list_inst finissent pareil
+            return self.list_inst == obj.list_inst
+        return False
+
+    def initialize(self):
+        self.list_inst.initialize()
+
+    def __str__(self):
+        string = self.name + "\n"
+        string += "".join("- Marker : {}\n".format(self.marker))
+        string += "".join("- List Instructions :\n")
+        string += "".join(["  {}\n".format(string) for string in str(self.list_inst).split("\n")])
+        string += "state : {}".format(self.state())
+        return string

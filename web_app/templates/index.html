@@ -3,29 +3,24 @@
 {% block content %}
 
 
+<div>
+    <div> 
+        <input onclick="change(id)" type="button" style=""
+                            value={{manager.get_current_mode().name}} id={{"mode-"+manager.get_current_mode().name}}></input>
+    </div>
 
-    <form  action="" method="POST">
-            {{ form.hidden_tag() }}
-            {{ form.mode_0 }}
-
-
-    </form>
-    {% for infos in client.get_infos_envi() %}
-        {% set env = infos[0] %}
-        {% set style = infos[1] %}
-        {% set nb_boutons = infos[2] %}
-        {% if nb_boutons != 0%}
-        <label style="{{style}}"> {{env}} </label>
-        {% endif %}
-        <form  action="" method="POST">
-                {{ form.hidden_tag() }}
-                {% for bouton in form %}
-                    {% if bouton.id.split('_')[0] == env and (bouton.id.split('_')[1] | int) < nb_boutons %}
-                        {{ bouton }}
-                    {% endif %}
-                {% endfor %}
-        </form>
-
+    {% for line in manager.get_lines() %}
+        <div>
+            <label style="{{line.get_style()}}">{{ line.name.split(".")[1] }}</label>
+        </div>
+        <div>
+            {% for button in line.get_buttons() %}
+                <input onclick="change(id)" type="button" style="{{button.get_style()}}"
+                            value={{button.name}} id={{line.name + "-"+button.name}}></input>
+            {% endfor %}
+        </div>
     {% endfor %}
+
+</div>
 
 {% endblock %}

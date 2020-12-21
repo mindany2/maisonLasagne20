@@ -1,56 +1,69 @@
 
-def get_rang(element):
-    return element.get_rang()
-
 class Dico:
     """
-    C'est un dictionnaire avec quelques fonctions utiles
+    Redeffinition of dict with usefull methods
     """
     def __init__(self):
-        self.liste = {}
+        self.list = {}
 
-    def add(self, clef, element):
-        self.liste[clef] = element
+    def add(self, key, element):
+        self.list[key] = element
 
-    def get(self, clef):
-        try :
-            return self.liste[clef]
-        except:
-            return None
+    def get(self, key):
+        return self.list[key]
 
     def next(self, element):
         find = False
-        for el in self.liste.values():
+        for el in self.list.values():
             if find:
                 return el
             if el == element:
                 find = True
         assert(find)
-        return list(self.liste.values())[0]
+        return list(self.list.values())[0]
 
+    def last(self):
+        return list(self.list.values())[-1]
 
     def sort(self):
-        # trie la liste suivant l'argument "rang" de l'élément
-        return sorted(list(self.liste.values()),key=get_rang)
+        # return a sorted list of the elements
+        return sorted(list(self.list.values()))
 
 
     def get_key(self, element):
-        for i,clef in enumerate(self.liste.keys()):
-            if self.liste[clef] == element:
-                return clef
+        for key in self.list.keys():
+            if self.list[key] == element:
+                return key
         return None
 
-
     def __iter__(self):
-        return self.liste.values().__iter__()
+        return self.list.values().__iter__()
 
     def keys(self):
-        return self.liste.keys().__iter__()
+        return self.list.keys().__iter__()
 
-    def est_vide(self):
-        return self.liste.keys() == []
+    def is_empty(self):
+        return self.list == {}
 
-    def show(self):
-        for element in self.liste.values():
-            element.show()
+    def clear(self):
+        self.list = {}
+
+    def __str__(self):
+        return "".join([str(value) + "\n" for value in self.list.values()])
+
+    def __eq__(self, other):
+        if isinstance(other, Dico):
+            shared_item = [key for key in self.list.keys() if key in other.list and self.list[key] == other.list[key]]
+            return len(shared_item) == len(self.list) == len(other.list)
+
+        return False
+
+    def get_index(self, key):
+        return list(self.list.keys()).index(key)
+
+    def __len__(self):
+        return len(self.list)
+
+    def remove(self, key):
+        del self.list[key]
 
