@@ -5,8 +5,9 @@ class Delay:
     An int value that is store to wait a certain amount of time
     Or wait for a new beat
     """
-    def __init__(self, manager, calculator, val, wait_for_beat = 0):
+    def __init__(self, manager, calculator, val, wait_for_beat = 0, wait_precedent = False):
         self.val = val
+        self.wait_precedent = wait_precedent
         self.wait_for_beat = wait_for_beat
         self.manager = manager
         self.calculator = calculator

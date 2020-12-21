@@ -36,7 +36,6 @@ class Channel:
             self.output.send(self.numero, ACTION.volume, volume)
             self.volume = volume
 
-
     def set_power(self, valeur):
         if self.power != valeur:
             self.output.send(self.numero, ACTION.power, valeur)

@@ -12,7 +12,7 @@ class Scenario_manager:
         #   if the stack is empty, just do the scenar OFF
         self.scenario_select = None
         # store in order secondaries scenarios
-        self.stack = List()
+        self.stack = []
 
         self.current_scenar = None
 
@@ -21,20 +21,27 @@ class Scenario_manager:
         self.current_scenar = scenar_init
         self.current_scenar.set_state(True)
 
+    def do_current_scenar(self):
+        print(self.current_scenar.name)
+        self.current_scenar.do()
+
     def do(self, scenar):
         # start the scenario
-        if self.current_scenar != scenar:
-            self.current_scenar.set_state(False)
-            self.current_scenar = scenar
-            self.current_scenar.set_state(True)
-            self.current_scenar.do()
+        self.current_scenar.set_state(False)
+        self.current_scenar = scenar
+        self.current_scenar.set_state(True)
+        self.current_scenar.do()
 
     def do_scenar_principal(self, scenar):
         """
         This method is call to modifie the principal scenario of the environnement
         """
-        if scenar.get_marker() == MARKER.NULL:
-            # null scenario are just invisible
+        if not(self.scenario_select):
+            # manager not initialize
+            # i could append with linked scenarios
+            return 
+        if scenar.get_marker() == MARKER.NONE:
+            # none scenario are just invisible
             scenar.do()
             return
         elif scenar.get_marker() != MARKER.OFF:
@@ -45,22 +52,22 @@ class Scenario_manager:
             self.do(scenar)
             self.stack.clear()
         else: 
-            if self.stack.is_empty():
+            if len(self.stack) == 0:
                 self.do(scenar)
             else:
                 # do the top of the stack if it is not empty
                 self.do(self.top())
         self.scenario_select = scenar
 
-    def do_scenar_secondaire(self, scenar):
+    def do_scenar_secondary(self, scenar):
         """
         This method is call to modifie secondaries scenarios to and in the stack
         """
-        if scenar.get_marker() == MARKER.NULL:
+        if scenar.get_marker() == MARKER.NONE:
             # null scenario are just invisible
             scenar.do()
             return
-        self.stack.add(scenar)
+        self.stack.append(scenar)
         if self.scenario_select.get_marker() == MARKER.OFF:
             self.do(scenar)
 
@@ -78,6 +85,7 @@ class Scenario_manager:
 
     def reload_current_scenar(self, scenario):
         self.current_scenar = scenario
+        self.current_scenar.do()
 
     def reset(self):
         self.stack.clear()
@@ -86,30 +94,42 @@ class Scenario_manager:
         self.scenario_select = None
 
     def push(self, scenar):
-        self.stack.add(scenar)
+        self.stack.append(scenar)
 
     def remove(self, scenar):
         """
         Call to remove a scenario for the stack
         """
-        if scenar.get_marker() == MARKER.NULL:
-            # null scenario are just invisible
+        if scenar.get_marker() == MARKER.NONE:
+            # none scenario are just invisible
             return
-        self.stack.remove(scenar)
-        if self.current_scenar == scenar: # is is the current_scenar
+        try:
+            self.stack.remove(scenar)
+        except ValueError:
+            pass
+        if self.current_scenar is scenar: # is is the current_scenar
             # do the appropriate scenario
-            if self.stack.is_empty() or self.scenario_select.get_marker() != MARKER.OFF:
+            if len(self.stack) == 0 or self.scenario_select.get_marker() != MARKER.OFF:
                 self.do(self.scenario_select)
             else:
                 self.do(self.top())
 
     def top(self):
-        return self.stack.last()
+        return self.stack[-1]
+
+    def get_state(self):
+        return self.current_scenar.get_marker() == MARKER.ON
 
     def get_principal_state(self):
         return self.scenario_select.get_marker() == MARKER.ON
 
     def get_marker(self):
         return self.current_scenar.get_marker()
+
+    def __str__(self):
+        string = "principal : {} {}\n".format(self.scenario_select.name, self.scenario_select.state())
+        string += "current : {} {}\n".format(self.current_scenar.name, self.current_scenar.state())
+        string += "stack : "+", ".join([ scenar.name for scenar in self.stack])
+        return string
 
 

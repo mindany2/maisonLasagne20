@@ -21,7 +21,6 @@ class Instruction_speaker(Instruction):
         """
         Setup a try/finally to allow kill from another instruction
         """
-        debut = time()
         try:
             self.speaker.lock()
             super().run()
@@ -48,7 +47,6 @@ class Instruction_speaker(Instruction):
                     sleep(dodo)
             self.speaker.change_volume(volume_final)
             self.speaker.disconnect()
-            Logger.info("The speaker {} took {}s to power instead of {}s".format(self.speaker.name, time()-debut, self.duration))
         finally:
             self.speaker.unlock()
   

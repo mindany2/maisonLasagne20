@@ -17,9 +17,12 @@ class Mode:
 
     def change_state(self, state):
         self.state = state
+
+    def do_scenar_init(self):
         if self.state and self.scenar_init:
             # do the scenar_init
-            self.scenar_init.do()
+            self.scenar_init.do(join = True)
+            # join it
 
     def __eq__(self, other):
         if isinstance(other, Mode):

@@ -15,6 +15,12 @@ class Amp:
         self.mutex = Lock()
         self.channels = [Channel(i, output) for i in range(1,nb_channels+1)]
 
+    def lock(self):
+        self.mutex.acquire()
+
+    def unlock(self):
+        self.mutex.release()
+
     def state(self):
         return self.relay.state == STATE.ON
 
@@ -24,6 +30,13 @@ class Amp:
         except:
             Logger.error("")
             return None
+
+    def set_state(self, state):
+        if self.state() != state:
+            if state:
+                self.power_on()
+            else:
+                self.power_off()
             
     def power_on(self):
         self.mutex.acquire()
@@ -34,6 +47,7 @@ class Amp:
             if not(conn):
                 self.relay.set(STATE.OFF)
         self.mutex.release()
+        return self.state()
 
     def connect(self):
         # connect to the amp

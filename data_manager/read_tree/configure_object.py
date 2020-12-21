@@ -26,8 +26,8 @@ def get_dimmable(getter, name, sub_type, relay_triak, addr):
     if str(sub_type) == "dmx":
         if not(str(addr)):
             addr.raise_error("The {} need an dmx address".format(name))
-        device = Dmx_device(getter.get_dmx(), str(addr))
-        return Dmx_dimmable_light(name, relay_triak.get_triak(), device)
+        device = Dmx_device(getter.get_dmx(), int(addr))
+        return Dmx_dimmable_light(name, relay_triak.get_relay(), device)
     try:
         buld = BULD[str(sub_type)]
     except KeyError:
@@ -47,10 +47,10 @@ def get_lamp(getter, name, sub_type, relay_triak, addr):
     return Lamp(name, relay_triak.get_relay())
 
 def get_speakers(getter, name, sub_type, relay_triak, addr):
-    index_zone = relay_triak.get_int("index", mandatory = True)
+    index_channel = relay_triak.get_int("index", mandatory = True)
     name_amp = relay_triak.get_str("board", mandatory = True)
     amp = getter.get_amp(name_amp)
-    zone = amp.get_zone(index_zone)
+    zone = amp.get_channel(index_channel)
     return Speakers(name, amp, zone)
 
 def get_trap(getter, name, sub_type, relay_triak, addr):

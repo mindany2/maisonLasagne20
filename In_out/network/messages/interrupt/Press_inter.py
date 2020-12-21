@@ -8,4 +8,4 @@ class Press_inter(Message):
         self.state = state
 
     def do(self, getter):
-        getter.get_tree().press_inter(self.name_env, self.name_bt, not(self.state))
+        getter.get_tree().press_inter(self.name_env, self.name_bt, self.state)

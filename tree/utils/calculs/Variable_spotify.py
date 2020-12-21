@@ -8,7 +8,7 @@ class Variable_spotify(Variable):
     def __init__(self):
         Variable.__init__(self, "spotify", 0)
 
-    def get(self, variable_name):
+    def get(self, getter, variable_name):
         spotify = Peripheric_manager().get_spotify()
         if not(spotify):
             raise(ValueError("There are no spotify configured"))

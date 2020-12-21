@@ -25,7 +25,7 @@ class Preset:
             bt = self.get_button(name_inter)
             if bt != None:
                 bt.press(state)
-        except:
+        except KeyError:
             pass
 
     def change_state(self, state):
@@ -38,9 +38,7 @@ class Preset:
         return self.list_scenario.get(name)
 
     def get_manager(self):
-        if self.manager:
-            return self.manager
-        raise(ValueError("Need to setup a OFF scenario in the preset "+self.name)) 
+        return self.manager
 
     def get_marker(self):
         return self.get_manager().get_marker()
@@ -49,7 +47,7 @@ class Preset:
         self.get_manager().reset()
 
     def initialize(self, marker):
-        # get the first OFF scenario for the manager
+        # get the first MARKER scenario for the manager
         scenar_select = None
         for scenar in self.list_scenario:
             if not(scenar_select) and scenar.get_marker() == marker:
@@ -66,6 +64,10 @@ class Preset:
         # initialize all the scenarios
         for scenar in self.list_scenario:
             scenar.initialize()
+
+    def do_current_scenar(self):
+        print(self.name)
+        self.manager.do_current_scenar()
 
     def reload(self, other):
         if isinstance(other, Preset):

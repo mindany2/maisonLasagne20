@@ -8,19 +8,19 @@ from web_app.buttons.Line_buttons import Line_buttons
 from web_app.buttons.Button import Button
 from web_app.buttons.Mode import Mode
 
-PATH = "data"
+PATH = "/data"
 
-def config_html(getter):
+def config_html(getter, path):
     # go to each environnement and find every define html line
     # and store it in the getter
-    get_modes(getter)
+    get_modes(getter, path)
 
-    get_lines(getter, PATH + "/environnements", "global")
+    get_lines(getter, path+ PATH + "/environnements", "global")
 
     print(getter)
 
-def get_modes(getter):
-    for mode in File_yaml(getter, PATH+"/config_tree.yaml").get("MODES", mandatory = True):
+def get_modes(getter, path):
+    for mode in File_yaml(getter,path+ PATH+"/config_tree.yaml").get("MODES", mandatory = True):
         name, color, text_color = mode.get_str("name", mandatory=True), mode.get_str("color"), mode.get_str("text_color")
         if color and text_color:
             getter.add_mode(Mode(name, color, text_color))

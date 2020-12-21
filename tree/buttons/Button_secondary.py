@@ -15,7 +15,7 @@ class Button_secondary(Button):
     def press(self, state = True):
         if state:
             # do the scenario
-            self.manager.do_scenar_secondaire(self.scenar)
+            self.manager.do_scenar_secondary(self.scenar)
         else:
             # remove the scenario
             self.manager.remove(self.scenar)

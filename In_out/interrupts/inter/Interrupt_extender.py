@@ -7,13 +7,16 @@ class Interrupt_extender(Interrupt):
     This is a button with a pin from the extender
     """
 
-    def __init__(self, name, pin, client):
-        Interrupt.__init__(self, name, client)
+    def __init__(self, name, name_env, pin, client):
+        Interrupt.__init__(self, name, name_env, client)
         self.pin = pin
         self.tps = time()
 
-    def press(self, state = 1):
+    def press(self):
         if ((time() - self.tps) > 1):     # allow to take only one push
-            self.client.send(Press_inter(self.name, state))
+            super().press()
             self.tps = time() 
+
+    def __str__(self):
+        return super().__str__() + " : {}".format(self.pin)
 

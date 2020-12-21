@@ -7,16 +7,19 @@ class Color:
     """
     RGB color
     """
-    def __init__(self, interger, dimmer = 100):
+    def __init__(self, value):
         try:
-            self.value = "0x"+(8-len(hex(interger)))*"0"+hex(interger)[2:]
-        except:
-            self.value = interger
+            self.value = value
+            self.int_to_rgb()
+        except TypeError:
+            self.value = "0x"+(8-len(hex(int(value))))*"0"+hex(int(value))[2:]
         self.int_to_rgb()
+
+    def dim(self, dimmer):
         r = int(self.r* float(dimmer)/100)
         g = int(self.g* float(dimmer)/100)
         b = int(self.b* float(dimmer)/100)
-        self.value = rgb_to_hexa(r,g,b)
+        return Color(rgb_to_hexa(r,g,b))
 
     def set(self, color):
         self.value = color.value

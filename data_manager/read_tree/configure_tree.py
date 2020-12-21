@@ -15,7 +15,7 @@ def config_tree(getter):
     # Initialize 
     getter.get_tree().initialize()
 
-    print(getter.get_tree())
+    #print(getter.get_tree())
 
 def get_modes(getter):
     for mode in File_yaml(getter, PATH+"/config_tree.yaml").get("MODES", mandatory = True):

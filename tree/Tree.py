@@ -26,6 +26,11 @@ class Tree:
         mode_select = self.get_mode(name_mode)
         self.list_modes.change_select(mode_select)
         self.global_environnement.change_mode(mode_select)
+        mode_select.do_scenar_init()
+        self.global_environnement.do_current_scenar()
+
+    def do_current_scenars(self):
+        self.global_environnement.do_current_scenar()
 
     def add_mode(self, mode):
         self.list_modes.add(mode)
@@ -47,7 +52,7 @@ class Tree:
         return self.global_environnement.get_list_envs()
 
     def press_inter(self, name_env, name_inter, state):
-        Logger.info("press inter {}, state = {}".format(name_inter, state))
+        Logger.info("press inter {}, state = {}, env = {}".format(name_inter, state, name_env))
         self.get_env(name_env).press_inter(name_inter, state)
 
     def get_scenar(self, name_env, name_scenar, preset=None):
@@ -55,9 +60,9 @@ class Tree:
 
     def initialize(self):
         # function called after all the tree is created
+        self.global_environnement.initialize()
         for mode in self.list_modes:
             mode.initialize()
-        self.global_environnement.initialize()
         self.global_environnement.change_mode(self.get_current_mode())
 
     def __eq__(self, other):

@@ -9,38 +9,35 @@ class Speakers(Connected_object):
         Connected_object.__init__(self, name)
         self.amp = amp
         self.zone = zone
-        self.connected = False
 
     def volume(self):
         return self.zone.volume
 
+    def state(self):
+        return self.amp.state()
+
     def connect(self):
-        if not(self.connected) and self.volume() == 0:
+        if self.volume() == 0:
             self.amp.power_on()
-            self.connected = True
+        return self.state()
 
     def disconnect(self):
-        if self.connected and self.volume() == 0:
+        if self.volume() == 0:
             self.amp.power_off()
-            self.connected = False
 
     def change_volume(self, value):
-        if value == 0:
-            self.zone.set_power(0)
-        elif value != 0 and self.zone.power == 0:
-            self.zone.set_power(1)
-        self.zone.set_volume(value)
-
-    def reload(self, other):
-        if isinstance(other, Speakers):
-            self.connected == other.connected
+        if self.state():
+            if value == 0:
+                self.zone.set_power(0)
+            elif value != 0 and self.zone.power == 0:
+                self.zone.set_power(1)
+            self.zone.set_volume(value)
 
     def __eq__(self, other):
         if isinstance(other, Speakers):
             return super().__eq__(other)\
                     and self.amp == other.amp\
-                    and self.zone == other.zone\
-                    and self.connected == other.connected
+                    and self.zone == other.zone
         return False
 
     def __str__(self):

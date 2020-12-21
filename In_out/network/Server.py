@@ -42,10 +42,10 @@ class Server:
         conn.send(pickle.dumps("hello"))
         while True:
             try:
-                requete = pickle.loads(conn.recv(4048))
-            except : #e:
+                requete = pickle.loads(conn.recv(8000))
+            except Exception as e: 
                 Logger.error("Exception during request")
-                #Logger.error(e)
+                Logger.error(e)
                 break
             data = None
             if not requete:
@@ -54,10 +54,15 @@ class Server:
             if requete == "kill me":
                 Logger.info("demande de kill")
                 break
-            data = requete.do(self.getter)
+            try:
+                data = requete.do(self.getter)
+            except Exception as e:
+                Logger.error("Exception during requete : "+str(e))
+                data = str(e)
+
             try:
                 conn.send(pickle.dumps(data))
-            except e:
+            except Exception as e:
                 Logger.error("Exception during response send: ")
                 Logger.error(e)
                 break

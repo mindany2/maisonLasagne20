@@ -17,7 +17,7 @@ class App:
             print(jsdata)
             line, button = jsdata.split("-")
             self.manager.press_button(line, button)
-            return {"change":[{"id": "myButton2", "name" : "lol"},{"id": jsdata, "name" : "coucou"}]}
+            return {}
 
 
     def run(self):

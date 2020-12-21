@@ -28,14 +28,14 @@ class Bluetooth_device:
                 break
             else:
                 compt += 1
-                Logger.warn("The device failed to connect : attempt n°" + str(compt))
+                #Logger.warn("The device failed to connect : attempt n°" + str(compt))
                 sleep(1)
             if compt == 10:
                 Bluetooth.restart()
             if compt > 20:
-                return 1
+                return False
         self.char = Bluetooth().get_char(self.periph, self.uuid, self.char_id)
-        return 0
+        return True
 
     def send(self, valeur):
         err = Bluetooth().send(self.char, hex_to_byte(valeur))
@@ -51,8 +51,8 @@ class Bluetooth_device:
         return 0
 
     def disconnect(self, is_black = True):
-        Bluetooth().deconnect(self.periph)
-        if Bluetooth.nb_connection == 0:
+        Bluetooth().disconnect(self.periph)
+        if Bluetooth.nb_connection == 0 and is_black:
             Bluetooth.restart()
         self.periph = None
         self.char = None

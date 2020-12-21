@@ -1,5 +1,4 @@
 from tree.Tree import Tree
-from deepdiff import DeepDiff
 from data_manager.utils.Getter import Getter
 from data_manager.read_tree.configure_tree import config_tree
 from tree.utils.Dico import Dico
@@ -18,6 +17,7 @@ def reload_tree(old_getter):
     new_getter = Getter(Tree(), manager)
     config_tree(new_getter)
     new_tree = new_getter.get_tree()
+
     # we have the old tree and the new one created
 
     # reload all the envs
@@ -28,6 +28,8 @@ def reload_tree(old_getter):
     new_tree.change_mode(old_mode.name)
 
     old_getter.reload_tree(new_tree)
+
+    new_tree.do_current_scenars()
 
 
 def reload_env(new_env, old_env):

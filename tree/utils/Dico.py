@@ -23,7 +23,7 @@ class Dico:
         return list(self.list.values())[0]
 
     def last(self):
-        return self.list.values()[-1]
+        return list(self.list.values())[-1]
 
     def sort(self):
         # return a sorted list of the elements
@@ -57,6 +57,9 @@ class Dico:
             return len(shared_item) == len(self.list) == len(other.list)
 
         return False
+
+    def get_index(self, key):
+        return list(self.list.keys()).index(key)
 
     def __len__(self):
         return len(self.list)

@@ -10,56 +10,63 @@ class Led(Lamp):
     """
     RGB strip led
     """
-    def __init__(self, name, relay, controler, color = 0):
+    def __init__(self, name, relay, controler, color = "0x000000"):
         Lamp.__init__(self, name, relay)
         self.color = Color(color)
-        self.dimmer = 0
         self.controler = controler
+        self.dimmer = 0
 
     def connect(self):
         if not(self.connected):
-            Logger.info("Trying to connect to"+self.name)
             if self.color.is_black() and not(self.force):
-                self.set_relay(STATE.ON)
+                print("led {} want relay on".format(self.name))
+                self.set_state(True)
                 sleep(1)
-            self.connected = not(self.controler.connect())
+            self.connected = self.controler.connect()
             if not(self.connected):
                 # the led is out of order
-                self.set_relay(STATE.OFF)
-        return not(self.connected)
+                Logger.info("The led {} is out of order".format(self.name))
+                print("led {} want relay off")
+                self.set_state(False)
+            else:
+                Logger.info("Connected to {}".format(self.name))
+                # only one type of led have a real dimmer,
+                # but need to be up
+                self.controler.send_dimmer(100)
+        return self.connected
 
     def disconnect(self):
         if self.connected:
             sleep(0.5)
-            self.controler.deconnect(is_black = self.color.is_black())
+            self.controler.disconnect(is_black = self.color.is_black())
             if self.color.is_black() and not(self.force):
-                self.set_relay(STATE.OFF)
+                print("led {} want relay off".format(self.name))
+                self.set_state(False)
             self.connected = False
 
-    def set_color(self, color, dimmer):
-        if self.color != Color(color, dimmer):
-            self.color = Color(color, dimmer)
-            err1 = self.controler.send_color(self.color)
+    def set_color(self, dimmer, color):
+        if self.color != Color(color):
+            self.color = Color(color)
+
         if self.dimmer != dimmer:
             self.dimmer = dimmer
-            err2 = self.controler.send_dimmer(self.dimmer)
-        return (err1 or err2)
+        return self.controler.send_color(self.color.dim(self.dimmer))
 
     def repair(self):
         if isinstance(self.controler, Wifi_device):
             Logger.info("Trying to connect to "+self.name)
-            self.set_relay(STATE.ON)
+            self.set_state(STATE.ON)
             ko = self.controler.connect(attempts = 5)
             if ko:
                 Logger.error("The led {} is out of order".format(self.name))
                 for _ in range(0,3):
-                    self.set_relay(STATE.OFF)
+                    self.set_state(STATE.OFF)
                     sleep(3)
-                    self.set_relay(STATE.ON)
+                    self.set_state(STATE.ON)
                     sleep(3)
                 return True
             self.disconnect()
-            self.set_relay(STATE.OFF)
+            self.set_state(STATE.OFF)
         return False
 
     def reload(self, other):

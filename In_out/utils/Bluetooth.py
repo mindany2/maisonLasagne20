@@ -25,11 +25,8 @@ class Bluetooth:
         return the new peripheric
         """
         try:
-            Logger.debug("Trying to connect")
             periph = Peripheral(addresse)
-            Logger.debug("Connection success")
         except:
-            Logger.error("Connection failed")
             return None
         self.mutex_connect.acquire()
         self.nb_connection += 1

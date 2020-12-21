@@ -17,7 +17,6 @@ class Get_states(Message):
             preset = list_envs.get(name_env).get_preset_select()
             list_active_buttons = [button.name for button in preset.get_buttons() if button.state()]
             active_preset[name_env+"."+preset.name] = list_active_buttons
-        print(active_preset)
         return active_preset
 
 

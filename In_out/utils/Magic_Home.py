@@ -31,14 +31,14 @@ class MagicHomeApi:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.settimeout(20)
         try:
-            Logger.info("Establishing connection with the device.")
+            #Logger.info("Establishing connection with the device.")
             self.s.connect((self.device_ip, self.API_PORT))
         except socket.error as exc:
-            Logger.error("Caught exception socket.error : %s" % exc)
+            #Logger.error("Caught exception socket.error : %s" % exc)
             if str(exc).count("already connected"):
-                return 0
-            return 1
-        return 0
+                return True
+            return False
+        return True
 
     def turn_on(self):
         """Turn a device on."""

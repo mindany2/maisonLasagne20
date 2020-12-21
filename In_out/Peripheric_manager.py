@@ -53,9 +53,11 @@ class Peripheric_manager:
         raise(NameError("There are no st_nucleos name {} configured".format(name)))
 
     def get_amp(self, name):
-        amp = self.amps[name]
-        if amp: return amp
-        raise(NameError("There are no st_nucleos name {} configured".format(name)))
+        try:
+            amp = self.amps[name]
+            if amp: return amp
+        except KeyError:
+            raise(NameError("There are no amp name {} configured".format(name)))
 
     def get_spotify(self):
         if self.spotify: return self.spotify

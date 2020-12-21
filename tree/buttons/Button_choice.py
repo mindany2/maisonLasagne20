@@ -12,7 +12,7 @@ class Button_choice(Button):
     def press(self, state= None):
         select = 0
         for i,scenar in enumerate(self.list_scenar):
-            if self.manager.get_scenar_en_cours() == scenar:
+            if self.manager.get_current_scenar() is scenar:
                 select = i+1
                 if select == len(self.list_scenar):
                     select = 0

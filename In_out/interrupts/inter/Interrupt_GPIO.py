@@ -12,8 +12,8 @@ class Interrupt_GPIO(Interrupt):
     """
     It is a GPIO interrupt
     """
-    def __init__(self, name, pin, client):
-        Interrupt.__init__(self, name, client)
+    def __init__(self, name, name_env, pin, client):
+        Interrupt.__init__(self, name, name_env, client)
         self.pin = pin
         GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.add_event_detect(pin, GPIO.BOTH, callback=self.press)

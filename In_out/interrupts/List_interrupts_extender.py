@@ -60,11 +60,15 @@ class List_interrupts_extender:
             #TODO need to change for the radar..
             if int(pin) == 1:
                 Logger.info("pin {} is on".format(i))
-                inter = self.list_inter.get(i)
-                if inter != None:
-                    inter.press()
+                try:
+                    self.list_inter.get(i).press()
+                except KeyError:
+                    print(list(self.list_inter.keys()))
+                    Logger.info("This pin haven't any interrupt")
 
     def __str__(self):
-        return "port : {} | register : {} | gpio : {}".format(self.port_bus, self.add_register, self.port_interrupt)
+        string = "port : {} | register : {} | gpio : {}\n".format(self.port_bus, self.add_register, self.port_interrupt)
+        string += "".join(" - {}\n".format(inter) for inter in self.list_inter)
+        return string
 
     

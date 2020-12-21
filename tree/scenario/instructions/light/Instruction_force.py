@@ -6,7 +6,7 @@ class Instruction_force(Instruction_light):
     """
     Force a relay of a lamp to be always ON 
     """
-    def __init__(self, calculator, light, state, delay, synchro, duration = 0):
+    def __init__(self, calculator, light, state, duration, delay, synchro):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
         self.state = state
 
@@ -18,8 +18,7 @@ class Instruction_force(Instruction_light):
         self.light.lock()
         super().run()
         self.state = self.eval(self.state)
-        if self.light.state() != self.state:
-            self.light.force(self.state)
+        self.light.force_relay(self.state)
         self.light.unlock()
  
     def __str__(self):

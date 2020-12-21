@@ -9,26 +9,28 @@ class LEDnet(Wifi_device):
     """
     def __init__(self, ip):
         Wifi_device.__init__(self, ip)
-        self.controleur = MagicHomeApi(self.ip, 0)
+        self.controler = MagicHomeApi(self.ip, 0)
 
     def connect(self, attempts = 20):
         for _ in range(0,attempts):
-            err = self.controleur.connect()
-            if not(err):
+            success = self.controler.connect()
+            if success:
                 # the led success to connect
                 break
             sleep(0.5)
-        return err
+        return success
 
-    def send_color(self, couleur):
-        r,g,b = couleur.int_to_rgb()
-        self.controleur.update_device(r,g,b,0)
+    def send_color(self, color):
+        r,g,b = color.int_to_rgb()
+        self.controler.update_device(r,g,b,0)
 
-    def send_dimmeur(self, dimmeur):
+    def send_dimmer(self, dimmer):
         # there are no dimmer in this led
         pass
 
     def disconnect(self, is_black=True):
         if is_black:
-            self.controleur.disconnect()
+            self.controler.disconnect()
+        # time to make sure the led received the order
+        sleep(5)
         

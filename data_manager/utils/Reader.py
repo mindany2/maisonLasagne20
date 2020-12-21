@@ -69,17 +69,24 @@ class Reader:
     def split(self, separator, number = None):
         # allow to split like a string
         splited = str(self.start).split(separator)
+        splited = [arg.strip() for arg in splited]
         if number and len(splited) != number:
             self.raise_error("The value {} need to have exactly {} arguments".format(str(self.start), number))
         return Reader(self.getter, splited, self.path_file, self.line, self.add_line)
 
     def get_addr(self, arg, mandatory = False):
         addr = self.get(arg, mandatory = mandatory)
-        if addr:
+        if str(addr):
             pin, board = self.getter.get_addr(str(addr))
             return Reader(self.getter, {"index":pin, "board":board}, self.path_file, self.line, add_line = 0)
         else:
             return Reader(self.getter, {}, self.path_file, self.line, add_line = 0)
+
+    def get_amp(self):
+        try:
+            return self.getter.get_amp(str(self.start))
+        except KeyError:
+            self.raise_error("Could not find the amp {}".format(self.start))
 
     def get_triak(self):
         # allow to get a triak and raise exception
@@ -118,6 +125,8 @@ class Reader:
         except AssertionError:
             self.raise_error("The type {} is not available to perform this task, try: {}"
                     .format(type(obj).__name__,[type.__name__ for type in type_obj]))
+        except KeyError:
+            self.raise_error("The object {} doesn't exist in {}".format(str(self.start), env.name))
 
     def get_scenarios(self, get_all=False):
         # Cut the name like 
@@ -151,6 +160,12 @@ class Reader:
             except ValueError:
                 self.raise_error("The bpm number need to be interger like this : \"bpm_(int) + delay\"")
         return wait_for_beat
+
+    def get_wait_precedent(self):
+        if str(self.start) == "wait":
+            self.start = Reader(self.getter, 0, self.path_file)
+            return True
+        return False
 
     def get_line(self):
         return self.line

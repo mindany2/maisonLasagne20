@@ -15,30 +15,30 @@ class Lamp(Connected_object):
         self.force = False
         self.connected = False
 
-    def set(self, on_off):
-        self.set_relay(on_off)
-
     def connect(self):
         if not(self.connected):
             if not(self.force):
-                self.set_relay(True)
+                self.set_state(True)
             self.connected = True
 
     def disconnect(self):
         if self.connected:
             if not(self.force):
-                self.set_relay(False)
+                self.set_state(False)
             self.connected = False
 
     def force_relay(self, force):
         # force the relay always to ON
-        self.force = force
-        if force:
-            self.set_relay(STATE.ON)
-        elif not(self.connected):
-            self.set_relay(STATE.OFF)
+        if self.force != force:
+            self.force = force
+            if force:
+                self.relay.set(STATE.ON)
+            elif not(self.connected):
+                self.relay.set(STATE.OFF)
 
-    def set_relay(self, on_off):
+    def set_state(self, on_off):
+        if self.force:
+            return 
         if self.invert:
             on_off = not(on_off)
 
@@ -46,11 +46,10 @@ class Lamp(Connected_object):
             state = STATE.ON
         else:
             state = STATE.OFF
-        if self.relay.state != state:
-            self.relay.set(state)
+        self.relay.set(state)
 
     def state(self):
-        return self.relay.state
+        return self.relay.state == STATE.ON
 
     def reload(self, other):
         if isinstance(other, Lamp):

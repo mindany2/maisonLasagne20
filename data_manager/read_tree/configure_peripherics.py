@@ -39,7 +39,7 @@ def config_peripherics(getter):
 
     #SOUND
     config.get("SOUND", get_sound)
-    print(getter.get_manager())
+    #print(getter.get_manager())
 
 def get_sound(sound):
     manager = sound.get_getter().get_manager()
@@ -55,11 +55,11 @@ def get_sound(sound):
     amps = sound.get("Amps")
     if amps:
         for amp in amps:
-            type_amp = amp.get("type", mandatory = True)
+            type_amp = amp.get_str("type", mandatory = True)
             if type_amp == "dax66":
                 manager.set_amp(Amp_6_channels(amp.get_str("name", mandatory = True),
-                                    amp.get_str("addr", mandatory = True),
-                                    amp.get_addr("relay", mandatory = True).get_relay()))
+                                    amp.get_addr("relay", mandatory = True).get_relay(),
+                                    amp.get_str("addr", mandatory = True)))
 
 def get_dmx(dmx):
     manager = dmx.get_getter().get_manager()

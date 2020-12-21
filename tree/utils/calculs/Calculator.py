@@ -17,14 +17,16 @@ class Calculator:
         string = str(expression)
         if string:
             # search for variables names
-            for var in re.split("[\*,\-,\+,\/,\(,\)]", string):
+            for var in re.split("[\*,\-,\+,\/,\(,\),<,>,|, ]", string):
+                if not(var):
+                    continue
                 try:
                     int(var)
                 except ValueError:
                     try:
                         int(var, 16)
                     except ValueError:
-                        if var not in ("False", "True"):
+                        if var not in ("False", "True", "not", "randint"):
                             # replace the var_name by it's value
                             string = string.replace(var,"self.get_value(\"{}\",expression)".format(var))
             return eval(string)
@@ -34,7 +36,7 @@ class Calculator:
     def get_value(self, var_name, expression):
         cutted_name = var_name.split(".")[0]
         try:
-            return self.variables.get(cutted_name).get(var_name)
+            return self.variables.get(cutted_name).get(expression.get_getter(), var_name)
         except KeyError:
             expression.raise_error("Could not find the variable {}".format(var_name))
 

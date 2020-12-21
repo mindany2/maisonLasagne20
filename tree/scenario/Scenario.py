@@ -10,7 +10,7 @@ class MARKER(Enum):
     OFF = 0
     ON = 1
     DECO = 2
-    NULL = 3
+    NONE = 3
 
 class Scenario:
     """
@@ -38,7 +38,7 @@ class Scenario:
         self.list_inst.set_state(state)
 
     def do(self, join = False):
-        Logger.info("On fait le scénario "+self.name)
+        #Logger.info("Start the scenario "+self.name)
         proc = Thread(target=self.list_inst.do)
         proc.start()
         if join:
@@ -58,4 +58,5 @@ class Scenario:
         string += "".join("- Marker : {}\n".format(self.marker))
         string += "".join("- List Instructions :\n")
         string += "".join(["  {}\n".format(string) for string in str(self.list_inst).split("\n")])
+        string += "state : {}".format(self.state())
         return string

@@ -46,35 +46,42 @@ class Environnement:
     def state(self):
         # return the marker of the principal scenario
         # it tells if the scenario is ON/OFF/DECO
-        return self.get_preset_select().get_marker()
+        return self.get_preset_select().get_marker() == MARKER.ON
 
-    def est_on(self):
+    def is_on(self):
         # return true if this environnement is ON or 
         # at least one of it's sub-environnement
         for env in self.list_sub_env:
-            if env.est_on():
+            if env.is_on():
                 return True
-        return self.state() == MARKER.ON
+        return self.state()
 
     def get_preset_select(self):
         return self.list_presets.selected()
 
     def change_mode(self, mode):
+        # do it in all the sub-envs
+        for env in self.list_sub_env:
+            env.change_mode(mode)
+
         try:
             new_preset = self.list_presets_chosen.get(mode.name)
         except KeyError:
             # the env haven't a preset selected for this mode, just keep the actual
             return
-        old_preset = self.get_preset_select()
-        if new_preset is not old_preset:
-            new_preset.initialize(old_preset.get_marker())
-            old_preset.reset()
-            self.change_preset_select(new_preset)
+        if new_preset:
+            old_preset = self.get_preset_select()
+            if new_preset is not old_preset:
+                new_preset.initialize(old_preset.get_marker())
+                old_preset.reset()
+                self.change_preset_select(new_preset)
 
+    def do_current_scenar(self):
+        print(self.name)
+        self.get_preset_select().do_current_scenar()
         # do it in all the sub-envs
         for env in self.list_sub_env:
-            env.change_mode(mode)
-
+            env.do_current_scenar()
 
     def change_preset_select(self, preset):
         self.list_presets.change_select(preset)

@@ -5,5 +5,7 @@ from time import sleep
 
 client = Client()
 client.start()
-client.send(Reload_tree())
+data = client.send(Reload_tree())
+if data:
+    print(data)
 client.disconnect()

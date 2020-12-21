@@ -7,7 +7,7 @@ class Variable:
         self.name = name
         self.val = val
 
-    def get(self, args = None):
+    def get(self, getter = None, arg = None):
         return self.val
 
     def reload(self, other):

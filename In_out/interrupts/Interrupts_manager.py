@@ -14,14 +14,16 @@ class Interrupts_manager:
         self.list_extender_interrupts = []
         self.list_others_interrupts = []
         self.client = Client() # connect to the tree process
+        GPIO.setmode(GPIO.BCM)
 
     def get_client(self):
         return self.client
 
     def start(self):
         # start the client
-        GPIO.setmode(GPIO.BCM)
         self.client.start()
+        for inter in self.list_others_interrupts:
+            inter.start()
 
     def add_interrupt_extender(self, inter):
         self.list_extender_interrupts[((inter.pin-1)//8)].add(inter, (inter.pin-1) % 8)

@@ -6,6 +6,7 @@ from tree.utils.Logger import Logger
 class I2C:
     try:
         bus = SMBus(1)
+        sleep(0.5)
     except:
         Logger.warn("Could not found i2c bus")
     mutex = Lock()
@@ -30,7 +31,7 @@ class I2C:
             Logger.error("I2C error : "+str(e))
             self.mutex.release()
             return 1
-        sleep(0.02)
+        sleep(0.1)
         self.mutex.release()
         return 0
 
@@ -43,7 +44,7 @@ class I2C:
             Logger.error("I2C error : "+str(e))
             self.mutex.release()
             return None
-        sleep(0.02)
+        sleep(0.1)
         self.mutex.release()
         return data
 

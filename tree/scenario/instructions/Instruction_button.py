@@ -13,7 +13,7 @@ class Instruction_button(Instruction):
     """
     The instruction call a button for another environnement
     """
-    def __init__(self, calculator, name_scenars, type_bt, delay, synchro, condition):
+    def __init__(self, calculator, name_scenars, type_bt, delay, condition, synchro):
         Instruction.__init__(self,calculator, 0, delay, synchro)
         self.name_scenars = name_scenars
         self.type_bt = type_bt
@@ -30,7 +30,7 @@ class Instruction_button(Instruction):
         condition = self.eval(self.condition)
         env, preset, scenars = self.name_scenars.get_scenarios(get_all = True)
         # check if it is the right preset, if not just pass
-        if(env.get_preset_select() == preset):
+        if(env.get_preset_select() is preset):
             # if there are only one scenario, just do it if the condition is True
             if len(scenars) == 1 and condition:
                 self.button.press()

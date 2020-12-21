@@ -7,7 +7,7 @@ class Csv_reader(Reader):
     Manage csv 
     """
     def __init__(self, getter,  reader):
-        self.csv = csv.DictReader(StringIO(str(reader)), delimiter='|')
+        self.csv = csv.DictReader(StringIO(str(reader)), delimiter='|', escapechar="\\")
         # strip all the text
         self.list = []
         for i, row in enumerate(self.csv):

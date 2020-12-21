@@ -47,7 +47,6 @@ class Instruction_dimmer(Instruction_light):
                 if dodo > 0:
                     sleep(dodo)
             self.light.set_dimmer(dimmer_final)
-            Logger.info(" the light {} took {}s to power instead of {}s".format(self.light.name, time()-debut, self.duration))
 
         finally:
             self.light.disconnect()

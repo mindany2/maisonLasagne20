@@ -16,7 +16,7 @@ class Instructions_list:
         self.calculator = calculator
 
     def set_state(self, state):
-        if self.state:
+        if not(state):
             # finish all the instruction in process
             for inst in self.list:
                 inst.finish()
@@ -54,6 +54,10 @@ class Instructions_list:
             for i,inst in enumerate(self.list):
                 n = sum([int(i+1 > j) for j in cummulative_sum])
                 bar = list_barriers[n]
+                if inst.delay.wait_precedent:
+                    for proc in list_thread:
+                        proc.join()
+                    list_thread = []
                 process = Thread(target=inst.run, args=[bar])
                 list_thread.append(process)
                 process.start()

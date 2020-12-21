@@ -6,7 +6,7 @@ from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy
 from tree.scenario.instructions.utils.Delay import Delay
 from tree.scenario.instructions import Instruction_button, TYPE_BUTTON, Instruction_trap, TYPE_INST_TRAP
 from tree.scenario.instructions import Instruction_spotify, TYPE_INST_SPOTIFY, Instruction_variable
-from tree.scenario.instructions.light import Instruction_color, Instruction_dimmer, Instruction_force, Instruction_lamp, Instruction_speaker
+from tree.scenario.instructions.light import Instruction_color, Instruction_dimmer, Instruction_force, Instruction_power, Instruction_speaker
 from tree.scenario.instructions.light.dmx import Instruction_color_wheel, Instruction_gobo, Instruction_position, Instruction_program
 from tree.scenario.instructions.light.dmx import Instruction_speed, Instruction_strombo
 from tree.scenario.instructions.communication.Instruction_PC import Instruction_PC, ACTIONS
@@ -24,7 +24,7 @@ def get_instructions(list_inst, args):
     getter = list_inst.get_getter()
     instructions = Csv_reader(getter, list_inst)
     for inst in instructions:
-        name, delay, duration = inst.get("name", mandatory=True), inst.get("delay", mandatory=True), inst.get("duration")
+        name, delay_value, duration = inst.get("name", mandatory=True), inst.get("delay", mandatory=True), inst.get("duration")
         args, type_inst = inst.get("args"), inst.get("type", mandatory = True)
         # Type
         try:
@@ -33,12 +33,13 @@ def get_instructions(list_inst, args):
             type_inst.raise_error("The instruction type {} does not exist, this is the allowed keys :\n {}"
                             .format(str(type_inst), [str(arg) for arg in TYPE]))
         #Synchro
-        synchro = (delay == "synchro")
+        synchro = (delay_value == "synchro")
         if synchro: delay = "0"
 
         #Delay
-        wait_for_beat = delay.get_wait_for_beat()
-        delay = Delay(getter.get_manager(), env.get_calculator(), delay, wait_for_beat)
+        wait_for_beat = delay_value.get_wait_for_beat()
+        wait_precedent = delay_value.get_wait_precedent()
+        delay = Delay(getter.get_manager(), env.get_calculator(), delay_value, wait_for_beat, wait_precedent)
 
         scenar.add_inst(type_inst(env, name, delay, duration, args, synchro))
 
@@ -71,9 +72,13 @@ def get_inst_speaker(env, name, delay, duration, args, synchro):
     speaker = name.get_object(env, Speakers)
     return Instruction_speaker(env.get_calculator(), speaker, args, duration, delay, synchro)
 
-def get_inst_lamp(env, name, delay, duration, args, synchro):
-    light = name.get_object(env, Lamp)
-    return Instruction_force(env.get_calculator(), light, args, duration, delay, synchro)
+def get_inst_power(env, name, delay, duration, args, synchro):
+    light = name.get_object(env, (Lamp, Speakers))
+    return Instruction_power(env.get_calculator(), light, args, duration, delay, synchro)
+
+def get_inst_amp(env, name, delay, duration, args, synchro):
+    amp = name.get_amp()
+    return Instruction_power(env.get_calculator(), amp, args, duration, delay, synchro)
 
 def get_inst_force(env, name, delay, duration, args, synchro):
     light = name.get_object(env, Lamp)
@@ -143,7 +148,7 @@ def get_inst_spotify(env, name, delay, duration, args, synchro):
 def get_inst_button_sec(env, name, delay, duration, args, synchro):
     return Instruction_button(env.get_calculator(), name, TYPE_BUTTON.secondary, delay, args, synchro)
 
-def get_inst_button_prin(env, name, delay, duration, synchro, args):
+def get_inst_button_prin(env, name, delay, duration, args, synchro):
     return Instruction_button(env.get_calculator(), name, TYPE_BUTTON.principal, delay, args, synchro)
 
 
@@ -153,11 +158,12 @@ TYPE = {"button_secondary" : get_inst_button_sec,
         "trap" : get_inst_trap,
         "variable": get_inst_variable,
         "pc" : get_inst_pc,
+        "amp": get_inst_amp,
         "color" : get_inst_color,
         "dimmer" : get_inst_dimmer,
         "force" : get_inst_force,
-        "lamp" : get_inst_lamp,
-        "speaker" : get_inst_speaker,
+        "power" : get_inst_power,
+        "speakers" : get_inst_speaker,
         "color_wheel" : get_inst_color_wheel,
         "gobo" : get_inst_gobo,
         "position" : get_inst_position,

@@ -1,6 +1,7 @@
 from enum import Enum
 from time import sleep
 from threading import Lock, Thread
+from tree.utils.Dico import Dico
 from serial import Serial
 from tree.utils.Logger import Logger
 
@@ -31,23 +32,23 @@ class ST_nucleo:
         self.name = name
         self.mutex = Lock()
         self.addr = addr
-        self.list_boards_triak = {}
+        self.list_boards_triak = Dico()
 
     def add_board_triak(self, board):
-        self.list_boards_triak[board.number] = board
+        self.list_boards_triak.add(board.number,board)
 
     def nb_boards(self):
         return len(self.list_boards_triak)
 
     def get_board_triak(self, index):
         try:
-            return self.list_boards_triak[index]
-        except:
+            return self.list_boards_triak.get(index)
+        except KeyError:
             return None
 
     def set_triak(self, index_board, triak, valeur, state):
         self.mutex.acquire()
-        carte = self.list_boards_triak[index_board]
+        carte = self.list_boards_triak.get_index(index_board)+1
         v1 = valeur // 255 +1 
         v2 = valeur  % 255 +1
         if v1 > 255:
@@ -63,6 +64,6 @@ class ST_nucleo:
         string = self.name + "\n"
         string += "".join("- Addr : {}\n".format(self.addr))
         string += "".join("- Boards :\n")
-        string += "".join(["|-{}\n".format(string) for string in self.list_boards_triak.values()])
+        string += "".join(["|-{}\n".format(string) for string in self.list_boards_triak])
         return string
 

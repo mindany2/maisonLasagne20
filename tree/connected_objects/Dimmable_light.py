@@ -69,7 +69,7 @@ class Dimmable_light(Connected_object):
 
     def reload(self, other):
         if isinstance(other, Dimmable_light):
-            self.dimmer == other.dimmer
+            self.dimmer = other.dimmer
 
     def __eq__(self, other):
         if isinstance(other, Dimmable_light):

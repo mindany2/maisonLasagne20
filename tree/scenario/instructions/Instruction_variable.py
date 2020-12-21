@@ -16,7 +16,7 @@ class Instruction_variable(Instruction):
     def run(self, barrier):
         super().run()
         self.variable.set(self.eval(self.value))
-        Logger.debug("set the variable {} to {}".format(self.variable.name, self.variable.get()))
+        #Logger.debug("set the variable {} to {}".format(self.variable.name, self.variable.get()))
 
     def initialize(self):
         super().initialize()

@@ -6,10 +6,12 @@ class Interrupt_cron(Interrupt):
     """
     Permet de schedule des interruptions
     """
-    def __init__(self, name, date, client):
-        Interrupt.__init__(self, name, client)
+    def __init__(self, name, name_env, date, client):
+        Interrupt.__init__(self, name, name_env, client)
         self.date = date
         self.sched = BackgroundScheduler()
+
+    def start(self):
         hour, minutes, second = self.date.split(":", 3)
         now = datetime.now().time()
         try:
@@ -21,6 +23,8 @@ class Interrupt_cron(Interrupt):
             pass
         self.sched.add_job(self.press, 'cron', hour=hour, minute = minutes, second = second)
         self.sched.start()
+
+
 
 
     def __str__(self):
