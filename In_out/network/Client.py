@@ -59,6 +59,7 @@ class Client:
     def disconnect(self):
         self.send("kill me")
         self.connected = False
+        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         
 
 

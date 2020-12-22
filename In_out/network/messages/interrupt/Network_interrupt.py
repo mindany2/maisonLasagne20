@@ -8,4 +8,4 @@ class Network_interrupt(Message):
         self.state = state
 
     def do(self, getter):
-        getter.get_manager().get_connection(self.name).press_inter(self.name_inter)
+        getter.get_manager().get_connection(self.name).press_inter(getter, self.name_inter, self.state)

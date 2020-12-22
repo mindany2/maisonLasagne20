@@ -35,7 +35,7 @@ class Connection(Locker):
         if name in self.output_interrupts:
             self.send(Network_interrupt(self.me, name, state))
 
-    def press_inter(self, getter, name, state):
+    def press_inter(self,getter, name, state):
         if name in self.input_interrrupts.keys():
             getter.get_tree().press_inter(self.input_interrrupts.get(name), name, state)
 
