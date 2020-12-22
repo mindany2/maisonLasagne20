@@ -1,4 +1,5 @@
 from data_manager.utils.File_yaml import File_yaml
+from data_manager.utils.Secrets import Secrets
 
 from In_out.Peripheric_manager import Peripheric_manager
 
@@ -46,10 +47,11 @@ def get_sound(sound):
     spotify = sound.get("Spotify")
     if spotify:
         manager.set_spotify(Spotify(spotify.get_str("name", mandatory = True),
+                                    Secrets(sound.get_getter()).get_spotify_secret(),
                                     spotify.get_str("pi_id", mandatory = True),
-                                    spotify.get_str("scenar_start"),
-                                    spotify.get_str("scenar_stop"),
-                                    spotify.get_str("scenar_volume"),
+                                    spotify.get("scenar_start"),
+                                    spotify.get("scenar_stop"),
+                                    spotify.get("scenar_volume"),
                                     spotify.get_int("analysis"),
                                     spotify.get_int("volume_init")))
     amps = sound.get("Amps")

@@ -13,7 +13,7 @@ def config_tree(getter):
     config_environnements(getter, getter.get_tree().get_global_env(), PATH + "/environnements")
 
     # Initialize 
-    getter.get_tree().initialize()
+    getter.initialize()
 
     #print(getter.get_tree())
 

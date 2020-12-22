@@ -42,10 +42,12 @@ class Server:
         conn.send(pickle.dumps("hello"))
         while True:
             try:
-                requete = pickle.loads(conn.recv(8000))
+                content = conn.recv(8000)
+                if len(content) == 0:
+                    continue
+                requete = pickle.loads(content)
             except Exception as e: 
-                Logger.error("Exception during request")
-                Logger.error(e)
+                Logger.error("Exception during request : "+str(e))
                 break
             data = None
             if not requete:

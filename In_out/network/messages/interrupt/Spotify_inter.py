@@ -10,5 +10,4 @@ class Spotify_inter(Message):
         self.position = position
 
     def do(self, getter):
-        proc = Thread(target=getter.get_spotify().inter, args = [self.state, self.volume, self.track, self.position])
-        proc.start()
+        proc = getter.get_spotify().inter(getter, self.state, self.volume, self.track, self.position)

@@ -13,6 +13,12 @@ class Peripheric_manager:
         self.st_nucleos = {}
         self.connections = {}
 
+    def initialize(self):
+        if self.spotify:
+            self.spotify.initialize()
+        for conn in self.connections.values():
+            conn.initialize()
+
     # SET
 
     def set_connection(self, connection):
