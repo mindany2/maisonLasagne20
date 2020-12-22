@@ -32,11 +32,25 @@ def config_environnements(getter, env, path):
     # Objects
     config.get("Objects", get_objects, args = env)
 
+    # Network interrupt
+    config.get("Interrupts", get_network_inter, args = path)
+
     # Presets
     get_presets(getter, env, path+"/presets")
 
     # Modes
     config.get("Modes", get_modes, args = env)
+
+def get_network_inter(inters, path):
+    getter = inters.get_getter()
+    for inter in Csv_reader(getter, inters):
+        name, type_inter, args = inter.get_str("name"), inter.get("type"), inter.get("args")
+        if type_inter == "network":
+            try:
+                connection = getter.get_manager.get_connection(str(args))
+            except KeyError:
+                args.raise_error("Could not find connection {}".format(str(args)))
+            connection.add_input_interrupt(name, path.replace("/","."))
 
 def get_modes(modes, env):
     getter = modes.get_getter()

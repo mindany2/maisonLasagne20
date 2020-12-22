@@ -167,6 +167,9 @@ class Reader:
             return True
         return False
 
+    def get_spotify(self):
+        return self.getter.get_spotify()
+
     def get_line(self):
         return self.line
 

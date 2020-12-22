@@ -10,6 +10,10 @@ class Getter:
         self.tree = tree
         self.manager = manager
 
+    def initialize(self):
+        self.tree.initialize()
+        self.manager.initialize()
+
     def get_tree(self):
         return self.tree
 
@@ -64,6 +68,9 @@ class Getter:
 
     def get_connection(self, name):
         return self.manager.get_connection(name)
+
+    def get_spotify(self):
+        return self.manager.get_spotify()
 
     def get_dmx(self):
         return self.manager.get_dmx()

@@ -2,7 +2,7 @@ import spotipy
 import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials
 from tree.utils.Logger import Logger
-from In_out.utils.Secrets import Secrets
+from data_manager.utils.Secrets import Secrets
 from In_out.sound.spotify.Player import Player
 from In_out.sound.spotify.Track import Track
 from tree.Tree import Tree
@@ -17,35 +17,47 @@ class Spotify:
     """
     Static spotify class, used by the tree and raspotify
     """
-    def __init__(self, name, pi_id, scenar_start = None, scenar_stop = None,
-                        scenar_volume = None, analysis = False, volume_init = 50):
+    def __init__(self, name, secrets, pi_id, scenar_start = None, scenar_stop = None,
+                        scenar_volume = None, analysis = False, volume_init = None):
         self.state = False
         self.process = None
         self.track = None
-        self.volume = volume_init
+        if volume_init:
+            self.volume = volume_init
+        else:
+            self.volume = 50
         self.analysis = analysis
 
         self.pi_id = pi_id
         self.name = name
-        self.scenar_start = scenar_start
-        self.scenar_stop = scenar_stop
-        self.scenar_volume = scenar_volume
+        self.name_scenar_start = scenar_start
+        self.name_scenar_stop = scenar_stop
+        self.name_scenar_volume = scenar_volume
 
-        # get secrets
-        self.secrets = Secrets().get_spotify_secret()
-    
+        self.scenar_start, self.scenar_volume, self.scenar_stop = None, None, None
+
+        self.secrets = secrets
+        self.get_token()
+
+    def initialize(self):
+        if self.name_scenar_start:
+            self.scenar_start = self.name_scenar_start.get_scenarios()
+        if self.name_scenar_stop:
+            self.scenar_stop = self.name_scenar_stop.get_scenarios()
+        if self.name_scenar_volume:
+            self.scenar_volume = self.name_scenar_volume.get_scenarios()
+
     def get_bpm(self):
         if self.track:
             return self.track.bpm
         return 0
 
-
     def get_token(self):
         self.token = util.prompt_for_user_token(self.name,
                                 SCOPE,
-                                #cache_path = ".spotipy-cache",
-                                client_id = self.secrets["client_id"],
-                                client_secret = self.secrets["client_secret"],
+                                cache_path = ".spotipy-cache",
+                                client_id = self.secrets.get_str("client_id", mandatory=True),
+                                client_secret = self.secrets.get_str("client_secret", mandatory=True),
                                 redirect_uri = 'http://localhost:8888/callback')
         self.sp = spotipy.Spotify(auth=self.token)
         if self.analysis:
@@ -54,10 +66,10 @@ class Spotify:
             self.track = None
 
     def refresh_token(self):
-        self.token = util.prompt_for_user_token("salle",
+        self.token = util.prompt_for_user_token(self.name,
                                 SCOPE,
-                                client_id = '34eb7c4796fd4c85bd09804bf27011dc',
-                                client_secret = '1db71ff1ff9d4dadb071aa85df0a58a3',
+                                client_id = self.secrets.get_str("client_id", mandatory=True),
+                                client_secret = self.secrets.get_str("client_secret", mandatory=True),
                                 redirect_uri = 'http://localhost:8888/callback')
         self.sp = spotipy.Spotify(auth=self.token)
 
@@ -75,7 +87,7 @@ class Spotify:
         else:
             sleep(0.1)
 
-    def inter(self, status, volume, track, position):
+    def inter(self, getter, status, volume, track, position):
         Logger.debug("Spotify : {} : volume={} : track ={} : position {}".format(status, volume, track, position))
         if status == "start":
             if self.analysis:
@@ -112,7 +124,6 @@ class Spotify:
                 self.scenar_volume.do()
                 self.volume = volume
 
-
         elif status == "change":
             if self.analysis:
                 track = Track(self.sp, self.player, track)
@@ -128,15 +139,17 @@ class Spotify:
             self.kill()
         self.state = False
 
-    def start(self):
-        print("start")
+    def start(self, attemps = 0):
         try:
             self.sp.transfer_playback(self.pi_id, force_play=True)
             self.sp.repeat("context", device_id=self.pi_id)
-            self.scenar_start.do()
-        except spotipy.exceptions.SpotifyException:
+        except spotipy.exceptions.SpotifyException as e:
             self.refresh_token()
             os.system("sudo systemctl restart raspotify.service")
             sleep(2)
+            if attemps < 3:
+                self.start(attemps+1)
+            else:
+                Logger.error("Could not start raspotify : "+str(e))
         self.state = True
 
