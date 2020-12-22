@@ -7,6 +7,7 @@ class Peripheric_manager:
     def __init__(self):
         self.list_boards_relay = []
         self.dmx = None
+        self.name = None
         self.port_extender = None
         self.spotify = None
         self.amps = {}
@@ -20,6 +21,8 @@ class Peripheric_manager:
             conn.initialize()
 
     # SET
+    def set_name(self, name):
+        self.name = name
 
     def set_connection(self, connection):
         self.connections[connection.name] = connection
@@ -43,6 +46,9 @@ class Peripheric_manager:
         self.list_boards_relay.append(board)
 
     # GET 
+
+    def get_name(self):
+        return self.name
 
     def get_connection(self, name):
         conn = self.connections[name]

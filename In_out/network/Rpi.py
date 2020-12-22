@@ -4,8 +4,8 @@ class Rpi(Connection):
     """
     Distant Rpi
     """
-    def __init__(self, name, addr):
-        Connection.__init__(self, name, addr)
+    def __init__(self, name, addr, me):
+        Connection.__init__(self, name, addr, me)
 
 
 
