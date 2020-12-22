@@ -29,11 +29,7 @@ class Client:
     def connect(self):
         try:
             self.client.connect(self.addr)
-<<<<<<< HEAD:utils/communication/Client.py
-            return pickle.loads(self.client.recv(8048))
-=======
             return pickle.loads(self.client.recv(8000)) # maybe need to up this value
->>>>>>> master:In_out/network/Client.py
         except:
             Logger.error("The connection to the server failed")
             sleep(5)
@@ -42,11 +38,7 @@ class Client:
         try:
             self.mutex.acquire()
             self.client.send(pickle.dumps(msg))
-<<<<<<< HEAD:utils/communication/Client.py
-            raw_data = self.client.recv(8048)
-=======
             raw_data = self.client.recv(8000)
->>>>>>> master:In_out/network/Client.py
             data = ""
             if raw_data != b'':
                 data = pickle.loads(raw_data)

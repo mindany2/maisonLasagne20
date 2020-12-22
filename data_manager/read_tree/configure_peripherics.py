@@ -18,7 +18,7 @@ from In_out.network.PC import PC
 from In_out.utils.ST_nucleo import ST_nucleo
 from In_out.utils.Port_extender import Port_extender
 
-from In_out.spotify.Spotify import Spotify
+from In_out.sound.spotify.Spotify import Spotify
 
 
 def config_peripherics(getter):

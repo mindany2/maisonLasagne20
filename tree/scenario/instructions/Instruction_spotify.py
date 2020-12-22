@@ -1,6 +1,6 @@
 import numpy as np
 from tree.scenario.instructions.Instruction import Instruction
-from In_out.spotify.Spotify import Spotify
+from In_out.sound.spotify.Spotify import Spotify
 from time import sleep
 from tree.utils.Logger import Logger
 from enum import Enum

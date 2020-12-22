@@ -27,7 +27,7 @@ class Port_extender:
     def write_pin(self, ip, register, numero, valeur):
         self.mutex.acquire()
         data =  self.i2c.read_reg(ip, register)
-        if not(data):
+        if data == None:
             self.mutex.release()
             return
         data = binbits(data,8)

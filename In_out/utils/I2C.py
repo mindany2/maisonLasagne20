@@ -18,7 +18,7 @@ class I2C:
         try:
             self.bus.write_byte_data(ip, register, data)
         except Exception as e:
-            Logger.error("I2C error : "+str(e))
+            Logger.error("I2C write reg error : "+str(e))
         sleep(0.1) # to make sure all the infos are sent
         self.mutex.release()
 
@@ -28,7 +28,7 @@ class I2C:
         try:
             self.bus.write_i2c_block_data(ip, 0, data)
         except Exception as e:
-            Logger.error("I2C error : "+str(e))
+            Logger.error("I2C write data error : "+str(e))
             self.mutex.release()
             return 1
         sleep(0.1)
@@ -41,7 +41,7 @@ class I2C:
         try:
             data = self.bus.read_byte_data(ip, register)
         except Exception as e:
-            Logger.error("I2C error : "+str(e))
+            Logger.error("I2C read reg error : "+str(e))
             self.mutex.release()
             return None
         sleep(0.1)

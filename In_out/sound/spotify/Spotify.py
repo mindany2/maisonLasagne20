@@ -3,8 +3,8 @@ import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials
 from tree.utils.Logger import Logger
 from In_out.utils.Secrets import Secrets
-from In_out.spotify.Player import Player
-from In_out.spotify.Track import Track
+from In_out.sound.spotify.Player import Player
+from In_out.sound.spotify.Track import Track
 from tree.Tree import Tree
 from threading import Thread
 from time import sleep

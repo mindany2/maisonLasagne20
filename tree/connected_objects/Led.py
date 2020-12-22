@@ -19,14 +19,12 @@ class Led(Lamp):
     def connect(self):
         if not(self.connected):
             if self.color.is_black() and not(self.force):
-                print("led {} want relay on".format(self.name))
                 self.set_state(True)
                 sleep(1)
             self.connected = self.controler.connect()
             if not(self.connected):
                 # the led is out of order
                 Logger.info("The led {} is out of order".format(self.name))
-                print("led {} want relay off")
                 self.set_state(False)
             else:
                 Logger.info("Connected to {}".format(self.name))
@@ -40,7 +38,6 @@ class Led(Lamp):
             sleep(0.5)
             self.controler.disconnect(is_black = self.color.is_black())
             if self.color.is_black() and not(self.force):
-                print("led {} want relay off".format(self.name))
                 self.set_state(False)
             self.connected = False
 

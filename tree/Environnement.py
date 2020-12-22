@@ -133,6 +133,7 @@ class Environnement:
         return self.calculator
 
     def press_inter(self, name_inter, state):
+        print(self.name)
         self.get_preset_select().press_inter(name_inter, state)
         # also press it also in all the sub-environnements
         for env in self.list_sub_env:

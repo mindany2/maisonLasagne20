@@ -18,8 +18,7 @@ class Instruction_power(Instruction_light):
         self.light.lock()
         super().run()
         self.state = self.eval(self.state)
-        if self.light.state() != (self.state):
-            self.light.set_state(self.state)
+        self.light.set_state(self.state)
         self.light.unlock()
  
     def __str__(self):

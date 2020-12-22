@@ -31,12 +31,9 @@ class Connection(Locker):
         """
         while (time() - self.timeout) < TIME_OUT:
             sleep(1)
-<<<<<<< HEAD:In_out/communication/Connection.py
-=======
         self.disconnect()
 
     def disconnect(self):
->>>>>>> master:In_out/network/Connection.py
         if self.client:
             self.client.disconnect()
         self.client = None

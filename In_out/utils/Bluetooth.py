@@ -51,13 +51,10 @@ class Bluetooth:
 
     @classmethod
     def restart(self):
-<<<<<<< HEAD
-=======
         """
         Restart the bluetooth of the rpi 
         NEEDED FOR LONG TIME RUNNING RPI
         """
->>>>>>> master
         self.mutex_reset.acquire()
         if not(self.reset):
             Logger.info("Want to reset the bluetooth")

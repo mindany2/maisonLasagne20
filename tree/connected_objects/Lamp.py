@@ -14,6 +14,7 @@ class Lamp(Connected_object):
         self.invert = invert
         self.force = False
         self.connected = False
+        self.state = STATE.OFF
 
     def connect(self):
         if not(self.connected):
@@ -42,18 +43,15 @@ class Lamp(Connected_object):
         if self.invert:
             on_off = not(on_off)
 
-        if on_off:
-            state = STATE.ON
-        else:
-            state = STATE.OFF
-        self.relay.set(state)
-
-    def state(self):
-        return self.relay.state == STATE.ON
+        state = [STATE.OFF, STATE.ON][bool(on_off)]
+        if state != self.state:
+            self.relay.set(state)
+            self.state = state
 
     def reload(self, other):
         if isinstance(other, Lamp):
-            self.force == other.force
+            self.force = other.force
+            self.state = other.state
 
     def __eq__(self, other):
         if isinstance(other, Lamp):

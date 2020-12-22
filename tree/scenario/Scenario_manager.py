@@ -1,5 +1,6 @@
 from tree.utils.List import List
 from tree.scenario.Scenario import MARKER
+from threading import Lock
 
 class Scenario_manager:
     """
@@ -16,13 +17,14 @@ class Scenario_manager:
 
         self.current_scenar = None
 
+        self.mutex = Lock()
+
     def initialize(self, scenar_init):
         self.scenario_select = scenar_init
         self.current_scenar = scenar_init
         self.current_scenar.set_state(True)
 
     def do_current_scenar(self):
-        print(self.current_scenar.name)
         self.current_scenar.do()
 
     def do(self, scenar):
@@ -31,18 +33,22 @@ class Scenario_manager:
         self.current_scenar = scenar
         self.current_scenar.set_state(True)
         self.current_scenar.do()
+        print(self.current_scenar.name)
 
     def do_scenar_principal(self, scenar):
         """
         This method is call to modifie the principal scenario of the environnement
         """
+        self.mutex.acquire()
         if not(self.scenario_select):
             # manager not initialize
             # i could append with linked scenarios
+            self.mutex.release()
             return 
         if scenar.get_marker() == MARKER.NONE:
             # none scenario are just invisible
             scenar.do()
+            self.mutex.release()
             return
         elif scenar.get_marker() != MARKER.OFF:
             # if it is ON
@@ -58,18 +64,22 @@ class Scenario_manager:
                 # do the top of the stack if it is not empty
                 self.do(self.top())
         self.scenario_select = scenar
+        self.mutex.release()
 
     def do_scenar_secondary(self, scenar):
         """
         This method is call to modifie secondaries scenarios to and in the stack
         """
+        self.mutex.acquire()
         if scenar.get_marker() == MARKER.NONE:
             # null scenario are just invisible
             scenar.do()
+            self.mutex.release()
             return
         self.stack.append(scenar)
         if self.scenario_select.get_marker() == MARKER.OFF:
             self.do(scenar)
+        self.mutex.release()
 
     def get_scenar_select(self):
         return self.scenario_select
@@ -100,8 +110,10 @@ class Scenario_manager:
         """
         Call to remove a scenario for the stack
         """
+        self.mutex.acquire()
         if scenar.get_marker() == MARKER.NONE:
             # none scenario are just invisible
+            self.mutex.release()
             return
         try:
             self.stack.remove(scenar)
@@ -113,6 +125,7 @@ class Scenario_manager:
                 self.do(self.scenario_select)
             else:
                 self.do(self.top())
+        self.mutex.release()
 
     def top(self):
         return self.stack[-1]

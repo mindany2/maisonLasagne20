@@ -18,16 +18,13 @@ class Relay:
         self.mutex.acquire()
         # if there are more than one light in this relay
         # need to be sure all of them is down
-        print("set relay to {}, nb_objects = {}".format(state, self.nb_objects))
         if self.nb_objects <= 1:
             if self.state != state:
-                print("change state")
                 self.state = state
                 assert(isinstance(self.state, STATE))
                 self.reload()
         self.nb_objects += (2*state.value) - 1
         assert(self.nb_objects >=0)
-        print("new nb objects = {}".format(self.nb_objects))
         self.mutex.release()
 
     def reload(self):
