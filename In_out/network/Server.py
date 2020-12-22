@@ -19,9 +19,9 @@ class Server:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         try:
-            self.socket.bind((self.ip_address, self.port))
+            self.socket.bind(("", self.port))
         except socket.error as e:
-            print(str(e))
+            Logger.error(str(e))
 
         self.socket.listen(2)
         self.started = False
