@@ -28,16 +28,16 @@ class Client:
         hello = self.connect()
         while hello == None:
             hello = self.connect()
+            sleep(5)
         Logger.debug("hello msg : " + hello)
 
     def connect(self):
-        self.client.connect(self.addr)
         try:
+            self.client.connect(self.addr)
             self.connected = True
             return pickle.loads(self.client.recv(8000)) # maybe need to up this value
         except :
             Logger.error("The connection to the server failed")
-            sleep(5)
 
     def send(self, msg):
         try:

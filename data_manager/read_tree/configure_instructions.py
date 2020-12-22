@@ -151,8 +151,8 @@ def get_inst_interrupt(env, name, delay, duration, args, synchro):
         conn = manager.get_connection(str(name))
     except NameError as e:
         name.raise_error(str(e))
-    conn.add_output_interrupt(str(args))
     name_inter, state = args.split(",", 2)
+    conn.add_output_interrupt(str(name_inter))
     return Instruction_interrupt(env.get_calculator(), conn, name_inter, state, delay, synchro)
 
 def get_inst_button_sec(env, name, delay, duration, args, synchro):
