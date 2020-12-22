@@ -13,10 +13,11 @@ class Connection(Locker):
     """
     Store connection informations for a network device
     """
-    def __init__(self, name, addr):
+    def __init__(self, name, addr, me):
         Locker.__init__(self)
         self.name = name
         self.addr = addr
+        self.me = me
         self.client = Client(self.addr)
         self.timeout = 0
         # list of all interrupt press TO the remote device
@@ -32,7 +33,7 @@ class Connection(Locker):
 
     def send_interrupt(self, name, state):
         if name in self.output_interrupts:
-            self.send(Network_interrupt(self.client.get_device_ip(), name, state))
+            self.send(Network_interrupt(self.me, name, state))
 
     def press_inter(self, getter, name, state):
         if name in self.input_interrrupts.keys():
@@ -44,11 +45,14 @@ class Connection(Locker):
     def initialize(self):
         if self.output_interrupts:
             # check if the interrupts exist remotely
-            all_inter = self.send(Get_network_interrupt(self.client.get_device_ip()))
+            all_inter = self.send(Get_network_interrupt(self.me))
             if all_inter:
-                for inter in self.output_interrupts:
-                    if inter not in all_inter:
-                        Logger.error("No link to the interrupt {} for {}".format(inter, self.name))
+                if isinstance(all_inter, list):
+                    for inter in self.output_interrupts:
+                        if inter not in all_inter:
+                            Logger.error("No link to the interrupt {} for {}".format(inter, self.name))
+                else:
+                    Logger.error("Exception during interrupt initialization on {} : {}".format(self.name, all_inter))
             else:
                 Logger.error("No connection or interrupt to {} at {}".format(self.name, self.addr))
 

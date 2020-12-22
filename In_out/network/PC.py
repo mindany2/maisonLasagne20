@@ -17,8 +17,8 @@ class PC(Connection):
     Launch Main_PC_control.py
     """
     
-    def __init__(self, name, addr_mac, addr_ip):
-        Connection.__init__(self, name, addr_ip)
+    def __init__(self, name, addr_mac, addr_ip, me):
+        Connection.__init__(self, name, addr_ip, me)
         self.addr_mac = addr_mac
         self.addr_ip = addr_ip
 

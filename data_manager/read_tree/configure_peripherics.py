@@ -29,6 +29,10 @@ def config_peripherics(getter):
     """
     config = File_yaml(getter, "data/config_tree.yaml")
 
+    # ME
+    name = config.get_str("ME", mandatory=True)
+    getter.get_manager().set_name(name)
+
     # BOARDS
     config.get("BOARDS", get_boards)
 
@@ -85,11 +89,13 @@ def get_network(network_list):
         type_con = connection.get_str("type", mandatory = True)
         if type_con == "rpi":
             manager.set_connection(Rpi(connection.get_str("name", mandatory = True),
-                                       connection.get_str("ip", mandatory = True)))
+                                       connection.get_str("ip", mandatory = True),
+                                       manager.get_name()))
         elif type_con == "pc":
             manager.set_connection(PC(connection.get_str("name", mandatory = True),
                                       connection.get_str("mac", mandatory = True),
-                                      connection.get_str("ip", mandatory = True)))
+                                      connection.get_str("ip", mandatory = True),
+                                      manager.get_name()))
 
 def get_boards(boards):
     boards.get("ST_nucleos", get_st)
