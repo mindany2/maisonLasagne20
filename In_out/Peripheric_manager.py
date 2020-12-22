@@ -49,6 +49,12 @@ class Peripheric_manager:
         if conn: return conn
         raise(NameError("The connection to {} is not configured".format(name)))
 
+    def get_connection_by_ip(self, ip):
+        for conn in self.connections.values():
+            if conn.addr == ip:
+                return conn
+        raise(NameError("The connection to {} is not configured".format(ip)))
+
     def get_dmx(self):
         if self.dmx: return self.dmx
         raise(NameError("There are no dmx network configured"))
