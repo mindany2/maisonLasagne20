@@ -4,18 +4,15 @@ from data_manager.utils.file_manager import list_folders, list_files
 
 from tree.utils.Color import Color
 
-from web_app.buttons.Line_buttons import Line_buttons
-from web_app.buttons.Button import Button
-from web_app.buttons.Mode import Mode
-
 PATH = "/data"
 
 def config_html(getter, path):
     # go to each environnement and find every define html line
     # and store it in the getter
-    get_modes(getter, path)
 
-    get_lines(getter, path+ PATH + "/environnements", "global")
+    get_icons(getter, path+ PATH + "/environnements", "global")
+
+    get_pages(getter, path)
 
     print(getter)
 
@@ -28,7 +25,7 @@ def get_modes(getter, path):
             getter.add_mode(Mode(name))
 
 
-def get_lines(getter, path, env_name):
+def get_pages(getter, path, env_name):
     for preset in list_files(path+"/presets"):
         get_line(getter, path+"/presets/"+preset, env_name,preset.split(".yaml")[0])
 
