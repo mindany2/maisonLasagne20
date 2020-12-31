@@ -13,8 +13,11 @@ class Instruction_interrupt(Instruction):
         self.connection = connection
 
     def run(self, barrier):
+        self.connection.lock()
         super().run()
-        self.connection.send_interrupt(str(self.name), self.eval(self.state))
+        if not(self.connection.test()):
+            self.connection.send_interrupt(str(self.name), self.eval(self.state))
+        self.connection.unlock()
 
     def __str__(self):
         string = super().__str__()

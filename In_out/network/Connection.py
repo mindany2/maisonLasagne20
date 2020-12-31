@@ -33,6 +33,7 @@ class Connection(Locker):
 
     def send_interrupt(self, name, state):
         if name in self.output_interrupts:
+            Logger.info("send {}:{} to {}".format(name, state, self.name))
             self.send(Network_interrupt(self.me, name, state))
 
     def press_inter(self,getter, name, state):
@@ -57,13 +58,11 @@ class Connection(Locker):
                 Logger.error("No connection or interrupt to {} at {}".format(self.name, self.addr))
 
     def send(self, message):
-        self.lock()
         self.timeout = time()
         if not(self.client.state()):
             self.client.connect()
             Thread(target=self.check_for_disconnection).start()
         data = self.client.send(message)
-        self.unlock()
         return data
 
     def check_for_disconnection(self):

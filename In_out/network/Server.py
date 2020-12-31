@@ -40,7 +40,7 @@ class Server:
 
     def threaded_client(self, conn):
         conn.send(pickle.dumps("hello"))
-        while True:
+        while self.started:
             try:
                 content = conn.recv(8000)
                 if len(content) == 0:

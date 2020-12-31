@@ -63,8 +63,7 @@ class List_interrupts_extender:
                 try:
                     self.list_inter.get(i).press()
                 except KeyError:
-                    print(list(self.list_inter.keys()))
-                    Logger.info("This pin haven't any interrupt")
+                    Logger.info("This pin haven't any interrupt on board :\n {}".format(str(self)))
 
     def __str__(self):
         string = "port : {} | register : {} | gpio : {}\n".format(self.port_bus, self.add_register, self.port_interrupt)
