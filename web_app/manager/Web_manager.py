@@ -1,6 +1,7 @@
 from In_out.network.Client import Client
 from tree.utils.Dico import Dico
 from tree.utils.List_radio import List_radio
+from In_out.network.messages.get.Get_states import Get_states
 
 class Web_manager:
     """
@@ -10,24 +11,39 @@ class Web_manager:
         self.client = Client()
 
         self.list_pages = List_radio()
-        self.list_modes = Dico()
 
     def add_page(self, page):
         self.list_pages.add(page)
 
-    def add_mode(self, name_mode, page):
-        self.list_modes.add(name_mode, page)
+    def start(self):
+        self.client.start()
 
     def get_active_page(self):
         return self.list_pages.selected()
 
+    def get_page(self, name):
+        return self.list_pages.get(name)
+
     def press_button(self, section, button):
-        print(section, button)
-        button = self.get_active_page().get_section(section).get_button(button)
-        button.press()
+        section = self.get_active_page().get_section(section)
+        button = section.get_icon(button)
+        button.press(self.client, "{}.{}.".format(self.get_active_page().name, section.name))
 
     def pack(self):
         # setup the actual page
+        datas = self.client.send(Get_states())
+        print(datas)
+        # datas contains all the state of the icons
+        for page in self.list_pages:
+            for section in page.get_sections():
+                for icon in section.get_icons():
+                    try:
+                        selected = datas["{}.{}.{}".format(page.name, section.name, icon.name)]
+                        icon.change_state(True)
+                        icon.change_selected(selected)
+                    except KeyError:
+                        icon.change_state(False)
+
         self.get_active_page().pack()
 
 

@@ -14,7 +14,7 @@ from web_app.App import App
 manager = Web_manager()
 config_html(manager, PATH)
 
-manager.build()
+manager.start()
 
 app = App(manager, PATH)
 

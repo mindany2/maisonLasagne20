@@ -41,7 +41,6 @@ class Section:
             if icon.get_state():
                 if icon.get_lenght() > decal%(self.lenght-1)+1:
                     decal += self.lenght-(decal%self.lenght)
-                print(decal)
                 icon.pack(decal//self.lenght, decal%self.lenght)
                 decal += icon.get_lenght()
 

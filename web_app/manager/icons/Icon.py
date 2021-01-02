@@ -1,4 +1,6 @@
 from enum import Enum
+from tree.utils.Logger import Logger
+import re
 
 class TYPE_ICON(Enum):
     button = "image"
@@ -8,12 +10,16 @@ class Icon:
     """
     This is an icon on the html page
     """
-    def __init__(self, name, index = 100, lenght = 1):
+    def __init__(self, name, env=None, index = None, lenght = None):
         self.name = name
-        self.index = index
-        self.lenght = lenght
+        self.index = 100 if index is None else index
+        self.lenght = 1 if lenght is None else lenght
         self.style = None
         self.state = True
+        # some icon can be selected (like button)
+        self.selected = False
+        # the link to the env in the tree
+        self.env = env
 
     def get_index(self):
         return self.index
@@ -24,8 +30,11 @@ class Icon:
     def get_state(self):
         return self.state
 
-    def set_state(self, state):
+    def change_state(self, state):
         self.state = state
+
+    def change_selected(self, selected):
+        self.selected = selected
 
     def get_lenght(self):
         return self.lenght

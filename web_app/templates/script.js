@@ -4,11 +4,9 @@ function change(id)
         javascript_data: id 
     },
     function(data){
-        if (!data){
-            document.location.reload();
-        }
         //TODO reload the page without the html
     });
+    document.location.reload();
 }
 
 function reload()

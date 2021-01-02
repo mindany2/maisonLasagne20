@@ -58,6 +58,7 @@ class Server:
                 data = requete.do(self.getter)
             except Exception as e:
                 Logger.error("Exception during requete : "+str(e))
+                raise(e)
                 data = str(e)
 
             try:

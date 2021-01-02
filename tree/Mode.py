@@ -10,13 +10,23 @@ class Mode:
         self.state = False
         self.name_scenar_init = scenar_init
         self.scenar_init = None
+        self.inters = []
 
     def initialize(self):
         if self.name_scenar_init:
             self.scenar_init = self.name_scenar_init.get_scenarios()
 
+    def add_inter(self, name):
+        self.inters.append(name)
+
+    def get_inters(self):
+        return self.inters
+
     def change_state(self, state):
         self.state = state
+
+    def get_state(self):
+        return self.state
 
     def do_scenar_init(self):
         if self.state and self.scenar_init:

@@ -11,13 +11,16 @@ class Get_states(Message):
         return a dict with all the preset active and all there active buttons
         also with the mode selected
         """
-        active_preset = {"mode": getter.get_tree().get_current_mode().name}
+        # get current mode buttons 
+        all_states = {}
+        for mode in getter.get_tree().get_modes():
+            for inter in mode.get_inters():
+                all_states[inter] =  mode.get_state()
         list_envs = getter.get_tree().get_list_envs()
-        for name_env in list_envs.keys():
-            preset = list_envs.get(name_env).get_preset_select()
-            list_active_buttons = [button.name for button in preset.get_buttons() if button.state()]
-            active_preset[name_env+"."+preset.name] = list_active_buttons
-        return active_preset
+        for env in list_envs:
+            for button in env.get_preset_select().get_buttons():
+                all_states[button.name] = button.state()
+        return all_states
 
 
 

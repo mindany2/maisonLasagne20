@@ -18,9 +18,8 @@ class App:
         @self.site.route('/press_button', methods = ['POST'])
         def press_button():
             jsdata = request.form['javascript_data']
-            section, button = jsdata.split(".")
+            section, button = jsdata.split(",")
             self.manager.press_button(section, button)
-            self.manager.pack()
             # TODO send to the js infos to no reload the page
             return {}
 
