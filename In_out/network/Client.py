@@ -38,6 +38,7 @@ class Client:
             return pickle.loads(self.client.recv(8000)) # maybe need to up this value
         except :
             Logger.error("The connection to the server failed")
+            return None
 
     def send(self, msg):
         try:
