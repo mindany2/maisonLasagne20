@@ -1,4 +1,5 @@
 from enum import Enum
+from In_out.utils.I2C import I2C
 from time import sleep
 from threading import Lock, Thread
 from tree.utils.Dico import Dico
@@ -30,7 +31,10 @@ class ST_nucleo:
             self.port = None
 
         self.name = name
-        self.mutex = Lock()
+        # the i2c bus that control the relay can out of order the st nucleo
+        # if it is used at the same time (probably some interferrences)
+        # so I used the same mutex
+        self.mutex = I2C.mutex
         self.addr = addr
         self.list_boards_triak = Dico()
 

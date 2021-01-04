@@ -38,14 +38,14 @@ class DAX66:
             self.mutex.release()
             return True
 
-
     def disconnect(self):
         self.port = None
 
     def send(self, zone, action, value):
-        if not(self.port):
-            return
         self.mutex.acquire()
+        if not(self.port):
+            self.mutex.release()
+            return
         self.port.write(("<1" + str(zone) + action.value + (value < 10)*"0" +  str(value) + "\r").encode('ascii') + bytes(0x0d))
 
         self.port.readline()# useless

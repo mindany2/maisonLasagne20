@@ -19,9 +19,9 @@ class Server:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         try:
-            self.socket.bind((self.ip_address, self.port))
+            self.socket.bind(("", self.port))
         except socket.error as e:
-            print(str(e))
+            Logger.error(str(e))
 
         self.socket.listen(2)
         self.started = False
@@ -40,12 +40,14 @@ class Server:
 
     def threaded_client(self, conn):
         conn.send(pickle.dumps("hello"))
-        while True:
+        while self.started:
             try:
-                requete = pickle.loads(conn.recv(8000))
+                content = conn.recv(8000)
+                if len(content) == 0:
+                    continue
+                requete = pickle.loads(content)
             except Exception as e: 
-                Logger.error("Exception during request")
-                Logger.error(e)
+                Logger.error("Exception during request : "+str(e))
                 break
             data = None
             if not requete:

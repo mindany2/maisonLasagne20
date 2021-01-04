@@ -16,8 +16,9 @@ class Amp_6_channels(Amp):
 
     def connect(self):
         # time for the amp to setup the speakers
-        sleep(2)
-        return self.bus.connect()
+        sleep(3)
+        connected = self.bus.connect()
+        return connected
 
     def disconnect(self):
         self.bus.disconnect()

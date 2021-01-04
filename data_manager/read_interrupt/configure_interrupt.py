@@ -36,7 +36,7 @@ def get_inter(config, name_env):
             getter.add_interrupt(Interrupt_GPIO(name, name_env, pin, getter.get_client()))
         elif str(type_int) == "cron":
             getter.add_interrupt(Interrupt_cron(name, name_env, args, getter.get_client()))
-        else:
+        elif str(type_int) != "network":
             type_int.raise_error("Type inter {} not found".format(str(type_int)))
 
 

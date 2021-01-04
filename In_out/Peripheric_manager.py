@@ -7,13 +7,22 @@ class Peripheric_manager:
     def __init__(self):
         self.list_boards_relay = []
         self.dmx = None
+        self.name = None
         self.port_extender = None
         self.spotify = None
         self.amps = {}
         self.st_nucleos = {}
         self.connections = {}
 
+    def initialize(self):
+        if self.spotify:
+            self.spotify.initialize()
+        for conn in self.connections.values():
+            conn.initialize()
+
     # SET
+    def set_name(self, name):
+        self.name = name
 
     def set_connection(self, connection):
         self.connections[connection.name] = connection
@@ -38,10 +47,19 @@ class Peripheric_manager:
 
     # GET 
 
+    def get_name(self):
+        return self.name
+
     def get_connection(self, name):
         conn = self.connections[name]
         if conn: return conn
         raise(NameError("The connection to {} is not configured".format(name)))
+
+    def get_connection_by_ip(self, ip):
+        for conn in self.connections.values():
+            if conn.addr == ip:
+                return conn
+        raise(NameError("The connection to {} is not configured".format(ip)))
 
     def get_dmx(self):
         if self.dmx: return self.dmx

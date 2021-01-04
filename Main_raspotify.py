@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
-from utils.communication.Client import Client
-from utils.communication.interrupt.Spotify_inter import Spotify_inter
+from In_out.network.Client import Client
+from In_out.network.messages.interrupt.Spotify_inter import Spotify_inter
 from time import sleep
 
 event = os.environ.get("PLAYER_EVENT")
@@ -15,4 +15,7 @@ if volume:
     volume = float(volume)/VOLUME_MAX*100
 
 client = Client()
-client.send(Spotify_inter(event, volume, track, position))
+client.start()
+data = client.send(Spotify_inter(event, volume, track, position))
+if data:
+    print(data)

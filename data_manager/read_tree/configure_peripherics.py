@@ -1,4 +1,5 @@
 from data_manager.utils.File_yaml import File_yaml
+from data_manager.utils.Secrets import Secrets
 
 from In_out.Peripheric_manager import Peripheric_manager
 
@@ -18,7 +19,7 @@ from In_out.network.PC import PC
 from In_out.utils.ST_nucleo import ST_nucleo
 from In_out.utils.Port_extender import Port_extender
 
-from In_out.spotify.Spotify import Spotify
+from In_out.sound.spotify.Spotify import Spotify
 
 
 def config_peripherics(getter):
@@ -27,6 +28,10 @@ def config_peripherics(getter):
     to setup the Peripheric_manager
     """
     config = File_yaml(getter, "data/config.yaml")
+
+    # ME
+    name = config.get_str("ME", mandatory=True)
+    getter.get_manager().set_name(name)
 
     # BOARDS
     config.get("BOARDS", get_boards)
@@ -46,10 +51,11 @@ def get_sound(sound):
     spotify = sound.get("Spotify")
     if spotify:
         manager.set_spotify(Spotify(spotify.get_str("name", mandatory = True),
+                                    Secrets(sound.get_getter()).get_spotify_secret(),
                                     spotify.get_str("pi_id", mandatory = True),
-                                    spotify.get_str("scenar_start"),
-                                    spotify.get_str("scenar_stop"),
-                                    spotify.get_str("scenar_volume"),
+                                    spotify.get("scenar_start"),
+                                    spotify.get("scenar_stop"),
+                                    spotify.get("scenar_volume"),
                                     spotify.get_int("analysis"),
                                     spotify.get_int("volume_init")))
     amps = sound.get("Amps")
@@ -83,11 +89,13 @@ def get_network(network_list):
         type_con = connection.get_str("type", mandatory = True)
         if type_con == "rpi":
             manager.set_connection(Rpi(connection.get_str("name", mandatory = True),
-                                       connection.get_str("ip", mandatory = True)))
+                                       connection.get_str("ip", mandatory = True),
+                                       manager.get_name()))
         elif type_con == "pc":
             manager.set_connection(PC(connection.get_str("name", mandatory = True),
                                       connection.get_str("mac", mandatory = True),
-                                      connection.get_str("ip", mandatory = True)))
+                                      connection.get_str("ip", mandatory = True),
+                                      manager.get_name()))
 
 def get_boards(boards):
     boards.get("ST_nucleos", get_st)

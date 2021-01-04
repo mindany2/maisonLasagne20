@@ -5,7 +5,7 @@ from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy
 
 from tree.scenario.instructions.utils.Delay import Delay
 from tree.scenario.instructions import Instruction_button, TYPE_BUTTON, Instruction_trap, TYPE_INST_TRAP
-from tree.scenario.instructions import Instruction_spotify, TYPE_INST_SPOTIFY, Instruction_variable
+from tree.scenario.instructions import Instruction_spotify, TYPE_INST_SPOTIFY, Instruction_variable, Instruction_interrupt
 from tree.scenario.instructions.light import Instruction_color, Instruction_dimmer, Instruction_force, Instruction_power, Instruction_speaker
 from tree.scenario.instructions.light.dmx import Instruction_color_wheel, Instruction_gobo, Instruction_position, Instruction_program
 from tree.scenario.instructions.light.dmx import Instruction_speed, Instruction_strombo
@@ -116,7 +116,7 @@ def get_inst_variable(env, name, delay, duration, args, synchro):
     try:
         variable = name.get_getter().get_var(env, str(name))
         assert(isinstance(variable, Variable))
-    except NameError as e:
+    except (NameError, KeyError) as e:
         name.raise_error(str(e))
     except AssertionError:
         name.raise_error("The instruction variable is only available for {}".format(Variable))
@@ -143,7 +143,17 @@ def get_inst_spotify(env, name, delay, duration, args, synchro):
     except KeyError:
         args.raise_error("Spotify action {} not define this is the allowed keys :\n {}".
                         format(str(args), [arg.name for arg in TYPE_INST_SPOTIFY]))
-    return Instruction_spotify(env.get_calculator(), type_inst, delay, synchro)
+    return Instruction_spotify(env.get_calculator(), name.get_spotify(), type_inst, delay, synchro)
+
+def get_inst_interrupt(env, name, delay, duration, args, synchro):
+    manager = name.get_getter().get_manager()
+    try:
+        conn = manager.get_connection(str(name))
+    except NameError as e:
+        name.raise_error(str(e))
+    name_inter, state = args.split(",", 2)
+    conn.add_output_interrupt(str(name_inter))
+    return Instruction_interrupt(env.get_calculator(), conn, name_inter, state, delay, synchro)
 
 def get_inst_button_sec(env, name, delay, duration, args, synchro):
     return Instruction_button(env.get_calculator(), name, TYPE_BUTTON.secondary, delay, args, synchro)
@@ -155,6 +165,7 @@ def get_inst_button_prin(env, name, delay, duration, args, synchro):
 TYPE = {"button_secondary" : get_inst_button_sec,
         "button_principal" : get_inst_button_prin,
         "spotify": get_inst_spotify,
+        "interrupt": get_inst_interrupt,
         "trap" : get_inst_trap,
         "variable": get_inst_variable,
         "pc" : get_inst_pc,

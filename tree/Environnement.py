@@ -77,7 +77,6 @@ class Environnement:
                 self.change_preset_select(new_preset)
 
     def do_current_scenar(self):
-        print(self.name)
         self.get_preset_select().do_current_scenar()
         # do it in all the sub-envs
         for env in self.list_sub_env:
