@@ -7,11 +7,11 @@ class Preset:
     """
     Store a list of scenario, and a list of insterrupt to run them
     """
-    def __init__(self, name):
+    def __init__(self, name, name_env):
         self.name = name
         self.list_scenario = List()
         self.buttons = List()
-        self.manager = Scenario_manager()
+        self.manager = Scenario_manager("{}.{}".format(name_env, name))
         self.state = False
 
     def add_button(self, button):
@@ -66,7 +66,6 @@ class Preset:
             scenar.initialize()
 
     def do_current_scenar(self):
-        print(self.name)
         self.manager.do_current_scenar()
 
     def reload(self, other):

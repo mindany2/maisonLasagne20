@@ -18,9 +18,14 @@ def config_tree(getter):
     #print(getter.get_tree())
 
 def get_modes(getter):
-    for mode in File_yaml(getter, PATH+"/config_tree.yaml").get("MODES", mandatory = True):
-        scenar_init = mode.get("scenar_init")
-        getter.get_tree().add_mode(Mode(mode.get_str("name"), scenar_init))
+    for mode in File_yaml(getter, PATH+"/config.yaml").get("MODES", mandatory = True):
+        scenar_init = mode.get("scenario_init")
+        current = Mode(mode.get_str("name", mandatory=True), scenar_init)
+        getter.get_tree().add_mode(current)
+        html = mode.get("html")
+        if html:
+            for inter in html:
+                current.add_inter(inter.get_str("name",mandatory=True))
 
     
 

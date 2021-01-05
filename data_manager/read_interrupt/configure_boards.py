@@ -7,7 +7,7 @@ def configure_boards(getter):
     Read the config file in data
     to setup the Peripheric_manager
     """
-    config = File_yaml(getter, "data/config_tree.yaml")
+    config = File_yaml(getter, "data/config.yaml")
 
     # BOARDS
     config.get("BOARDS", get_boards)

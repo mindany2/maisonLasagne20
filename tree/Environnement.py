@@ -66,7 +66,7 @@ class Environnement:
 
         try:
             new_preset = self.list_presets_chosen.get(mode.name)
-        except KeyError:
+        except KeyError as e:
             # the env haven't a preset selected for this mode, just keep the actual
             return
         if new_preset:

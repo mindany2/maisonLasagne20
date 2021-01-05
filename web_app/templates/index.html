@@ -3,24 +3,19 @@
 {% block content %}
 
 
-<div>
-    <div> 
-        <input onclick="change(id)" type="button" style=""
-                            value={{manager.get_current_mode().name}} id={{"mode-"+manager.get_current_mode().name}}></input>
-    </div>
-
-    {% for line in manager.get_lines() %}
-        <div>
-            <label style="{{line.get_style()}}">{{ line.name.split(".")[1] }}</label>
-        </div>
-        <div>
-            {% for button in line.get_buttons() %}
-                <input onclick="change(id)" type="button" style="{{button.get_style()}}"
-                            value={{button.name}} id={{line.name + "-"+button.name}}></input>
+<div style="{{manager.get_active_page().get_style()}}">
+    {% for section in manager.get_active_page().get_sections() %}
+        <div style="{{section.get_style()}}">
+            {% for icon in section.get_icons() %}
+                {% if icon.get_type() == TYPE_ICON.button %}
+                    <input onclick="change(id)" type="image" style="{{icon.get_style()}}"
+                            src={{url_for('static', filename=icon.get_image())}} id={{section.name + ","+icon.name}}></input>
+                {% elif icon.get_type() == TYPE_ICON.text %}
+                    <p style="{{icon.get_style()}}">{{icon.get_text()}}</p>
+                {% endif %}
             {% endfor %}
         </div>
     {% endfor %}
-
 </div>
 
 {% endblock %}

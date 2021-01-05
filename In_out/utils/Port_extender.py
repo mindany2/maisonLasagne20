@@ -17,6 +17,7 @@ class Port_extender:
     """
     def __init__(self):
         self.i2c = I2C()
+        self.i2c.start()
         self.mutex = Lock()
 
     def write(self, ip, register, data):

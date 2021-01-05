@@ -25,6 +25,7 @@ class Color:
         self.value = color.value
 
     def int_to_rgb(self):
+        self.value = '0x{0:0{1}X}'.format(int(self.value,16),6)
         self.r = int("0x"+self.value[2:4].zfill(2),16)
         self.g = int("0x"+self.value[4:6].zfill(2),16)
         self.b = int("0x"+self.value[6:8].zfill(2),16)

@@ -7,7 +7,7 @@ from tree.utils.Dico import Dico
 from threading import Thread
 from time import sleep,time
 
-TIME_OUT = 10 #s
+TIME_OUT = 1 #s
 
 class Connection(Locker):
     """
@@ -61,8 +61,12 @@ class Connection(Locker):
     def send(self, message):
         self.timeout = time()
         if not(self.client.state()):
-            self.client.connect()
-            Thread(target=self.check_for_disconnection).start()
+            if self.client.connect():
+                Logger.info("Connect from {}".format(self.name))
+                Thread(target=self.check_for_disconnection).start()
+            else:
+                Logger.error("Could not connect to {} at {}".format(self.name, self.addr))
+                return
         data = self.client.send(message)
         return data
 
@@ -71,7 +75,8 @@ class Connection(Locker):
         check if the connection exceed the TIME_OUT since the last send
         """
         while (time() - self.timeout) < TIME_OUT:
-            sleep(1)
+            sleep(0.1)
+        Logger.info("Disconnect from {}".format(self.name))
         self.disconnect()
 
     def disconnect(self):

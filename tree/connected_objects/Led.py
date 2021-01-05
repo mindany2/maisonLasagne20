@@ -24,7 +24,7 @@ class Led(Lamp):
             self.connected = self.controler.connect()
             if not(self.connected):
                 # the led is out of order
-                Logger.info("The led {} is out of order".format(self.name))
+                Logger.error("The led {} is out of order".format(self.name))
                 self.set_state(False)
             else:
                 Logger.info("Connected to {}".format(self.name))

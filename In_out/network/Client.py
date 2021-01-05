@@ -32,12 +32,17 @@ class Client:
         Logger.debug("hello msg : " + hello)
 
     def connect(self):
+        self.mutex.acquire()
         try:
             self.client.connect(self.addr)
             self.connected = True
-            return pickle.loads(self.client.recv(8000)) # maybe need to up this value
+            data = pickle.loads(self.client.recv(8000)) # maybe need to up this value
+            self.mutex.release()
+            return  data
         except :
             Logger.error("The connection to the server failed")
+            self.mutex.release()
+            return None
 
     def send(self, msg):
         try:
@@ -52,14 +57,17 @@ class Client:
 
         except socket.error as e:
             Logger.error(e)
+            self.mutex.release()
 
     def state(self):
         return self.connected
 
     def disconnect(self):
-        self.send("kill me")
+        data = self.send("kill me")
+        self.mutex.acquire()
         self.connected = False
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.mutex.release()
         
 
 

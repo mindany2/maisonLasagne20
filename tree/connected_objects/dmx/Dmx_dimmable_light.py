@@ -16,19 +16,20 @@ class Dmx_dimmable_light(Lamp):
             self.dmx.set(CHANNEL.dimmer, value)
         self.dimmer = value
 
-    def set(self, on_off):
-        super().set(on_off)
-        # TODO
-        """
-        if value == True:
+    def connect(self):
+        if self.dimmer == 0:
+            super().set_state(True)
             # need to wait before the light is initialise
             sleep(4)
-        """
+
+    def disconnect(self):
+        if self.dimmer == 0:
+            super().set_state(False)
 
     def lock_dimmer(self):
         super().lock()
         if self.dimmer == 0:
-            self.set(1)
+            self.set_state(1)
 
     def test_dimmer(self):
         return super().test()
@@ -36,7 +37,7 @@ class Dmx_dimmable_light(Lamp):
     def unlock_dimmer(self):
         super().unlock()
         if self.dimmer == 0:
-            self.set(0)
+            self.set_state(0)
 
     def reload(self, other):
         if isinstance(other, Dmx_dimmable_light):

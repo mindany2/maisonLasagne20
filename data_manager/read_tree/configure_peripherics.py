@@ -27,7 +27,7 @@ def config_peripherics(getter):
     Read the config file in data
     to setup the Peripheric_manager
     """
-    config = File_yaml(getter, "data/config_tree.yaml")
+    config = File_yaml(getter, "data/config.yaml")
 
     # ME
     name = config.get_str("ME", mandatory=True)
