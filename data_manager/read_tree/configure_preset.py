@@ -15,7 +15,7 @@ def get_presets(getter, env, path):
     for preset_yaml in list_files(path):
         name = preset_yaml.split(".")[0]
         file = File_yaml(getter, "{}/{}".format(path, preset_yaml))
-        preset = Preset(name)
+        preset = Preset(name, env.name)
 
         # Scenarios
         file.get("Scenarios", get_scenarios, args = [preset, env])

@@ -20,4 +20,3 @@ app = App(manager, PATH)
 
 application = app.get_site()
 
-application.run()

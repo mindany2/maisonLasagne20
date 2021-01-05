@@ -19,7 +19,7 @@ def config_tree(getter):
 
 def get_modes(getter):
     for mode in File_yaml(getter, PATH+"/config.yaml").get("MODES", mandatory = True):
-        scenar_init = mode.get("scenar_init")
+        scenar_init = mode.get("scenario_init")
         current = Mode(mode.get_str("name", mandatory=True), scenar_init)
         getter.get_tree().add_mode(current)
         html = mode.get("html")

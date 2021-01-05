@@ -13,7 +13,6 @@ class Icon_button(Icon):
         self.color_off = color_off
 
     def pack(self, i, j):
-        print(self.selected)
         self.style = Style(grid = True, position=(i,j), size=(1,self.lenght), width=100,
                 background_color = [self.color_off, self.color_on][self.selected])
 

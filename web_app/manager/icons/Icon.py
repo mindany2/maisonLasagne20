@@ -32,6 +32,7 @@ class Icon:
 
     def change_state(self, state):
         self.state = state
+        print(self)
 
     def change_selected(self, selected):
         self.selected = selected
@@ -46,4 +47,4 @@ class Icon:
         raise(AttributeError("Need to setup the style in subclass"))
 
     def __str__(self):
-        return "{} : lenght={}".format(self.name, self.lenght)
+        return "{} : lenght={}, state={}, selected={}".format(self.name, self.lenght, self.state, self.selected)

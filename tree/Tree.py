@@ -23,6 +23,7 @@ class Tree:
         raise(NameError("Could not find the mode {} in the tree".format(name_mode)))
 
     def change_mode(self, name_mode):
+        Logger.info("Change mode : {} => {}".format(self.list_modes.selected().name, name_mode))
         mode_select = self.get_mode(name_mode)
         self.list_modes.change_select(mode_select)
         self.global_environnement.change_mode(mode_select)

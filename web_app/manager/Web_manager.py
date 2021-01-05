@@ -36,13 +36,14 @@ class Web_manager:
         # datas contains all the state of the icons
         for page in self.list_pages:
             for section in page.get_sections():
-                for icon in section.get_icons():
+                for icon in section.get_list_icons():
                     try:
                         selected = datas["{}.{}.{}".format(page.name, section.name, icon.name)]
                         icon.change_state(True)
                         icon.change_selected(selected)
-                    except KeyError:
+                    except KeyError as e:
                         icon.change_state(False)
+                        print(e, icon)
 
         self.get_active_page().pack()
 

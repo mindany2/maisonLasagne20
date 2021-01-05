@@ -68,5 +68,4 @@ class Style:
         retour += "margin-right : {}px;".format(self.margin[1])
         if self.bg_image: # != None
             retour += "background-image : {};".format(self.bg_image)
-        print(retour)
         return retour

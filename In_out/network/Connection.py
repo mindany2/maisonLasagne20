@@ -61,6 +61,7 @@ class Connection(Locker):
         self.timeout = time()
         if not(self.client.state()):
             if self.client.connect():
+                Logger.info("Connect from {}".format(self.name))
                 Thread(target=self.check_for_disconnection).start()
             else:
                 Logger.error("Could not connect to {} at {}".format(self.name, self.addr))
@@ -74,9 +75,8 @@ class Connection(Locker):
         """
         while (time() - self.timeout) < TIME_OUT:
             sleep(0.1)
-        self.lock()
+        Logger.info("Disconnect from {}".format(self.name))
         self.disconnect()
-        self.unlock()
 
     def disconnect(self):
         self.client.disconnect()

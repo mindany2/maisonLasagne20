@@ -6,15 +6,15 @@ class Section:
     """
     This is an html section
     """
-    def __init__(self, name, index=100, title = None, lenght = 3, background_color = "", text_color= ""):
+    def __init__(self, name, index=None, title = None, lenght = None, background_color = "", text_color= ""):
+        self.index = 100 if index is None else index
+        self.lenght = 100 if lenght is None else lenght
         self.name = name
         self.title = None
-        self.index = index
         if title:
             self.title = Icon_title(name, title, index=0, lenght=lenght, color=text_color)
         self.list_icons = List()
         self.background_color = background_color
-        self.lenght = lenght
         self.style = None
 
     def add_icon(self, icon):
@@ -37,6 +37,7 @@ class Section:
             self.title.pack(0,0)
             decal += self.lenght
         # decalage due to icon size
+        print(self.list_icons)
         for icon in sorted(list(self.list_icons), key = lambda x : x.get_index()):
             if icon.get_state():
                 if icon.get_lenght() > decal%(self.lenght-1)+1:
@@ -47,8 +48,14 @@ class Section:
     def get_style(self):
         return self.style
 
+    def get_list_icons(self):
+        return self.list_icons
+
     def get_icons(self):
-        return list(self.list_icons)+[self.title]
+        list_active = [icon for icon in self.list_icons if icon.get_state()]
+        if list_active:
+            return list_active+[self.title]
+        return []
 
 
 
