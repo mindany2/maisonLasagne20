@@ -74,7 +74,7 @@ def get_laser(getter, name, sub_type, relay_triak, addr):
 def get_lyre(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
         addr.raise_error("The {} need an dmx address".format(name))
-    return Lyre(name, relay_triak.get_relay(), Dmx_device(getter.get_dmx(), str(addr)))
+    return Lyre(name, relay_triak.get_relay(), Dmx_device(getter.get_dmx(), int(addr)))
 
 def get_strombo(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):

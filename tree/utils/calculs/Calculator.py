@@ -29,7 +29,10 @@ class Calculator:
                         if var not in ("False", "True", "not", "randint"):
                             # replace the var_name by it's value
                             string = string.replace(var,"self.get_value(\"{}\",expression)".format(var))
-            return eval(string)
+            try:
+                return eval(string)
+            except SyntaxError as e:
+                expression.raise_error(str(e))
                 
         return 0
 

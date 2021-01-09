@@ -7,4 +7,4 @@ class Set_relay(Message):
         self.value = value
 
     def do(self, getter):
-        getter.get_manager().get_relais(self.addr[0], self.addr[1]).set(self.value)
+        getter.get_manager().get_relay(self.addr[0], self.addr[1]).set(self.value)
