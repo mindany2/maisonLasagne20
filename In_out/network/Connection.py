@@ -37,6 +37,7 @@ class Connection(Locker):
             self.send(Network_interrupt(self.me, name, state))
 
     def press_inter(self,getter, name, state):
+        Logger.info("receive {}:{} from {}".format(name, state, self.name))
         if name in self.input_interrrupts.keys():
             getter.get_tree().press_inter(self.input_interrrupts.get(name), name, state)
 

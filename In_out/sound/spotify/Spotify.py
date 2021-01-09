@@ -68,6 +68,7 @@ class Spotify:
     def refresh_token(self):
         self.token = util.prompt_for_user_token(self.name,
                                 SCOPE,
+                                cache_path = ".spotipy-cache",
                                 client_id = self.secrets.get_str("client_id", mandatory=True),
                                 client_secret = self.secrets.get_str("client_secret", mandatory=True),
                                 redirect_uri = 'http://localhost:8888/callback')
@@ -134,9 +135,8 @@ class Spotify:
     def kill(self):
         try:
             self.sp.pause_playback(self.pi_id)
-        except spotipy.exceptions.SpotifyException:
-            self.refresh_token()
-            self.kill()
+        except spotipy.exceptions.SpotifyException as e:
+            os.system("sudo systemctl restart raspotify.service")
         self.state = False
 
     def start(self, attemps = 0):
