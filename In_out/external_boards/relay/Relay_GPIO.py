@@ -21,4 +21,4 @@ class Relay_GPIO(Relay):
         GPIO.output(self.pin,(self.state.value * GPIO.LOW) + (not(self.state.value) *  GPIO.HIGH))
 
     def __str__(self):
-        return self.pin
+        return str(self.pin)

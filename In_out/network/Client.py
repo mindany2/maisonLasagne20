@@ -50,6 +50,7 @@ class Client:
             self.client.send(pickle.dumps(msg))
             lenght = int(pickle.loads(self.client.recv(4096)))
             raw_data = b"".join([self.client.recv(4096) for i in range(0,lenght, 4096)])
+            data = ""
             if raw_data != b'':
                 data = pickle.loads(raw_data)
                 if type(data) == Exception:

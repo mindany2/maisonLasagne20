@@ -57,7 +57,7 @@ class List_interrupts_extender:
         data = self.bus.read(self.port_bus,0x12 + self.add_register)
         if data == ['0']*8 or data == ['1']*8 or data == None:
             return
-        Logger.info("interrupt {} : {}:{}".format(self.port_interrupt, self.port_bus, self.add_register))
+        Logger.info("interrupt {} : {}:{} data={}".format(self.port_interrupt, self.port_bus, self.add_register, data))
         for i,pin in enumerate(data):
             # check if the pin is up
             #TODO need to change for the radar..
