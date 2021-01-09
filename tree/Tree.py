@@ -23,6 +23,7 @@ class Tree:
         raise(NameError("Could not find the mode {} in the tree".format(name_mode)))
 
     def change_mode(self, name_mode):
+        Logger.info("Change mode : {} => {}".format(self.list_modes.selected().name, name_mode))
         mode_select = self.get_mode(name_mode)
         self.list_modes.change_select(mode_select)
         self.global_environnement.change_mode(mode_select)
@@ -51,9 +52,15 @@ class Tree:
     def get_list_envs(self):
         return self.global_environnement.get_list_envs()
 
+    def get_modes(self):
+        return self.list_modes
+
     def press_inter(self, name_env, name_inter, state):
         Logger.info("press inter {}, state = {}, env = {}".format(name_inter, state, name_env))
-        self.get_env(name_env).press_inter(name_inter, state)
+        if name_env.split(".")[0] == "mode":
+            self.change_mode(name_env.split(".")[1])
+        else:
+            self.get_env(name_env).press_inter(name_inter, state)
 
     def get_scenar(self, name_env, name_scenar, preset=None):
         return self.get_env(name_env).get_scenar(name_scenar, preset)

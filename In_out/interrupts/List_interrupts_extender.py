@@ -1,5 +1,6 @@
 from In_out.utils.Port_extender import Port_extender
 from tree.utils.Dico import Dico
+from time import sleep
 from tree.utils.Logger import Logger
 try:
     import RPi.GPIO as GPIO
@@ -35,7 +36,7 @@ class List_interrupts_extender:
         self.bus.write(self.port_bus, 0x0c + self.add_register, 0x00)
 
         # IODIR = setup like input
-        self.bus.write(self.port_bus, 0x00 + self.add_register, 0xff)
+        self.bus.write(self.port_bus, 0x00 + self.add_register, 0x00)
 
         # IOCON =
         self.bus.write(self.port_bus, 0x0a + self.add_register, 0x02)
@@ -46,22 +47,26 @@ class List_interrupts_extender:
         GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt)
 
     def add(self, inter, index):
-        self.list_inter.add(index,inter)
+        self.list_inter.add(index, inter)
+        self.bus.write_pin(self.port_bus, 0x00 + self.add_register, index+1, 0)
 
     def get_inter(self, name):
-        for inter in self.list_inter:
-            if inter.name == name:
-                return inter
-        return None
+        return self.list_inter.get(name)
 
     def detect_interrupt(self, event):
-        for i,pin in enumerate(self.bus.read(self.port_bus,0x12 + self.add_register)):
+        data = self.bus.read(self.port_bus,0x12 + self.add_register)
+        if data == ['0']*8 or data == ['1']*8 or data == None:
+            return
+        Logger.info("interrupt {} : {}:{}".format(self.port_interrupt, self.port_bus, self.add_register))
+        for i,pin in enumerate(data):
             # check if the pin is up
             #TODO need to change for the radar..
             if int(pin) == 1:
                 Logger.info("pin {} is on".format(i))
                 try:
                     self.list_inter.get(i).press()
+                    sleep(1)
+                    return
                 except KeyError:
                     Logger.info("This pin haven't any interrupt on board :\n {}".format(str(self)))
 

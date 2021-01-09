@@ -1,3 +1,5 @@
+from threading import Thread
+
 class Peripheric_manager:
     """
     This is a class that store all the differents peripheric
@@ -18,7 +20,7 @@ class Peripheric_manager:
         if self.spotify:
             self.spotify.initialize()
         for conn in self.connections.values():
-            conn.initialize()
+            Thread(target=conn.initialize).start()
 
     # SET
     def set_name(self, name):

@@ -21,7 +21,9 @@ class Reader:
         return [Reader(self.getter, arg, self.path_file, self.line+i, add_line = self.add_line) for i,arg in enumerate(self.start)].__iter__()
 
     def __str__(self):
-        return str(self.start)
+        if self.start:
+            return str(self.start)
+        return ""
 
     def __int__(self):
         if self.start == None:
@@ -61,7 +63,10 @@ class Reader:
                 self.raise_error("The argument {} need to be an interger".format(arg))
 
     def get_str(self, arg, mandatory = False):
-        return str(self.get(arg, mandatory = mandatory))
+        reader = self.get(arg, mandatory = mandatory)
+        if reader:
+            return str(reader)
+        return None
 
     def get_path(self):
         return self.path_file

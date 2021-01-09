@@ -25,11 +25,6 @@ class Dico:
     def last(self):
         return list(self.list.values())[-1]
 
-    def sort(self):
-        # return a sorted list of the elements
-        return sorted(list(self.list.values()))
-
-
     def get_key(self, element):
         for key in self.list.keys():
             if self.list[key] == element:
@@ -44,6 +39,9 @@ class Dico:
 
     def is_empty(self):
         return self.list == {}
+
+    def zip(self):
+        return zip(self.keys(), self.__iter__())
 
     def clear(self):
         self.list = {}

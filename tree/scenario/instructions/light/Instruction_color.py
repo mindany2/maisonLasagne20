@@ -27,10 +27,11 @@ class Instruction_color(Instruction_light):
             dimmer_initial = self.light.dimmer
             color = Color(self.eval(self.color))
             if self.eval(self.duration) == 0:
-                if self.light.connect():
-                    super().run(time_spent=(time()-delay))
-                    self.light.set_color(dimmer_final, color.value)
-                    self.light.disconnect()
+                if dimmer_final != dimmer_initial and color != self.light.color:
+                    if self.light.connect():
+                        super().run(time_spent=(time()-delay))
+                        self.light.set_color(dimmer_final, color.value)
+                        self.light.disconnect()
                 return
 
             nb_dots = RESOLUTION*self.eval(self.duration)

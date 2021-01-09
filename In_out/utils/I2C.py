@@ -4,22 +4,26 @@ from time import sleep, time
 from tree.utils.Logger import Logger
 
 class I2C:
-    try:
-        bus = SMBus(1)
-        sleep(0.5)
-    except:
-        Logger.warn("Could not found i2c bus")
+
     mutex = Lock()
-    temps_reset = time()
+
+    @classmethod
+    def start(self):
+        try:
+            self.bus = SMBus(1)
+            sleep(0.5)
+        except Exception as e:
+            Logger.warn("Could not found i2c bus : "+str(e))
 
     @classmethod
     def write_reg(self, ip, register, data):
         self.mutex.acquire()
+        Logger.debug("write reg i2c")
         try:
             self.bus.write_byte_data(ip, register, data)
         except Exception as e:
             Logger.error("I2C write reg error : "+str(e))
-        sleep(0.1) # to make sure all the infos are sent
+        sleep(0.01) # to make sure all the infos are sent
         self.mutex.release()
 
     @classmethod
@@ -31,7 +35,7 @@ class I2C:
             Logger.error("I2C write data error : "+str(e))
             self.mutex.release()
             return 1
-        sleep(0.1)
+        sleep(0.01)
         self.mutex.release()
         return 0
 
@@ -44,7 +48,7 @@ class I2C:
             Logger.error("I2C read reg error : "+str(e))
             self.mutex.release()
             return None
-        sleep(0.1)
+        sleep(0.01)
         self.mutex.release()
         return data
 

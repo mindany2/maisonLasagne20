@@ -1,12 +1,13 @@
 from tree.utils.List import List
 from tree.scenario.Scenario import MARKER
 from threading import Lock
+from tree.utils.Logger import Logger
 
 class Scenario_manager:
     """
     Manage the scenario order
     """
-    def __init__(self):
+    def __init__(self, name):
         # the scenario selecter :
         #   this is the choice of the environnement, only a principal button can change it's value
         #   if this scenario is OFF, the top secondary scenario in the stack is done
@@ -14,6 +15,8 @@ class Scenario_manager:
         self.scenario_select = None
         # store in order secondaries scenarios
         self.stack = []
+
+        self.name = name
 
         self.current_scenar = None
 
@@ -25,6 +28,7 @@ class Scenario_manager:
         self.current_scenar.set_state(True)
 
     def do_current_scenar(self):
+        Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
         self.current_scenar.do()
 
     def do(self, scenar):
@@ -33,7 +37,7 @@ class Scenario_manager:
         self.current_scenar = scenar
         self.current_scenar.set_state(True)
         self.current_scenar.do()
-        print(self.current_scenar.name)
+        Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
 
     def do_scenar_principal(self, scenar):
         """
@@ -119,7 +123,7 @@ class Scenario_manager:
             self.stack.remove(scenar)
         except ValueError:
             pass
-        if self.current_scenar is scenar: # is is the current_scenar
+        if self.current_scenar is scenar: # it is the current_scenar
             # do the appropriate scenario
             if len(self.stack) == 0 or self.scenario_select.get_marker() != MARKER.OFF:
                 self.do(self.scenario_select)
