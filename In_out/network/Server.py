@@ -55,6 +55,9 @@ class Server:
                 break
             if requete == "kill me":
                 Logger.info("demande de kill")
+                data = pickle.dumps("ok")
+                conn.send(pickle.dumps(len(data)))
+                conn.send(data)
                 break
             try:
                 data = requete.do(self.getter)

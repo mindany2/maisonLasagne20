@@ -96,7 +96,10 @@ class Environnement:
     def get_env(self, path):
         if path:
             # it is in a sub-environnement
-            return self.list_sub_env.get(path[0]).get_env(path[1:])
+            try:
+                return self.list_sub_env.get(path[0]).get_env(path[1:])
+            except KeyError as e:
+                raise(KeyError("Could not found an env like {} in {}".format(path[0], self.name)))
         return self
 
     def get_object(self, name):
