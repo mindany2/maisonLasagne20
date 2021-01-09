@@ -4,6 +4,7 @@ from data_manager.utils.file_manager import list_folders, list_files
 from web_app.manager.Page import Page
 from web_app.manager.Section import Section
 from web_app.manager.icons.Icon_button import Icon_button
+from web_app.manager.icons.Icon_redirect import Icon_redirect
 
 from tree.utils.Color import Color
 
@@ -52,12 +53,14 @@ def get_page(manager, path, name):
     # get static icons
     icons = file.get("Static_icons")
     if icons:
-        for icon in icon:
+        for icon in icons:
             section, name = icon.get_str("section", mandatory=True), icon.get_str("name", mandatory=True)
             page.get_section(section).add_icon(get_icon(name, icon))
 
 def get_section(section, page):
     name, title = section.get_str("name", mandatory=True), section.get_str("title")
+    print("kkkkkkkkkkkkkkkk")
+    print(title, type(title))
     lenght, index = section.get_int("lenght"), section.get_int("index")
     background_color, text_color = section.get_str("background_color"), section.get_str("text_color")
     return Section(name, index = index, title = title, lenght = lenght,
@@ -92,6 +95,11 @@ def get_icon(name, icon, env=None):
         if str(env) == None:
             env.raise_error("A button need to have a link to an environnement")
         return Icon_button(name, str(env), image, color_on, color_off, index = index, lenght=lenght)
+
+    elif str(type_icon) == "redirection":
+        image, background_color = icon.get_str("background_image", mandatory=True), icon.get_str("background_color")
+        link = icon.get_str("link", mandatory=True)
+        return Icon_redirect(name, image, link, background_color= background_color, index = index, lenght=lenght)
 
     type_icon.raise_error("Type icon unknown")
 

@@ -12,6 +12,8 @@ class Section:
         self.name = name
         self.title = None
         if title:
+            print("ooooooooooooooooooo")
+            print(title, type(title))
             self.title = Icon_title(name, title, index=0, lenght=lenght, color=text_color)
         self.list_icons = List()
         self.background_color = background_color
@@ -54,7 +56,10 @@ class Section:
     def get_icons(self):
         list_active = [icon for icon in self.list_icons if icon.get_state()]
         if list_active:
-            return list_active+[self.title]
+            if self.title:
+                list_active += [self.title]
+                print(self.title)
+            return list_active
         return []
 
 

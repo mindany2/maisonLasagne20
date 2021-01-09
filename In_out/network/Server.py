@@ -42,7 +42,7 @@ class Server:
         conn.send(pickle.dumps("hello"))
         while self.started:
             try:
-                content = conn.recv(8000)
+                content = conn.recv(4096)
                 if len(content) == 0:
                     continue
                 requete = pickle.loads(content)
@@ -60,11 +60,12 @@ class Server:
                 data = requete.do(self.getter)
             except Exception as e:
                 Logger.error("Exception during requete : "+str(e))
-                raise(e)
-                data = str(e)
+                data = e
 
             try:
-                conn.send(pickle.dumps(data))
+                byte_data = pickle.dumps(data)
+                conn.send(pickle.dumps(len(byte_data)))
+                conn.send(byte_data)
             except Exception as e:
                 Logger.error("Exception during response send: ")
                 Logger.error(e)

@@ -12,6 +12,8 @@
                             src={{url_for('static', filename=icon.get_image())}} id={{section.name + ","+icon.name}}></input>
                 {% elif icon.get_type() == TYPE_ICON.text %}
                     <p style="{{icon.get_style()}}">{{icon.get_text()}}</p>
+                {% elif icon.get_type() == TYPE_ICON.link %}
+                    <a href="http://{{icon.get_link()}}"><img src={{url_for('static', filename=icon.get_image())}} style="{{icon.get_style()}}"></a>
                 {% endif %}
             {% endfor %}
         </div>

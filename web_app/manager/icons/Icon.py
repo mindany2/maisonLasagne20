@@ -4,6 +4,7 @@ import re
 
 class TYPE_ICON(Enum):
     button = "image"
+    link = 2
     text = 0
 
 class Icon:

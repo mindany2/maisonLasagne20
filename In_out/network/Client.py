@@ -28,7 +28,7 @@ class Client:
         hello = self.connect()
         while hello == None:
             hello = self.connect()
-            sleep(5)
+            sleep(0.1)
         Logger.debug("hello msg : " + hello)
 
     def connect(self):
@@ -36,7 +36,7 @@ class Client:
         try:
             self.client.connect(self.addr)
             self.connected = True
-            data = pickle.loads(self.client.recv(8000)) # maybe need to up this value
+            data = pickle.loads(self.client.recv(4096))
             self.mutex.release()
             return  data
         except :
@@ -48,10 +48,12 @@ class Client:
         try:
             self.mutex.acquire()
             self.client.send(pickle.dumps(msg))
-            raw_data = self.client.recv(8000)
-            data = ""
+            lenght = int(pickle.loads(self.client.recv(4096)))
+            raw_data = b"".join([self.client.recv(4096) for i in range(0,lenght, 4096)])
             if raw_data != b'':
                 data = pickle.loads(raw_data)
+                if type(data) == Exception:
+                    raise(data)
             self.mutex.release()
             return data
 

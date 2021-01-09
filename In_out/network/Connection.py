@@ -44,6 +44,7 @@ class Connection(Locker):
         return list(self.input_interrrupts.keys())
 
     def initialize(self):
+        return
         if self.output_interrupts:
             # check if the interrupts exist remotely
             all_inter = self.send(Get_network_interrupt(self.me))
