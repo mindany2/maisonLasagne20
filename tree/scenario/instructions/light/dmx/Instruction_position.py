@@ -8,13 +8,14 @@ class Instruction_position(Instruction_light):
     """
     Change position of a lyre
     """
-    def __init__(self, calculator, light, position_final, duration, delay, synchro):
+    def __init__(self, calculator, light, x, y, duration, delay, synchro):
         Instruction_light.__init__(self, calculator, light, duration, delay, synchro)
-        self.position_final = position_final
+        self.x, self.y = x, y
 
     def initialize(self):
         super().initialize()
-        self.eval(self.position_final)
+        self.eval(self.x)
+        self.eval(self.y)
 
     def run(self, barrier):
         """
@@ -26,7 +27,7 @@ class Instruction_position(Instruction_light):
             delay = time()
  
             x_init, y_init = self.light.get_position()
-            x_final, y_final = self.eval(self.position_final)
+            x_final, y_final = self.eval(self.x), self.eval(self.y)
             if self.duration == 0:
                 return
             nb_points = RESOLUTION*self.duration

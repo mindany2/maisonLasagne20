@@ -58,7 +58,7 @@ def get_inst_program(env, name, delay, duration, args, synchro):
 def get_inst_position(env, name, delay, duration, args, synchro):
     light = name.get_object(env, Lyre)
     pan, tilt = args.split(",")
-    return Instruction_position(env.get_calculator(), light, (pan, tilt), duration, delay, synchro)
+    return Instruction_position(env.get_calculator(), light, pan, tilt, duration, delay, synchro)
 
 def get_inst_gobo(env, name, delay, duration, args, synchro):
     light = name.get_object(env, Lyre)

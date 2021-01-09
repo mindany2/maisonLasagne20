@@ -32,7 +32,7 @@ class Instruction_dimmer(Instruction_light):
             self.light.connect()
             super().run(time_spent=(time()-delay))
             if gap != 0 and self.duration == 0:
-                self.light.set(dimmer_final)
+                self.light.set_dimmer(dimmer_final)
                 return
             barrier.wait()
             val = dimmer_initial
