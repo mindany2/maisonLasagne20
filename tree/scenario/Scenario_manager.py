@@ -29,7 +29,9 @@ class Scenario_manager:
 
     def do_current_scenar(self):
         Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
+        self.mutex.acquire()
         self.current_scenar.do()
+        self.mutex.release()
 
     def do(self, scenar):
         # start the scenario

@@ -102,7 +102,7 @@ class Bluetooth:
                 periph = None
                 self.mutex_disconnect.release()
             except BrokenPipeError as e:
-                Logger.error("Bluetooth disconnection error : "+e)
+                Logger.error("Bluetooth disconnection error : "+str(e))
             self.mutex_connect.acquire()
             self.nb_connection -= 1
             self.mutex_connect.release()
