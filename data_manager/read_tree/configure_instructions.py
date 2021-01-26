@@ -10,7 +10,7 @@ from tree.scenario.instructions import Instruction_mode
 from tree.scenario.instructions.light import Instruction_color, Instruction_dimmer, Instruction_force, Instruction_power, Instruction_speaker
 from tree.scenario.instructions.light.dmx import Instruction_color_wheel, Instruction_gobo, Instruction_position, Instruction_program
 from tree.scenario.instructions.light.dmx import Instruction_speed, Instruction_strombo
-from tree.scenario.instructions.communication.Instruction_PC import Instruction_PC, ACTIONS
+from tree.scenario.instructions.Instruction_PC import Instruction_PC, ACTIONS
 
 from tree.connected_objects import Led, Dimmable_light, Lamp, Speakers, Trap, BULD
 from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo

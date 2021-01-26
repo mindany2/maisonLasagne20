@@ -1,7 +1,7 @@
 # /etc/default/raspotify -- Arguments/configuration for librespot
 
 # Device name on Spotify Connect
-DEVICE_NAME="Maison"
+DEVICE_NAME="<Name of the rpi on spotify app>"
 
 # Bitrate, one of 96 (low quality), 160 (default quality), or 320 (high quality)
 #BITRATE="160"
@@ -18,7 +18,7 @@ DEVICE_NAME="Maison"
 # To choose a different output device (ie a USB audio dongle or HDMI audio out),
 # use `--device` with something like `--device hw:0,1`. Your mileage may vary.
 #
-OPTIONS="--username 1128167915 --password rpi_maison --onevent /home/pi/maison/Main_raspotify.py"
+OPTIONS="--username <your id there> --password <your password> --onevent /home/pi/maison/Main_raspotify.py"
 
 # Uncomment to use a cache for downloaded audio files. Cache is disabled by
 # default. It's best to leave this as-is if you want to use it, since
