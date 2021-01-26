@@ -12,17 +12,17 @@ See the data wiki for more informations.
 
 # Installation
 In a rpi, just do :
-'''bash
+```bash
 sudo ./setup.sh
-'''
+```
 Then, reboot your rpi and try 
-'''bash
+```bash
 ./see_log_tree.sh
-'''
+```
 To relaunch the process just
-'''bash
+```bash
 ./launch.sh
-'''
+```
 for spotify, st_nucleo, or pc installation see the wiki
 
 setup pc_control:
