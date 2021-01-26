@@ -18,7 +18,6 @@ class I2C:
     @classmethod
     def write_reg(self, ip, register, data):
         self.mutex.acquire()
-        Logger.debug("write reg i2c")
         try:
             self.bus.write_byte_data(ip, register, data)
         except Exception as e:

@@ -7,8 +7,8 @@ from enum import Enum
 from threading import Thread
 
 class ACTIONS(Enum):
-    allumer = 0
-    eteindre = 1
+    power_on = 0
+    power_off = 1
     key = 2
     mouse = 3
 
@@ -26,13 +26,14 @@ class PC(Connection):
         Logger.info("On allume le PC "+self.nom)
         os.system("sudo etherwake -i eth0 "+self.addr_mac)
 
-    def etat(self):
+    def state(self):
+        print("ping {}".format(self))
         return os.system("ping -c 1 " + self.addr_ip) == 0
 
     def connect(self):
         # on l'allume s'il était eteint
         self.lock()
-        if not(self.etat()):
+        if not(self.state()):
             self.start()
             sleep(75)
         # le serveur python devrait être lancé automatiquement au démarrage

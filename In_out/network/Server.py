@@ -73,7 +73,6 @@ class Server:
                 conn.send(pickle.dumps(len(byte_data)))
                 sleep(0.01)
                 conn.send(byte_data)
-                print(data)
             except Exception as e:
                 Logger.error("Exception during response send: ")
                 Logger.error(e)
