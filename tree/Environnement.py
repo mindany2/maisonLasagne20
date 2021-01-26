@@ -99,7 +99,8 @@ class Environnement:
             try:
                 return self.list_sub_env.get(path[0]).get_env(path[1:])
             except KeyError as e:
-                raise(KeyError("Could not found an env like {} in {}".format(path[0], self.name)))
+                raise(KeyError("Could not found an env like {} in {}".format(".".join(path), self.name)))
+
         return self
 
     def get_object(self, name):
@@ -161,8 +162,8 @@ class Environnement:
         string += "".join(["|  {} => {}\n".format(mode, self.list_presets_chosen.get(mode).name) for mode in self.list_presets_chosen.keys()])
         string += "".join("-Objects\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.list_objects).split("\n")])
-        string += "".join("-Presets\n")
-        string += "".join(["|  {}\n".format(string) for string in str(self.list_presets).split("\n")])
+        string += "".join("-Current_preset\n")
+        string += "".join(["|  {}\n".format(string) for string in str(self.get_preset_select()).split("\n")])
         string += "".join("-Variables\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.calculator).split("\n")])
         string += "".join("-Sub-environnements\n")

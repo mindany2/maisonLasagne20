@@ -29,7 +29,9 @@ class Scenario_manager:
 
     def do_current_scenar(self):
         Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
+        self.mutex.acquire()
         self.current_scenar.do()
+        self.mutex.release()
 
     def do(self, scenar):
         # start the scenario
@@ -144,8 +146,8 @@ class Scenario_manager:
         return self.current_scenar.get_marker()
 
     def __str__(self):
-        string = "principal : {} {}\n".format(self.scenario_select.name, self.scenario_select.state())
-        string += "current : {} {}\n".format(self.current_scenar.name, self.current_scenar.state())
+        string = "principal : {}\n".format(self.scenario_select.name)
+        string += "current : {}\n".format(self.current_scenar.name)
         string += "stack : "+", ".join([ scenar.name for scenar in self.stack])
         return string
 

@@ -1,7 +1,9 @@
 import socket
 import pickle
+import traceback
 from tree.Tree import Tree
 from threading import Thread
+from time import sleep
 import io
 import sys, traceback
 from tree.utils.Logger import Logger
@@ -62,13 +64,16 @@ class Server:
             try:
                 data = requete.do(self.getter)
             except Exception as e:
-                Logger.error("Exception during requete : "+str(e))
-                data = e
+                trace = traceback.format_exc()
+                Logger.error("Exception during requete : "+trace + str(e))
+                data = trace+str(e)
 
             try:
                 byte_data = pickle.dumps(data)
                 conn.send(pickle.dumps(len(byte_data)))
+                sleep(0.01)
                 conn.send(byte_data)
+                print(data)
             except Exception as e:
                 Logger.error("Exception during response send: ")
                 Logger.error(e)

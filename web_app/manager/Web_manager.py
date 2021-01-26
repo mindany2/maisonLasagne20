@@ -9,7 +9,6 @@ class Web_manager:
     """
     def __init__(self):
         self.client = Client()
-
         self.list_pages = List_radio()
 
     def add_page(self, page):
@@ -31,6 +30,7 @@ class Web_manager:
 
     def pack(self):
         # setup the actual page
+        print("request data")
         datas = self.client.send(Get_states())
         print(datas)
         # datas contains all the state of the icons
