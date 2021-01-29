@@ -66,9 +66,11 @@ class Bluetooth:
                 sleep(1)
 
             # on restart le bluetooth
+            self.mutex_disconnect.acquire()
             os.system("sudo systemctl restart bluetooth")
             Logger.info("Bluetooth restart")
             sleep(20)
+            self.mutex_disconnect.release()
             self.mutex_reset.acquire()
             self.reset = False
         self.mutex_reset.release()
@@ -103,6 +105,7 @@ class Bluetooth:
                 self.mutex_disconnect.release()
             except BrokenPipeError as e:
                 Logger.error("Bluetooth disconnection error : "+str(e))
+                self.restart()
             self.mutex_connect.acquire()
             self.nb_connection -= 1
             self.mutex_connect.release()
