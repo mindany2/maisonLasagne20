@@ -122,7 +122,8 @@ class Spotify:
             # on set le nv volume
             print("nv volume = "+str(volume))
             if abs(volume-self.volume) > 20:
-                self.scenar_volume.do()
+                if self.scenar_volume:
+                    self.scenar_volume.do()
                 self.volume = volume
 
         elif status == "change":
