@@ -6,6 +6,7 @@ from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy
 from tree.scenario.instructions.utils.Delay import Delay
 from tree.scenario.instructions import Instruction_button, TYPE_BUTTON, Instruction_trap, TYPE_INST_TRAP
 from tree.scenario.instructions import Instruction_spotify, TYPE_INST_SPOTIFY, Instruction_variable, Instruction_interrupt
+from tree.scenario.instructions import Instruction_mode
 from tree.scenario.instructions.light import Instruction_color, Instruction_dimmer, Instruction_force, Instruction_power, Instruction_speaker
 from tree.scenario.instructions.light.dmx import Instruction_color_wheel, Instruction_gobo, Instruction_position, Instruction_program
 from tree.scenario.instructions.light.dmx import Instruction_speed, Instruction_strombo
@@ -94,23 +95,23 @@ def get_inst_color(env, name, delay, duration, args, synchro):
     return Instruction_color(env.get_calculator(), light, dimmer, duration, delay, synchro, color)
 
 def get_inst_pc(env, name, delay, duration, args, synchro):
-    match = re.match(r'(?P<action>([^\(]*))\((?P<args>([^\)]*))\)', args)
+    match = re.match(r'(?P<action>([^\(]*))\((?P<args>([^\)]*))\)', str(args))
     if not(match):
         args.raise_error("Could not match the action, try this syntax : mouse(200,300) or key(space)")
     try:
         action = ACTIONS[match.group("action")]
-        args = match.group("args")
+        args = match.group("args").split(",")
     except KeyError:
         args.raise_error("PC action {} not define this is the allowed keys :\n {}".
                         format(str(args), [arg.name for arg in ACTIONS]))
     try:
-        pc = get_connection(str(name))
+        pc = name.get_getter().get_manager().get_connection(str(name))
         assert(isinstance(pc, PC))
     except NameError as e:
         name.raise_error(str(e))
     except AssertionError:
         name.raise_error("The instruction pc is only available for {}".format(PC))
-    return Instruction_trap(env.get_calculator(), pc, action, args, duration, delay, synchro)
+    return Instruction_PC(env.get_calculator(), pc, action, args, duration, delay, synchro)
 
 def get_inst_variable(env, name, delay, duration, args, synchro):
     try:
@@ -161,6 +162,10 @@ def get_inst_button_sec(env, name, delay, duration, args, synchro):
 def get_inst_button_prin(env, name, delay, duration, args, synchro):
     return Instruction_button(env.get_calculator(), name, TYPE_BUTTON.principal, delay, args, synchro)
 
+def get_inst_mode(env, name, delay, duration, args, synchro):
+    tree = name.get_getter().get_tree()
+    return Instruction_mode(env.get_calculator(), tree, str(name), delay, synchro)
+
 
 TYPE = {"button_secondary" : get_inst_button_sec,
         "button_principal" : get_inst_button_prin,
@@ -180,4 +185,5 @@ TYPE = {"button_secondary" : get_inst_button_sec,
         "position" : get_inst_position,
         "program" : get_inst_program,
         "speed" : get_inst_speed,
-        "strombo" : get_inst_strombo}
+        "strombo" : get_inst_strombo,
+        "mode" : get_inst_mode}

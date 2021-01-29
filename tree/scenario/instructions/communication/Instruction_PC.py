@@ -20,11 +20,11 @@ class Instruction_PC(Instruction):
         super().run()
         if self.action == ACTIONS.power_on:
             self.pc.connect()
-            Logger.info("Power on {}".format(self.pc.nom))
+            Logger.info("Power on {}".format(self.pc.name))
 
         elif self.action == ACTIONS.power_off:
-            self.pc.deconnect()
-            Logger.info("Power off {}".format(self.pc.nom))
+            self.pc.disconnect()
+            Logger.info("Power off {}".format(self.pc.name))
 
         elif self.action == ACTIONS.key:
             self.pc.send(Press_key(self.args[0]))
