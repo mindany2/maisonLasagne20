@@ -1,12 +1,15 @@
 from In_out.utils.Port_extender import Port_extender
 from tree.utils.Dico import Dico
-from time import sleep
+from time import sleep, time
 from tree.utils.Logger import Logger
 try:
     import RPi.GPIO as GPIO
 except (RuntimeError, ModuleNotFoundError):
     import fake_rpigpio.utils
     fake_rpigpio.utils.install()
+
+MAX_COUNT = 200
+TIME_OUT = 1 #s
 
 class List_interrupts_extender:
     """
@@ -26,6 +29,14 @@ class List_interrupts_extender:
         self.bus = extender
         self.add_register = register
 
+        self.start()
+        GPIO.setup(self.port_interrupt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt)
+
+        self.count = 0
+        self.time = time()
+
+    def start(self):
         # GPINTEN = setup interrupt
         self.bus.write(self.port_bus, 0x04 + self.add_register, 0xff)
 
@@ -43,8 +54,9 @@ class List_interrupts_extender:
 
         self.bus.read(self.port_bus,0x12 + self.add_register)
 
-        GPIO.setup(self.port_interrupt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt)
+        for index in self.list_inter.keys():
+            self.bus.write_pin(self.port_bus, 0x00 + self.add_register, index+1, 0)
+
 
     def add(self, inter, index):
         self.list_inter.add(index, inter)
@@ -55,9 +67,18 @@ class List_interrupts_extender:
 
     def detect_interrupt(self, event):
         data = self.bus.read(self.port_bus,0x12 + self.add_register)
-        if data == ['0']*8 or data == ['1']*8 or data == None:
-            return
         Logger.info("interrupt {} : {}:{} data={}".format(self.port_interrupt, self.port_bus, self.add_register, data))
+        if data == ['0']*8 or data == ['1']*8 or data == None:
+            if time()-self.time > TIME_OUT:
+                self.count = 0
+            self.time = time()
+            self.count += 1
+            Logger.info("board {}:{}, count = {}".format(self.port_bus, self.add_register, self.count))
+            if self.count > MAX_COUNT:
+                self.count = 0
+                Logger.info("Count exeded, restart")
+                self.start()
+            return
         for i,pin in enumerate(data):
             # check if the pin is up
             #TODO need to change for the radar..
@@ -65,6 +86,7 @@ class List_interrupts_extender:
                 Logger.info("pin {} is on".format(i))
                 try:
                     self.list_inter.get(i).press()
+                    self.count = 0
                     sleep(1)
                     return
                 except KeyError:

@@ -1,6 +1,7 @@
 import os
 from time import sleep
 from In_out.network.Connection import Connection
+from tree.utils.Logger import Logger
 from In_out.network.messages.control.Cmd import Cmd
 from enum import Enum
 from threading import Thread
@@ -32,6 +33,7 @@ class PC(Connection):
         self.lock()
         # start the pc if it is down
         if not(self.state()):
+            Logger.info("Power on {}".format(self.name))
             self.power_on()
             sleep(75) # time to the pc to startup
         # now the serveur should be launch
