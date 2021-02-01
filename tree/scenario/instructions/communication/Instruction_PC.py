@@ -24,12 +24,12 @@ class Instruction_PC(Instruction):
             Logger.info("Power on {}".format(self.pc.name))
 
         elif self.action == ACTIONS.power_off:
-            self.pc.disconnect()
+            self.pc.power_off()
             Logger.info("Power off {}".format(self.pc.name))
 
         elif self.action == ACTIONS.key:
-            self.pc.send(Press_key(self.args[0]))
-            Logger.info("press "+self.args[0])
+            self.pc.send(Press_key(self.args))
+            Logger.info("press "+self.args)
 
         elif self.action == ACTIONS.mouse:
             double_clic = False

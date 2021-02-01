@@ -9,7 +9,7 @@ from threading import Thread
 class ACTIONS(Enum):
     power_on = 0
     power_off = 1
-    key = 2
+    keys = 2
     mouse = 3
 
 class PC(Connection):
@@ -30,21 +30,17 @@ class PC(Connection):
         return os.system("ping -c 1 " + self.addr_ip) == 0
 
     def connect(self):
-        self.lock()
         # start the pc if it is down
         if not(self.state()):
             Logger.info("Power on {}".format(self.name))
             self.power_on()
             sleep(75) # time to the pc to startup
         # now the serveur should be launch
-        self.unlock()
 
-    def disconnect(self):
-        self.lock()
+    def power_off(self):
         self.check_for_disconnection()
         self.send(Cmd("shutdown -s -t 0"))
-        self.disconnect()
-        self.unlock()
+        super().disconnect()
 
 
 
