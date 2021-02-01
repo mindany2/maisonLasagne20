@@ -59,8 +59,6 @@ def get_page(manager, path, name):
 
 def get_section(section, page):
     name, title = section.get_str("name", mandatory=True), section.get_str("title")
-    print("kkkkkkkkkkkkkkkk")
-    print(title, type(title))
     lenght, index = section.get_int("lenght"), section.get_int("index")
     background_color, text_color = section.get_str("background_color"), section.get_str("text_color")
     return Section(name, index = index, title = title, lenght = lenght,

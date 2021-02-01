@@ -18,6 +18,7 @@ class Instruction_PC(Instruction):
 
     def run(self, barrier):
         super().run()
+        self.pc.lock()
         if self.action == ACTIONS.power_on:
             self.pc.connect()
             Logger.info("Power on {}".format(self.pc.name))
@@ -39,6 +40,7 @@ class Instruction_PC(Instruction):
                 clic_right = (self.args[3] == "droit")
             self.pc.send(Press_mouse(x, y, clic_right, double_clic))
             Logger.info("clic "+self.args)
+        self.pc.unlock()
 
     def __str__(self):
         string = super().__str__()
