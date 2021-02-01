@@ -29,10 +29,10 @@ class Controller:
             except KeyError:
                 list_keys.append(key)
         for key in list_keys:
-            self.keyboard.press(keys)
+            self.keyboard.press(key)
         sleep(time_kept)
         for key in list_keys:
-            self.keyboard.release(keys)
+            self.keyboard.release(key)
 
     def set_mouse(self, x, y):
         self.mouse.position = (x,y)
