@@ -22,12 +22,16 @@ class Controller:
 
     def press_key(self, keys, time_kept = 0):
         # convert need keys
+        print("press {}".format(keys))
         list_keys = []
         for key in keys:
             try:
                 list_keys.append(Key[key])
             except KeyError:
-                list_keys.append(key)
+                if len(key) == 1:
+                    list_keys.append(key)
+                else:
+                    raise(KeyError("No key named {}".format(key)))
         for key in list_keys:
             self.keyboard.press(key)
         sleep(time_kept)
