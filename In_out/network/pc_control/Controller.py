@@ -26,7 +26,7 @@ class Controller:
         for key in keys:
             try:
                 list_keys.append(Key[key])
-            except ValueError:
+            except KeyError:
                 list_keys.append(key)
         for key in list_keys:
             self.keyboard.press(keys)
