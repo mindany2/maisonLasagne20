@@ -21,14 +21,17 @@ class Controller:
         self.mouse = Mouse_controller()
 
     def press_key(self, keys, time_kept = 0):
-        try:
-            keys = [Key[key] for key in keys]
-        except:
-            raise(Exception("Wrong key given : {}".format(key)))
+        # convert need keys
+        list_keys = []
         for key in keys:
+            try:
+                list_keys.append(Key[key])
+            except ValueError:
+                list_keys.append(key)
+        for key in list_keys:
             self.keyboard.press(keys)
         sleep(time_kept)
-        for key in keys:
+        for key in list_keys:
             self.keyboard.release(keys)
 
     def set_mouse(self, x, y):
