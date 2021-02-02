@@ -18,9 +18,12 @@ class Instructions_list:
     def set_state(self, state):
         if not(state):
             # finish all the instruction in process
-            for inst in self.list:
-                inst.finish()
+            self.finish()
         self.state = state
+
+    def finish(self):
+        for inst in self.list:
+            inst.finish()
 
     def add(self, inst):
         self.list.append(inst)
@@ -44,7 +47,7 @@ class Instructions_list:
     def __iter__(self):
         return self.list.__iter__()
 
-    def do(self):
+    def do(self, finish=False):
         while True:
             #do all the instructions
             list_thread = []
@@ -54,7 +57,7 @@ class Instructions_list:
             for i,inst in enumerate(self.list):
                 n = sum([int(i+1 > j) for j in cummulative_sum])
                 bar = list_barriers[n]
-                if inst.delay.wait_precedent:
+                if inst.wait_precedent():
                     for proc in list_thread:
                         proc.join()
                     list_thread = []
@@ -67,6 +70,9 @@ class Instructions_list:
                 proc.join()
             if not(self.loop and self.state):
                 break
+        if finish:
+            self.finish()
+
 
     def initialize(self):
         for inst in self.list:

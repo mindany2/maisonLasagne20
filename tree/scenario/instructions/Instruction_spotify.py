@@ -16,7 +16,7 @@ class Instruction_spotify(Instruction):
         self.type_inst = type_inst
         self.spotify = spotify
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
         if self.type_inst == TYPE_INST_SPOTIFY.start:
             self.spotify.start()

@@ -35,11 +35,12 @@ class Scenario_manager:
 
     def do(self, scenar):
         # start the scenario
-        self.current_scenar.set_state(False)
-        self.current_scenar = scenar
-        self.current_scenar.set_state(True)
-        self.current_scenar.do()
-        Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
+        if self.current_scenar != scenar:
+            self.current_scenar.set_state(False)
+            self.current_scenar = scenar
+            self.current_scenar.set_state(True)
+            self.current_scenar.do()
+            Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
 
     def do_scenar_principal(self, scenar):
         """

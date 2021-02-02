@@ -33,9 +33,6 @@ class List_interrupts_extender:
         GPIO.setup(self.port_interrupt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt)
 
-        self.count = 0
-        self.time = time()
-
     def start(self):
         # GPINTEN = setup interrupt
         self.bus.write(self.port_bus, 0x04 + self.add_register, 0xff)
@@ -69,15 +66,6 @@ class List_interrupts_extender:
         data = self.bus.read(self.port_bus,0x12 + self.add_register)
         Logger.info("interrupt {} : {}:{} data={}".format(self.port_interrupt, self.port_bus, self.add_register, data))
         if data == ['0']*8 or data == ['1']*8 or data == None:
-            if time()-self.time > TIME_OUT:
-                self.count = 0
-            self.time = time()
-            self.count += 1
-            Logger.info("board {}:{}, count = {}".format(self.port_bus, self.add_register, self.count))
-            if self.count > MAX_COUNT:
-                self.count = 0
-                Logger.info("Count exeded, restart")
-                self.start()
             return
         for i,pin in enumerate(data):
             # check if the pin is up

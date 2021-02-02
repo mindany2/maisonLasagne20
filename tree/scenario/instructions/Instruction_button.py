@@ -38,6 +38,7 @@ class Instruction_button(Instruction):
                 # if not, just press the button with the condition like state
                 # it is necessary a principal button
                 self.button.press(state=condition)
+                
 
     def initialize(self):
         """
@@ -61,6 +62,7 @@ class Instruction_button(Instruction):
             self.condition.raise_error("Error type button : {}".format(self.type_bt))
 
     def finish(self):
+        super().finish()
         if self.type_bt == TYPE_BUTTON.secondary:
             self.button.press(state=False)
 

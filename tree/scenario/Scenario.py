@@ -39,7 +39,7 @@ class Scenario:
 
     def do(self, join = False):
         #Logger.info("Start the scenario "+self.name)
-        proc = Thread(target=self.list_inst.do)
+        proc = Thread(target=self.list_inst.do, args=[self.marker==MARKER.NONE])
         proc.start()
         if join:
             proc.join()

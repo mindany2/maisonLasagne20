@@ -13,7 +13,7 @@ class Calculator:
     def add(self, var):
         self.variables.add(var)
 
-    def eval(self, expression):
+    def eval(self, expression, inst=None):
         string = str(expression)
         if string:
             # search for variables names
@@ -28,7 +28,7 @@ class Calculator:
                     except ValueError:
                         if var not in ("False", "True", "not", "randint"):
                             # replace the var_name by it's value
-                            string = string.replace(var,"self.get_value(\"{}\",expression)".format(var))
+                            string = string.replace(var,"self.get_value(\"{}\",expression, inst)".format(var))
             try:
                 return eval(string)
             except SyntaxError as e:
@@ -36,10 +36,10 @@ class Calculator:
                 
         return 0
 
-    def get_value(self, var_name, expression):
+    def get_value(self, var_name, expression, inst):
         cutted_name = var_name.split(".")[0]
         try:
-            return self.variables.get(cutted_name).get(expression.get_getter(), var_name)
+            return self.variables.get(cutted_name).get(inst, expression.get_getter(), var_name)
         except KeyError:
             expression.raise_error("Could not find the variable {}".format(var_name))
 

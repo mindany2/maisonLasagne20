@@ -16,17 +16,37 @@ class Instruction():
         self.duration = duration
         self.synchro = synchro
         self.calculator = calculator
+        self.current = False
+        self.id = uuid.uuid1()
+
+    def get_id(self):
+        return self.id
 
     def run(self, time_spent = 0):
+        self.current = True
         self.duration=self.eval(self.duration)
-        self.delay.wait(time_spent)
+        if self.delay:
+            self.delay.wait(time_spent)
         # next in sub-classes
 
+    def reload(self, duration):
+        # reload the inst without any delay or duration
+        # TODO change that, it is ugly
+        save_vals = [self.delay, self.duration]
+        self.delay, self.duration = None, duration
+        self.run(Barrier(1))
+        self.delay, self.duration = save_vals
+
+    def wait_precedent(self):
+        if self.delay:
+            return self.delay.wait_precedent
+        return False
+
     def finish(self):
-        pass
+        self.current = False
 
     def eval(self, string):
-        return self.calculator.eval(string)
+        return self.calculator.eval(string, self)
 
     def initialize(self):
         # verify if the expressions given can be resolved

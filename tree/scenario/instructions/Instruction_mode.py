@@ -10,7 +10,7 @@ class Instruction_mode(Instruction):
         self.tree = tree
         self.name_mode = name_mode
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
         self.tree.change_mode(self.name_mode)
         #Logger.debug("set the variable {} to {}".format(self.variable.name, self.variable.get()))
