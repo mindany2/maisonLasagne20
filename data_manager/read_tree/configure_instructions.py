@@ -100,7 +100,7 @@ def get_inst_pc(env, name, delay, duration, args, synchro):
         args.raise_error("Could not match the action, try this syntax : mouse(200,300) or key(space)")
     try:
         action = ACTIONS[match.group("action")]
-        args = match.group("args").split(",")
+        args = match.group("args").replace(" ","").split(",")
     except KeyError:
         args.raise_error("PC action {} not define this is the allowed keys :\n {}".
                         format(str(args), [arg.name for arg in ACTIONS]))
