@@ -3,7 +3,7 @@ class Button:
     Simple button
     """
 
-    def __init__(self, name, manager):
+    def __init__(self, name, manager=None):
         self.name = name
         self.manager = manager
 
@@ -11,9 +11,6 @@ class Button:
         return False
 
     def press(self):
-        """
-        Lance le bon scénario et gère la pile
-        """
         pass
 
     def __eq__(self, other):

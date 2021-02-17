@@ -11,4 +11,4 @@ class Dmx_device:
         self.dmx.set(self.addr + channel.value - 1, value)
 
     def __str__(self):
-        return self.addr
+        return str(self.addr)

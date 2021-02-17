@@ -2,6 +2,7 @@ from tree.Environnement import Environnement
 from threading import Thread
 from tree.utils.Logger import Logger
 from tree.utils.List_radio import List_radio
+import threading
 
 class Tree:
     """
@@ -47,6 +48,7 @@ class Tree:
         if env:
             return env
         raise(NameError("The environnement research : {} is not present in the tree".format(path))) 
+    
 
     def get_list_envs(self):
         return self.global_environnement.get_list_envs()
@@ -79,6 +81,8 @@ class Tree:
 
     def __str__(self):
         string = "-"*10 + "Tree"+"-"*10 + "\n"
+        string = "Threads:" + str(threading.active_count())+"\n"
+        string += "".join(["|  {}\n".format(thread.name) for thread in threading.enumerate()])
         string += "-Modes\n"
         string += "".join(["|  {}\n".format(string) for string in str(self.list_modes).split("\n")])
         string += "-Environnements\n"

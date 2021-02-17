@@ -26,8 +26,9 @@ class Instruction_color(Instruction_light):
             dimmer_final = self.eval(self.dimmer)
             dimmer_initial = self.light.dimmer
             color = Color(self.eval(self.color))
+            Logger.debug("Set led {} to {}".format(self.light.name, color))
             if self.eval(self.duration) == 0:
-                if dimmer_final != dimmer_initial and color != self.light.color:
+                if dimmer_final != dimmer_initial or color != self.light.color:
                     if self.light.connect():
                         super().run(time_spent=(time()-delay))
                         self.light.set_color(dimmer_final, color.value)

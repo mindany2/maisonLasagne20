@@ -12,8 +12,6 @@ class Section:
         self.name = name
         self.title = None
         if title:
-            print("ooooooooooooooooooo")
-            print(title, type(title))
             self.title = Icon_title(name, title, index=0, lenght=lenght, color=text_color)
         self.list_icons = List()
         self.background_color = background_color

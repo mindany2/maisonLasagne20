@@ -18,6 +18,9 @@ class Locker:
         self.killer = False
         self.mutex_killer.release()
 
+    def locked(self):
+        return self.mutex.locked()
+
     def unlock(self):
         self.mutex.release()
 

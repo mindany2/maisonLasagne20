@@ -20,15 +20,23 @@ class Controller:
         self.keyboard = Key_controller()
         self.mouse = Mouse_controller()
 
-    def press_key(self, key, time_kept = 0):
-        touche = key
-        try:
-            touche = Key[key]
-        except:
-            raise(Exception("Wrong key given : {}".format(key)))
-        self.keyboard.press(touche)
+    def press_key(self, keys, time_kept = 0):
+        # convert need keys
+        print("press {}".format(keys))
+        list_keys = []
+        for key in keys:
+            try:
+                list_keys.append(Key[key])
+            except KeyError:
+                if len(key) == 1:
+                    list_keys.append(key)
+                else:
+                    raise(KeyError("No key named {}".format(key)))
+        for key in list_keys:
+            self.keyboard.press(key)
         sleep(time_kept)
-        self.keyboard.release(touche)
+        for key in list_keys:
+            self.keyboard.release(key)
 
     def set_mouse(self, x, y):
         self.mouse.position = (x,y)

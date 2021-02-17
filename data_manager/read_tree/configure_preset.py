@@ -9,6 +9,7 @@ from tree.scenario.Scenario import Scenario, MARKER
 from tree.buttons.Button_principal import Button_principal
 from tree.buttons.Button_secondary import Button_secondary
 from tree.buttons.Button_choice import Button_choice
+from tree.buttons.Button_variable import Button_variable
 
 
 def get_presets(getter, env, path):
@@ -28,16 +29,27 @@ def get_presets(getter, env, path):
         # HTML Button
         html = file.get("HTML")
         if html:
-            get_html_buttons(html, preset)
+            get_html_buttons(html, preset, env)
 
         env.add_preset(preset)
 
-def get_html_buttons(buttons, preset):
+def get_html_buttons(buttons, preset, env):
     for button in buttons:
         action, name = button.get("action", mandatory=True), button.get_str("name", mandatory=True)
-        if action.get_str("type") == "button":
+        type_action = action.get("type")
+        if str(type_action) == "button":
             type_bt, scenars = action.get("button", mandatory=True), action.get("scenarios", mandatory=True)
-        preset.add_button(get_bt(name, preset, type_bt, scenars))
+            preset.add_button(get_bt(name, preset, type_bt, scenars))
+        elif str(type_action) == "variable":
+            var_name = action.get_str("variable", mandatory=True)
+            try:
+                variable = env.get_var(var_name)
+            except NameError as e:
+                var_name.raise_error(e)
+            preset.add_button(Button_variable(name, variable))
+        else:
+            type_action.raise_error("Type action is not correct")
+
 
 def get_inter_buttons(buttons, preset):
     getter = buttons.get_getter()

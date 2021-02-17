@@ -16,7 +16,7 @@ class Instruction_trap(Instruction):
         self.action = action
         self.trap = trap
 
-    def run(self, barrier):
+    def run(self, barrier = None):
         """
         Setup a try/finally to allow kill from another instruction
         """
@@ -63,6 +63,7 @@ class Instruction_trap(Instruction):
             self.trap.unlock()
 
     def finish(self):
+        super().finish()
         self.trap.kill()
 
     def __str__(self):

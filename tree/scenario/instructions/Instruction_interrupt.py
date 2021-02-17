@@ -12,7 +12,7 @@ class Instruction_interrupt(Instruction):
         self.state = state
         self.connection = connection
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         self.connection.lock()
         super().run()
         if not(self.connection.test()):

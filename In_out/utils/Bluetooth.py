@@ -105,7 +105,6 @@ class Bluetooth:
                 self.mutex_disconnect.release()
             except BrokenPipeError as e:
                 Logger.error("Bluetooth disconnection error : "+str(e))
-                self.restart()
             self.mutex_connect.acquire()
             self.nb_connection -= 1
             self.mutex_connect.release()
