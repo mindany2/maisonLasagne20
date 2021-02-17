@@ -35,7 +35,7 @@ class Scenario_manager:
 
     def do(self, scenar):
         # start the scenario
-        if self.current_scenar != scenar:
+        if self.current_scenar is not scenar:
             self.current_scenar.set_state(False)
             self.current_scenar = scenar
             self.current_scenar.set_state(True)

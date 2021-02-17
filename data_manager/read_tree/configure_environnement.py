@@ -69,8 +69,8 @@ def get_modes(modes, env):
 def get_variables(variables, *args):
     env = args[0]
     variables = Csv_reader(variables.get_getter(), variables.get("config"))
-    env.add_variable(Variable_spotify())
-    env.add_variable(Variable_env(variables.get_getter()))
+    env.add_variable(Variable_spotify(), recursive=False)
+    env.add_variable(Variable_env(variables.get_getter()), recursive=False)
     for var in variables:
         env.add_variable(Variable(var.get_str("name", mandatory = True),
                                   var.get_int("value", mandatory = True)))

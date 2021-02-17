@@ -1,6 +1,7 @@
 from tree.utils.List import List
 from random import randint
 from tree.scenario.Scenario import MARKER
+from tree.utils.Logger import Logger
 import re
 
 class Calculator:
@@ -11,7 +12,11 @@ class Calculator:
         self.variables = List()
 
     def add(self, var):
-        self.variables.add(var)
+        try:
+            self.variables.get(var.name)
+            Logger.warn("The variable {} is already present".format(var.name))
+        except (KeyError, ValueError):
+            self.variables.add(var)
 
     def eval(self, expression, inst=None):
         string = str(expression)
@@ -42,6 +47,11 @@ class Calculator:
             return self.variables.get(cutted_name).get(inst, expression.get_getter(), var_name)
         except KeyError:
             expression.raise_error("Could not find the variable {}".format(var_name))
+
+    def reset(self):
+        # reset the inst list of all variables
+        for var in self.variables:
+            var.reset()
 
 
     def get(self, name):

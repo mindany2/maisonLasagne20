@@ -35,6 +35,7 @@ class Server:
             conn, addr = self.socket.accept()
             Logger.info("Connected to: "+ str(addr))
             process = Thread(target=self.threaded_client, args=[conn])
+            process.name = "Connection to {}".format(addr)
             process.start()
 
     def kill(self):

@@ -6,6 +6,7 @@ class TYPE_ICON(Enum):
     button = "image"
     link = 2
     text = 0
+    slider = 3
 
 class Icon:
     """
@@ -17,8 +18,7 @@ class Icon:
         self.lenght = 1 if lenght is None else lenght
         self.style = None
         self.state = True
-        # some icon can be selected (like button)
-        self.selected = False
+        self.value = 0
         # the link to the env in the tree
         self.env = env
 
@@ -35,8 +35,8 @@ class Icon:
         self.state = state
         print(self)
 
-    def change_selected(self, selected):
-        self.selected = selected
+    def change_value(self, value):
+        self.value = value
 
     def get_lenght(self):
         return self.lenght
@@ -48,4 +48,4 @@ class Icon:
         raise(AttributeError("Need to setup the style in subclass"))
 
     def __str__(self):
-        return "{} : lenght={}, state={}, selected={}".format(self.name, self.lenght, self.state, self.selected)
+        return "{} : lenght={}, state={}, value={}".format(self.name, self.lenght, self.state, self.value)

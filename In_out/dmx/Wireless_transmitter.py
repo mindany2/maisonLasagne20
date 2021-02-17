@@ -25,7 +25,9 @@ class Wireless_transmitter:
             if not(self.state()):
                 self.relay.set(STATE.ON)
                 sleep(CONNECTION_TIME) # tps de connection
-                Thread(target = self.check_for_deconnection).start()
+                thread = Thread(target = self.check_for_deconnection)
+                thread.name = "Wireless_transmitter check_for_deconnection"
+                thread.start()
 
     def check_for_deconnection(self):
         while time()-self.tps < TIME_OUT:

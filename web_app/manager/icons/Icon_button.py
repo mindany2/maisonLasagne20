@@ -14,10 +14,10 @@ class Icon_button(Icon):
 
     def pack(self, i, j):
         self.style = Style(grid = True, position=(i,j), size=(1,self.lenght), width=100,
-                background_color = [self.color_off, self.color_on][self.selected])
+                background_color = [self.color_off, self.color_on][self.value])
 
     def press(self, client, prefix):
-        client.send(Press_inter(self.env, prefix+self.name, not(self.selected)))
+        client.send(Press_inter(self.env, prefix+self.name, not(self.value)))
         
     def get_image(self):
         return self.image

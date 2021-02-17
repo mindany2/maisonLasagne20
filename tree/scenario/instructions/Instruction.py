@@ -1,13 +1,13 @@
 from enum import Enum
 from time import sleep
-from threading import Thread, Barrier
+from threading import Thread, Barrier, Lock
 import uuid
 
 class STATE(Enum):
     CONTINUE = 0
     WAIT = 1
 
-class Instruction():
+class Instruction:
     """
     This class is the parent class of all instructions
     """
@@ -18,12 +18,15 @@ class Instruction():
         self.calculator = calculator
         self.current = False
         self.id = uuid.uuid1()
+        self.mutex_reload = Lock()
+        self.mutex_current = Lock()
 
     def get_id(self):
         return self.id
 
     def run(self, time_spent = 0):
-        self.current = True
+        if not(self.mutex_reload.locked()):
+            self.current = True
         self.duration=self.eval(self.duration)
         if self.delay:
             self.delay.wait(time_spent)
@@ -31,11 +34,12 @@ class Instruction():
 
     def reload(self, duration):
         # reload the inst without any delay or duration
-        # TODO change that, it is ugly
+        self.mutex_reload.acquire()
         save_vals = [self.delay, self.duration]
         self.delay, self.duration = None, duration
         self.run(Barrier(1))
         self.delay, self.duration = save_vals
+        self.mutex_reload.release()
 
     def wait_precedent(self):
         if self.delay:

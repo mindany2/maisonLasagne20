@@ -17,11 +17,22 @@ class App:
 
         @self.site.route('/press_button', methods = ['POST'])
         def press_button():
-            jsdata = request.form['javascript_data']
-            section, button = jsdata.split(",")
+            id = request.form['id']
+            section, button = id.split(",")
             self.manager.press_button(section, button)
             # TODO send to the js infos to no reload the page
             return {}
+
+        @self.site.route('/move_slider', methods = ['POST'])
+        def move_slider():
+            id = request.form['id']
+            value = request.form['value']
+            section, button = id.split(",")
+            self.manager.move_slider(section, button, int(value))
+            # TODO send to the js infos to no reload the page
+            return {}
+
+
 
     def run(self):
         self.site.run()

@@ -1,5 +1,6 @@
 from tree.utils.Dico import Dico
 from threading import Thread
+from tree.utils.Logger import Logger
 
 class Variable:
     """
@@ -10,24 +11,32 @@ class Variable:
         self.val = val
         self.list_inst = Dico()
 
-    def get(self, inst, getter = None, arg = None):
-        self.add_inst(inst)
+    def get(self, inst=None, getter = None, arg = None):
+        if inst:
+            self.add_inst(inst)
         return self.val
 
     def add_inst(self, inst):
         self.list_inst.add(inst.get_id(), inst)
 
+    def reset(self):
+        self.list_inst = Dico()
+
     def reload(self, other):
         if isinstance(other, Variable):
             self.val = other.val
 
-    def set(self, val, duration):
+    def set(self, val, duration=0):
         self.val = val
         for inst in self.list_inst:
             if inst.current:
                 # do inst inst if it is currently running
-                print(inst)
-                Thread(target=inst.reload, args=[duration]).start()
+                try:
+                    proc = Thread(target=inst.reload, args=[duration])
+                    proc.name = "Reload inst with variable {} : {}".format(self.name, str(inst))
+                    proc.start()
+                except Exception as e:
+                    Logger.error(e)
         
     def __int__(self):
         return self.val

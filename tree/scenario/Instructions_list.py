@@ -62,6 +62,7 @@ class Instructions_list:
                         proc.join()
                     list_thread = []
                 process = Thread(target=inst.run, args=[bar])
+                process.name = str(inst)
                 list_thread.append(process)
                 process.start()
 
