@@ -134,23 +134,25 @@ class Spotify:
                 self.track = track
 
     def kill(self):
-        try:
-            self.sp.pause_playback(self.pi_id)
-        except spotipy.exceptions.SpotifyException as e:
-            os.system("sudo systemctl restart raspotify.service")
-        self.state = False
+        if self.state:
+            try:
+                self.sp.pause_playback(self.pi_id)
+            except spotipy.exceptions.SpotifyException as e:
+                os.system("sudo systemctl restart raspotify.service")
+            self.state = False
 
     def start(self, attemps = 0):
-        try:
-            self.sp.transfer_playback(self.pi_id, force_play=True)
-            self.sp.repeat("context", device_id=self.pi_id)
-        except spotipy.exceptions.SpotifyException as e:
-            self.refresh_token()
-            os.system("sudo systemctl restart raspotify.service")
-            sleep(2)
-            if attemps < 3:
-                self.start(attemps+1)
-            else:
-                Logger.error("Could not start raspotify : "+str(e))
-        self.state = True
+        if not self.state:
+            try:
+                self.sp.transfer_playback(self.pi_id, force_play=True)
+                self.sp.repeat("context", device_id=self.pi_id)
+            except spotipy.exceptions.SpotifyException as e:
+                self.refresh_token()
+                os.system("sudo systemctl restart raspotify.service")
+                sleep(2)
+                if attemps < 3:
+                    self.start(attemps+1)
+                else:
+                    Logger.error("Could not start raspotify : "+str(e))
+            self.state = True
 
