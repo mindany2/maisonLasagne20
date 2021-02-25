@@ -55,7 +55,8 @@ class Calculator:
 
 
     def get(self, name):
-        return self.variables.get(name)
+        cutted_name = name.split(".")
+        return self.variables.get(cutted_name[0])
 
     def get_list_variables(self):
         return self.variables
