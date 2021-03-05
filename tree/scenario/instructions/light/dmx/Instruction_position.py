@@ -62,7 +62,7 @@ class Instruction_position(Instruction_light):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : position\n")
-        string += "".join("- Position : {}\n".format(self.position_final))
+        string += "".join("- Position : {},{}\n".format(self.x, self.y))
         return string   
 
 

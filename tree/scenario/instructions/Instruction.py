@@ -53,7 +53,6 @@ class Instruction:
 
     def initialize(self):
         # verify if the expressions given can be resolved
-        print(self)
         self.delay.initialize()
         self.eval(self.duration)
 

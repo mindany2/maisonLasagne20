@@ -4,6 +4,7 @@ from In_out.network.messages.control.Press_key import Press_key
 from In_out.network.messages.control.Press_mouse import Press_mouse
 from enum import Enum
 from tree.utils.Logger import Logger
+from time import sleep
 
 class Instruction_PC(Instruction):
     """
@@ -29,6 +30,7 @@ class Instruction_PC(Instruction):
 
         elif self.action == ACTIONS.keys:
             self.pc.send(Press_key(self.args))
+            sleep(0.1) # time to let the key 
             Logger.info("press "+str(self.args))
 
         elif self.action == ACTIONS.mouse:
