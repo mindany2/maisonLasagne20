@@ -1,6 +1,7 @@
 from tree.utils.Dico import Dico
 from threading import Thread
 from tree.utils.Logger import Logger
+from tree.scenario.instructions.light.Instruction_light import Instruction_light
 
 class Variable:
     """
@@ -20,6 +21,7 @@ class Variable:
         self.list_inst.add(inst.get_id(), inst)
 
     def reset(self):
+        print("reset {}".format(self.name))
         self.list_inst = Dico()
 
     def reload(self, other):
@@ -45,4 +47,6 @@ class Variable:
         return int(self)+integer
 
     def __str__(self):
-        return "{} = {}\n".format(self.name, self.val)
+        string = "{} = {}\n".format(self.name, self.val)
+        string += "".join([" - {} : {}\n".format(inst.light.name, inst.current) for inst in self.list_inst if isinstance(inst, Instruction_light)])
+        return string

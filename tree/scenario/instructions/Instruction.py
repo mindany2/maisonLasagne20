@@ -13,33 +13,32 @@ class Instruction:
     """
     def __init__(self, calculator, duration, delay, synchro):
         self.delay = delay
+        self.fixed_duration = duration #duration define in the data
         self.duration = duration
         self.synchro = synchro
         self.calculator = calculator
         self.current = False
         self.id = uuid.uuid1()
-        self.mutex_reload = Lock()
+        self.in_reload = []
         self.mutex_current = Lock()
 
     def get_id(self):
         return self.id
 
     def run(self, time_spent = 0):
-        if not(self.mutex_reload.locked()):
+        if not(self.in_reload):
             self.current = True
-        self.duration=self.eval(self.duration)
-        if self.delay:
-            self.delay.wait(time_spent)
+            self.duration=self.eval(self.fixed_duration)
+            if self.delay:
+                self.delay.wait(time_spent)
+        else:
+            self.duration = self.in_reload.pop()
         # next in sub-classes
 
     def reload(self, duration):
         # reload the inst without any delay or duration
-        self.mutex_reload.acquire()
-        save_vals = [self.delay, self.duration]
-        self.delay, self.duration = None, duration
+        self.in_reload.append(duration)
         self.run(Barrier(1))
-        self.delay, self.duration = save_vals
-        self.mutex_reload.release()
 
     def wait_precedent(self):
         if self.delay:
@@ -54,6 +53,7 @@ class Instruction:
 
     def initialize(self):
         # verify if the expressions given can be resolved
+        print(self)
         self.delay.initialize()
         self.eval(self.duration)
 

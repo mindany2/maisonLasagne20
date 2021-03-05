@@ -83,6 +83,7 @@ class Led(Lamp):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : led\n")
+        string += "".join("- Status : dimmer={} color={}\n".format(self.dimmer, self.color))
         string += "".join("- Controler : {}\n".format(self.controler))
         return string
 

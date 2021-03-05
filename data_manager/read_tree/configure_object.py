@@ -1,7 +1,7 @@
 from data_manager.utils.Csv_reader import Csv_reader
 
 from tree.connected_objects import Led, Dimmable_light, Lamp, Speakers, Trap, BULD
-from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo
+from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo, Dmx_strip_led
 
 from In_out.dmx.Dmx_device import Dmx_device
 from In_out.bluetooth_devices import ELK_BLEDOM, LEDBLE, TRIONES
@@ -36,11 +36,14 @@ def get_dimmable(getter, name, sub_type, relay_triak, addr):
 
 def get_led(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
-        addr.raise_error("The {} need an bluetooth/wifi address".format(name))
+        addr.raise_error("The {} need an address".format(name))
     try:
         controller = TYPE_LED[str(sub_type)](str(addr))
     except KeyError:
-        sub_type.raise_error("The sub_type {} is not present in the TYPE_LED (Led.py)".format(str(sub_type)))
+        if str(sub_type) == "dmx":
+            controller = Dmx_device(getter.get_dmx(), int(addr))
+            return Dmx_strip_led(name, relay_triak.get_relay(), controller)
+        sub_type.raise_error("The sub_type {} is not present in the TYPE_LED".format(str(sub_type)))
     return Led(name, relay_triak.get_relay(), controller)
 
 def get_lamp(getter, name, sub_type, relay_triak, addr):

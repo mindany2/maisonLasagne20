@@ -6,8 +6,8 @@ class Dmx_dimmable_light(Lamp):
     """
     Simple dimmer light in dmx
     """
-    def __init__(self, nom, relay, controler):
-        Lamp.__init__(self, nom, relay)
+    def __init__(self, name, relay, controler):
+        Lamp.__init__(self, name, relay)
         self.dmx = controler
         self.dimmer = 0
 
