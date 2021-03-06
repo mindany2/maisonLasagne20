@@ -9,6 +9,3 @@ class Message:
 
     def do(self, getter):
         pass
-
-    def return_value(self):
-        return True

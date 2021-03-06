@@ -8,6 +8,3 @@ class Set_relay(Message):
 
     def do(self, getter):
         getter.get_manager().get_relay(self.addr[0], self.addr[1]).set(self.value)
-
-    def return_value(self):
-        return False
