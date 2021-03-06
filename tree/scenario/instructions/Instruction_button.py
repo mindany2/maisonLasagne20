@@ -27,6 +27,9 @@ class Instruction_button(Instruction):
         if not(self.button):
             raise(Exception("Need to initialize the instruction before start"))
 
+        if not(self.current):
+            return
+
         condition = self.eval(self.condition)
         env, preset, scenars = self.name_scenars.get_scenarios(get_all = True)
         # check if it is the right preset, if not just pass

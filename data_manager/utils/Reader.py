@@ -167,8 +167,12 @@ class Reader:
         return wait_for_beat
 
     def get_wait_precedent(self):
-        if str(self.start) == "wait":
-            self.start = Reader(self.getter, 0, self.path_file)
+        if "wait" in str(self.start):
+            try:
+                val = self.start.split(",")[1]
+            except IndexError:
+                val = 0
+            self.start = Reader(self.getter, val, self.path_file)
             return True
         return False
 

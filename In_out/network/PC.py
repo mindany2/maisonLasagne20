@@ -34,7 +34,7 @@ class PC(Connection):
         if not(self.state()):
             Logger.info("Power on {}".format(self.name))
             self.power_on()
-            sleep(75) # time to the pc to startup
+            sleep(90) # time to the pc to startup
         # now the serveur should be launch
 
     def power_off(self):

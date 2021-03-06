@@ -81,8 +81,8 @@ class Environnement:
                 # no keeping deco, just principal state
                 if marker == MARKER.DECO:
                     marker = MARKER.OFF
-                new_preset.initialize(marker)
                 old_preset.reset()
+                new_preset.initialize(marker)
                 self.change_preset_select(new_preset)
 
     def do_current_scenar(self):
@@ -173,9 +173,9 @@ class Environnement:
         string += "".join(["|  {}\n".format(string) for string in str(self.list_objects).split("\n")])
         string += "".join("-Current_preset\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.get_preset_select()).split("\n")])
-        """
         string += "".join("-Variables\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.calculator).split("\n")])
+        """
         string += "".join("-Sub-environnements\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.list_sub_env).split("\n")])
         """
