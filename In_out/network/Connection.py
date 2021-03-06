@@ -59,7 +59,6 @@ class Connection(Locker):
                 Logger.error("No connection or interrupt to {} at {}".format(self.name, self.addr))
 
     def send(self, message):
-        print(message)
         self.timeout = time()
         if not(self.client.state()):
             if self.client.connect():

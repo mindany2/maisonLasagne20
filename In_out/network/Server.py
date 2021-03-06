@@ -70,15 +70,16 @@ class Server:
                 Logger.error("Exception during requete : "+trace + str(e))
                 data = trace+str(e)
 
-            try:
-                byte_data = pickle.dumps(data)
-                conn.send(pickle.dumps(len(byte_data)))
-                sleep(0.01)
-                conn.send(byte_data)
-            except Exception as e:
-                Logger.error("Exception during response send: ")
-                Logger.error(e)
-                break
+            if requete.return_value():
+                try:
+                    byte_data = pickle.dumps(data)
+                    conn.send(pickle.dumps(len(byte_data)))
+                    sleep(0.01)
+                    conn.send(byte_data)
+                except Exception as e:
+                    Logger.error("Exception during response send: ")
+                    Logger.error(e)
+                    break
 
         Logger.info("Lost connection")
         conn.close()

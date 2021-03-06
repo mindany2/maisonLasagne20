@@ -49,14 +49,18 @@ class Client:
         try:
             self.mutex.acquire()
             self.client.send(pickle.dumps(msg))
-            lenght = int(pickle.loads(self.client.recv(4096)))
-            raw_data = b"".join([self.client.recv(4096) for i in range(0,lenght, 4096)])
-            data = ""
-            if raw_data != b'':
-                data = pickle.loads(raw_data)
-                if type(data) == Exception:
-                    trace = traceback.format_exc()
-                    Logger.error("Error during request : {}\n{}".format(trace, str(data)))
+            if msg.return_value():
+                try:
+                    lenght = int(pickle.loads(self.client.recv(4096)))
+                    raw_data = b"".join([self.client.recv(4096) for i in range(0,lenght, 4096)])
+                except EOFError as e:
+                    Logger.error("Message send error : "+str(e))
+                data = ""
+                if raw_data != b'':
+                    data = pickle.loads(raw_data)
+                    if type(data) == Exception:
+                        trace = traceback.format_exc()
+                        Logger.error("Error during request : {}\n{}".format(trace, str(data)))
             self.mutex.release()
             return data
 
