@@ -27,7 +27,6 @@ class Variable:
         self.list_inst.add(inst.get_id(), inst)
 
     def reset(self):
-        print("reset {}".format(self.name))
         self.list_inst = Dico()
 
     def reload(self, other):

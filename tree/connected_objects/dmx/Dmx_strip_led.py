@@ -12,10 +12,13 @@ class Dmx_strip_led(Led):
         self.dmx = controler
 
     def connect(self):
+        if self.color.is_black() and not(self.force):
+            self.set_state(True)
         return True
 
     def disconnect(self):
-        return True
+        if self.color.is_black() and not(self.force):
+            self.set_state(False)
 
     def set_color(self, dimmer, color):
         if self.color != Color(color):
