@@ -7,6 +7,7 @@ from time import sleep
 import io
 import sys, traceback
 from tree.utils.Logger import Logger
+from In_out.network.messages.Kill import Kill
 
 class Server:
 
@@ -57,11 +58,8 @@ class Server:
             if not requete:
                 Logger.info(str(conn) + "is disconnect")
                 break
-            if requete == "kill me":
+            if isinstance(requete, Kill):
                 Logger.info("demande de kill")
-                data = pickle.dumps("ok")
-                conn.send(pickle.dumps(len(data)))
-                conn.send(data)
                 break
             try:
                 data = requete.do(self.getter)

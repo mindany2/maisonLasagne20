@@ -3,7 +3,7 @@ import pickle
 from threading import Lock
 from time import time, sleep
 import traceback
-
+from In_out.network.messages.Kill import Kill
 from tree.utils.Logger import Logger
 
 class Client:
@@ -72,7 +72,7 @@ class Client:
         return self.connected
 
     def disconnect(self):
-        data = self.send("kill me")
+        data = self.send(Kill())
         self.mutex.acquire()
         self.connected = False
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
