@@ -37,10 +37,9 @@ class Section:
             self.title.pack(0,0)
             decal += self.lenght
         # decalage due to icon size
-        print(self.list_icons)
         for icon in sorted(list(self.list_icons), key = lambda x : x.get_index()):
             if icon.get_state():
-                if icon.get_lenght() > decal%(self.lenght-1)+1:
+                if icon.get_lenght() > decal%self.lenght+1:
                     decal += self.lenght-(decal%self.lenght)
                 icon.pack(decal//self.lenght, decal%self.lenght)
                 decal += icon.get_lenght()

@@ -140,11 +140,20 @@ def get_inst_trap(env, name, delay, duration, args, synchro):
 
 def get_inst_spotify(env, name, delay, duration, args, synchro):
     try:
-        type_inst = TYPE_INST_SPOTIFY[str(args)]
+        try:
+            type_inst, arg = args.split(",")
+            type_inst = TYPE_INST_SPOTIFY[str(type_inst)]
+            if type_inst == TYPE_INST_SPOTIFY.volume:
+                val = arg
+            else:
+                args.raise_error("Spotify action volume need to have an argument like : volume, 50")
+        except ValueError:
+            type_inst = TYPE_INST_SPOTIFY[str(args)]
+            val = 0
     except KeyError:
         args.raise_error("Spotify action {} not define this is the allowed keys :\n {}".
                         format(str(args), [arg.name for arg in TYPE_INST_SPOTIFY]))
-    return Instruction_spotify(env.get_calculator(), name.get_spotify(), type_inst, delay, synchro)
+    return Instruction_spotify(env.get_calculator(), name.get_spotify(), type_inst, val, delay, synchro)
 
 def get_inst_interrupt(env, name, delay, duration, args, synchro):
     manager = name.get_getter().get_manager()

@@ -20,3 +20,4 @@ data = client.send(Spotify_inter(event, volume, track, position))
 if data:
     print(data)
 client.disconnect()
+sleep(2)

@@ -5,16 +5,17 @@ from enum import Enum
 class TYPE_INST_SPOTIFY(Enum):
     start = 0
     stop = 1
+    volume = 2
 
 class Instruction_spotify(Instruction):
     """
     Modifie spotify values like volumes, play/pause..
     """
-    #TODO volume
-    def __init__(self,calculator, spotify, type_inst, delay, synchro, duration = 0):
+    def __init__(self,calculator, spotify, type_inst, val, delay, synchro, duration = 0):
         Instruction.__init__(self,calculator, duration, delay, synchro)
         self.type_inst = type_inst
         self.spotify = spotify
+        self.val = val
 
     def run(self, barrier=None):
         super().run()
@@ -22,6 +23,8 @@ class Instruction_spotify(Instruction):
             self.spotify.start()
         elif self.type_inst == TYPE_INST_SPOTIFY.stop:
             self.spotify.kill()
+        elif self.type_inst == TYPE_INST_SPOTIFY.volume:
+            self.spotify.set_volume(self.eval(self.val))
 
     def __str__(self):
         string = super().__str__()

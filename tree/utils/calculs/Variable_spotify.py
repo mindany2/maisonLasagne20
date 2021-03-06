@@ -1,5 +1,4 @@
 from tree.utils.calculs.Variable import Variable
-from In_out.Peripheric_manager import Peripheric_manager
 
 class Variable_spotify(Variable):
     """
@@ -9,7 +8,7 @@ class Variable_spotify(Variable):
         Variable.__init__(self, "spotify", 0)
 
     def get(self, inst, getter, variable_name):
-        spotify = Peripheric_manager().get_spotify()
+        spotify = getter.get_manager().get_spotify()
         if not(spotify):
             raise(ValueError("There are no spotify configured"))
         if variable_name.count("bpm") == 1:

@@ -32,6 +32,10 @@ class App:
             # TODO send to the js infos to no reload the page
             return {}
 
+        @self.site.route('/tree_interrupt', methods = ['POST'])
+        def interrupt():
+            print(request)
+            return {"lol":42}
 
 
     def run(self):
