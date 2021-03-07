@@ -54,6 +54,9 @@ class Client:
                 raw_data = b"".join([self.client.recv(4096) for i in range(0,lenght, 4096)])
             except EOFError as e:
                 Logger.error("Message send error : "+str(e))
+                self.mutex.release()
+                return None
+
             data = ""
             if raw_data != b'':
                 data = pickle.loads(raw_data)
