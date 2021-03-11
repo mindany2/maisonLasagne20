@@ -47,6 +47,9 @@ class Instruction_color(Instruction_light):
                 self.light.disconnect()
                 return
 
+            if self.light.test():
+                raise SystemExit("kill inst")
+
             connected = self.light.connect()
             if not(connected):
                 barrier.wait()
