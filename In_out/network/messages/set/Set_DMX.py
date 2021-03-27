@@ -16,4 +16,5 @@ class Set_DMX(Message):
             dmx.disconnect(self.addr)
         else:
             dmx.set(self.addr, self.value)
-        
+        print("return")
+        return True

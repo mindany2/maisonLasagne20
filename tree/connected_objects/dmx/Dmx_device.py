@@ -1,4 +1,5 @@
 from tree.connected_objects.Lamp import Lamp
+from time import sleep
 
 class Dmx_device(Lamp):
     """
@@ -14,7 +15,9 @@ class Dmx_device(Lamp):
 
     def connect(self):
         super().connect()
-        self.dmx.connect(self.addr)
+        while not self.dmx.connect(self.addr):
+            sleep(1)
+        print(f"{self.name} connected")
 
     def disconnect(self):
         super().disconnect()
