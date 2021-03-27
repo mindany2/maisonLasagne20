@@ -1,32 +1,30 @@
-from tree.connected_objects.Lamp import Lamp
+from tree.connected_objects.dmx.Dmx_device import Dmx_device
 from enum import Enum
 
-class Crazy_2(Lamp):
+class Crazy_2(Dmx_device):
     """
     NICOLS Crazy II Led : Bowl that creat dots
     http://www.amplitude.fr/eclairage/location-particuliers-effets-automatiques/nicols-crazy-ii-led
     """
-    def __init__(self, name, relay, controler):
-        Lamp.__init__(self, name, relay)
-        self.dmx = controler
-
+    def __init__(self, name, relay, addr, dmx):
+        Dmx_device.__init__(self, name, relay, addr, dmx)
         self.program = 0
         self.strombo = 0
         self.speed = 0
 
     def set_program(self, value):
         if self.program != value:
-            self.dmx.set(CHANNEL.program, value)
+            super().set(CHANNEL.program, value)
         self.program = value
 
     def set_strombo(self, value):
         if self.strombo != value:
-            self.dmx.set(CHANNEL.strombo, value)
+            super().set(CHANNEL.strombo, value)
         self.strombo = value
 
     def set_speed(self, value):
         if self.speed != value:
-            self.dmx.set(CHANNEL.speed, value)
+            super().set(CHANNEL.speed, value)
         self.speed = value
 
     def reload(self, other):
@@ -38,7 +36,7 @@ class Crazy_2(Lamp):
     def __eq__(self, other):
         if isinstance(other, Crazy_2):
             return super().__eq__(other)\
-                    and self.dmx == other.dmx\
+                    and super() == other.dmx\
                     and self.program == other.program\
                     and self.strombo == other.strombo\
                     and self.speed == other.speed
@@ -47,7 +45,7 @@ class Crazy_2(Lamp):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Crazy_2\n")
-        string += "".join("- Dmx : {}\n".format(self.dmx))
+        string += "".join("- Dmx : {}\n".format(super()))
         return string
 
 

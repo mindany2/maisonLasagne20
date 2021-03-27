@@ -9,11 +9,35 @@ class Dmx_controller:
 
     def __init__(self, transmitters = []):
         self.transmitters = transmitters
+        self.current_wireless = None # only one wireless at the time
+        self.mutex_transmit = Lock()
         self.mutex = Lock()
+        self.active_transmitter = None
+        self.nb_connection = 0
+
+    def connect(self, channel):
+        self.mutex.acquire()
+        for transmit in self.transmitters:
+            if transmit.test(channel):
+                if transmit != self.active_transmitter:
+                    print(f"Bloc with {channel}")
+                    self.mutex_transmit.acquire()
+                    self.active_transmitter = transmit
+                    transmit.power_on()
+                self.nb_connection += 1
+
+        self.mutex.release()
+
+    def disconnect(self, channel):
+        if self.active_transmitter and self.active_transmitter.test(channel):
+            self.nb_connection -= 1
+            if self.nb_connection == 0:
+                self.active_transmitter.power_off()
+                self.active_transmitter = None
+                self.mutex_transmit.release()
 
     def set(self, channel, value):
-        for transmit in self.transmitters:
-            transmit.test(channel)
+        pass
 
     def __str__(self):
         return "".join([str(trans) for trans in self.transmitters])
