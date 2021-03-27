@@ -14,11 +14,15 @@ class Dmx_device(Lamp):
 
     def connect(self):
         super().connect()
-        self.dmx.connect(self.addr)
+        if self.connected:
+            self.dmx.connect(self.addr)
+            print(f"{self.name} is connected")
 
     def disconnect(self):
+        if self.connected:
+            self.dmx.disconnect(self.addr)
+            print(f"{self.name} is disconnected")
         super().disconnect()
-        self.dmx.disconnect(self.addr)
 
     def __str__(self):
         return str(self.addr)

@@ -17,3 +17,6 @@ class Set_DMX(Message):
         else:
             dmx.set(self.addr, self.value)
         
+
+    def __str__(self):
+        return f"Set_DMX : addr={self.addr}, value={self.value}"

@@ -62,6 +62,7 @@ class Connection(Locker):
 
     def send(self, message):
         self.mutex.acquire()
+        print(f"send to {self.name} : {message}")
         if not(self.client.state()):
             if self.client.connect():
                 Logger.info("Connect from {}".format(self.name))
