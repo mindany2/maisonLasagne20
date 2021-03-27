@@ -33,15 +33,17 @@ class Client:
         Logger.debug("hello msg : " + hello)
 
     def connect(self):
+        if self.connected:
+            return True
         self.mutex.acquire()
         try:
             self.client.connect(self.addr)
             self.connected = True
             data = pickle.loads(self.client.recv(4096))
             self.mutex.release()
-            return  data
-        except :
-            Logger.error("The connection to the server failed")
+            return data
+        except Exception as e:
+            Logger.error(f"The connection to the server failed : {e}")
             self.mutex.release()
             return None
 
