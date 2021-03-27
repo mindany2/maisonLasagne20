@@ -1,8 +1,8 @@
+from tree.connected_objects.dmx.Dmx_device import Dmx_device
 from enum import Enum
-from tree.connected_objects.Lamp import Lamp
 from tree.utils.Locker import Locker
 
-class Lyre(Lamp):
+class Lyre(Dmx_device):
     """
     Fun Generation PicoSpot 20 LED
     https://www.thomann.de/intl/fun_generation_picospot_20_led.htm
@@ -11,9 +11,8 @@ class Lyre(Lamp):
     9 colors
     9 gobos
     """
-    def __init__(self, name, relay, controler):
-        Lamp.__init__(self, name, relay)
-        self.dmx = controler
+    def __init__(self, name, relay, addr, dmx):
+        Dmx_device.__init__(self, name, relay, addr, dmx)
         self.pan = 0
         self.tilt = 0
         self.speed_motor = 0
@@ -28,40 +27,40 @@ class Lyre(Lamp):
 
     def set_position(self, pan, tilt):
         if self.pan != pan:
-            self.dmx.set(CHANNEL.pan, pan)
+            super().set(CHANNEL.pan, pan)
         if self.tilt != tilt:
-            self.dmx.set(CHANNEL.tilt, tilt)
+            super().set(CHANNEL.tilt, tilt)
         self.pan = pan
         self.tilt = tilt
 
     def set_color(self, color):
         if self.color != color:
-            self.dmx.set(CHANNEL.color, color.value)
+            super().set(CHANNEL.color, color.value)
         self.color = color
 
     def set_gobo(self, gobo):
         if self.gobo != gobo:
-            self.dmx.set(CHANNEL.gobo, gobo.value)
+            super().set(CHANNEL.gobo, gobo.value)
         self.gobo = gobo
 
     def set_strombo(self, strombo):
         if self.strombo != strombo:
-            self.dmx.set(CHANNEL.strombo, strombo)
+            super().set(CHANNEL.strombo, strombo)
         self.strombo = strombo
 
     def set_dimmer(self, dimmer):
         if self.dimmer != dimmer:
-            self.dmx.set(CHANNEL.dimmer, dimmer)
+            super().set(CHANNEL.dimmer, dimmer)
         self.dimmer = dimmer
 
     def set_speed(self, speed):
         if self.speed != speed:
-            self.dmx.set(CHANNEL.speed, speed)
+            super().set(CHANNEL.speed, speed)
         self.speed = speed
 
     def set_speed_motor(self, speed_motor):
         if self.speed_motor != speed_motor:
-            self.dmx.set(CHANNEL.speed_motor, speed_motor)
+            super().set(CHANNEL.speed_motor, speed_motor)
         self.speed_motor = speed_motor
 
     def get_position(self):
@@ -102,7 +101,7 @@ class Lyre(Lamp):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Lyre\n")
-        string += "".join("- Dmx : {}\n".format(self.dmx))
+        string += "".join("- Dmx : {}\n".format(super()))
         return string
 
 class COLOR(Enum):

@@ -1,26 +1,25 @@
-from tree.connected_objects.Lamp import Lamp
+from tree.connected_objects.dmx.Dmx_device import Dmx_device
 from enum import Enum
 
-class Strombo(Lamp):
+class Strombo(Dmx_device):
     """
     Small stromboscop : Fun Generation LED Pot Strobe 100
     https://www.thomann.de/intl/fun_generation_led_pot_strobe_100.htm
     """
-    def __init__(self, name, relay, controler):
-        Lamp.__init__(self, name, relay)
-        self.dmx = controler
 
+    def __init__(self, name, relay, addr, dmx):
+        Dmx_device.__init__(self, name, relay, addr, dmx)
         self.dimmer = 0
         self.strombo = 0
 
     def set_dimmer(self, value):
         if self.dimmer != value:
-            self.dmx.set(CHANNEL.dimmer, value)
+            super().set(CHANNEL.dimmer, value)
         self.dimmer = value
 
     def set_strombo(self, value):
         if self.strombo != value:
-            self.dmx.set(CHANNEL.strombo, value)
+            super().set(CHANNEL.strombo, value)
         self.strombo = value
 
     def lock_dimmer(self):
@@ -37,7 +36,7 @@ class Strombo(Lamp):
     def __eq__(self, other):
         if isinstance(other, Strombo):
             return super().__eq__(other)\
-                    and self.dmx == other.dmx\
+                    and super() == other.dmx\
                     and self.dimmer == other.dimmer\
                     and self.strombo == other.strombo
         return False
@@ -45,7 +44,7 @@ class Strombo(Lamp):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Strombo\n")
-        string += "".join("- Dmx : {}\n".format(self.dmx))
+        string += "".join("- Dmx : {}\n".format(super()))
         return string
 
 
