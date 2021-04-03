@@ -10,7 +10,6 @@ class Dmx_controller:
     def __init__(self, transmitters = []):
         self.transmitters = transmitters
         self.current_wireless = None # only one wireless at the time
-        self.mutex_transmit = Lock()
         self.mutex = Lock()
         self.active_transmitter = None
         self.nb_connection = 0
@@ -20,13 +19,16 @@ class Dmx_controller:
         for transmit in self.transmitters:
             if transmit.test(channel):
                 if transmit != self.active_transmitter:
-                    print(f"Bloc with {channel}")
-                    self.mutex_transmit.acquire()
+                    if self.active_transmitter: # != None
+                        print(f"Bloc with {channel}")
+                        self.mutex.release()
+                        return False
+                    print(f"OK for {channel}")
                     self.active_transmitter = transmit
                     transmit.power_on()
                 self.nb_connection += 1
-
         self.mutex.release()
+        return True
 
     def disconnect(self, channel):
         if self.active_transmitter and self.active_transmitter.test(channel):
@@ -34,7 +36,6 @@ class Dmx_controller:
             if self.nb_connection == 0:
                 self.active_transmitter.power_off()
                 self.active_transmitter = None
-                self.mutex_transmit.release()
 
     def set(self, channel, value):
         pass
