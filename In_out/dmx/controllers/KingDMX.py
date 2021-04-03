@@ -1,5 +1,6 @@
 from In_out.utils.DMX import DMX
 from In_out.dmx.controllers.Dmx_controller import Dmx_controller
+from tree.utils.Logger import Logger
 from threading import Lock
 
 class KingDMX(Dmx_controller):
@@ -17,3 +18,4 @@ class KingDMX(Dmx_controller):
         super().set(channel, value)
         if self.dmx:
             self.dmx.set_channel(channel, int(value))
+            Logger.debug(f"send {channel} {value}")

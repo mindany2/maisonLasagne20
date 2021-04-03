@@ -62,6 +62,7 @@ class Scenario_manager:
             self.do(scenar)
         elif self.scenario_select.get_marker() == MARKER.OFF:
             # if we are already OFF, so just clear the list an shutdown 
+            # TODO strange comportements
             self.do(scenar)
             self.stack.clear()
         else: 

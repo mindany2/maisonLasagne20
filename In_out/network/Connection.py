@@ -6,6 +6,7 @@ from tree.utils.Logger import Logger
 from tree.utils.Dico import Dico
 from threading import Thread
 from time import sleep,time
+from threading import Lock
 
 TIME_OUT = 1 #s
 
@@ -24,6 +25,7 @@ class Connection(Locker):
         self.output_interrupts = []
         # list of all interrupts inputs FROM the remote device
         self.input_interrrupts = Dico()
+        self.mutex = Lock()
 
     def add_input_interrupt(self, name, env_path):
         self.input_interrrupts.add(name, env_path)
@@ -59,7 +61,7 @@ class Connection(Locker):
                 Logger.error("No connection or interrupt to {} at {}".format(self.name, self.addr))
 
     def send(self, message):
-        self.timeout = time()
+        self.mutex.acquire()
         if not(self.client.state()):
             if self.client.connect():
                 Logger.info("Connect from {}".format(self.name))
@@ -68,18 +70,25 @@ class Connection(Locker):
                 Logger.error("Could not connect to {} at {}".format(self.name, self.addr))
                 return
         data = self.client.send(message)
+        self.timeout = time()
+        self.mutex.release()
         return data
 
     def check_for_disconnection(self):
         """
         check if the connection exceed the TIME_OUT since the last send
         """
-        while (time() - self.timeout) < TIME_OUT:
-            sleep(0.1)
+        while self.mutex.locked:
+            self.mutex.acquire()
+            self.mutex.release()
+            while (time() - self.timeout) < TIME_OUT:
+                sleep(0.1)
         Logger.info("Disconnect from {}".format(self.name))
         self.disconnect()
 
     def disconnect(self):
+        self.mutex.acquire()
         self.client.disconnect()
+        self.mutex.release()
 
 

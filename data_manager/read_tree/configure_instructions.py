@@ -13,7 +13,7 @@ from tree.scenario.instructions.light.dmx import Instruction_speed, Instruction_
 from tree.scenario.instructions.communication.Instruction_PC import Instruction_PC, ACTIONS
 
 from tree.connected_objects import Led, Dimmable_light, Lamp, Speakers, Trap, BULD
-from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo
+from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo, Dmx_strip_led
 from tree.utils.calculs.Variable import Variable 
 from In_out.network.Rpi import Rpi
 from In_out.network.PC import PC
@@ -91,7 +91,7 @@ def get_inst_dimmer(env, name, delay, duration, args, synchro):
 
 def get_inst_color(env, name, delay, duration, args, synchro):
     dimmer, color = args.split(",", 2)
-    light = name.get_object(env, Led)
+    light = name.get_object(env, (Led, Dmx_strip_led))
     return Instruction_color(env.get_calculator(), light, dimmer, duration, delay, synchro, color)
 
 def get_inst_pc(env, name, delay, duration, args, synchro):

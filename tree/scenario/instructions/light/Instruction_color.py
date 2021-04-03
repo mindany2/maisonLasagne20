@@ -47,10 +47,14 @@ class Instruction_color(Instruction_light):
                 self.light.disconnect()
                 return
 
+            if self.light.test():
+                raise SystemExit("kill inst")
+
             connected = self.light.connect()
             if not(connected):
                 barrier.wait()
                 return
+            print(f"start {self.light.name}")
             super().run(time_spent=(time()-delay))
 
             barrier.wait()
@@ -65,6 +69,10 @@ class Instruction_color(Instruction_light):
 
         finally:
             self.light.unlock()
+
+    def finish(self):
+        print(f"finish {self.light.name}")
+        super().finish()
  
     def __str__(self):
         string = super().__str__()

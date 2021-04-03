@@ -77,5 +77,7 @@ class Instruction_button(Instruction):
 
     def __str__(self):
         string = "".join("- Type : Bouton\n")
+        string += "".join(" type : {}".format(self.type_bt))
+        string += "".join(" Link : {}".format(self.name_scenars))
         string += super().__str__()
         return string

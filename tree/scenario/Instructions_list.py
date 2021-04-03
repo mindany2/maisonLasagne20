@@ -23,7 +23,9 @@ class Instructions_list:
 
     def finish(self):
         for inst in self.list:
-            inst.finish()
+            process = Thread(target=inst.finish)
+            process.name = "Finish {}".format(inst)
+            process.start()
 
     def add(self, inst):
         self.list.append(inst)
