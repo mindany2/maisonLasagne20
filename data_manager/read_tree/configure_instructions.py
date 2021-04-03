@@ -143,10 +143,10 @@ def get_inst_spotify(env, name, delay, duration, args, synchro):
         try:
             type_inst, arg = args.split(",")
             type_inst = TYPE_INST_SPOTIFY[str(type_inst)]
-            if type_inst == TYPE_INST_SPOTIFY.volume:
+            if type_inst in [TYPE_INST_SPOTIFY.volume, TYPE_INST_SPOTIFY.start_playlist]:
                 val = arg
             else:
-                args.raise_error("Spotify action volume need to have an argument like : volume, 50")
+                args.raise_error("Spotify action volume, playlist need to have an argument like : volume, 50")
         except ValueError:
             type_inst = TYPE_INST_SPOTIFY[str(args)]
             val = 0

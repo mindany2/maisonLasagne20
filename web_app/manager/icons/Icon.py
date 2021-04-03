@@ -12,10 +12,11 @@ class Icon:
     """
     This is an icon on the html page
     """
-    def __init__(self, name, env=None, index = None, lenght = None):
+    def __init__(self, name, env=None, index = None, lenght = None, text=None):
         self.name = name
         self.index = 100 if index is None else index
         self.lenght = 1 if lenght is None else lenght
+        self.text = "" if text is None else text
         self.style = None
         self.state = True
         self.value = 0
@@ -35,11 +36,14 @@ class Icon:
         self.state = state
         print(self)
 
-    def change_value(self, value):
-        self.value = value
+    def change_infos(self, infos):
+        self.value = infos["value"]
 
     def get_lenght(self):
         return self.lenght
+
+    def get_text(self):
+        return self.text
 
     def get_style(self):
         return self.style

@@ -88,12 +88,13 @@ def get_icon(name, icon, env=None):
     manager = icon.get_getter()
 
     type_icon, lenght, index = icon.get("type", mandatory=True), icon.get_int("lenght"), icon.get_int("index")
+    text = icon.get_str("text")
     if str(type_icon) == "button":
         image, color_on = icon.get_str("background_image", mandatory=True), icon.get_str("active_color", mandatory=True)
         color_off = icon.get_str("inactive_color")
         if str(env) == None:
             env.raise_error("A button need to have a link to an environnement")
-        return Icon_button(name, str(env), image, color_on, color_off, index = index, lenght=lenght)
+        return Icon_button(name, str(env), image, color_on, color_off, index = index, lenght=lenght, text=text)
 
     elif str(type_icon) == "redirection":
         image, background_color = icon.get_str("background_image", mandatory=True), icon.get_str("background_color")

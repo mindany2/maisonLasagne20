@@ -9,7 +9,8 @@
             {% for icon in section.get_icons() %}
                 {% if icon.get_type() == TYPE_ICON.button %}
                     <input onclick="change(id)" type="image" style="{{icon.get_style()}}"
-                            src={{url_for('static', filename=icon.get_image())}} id={{section.name + ","+icon.name}}></input>
+                     src={{(url_for('static', filename=icon.get_image()),icon.get_image())[icon.get_image().count('http')]}}
+                     id={{section.name + ","+icon.name}}> </input>
                 {% elif icon.get_type() == TYPE_ICON.text %}
                     <p style="{{icon.get_style()}}">{{icon.get_text()}}</p>
                 {% elif icon.get_type() == TYPE_ICON.link %}
