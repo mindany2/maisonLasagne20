@@ -43,9 +43,9 @@ class Web_manager:
             for section in page.get_sections():
                 for icon in section.get_list_icons():
                     try:
-                        value = datas["{}.{}.{}".format(page.name, section.name, icon.name)]
+                        infos = datas["{}.{}.{}".format(page.name, section.name, icon.name)]
                         icon.change_state(True)
-                        icon.change_value(value)
+                        icon.change_infos(infos)
                     except KeyError as e:
                         icon.change_state(False)
                         print(e, icon)

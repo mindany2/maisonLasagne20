@@ -14,11 +14,13 @@ class Get_states(Message):
         all_states = {}
         for mode in getter.get_tree().get_modes():
             for inter in mode.get_inters():
-                all_states[inter] =  mode.get_state()
+                all_states[inter] =  {"value":mode.get_state()}
         list_envs = getter.get_tree().get_list_envs()
         for env in list_envs:
             for button in env.get_preset_select().get_buttons():
-                all_states[button.name] = button.state()
+                all_states[button.name] = {"value":button.state()}
+        # get also spotify states and images
+        all_states.update(getter.get_spotify().get_states())
         return all_states
 
 

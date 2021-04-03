@@ -55,7 +55,6 @@ class Section:
         if list_active:
             if self.title:
                 list_active += [self.title]
-                print(self.title)
             return list_active
         return []
 
