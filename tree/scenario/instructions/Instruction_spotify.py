@@ -21,6 +21,7 @@ class Instruction_spotify(Instruction):
 
     def run(self, barrier=None):
         super().run()
+        Logger.info(f"{self.type_inst} spotify")
         if self.type_inst == TYPE_INST_SPOTIFY.start:
             self.spotify.start()
         elif self.type_inst == TYPE_INST_SPOTIFY.stop:
