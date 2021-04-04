@@ -38,6 +38,7 @@ class SP:
         self.sp = spotipy.Spotify(auth=self.token)
 
     def refresh_token(self):
+        print("refresh  token")
         self.token = util.prompt_for_user_token(self.name,
                                 SCOPE,
                                 cache_path = ".spotipy-cache",
@@ -61,6 +62,7 @@ class SP:
     @token_check
     def start_playback(self, context_uri=None):
         self.sp.start_playback(self.pi_id, context_uri=context_uri)
+        print("started")
 
     @token_check
     def next_track(self):

@@ -78,7 +78,7 @@ class Connection(Locker):
         """
         check if the connection exceed the TIME_OUT since the last send
         """
-        while self.mutex.locked:
+        while self.mutex.locked():
             self.mutex.acquire()
             self.mutex.release()
             while (time() - self.timeout) < TIME_OUT:

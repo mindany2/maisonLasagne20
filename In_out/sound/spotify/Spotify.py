@@ -178,7 +178,8 @@ class Spotify:
                 os.system("sudo systemctl restart raspotify.service")
 
     def start(self, attemps = 0, context_uri = None):
-        if not self.state or context_uri:
+        print(f"start spotify {self.state}, {context_uri}")
+        if not(self.state) or context_uri:
             try:
                 self.sp.start_playback(context_uri=context_uri)
                 self.sp.repeat("context")
