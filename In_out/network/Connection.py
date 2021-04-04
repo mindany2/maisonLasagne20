@@ -25,7 +25,7 @@ class Connection(Locker):
         self.output_interrupts = []
         # list of all interrupts inputs FROM the remote device
         self.input_interrrupts = Dico()
-        self.mutex = Lock()
+        self.mutex_client = Lock()
 
     def add_input_interrupt(self, name, env_path):
         self.input_interrrupts.add(name, env_path)
@@ -61,7 +61,7 @@ class Connection(Locker):
                 Logger.error("No connection or interrupt to {} at {}".format(self.name, self.addr))
 
     def send(self, message):
-        self.mutex.acquire()
+        self.mutex_client.acquire()
         print(f"send to {self.name} : {message}")
         if not(self.client.state()):
             if self.client.connect():
@@ -72,24 +72,24 @@ class Connection(Locker):
                 return
         data = self.client.send(message)
         self.timeout = time()
-        self.mutex.release()
+        self.mutex_client.release()
         return data
 
     def check_for_disconnection(self):
         """
         check if the connection exceed the TIME_OUT since the last send
         """
-        while self.mutex.locked:
-            self.mutex.acquire()
-            self.mutex.release()
+        while self.mutex_client.locked():
+            self.mutex_client.acquire()
+            self.mutex_client.release()
             while (time() - self.timeout) < TIME_OUT:
                 sleep(0.1)
         Logger.info("Disconnect from {}".format(self.name))
         self.disconnect()
 
     def disconnect(self):
-        self.mutex.acquire()
+        self.mutex_client.acquire()
         self.client.disconnect()
-        self.mutex.release()
+        self.mutex_client.release()
 
 

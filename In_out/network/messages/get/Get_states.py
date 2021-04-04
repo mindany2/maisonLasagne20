@@ -20,7 +20,10 @@ class Get_states(Message):
             for button in env.get_preset_select().get_buttons():
                 all_states[button.name] = {"value":button.state()}
         # get also spotify states and images
-        all_states.update(getter.get_spotify().get_states())
+        try:
+            all_states.update(getter.get_spotify().get_states())
+        except NameError:
+            pass
         return all_states
 
 

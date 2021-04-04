@@ -64,6 +64,7 @@ class Server:
                 conn.send(data)
                 break
             try:
+                print(f"do {requete}")
                 data = requete.do(self.getter)
             except Exception as e:
                 trace = traceback.format_exc()

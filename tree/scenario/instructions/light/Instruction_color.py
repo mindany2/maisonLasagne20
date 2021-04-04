@@ -54,7 +54,6 @@ class Instruction_color(Instruction_light):
             if not(connected):
                 barrier.wait()
                 return
-            print(f"start {self.light.name}")
             super().run(time_spent=(time()-delay))
 
             barrier.wait()

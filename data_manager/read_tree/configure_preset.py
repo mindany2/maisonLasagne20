@@ -10,6 +10,7 @@ from tree.buttons.Button_principal import Button_principal
 from tree.buttons.Button_secondary import Button_secondary
 from tree.buttons.Button_choice import Button_choice
 from tree.buttons.Button_variable import Button_variable
+from tree.buttons.Button_tempo import Button_tempo
 import re
 
 
@@ -88,6 +89,10 @@ def get_bt(name, preset, type_bt, scenars):
             return Button_secondary(name, manager, list_scenar[0])
         elif str(type_bt) == "choice":
             return Button_choice(name, manager, list_scenar)
+        elif str(type_bt).count("tempo"):
+            type_, tempo = type_bt.split(",",2)
+            return Button_tempo(name, manager, list_scenar[0], list_scenar[1], int(tempo))
+
         else:
             type_bt.raise_error("Could not find a button type {}".format(str(type_bt)))
 
