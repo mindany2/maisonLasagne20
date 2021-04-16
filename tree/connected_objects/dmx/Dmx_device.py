@@ -14,14 +14,17 @@ class Dmx_device(Lamp):
         self.dmx.set(self.addr + channel.value - 1, value)
 
     def connect(self):
-        super().connect()
-        while not self.dmx.connect(self.addr):
-            sleep(1)
-        print(f"{self.name} connected")
+        if not self.connected:
+            while not self.dmx.connect(self.addr):
+                sleep(1)
+            self.connected = True
+            print(f"{self.name} connected")
 
     def disconnect(self):
-        super().disconnect()
-        self.dmx.disconnect(self.addr)
+        if self.connected:
+            self.dmx.disconnect(self.addr)
+            self.connected = False
+            print(f"{self.name} is disconnected")
 
     def __str__(self):
         return str(self.addr)

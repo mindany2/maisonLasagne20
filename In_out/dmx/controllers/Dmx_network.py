@@ -13,9 +13,9 @@ class Dmx_network(Dmx_controller):
         super().set(channel, value)
         self.rpi.send(Set_DMX(channel, value))
 
-    def connect(self):
-        self.rpi.send(Set_DMX(channel, -1))
+    def connect(self, channel):
+        return self.rpi.send(Set_DMX(channel, -1))
 
-    def disconnect(self):
-        self.rpi.send(Set_DMX(channel, -2))
+    def disconnect(self, channel):
+        return self.rpi.send(Set_DMX(channel, -2))
 

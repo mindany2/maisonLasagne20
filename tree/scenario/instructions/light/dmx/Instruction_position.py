@@ -22,8 +22,8 @@ class Instruction_position(Instruction_light):
         Setup a try/finally to allow kill from another instruction
         """
         try:
-            super().run()
             self.light.lock()
+            super().run()
             delay = time()
  
             x_init, y_init = self.light.get_position()

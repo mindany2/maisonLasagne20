@@ -6,6 +6,8 @@ class TYPE_INST_SPOTIFY(Enum):
     start = 0
     stop = 1
     volume = 2
+    next_track = 3
+    start_playlist = 4
 
 class Instruction_spotify(Instruction):
     """
@@ -19,12 +21,17 @@ class Instruction_spotify(Instruction):
 
     def run(self, barrier=None):
         super().run()
+        Logger.info(f"{self.type_inst} spotify")
         if self.type_inst == TYPE_INST_SPOTIFY.start:
             self.spotify.start()
         elif self.type_inst == TYPE_INST_SPOTIFY.stop:
             self.spotify.kill()
         elif self.type_inst == TYPE_INST_SPOTIFY.volume:
             self.spotify.set_volume(self.eval(self.val))
+        elif self.type_inst == TYPE_INST_SPOTIFY.start_playlist:
+            self.spotify.start(context_uri=str(self.val))
+        elif self.type_inst == TYPE_INST_SPOTIFY.next_track:
+            self.spotify.next_track()
 
     def __str__(self):
         string = super().__str__()

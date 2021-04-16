@@ -9,10 +9,16 @@ class Track:
     Get all needed infos for a track
     """
 
-    def __init__(self, sp, player, id_track):
+    def __init__(self, sp, id_track):
         self.sp = sp
-        self.player = player
         self.id = id_track
+
+    def get_image(self, quality=0):
+        assert(quality<3), "Quality must be in 0,2"
+        return self.sp.track(self.id)['album']['images'][quality]['url']
+
+    def start_analysis(self, player):
+        self.player = player
         self.analysis = self.sp.audio_analysis(self.id)
         self.infos = self.sp.audio_features(self.id)[0]
         self.beat = Condition()
