@@ -2,7 +2,10 @@ from tree.utils.List import List
 from random import randint
 from tree.scenario.Scenario import MARKER
 from tree.utils.Logger import Logger
+from datetime import datetime
 import re
+
+MORNING = (4, 9) # hours
 
 class Calculator:
     """
@@ -31,13 +34,21 @@ class Calculator:
                     try:
                         int(var, 16)
                     except ValueError:
-                        if var not in ("False", "True", "not", "randint"):
+                        if var not in ("False", "True", "not", "randint", "morning"):
                             # replace the var_name by it's value
                             string = string.replace(var,"self.get_value(\"{}\",expression, inst)".format(var))
+                        elif var == "morning":
+                            # check if it is the morning
+                            now = datetime.now()
+                            before = now.replace(hour=MORNING[0], minute=0, second=0, microsecond=0)
+                            after = now.replace(hour=MORNING[1], minute=0, second=0, microsecond=0)
+                            string = str((before<now) and (now<after))
+
             try:
                 return eval(string)
             except SyntaxError as e:
                 expression.raise_error(str(e))
+        return 0
 
     def get_value(self, var_name, expression, inst):
         try:
