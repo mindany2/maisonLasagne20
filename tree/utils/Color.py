@@ -31,10 +31,10 @@ class Color:
         self.b = int("0x"+self.value[6:8].zfill(2),16)
         return [self.r, self.g, self.b]
 
-    def get_list(self, variable_init, variable_self, nb_dots):
+    def _get_list(self, variable_init, variable_self, nb_dots):
         if variable_init != variable_self:
-            return np.arange(variable_init, variable_self, float((variable_self - variable_init))/nb_dots)
-        return [variable_init]*nb_dots
+            return np.arange(variable_init, variable_self+1, float((variable_self - variable_init))/nb_dots) # arange did not keep the last arg
+        return [variable_init]*(nb_dots+1)
 
     def __str__(self):
         return str(self.value)
@@ -48,9 +48,9 @@ class Color:
     def generate_array(self, color_init, nb_dots):
         self.int_to_rgb()
         color_init.int_to_rgb()
-        list_red = self.get_list(color_init.r, self.r, nb_dots)
-        list_green = self.get_list(color_init.g, self.g, nb_dots)
-        list_blue = self.get_list(color_init.b, self.b, nb_dots)
+        list_red = self._get_list(color_init.r, self.r, nb_dots)
+        list_green = self._get_list(color_init.g, self.g, nb_dots)
+        list_blue = self._get_list(color_init.b, self.b, nb_dots)
         return [rgb_to_hexa(int(r),int(g),int(b)) for r,g,b in zip(list_red, list_green, list_blue)]
 
     def is_black(self):

@@ -7,6 +7,7 @@ class Dico:
         self.list = {}
 
     def add(self, key, element):
+        assert key != None, "The key is None"
         self.list[key] = element
 
     def get(self, key):
@@ -19,7 +20,7 @@ class Dico:
                 return el
             if el == element:
                 find = True
-        assert(find)
+        assert(find), f"{element} is not in the dict"
         return list(self.list.values())[0]
 
     def last(self):
