@@ -65,7 +65,7 @@ def get_trap(getter, name, sub_type, relay_triak, addr):
 def get_crazy(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
         addr.raise_error("The {} need an dmx address".format(name))
-    return Crazy_2(name, relay_triak.get_relay(), str(addr), getter.get_dmx())
+    return Crazy_2(name, relay_triak.get_relay(), int(addr), getter.get_dmx())
 
 def get_laser(getter, name, sub_type, relay_triak, addr):
     #TODO
@@ -79,7 +79,7 @@ def get_lyre(getter, name, sub_type, relay_triak, addr):
 def get_strombo(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
         addr.raise_error("The {} need an dmx address".format(name))
-    return Strombo(name, relay_triak.get_relay(), str(addr), getter.get_dmx())
+    return Strombo(name, relay_triak.get_relay(), int(addr), getter.get_dmx())
 
         
 TYPE_LED = { "lednet" : LEDnet,

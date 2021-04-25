@@ -9,9 +9,16 @@ class Track:
     Get all needed infos for a track
     """
 
-    def __init__(self, sp, id_track):
+    def __init__(self, sp, id_track=""):
         self.sp = sp
         self.id = id_track
+        self.bpm = 1
+        self.beat = Condition()
+        self.running = False
+
+    def change_id(self, id_track):
+        self.id = id_track
+        self.running = False
 
     def get_image(self, quality=0):
         assert(quality<3), "Quality must be in 0,2"
@@ -21,20 +28,13 @@ class Track:
         self.player = player
         self.analysis = self.sp.audio_analysis(self.id)
         self.infos = self.sp.audio_features(self.id)[0]
-        self.beat = Condition()
         self.calcul_beats()
         print(self.infos)
         self.bpm = float(self.infos["tempo"])
+        self.running = True
 
         pc = Thread(target=self.beats_action)
         pc.start()
-        
-    def kill(self):
-        try:
-            self.beat.acquire()
-            self.beat.notify_all()
-        finally:
-            self.beat.release()
 
     def calcul_beats(self):
         self.pitches = [el["pitches"][1]*100 for el in self.analysis['segments']]
@@ -69,18 +69,19 @@ class Track:
                 for i in range(gp):
                     #if liste[i+index] == 1 or liste[i+index-1] == 1 or liste[i+index+1] == 1:
                     self.boom.append(self.beats[i+index])
-
             index += gp
 
     def beats_action(self):
         print([el["tempo"] for el in self.analysis["sections"]])
         for beat in self.beats:
-            while beat*1000 > self.player.tps:
+            while beat*1000 > self.player.tps and self.running:
                 sleep(0.0005)
+            self.beat.acquire()
             try:
-                self.beat.acquire()
                 self.beat.notify_all()
                 print("beat !!!!")
             finally:
                 self.beat.release()
+            if not self.running:
+                break
         print("fin")
