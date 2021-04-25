@@ -5,7 +5,7 @@ You can control these scenarii with a web app or even with power switch in the h
 
 # What did it does ?
 It is possible to like your led strip controler, dmx controller, power switch in the home,
-make all your light dimmable, control your pc remotelly, and even manage spotify with it.
+make all your light dimmable, control your pc remotelly, and even manage spotify with it or communication between rpis !
 You can create several environnements that have presets link with modes to manage your home as you want.
 All scenario and web app page are entirely customasable.
 See the data wiki for more informations.
