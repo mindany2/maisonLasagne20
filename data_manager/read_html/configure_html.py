@@ -5,6 +5,7 @@ from web_app.manager.Page import Page
 from web_app.manager.Section import Section
 from web_app.manager.icons.Icon_button import Icon_button
 from web_app.manager.icons.Icon_redirect import Icon_redirect
+from web_app.manager.icons.Icon_slider import Icon_slider
 
 from tree.utils.Color import Color
 
@@ -59,8 +60,6 @@ def get_page(manager, path, name):
 
 def get_section(section, page):
     name, title = section.get_str("name", mandatory=True), section.get_str("title")
-    print("kkkkkkkkkkkkkkkk")
-    print(title, type(title))
     lenght, index = section.get_int("lenght"), section.get_int("index")
     background_color, text_color = section.get_str("background_color"), section.get_str("text_color")
     return Section(name, index = index, title = title, lenght = lenght,
@@ -89,17 +88,23 @@ def get_icon(name, icon, env=None):
     manager = icon.get_getter()
 
     type_icon, lenght, index = icon.get("type", mandatory=True), icon.get_int("lenght"), icon.get_int("index")
+    text = icon.get_str("text")
     if str(type_icon) == "button":
         image, color_on = icon.get_str("background_image", mandatory=True), icon.get_str("active_color", mandatory=True)
         color_off = icon.get_str("inactive_color")
         if str(env) == None:
             env.raise_error("A button need to have a link to an environnement")
-        return Icon_button(name, str(env), image, color_on, color_off, index = index, lenght=lenght)
+        return Icon_button(name, str(env), image, color_on, color_off, index = index, lenght=lenght, text=text)
 
     elif str(type_icon) == "redirection":
         image, background_color = icon.get_str("background_image", mandatory=True), icon.get_str("background_color")
         link = icon.get_str("link", mandatory=True)
         return Icon_redirect(name, image, link, background_color= background_color, index = index, lenght=lenght)
+
+    elif str(type_icon) == "slider":
+        image, background_color = icon.get_str("background_image"), icon.get_str("background_color")
+        maxi, mini = icon.get_int("max_value", mandatory=True), icon.get_int("min_value", mandatory=True)
+        return Icon_slider(name, str(env), mini, maxi, image, background_color, lenght, index)
 
     type_icon.raise_error("Type icon unknown")
 

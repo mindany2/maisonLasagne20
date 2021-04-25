@@ -13,7 +13,7 @@ from tree.scenario.instructions.light.dmx import Instruction_speed, Instruction_
 from tree.scenario.instructions.Instruction_PC import Instruction_PC, ACTIONS
 
 from tree.connected_objects import Led, Dimmable_light, Lamp, Speakers, Trap, BULD
-from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo
+from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo, Dmx_strip_led
 from tree.utils.calculs.Variable import Variable 
 from In_out.network.Rpi import Rpi
 from In_out.network.PC import PC
@@ -91,7 +91,7 @@ def get_inst_dimmer(env, name, delay, duration, args, synchro):
 
 def get_inst_color(env, name, delay, duration, args, synchro):
     dimmer, color = args.split(",", 2)
-    light = name.get_object(env, Led)
+    light = name.get_object(env, (Led, Dmx_strip_led))
     return Instruction_color(env.get_calculator(), light, dimmer, duration, delay, synchro, color)
 
 def get_inst_pc(env, name, delay, duration, args, synchro):
@@ -100,7 +100,7 @@ def get_inst_pc(env, name, delay, duration, args, synchro):
         args.raise_error("Could not match the action, try this syntax : mouse(200,300) or key(space)")
     try:
         action = ACTIONS[match.group("action")]
-        args = match.group("args").split(",")
+        args = match.group("args").replace(" ","").split(",")
     except KeyError:
         args.raise_error("PC action {} not define this is the allowed keys :\n {}".
                         format(str(args), [arg.name for arg in ACTIONS]))
@@ -121,7 +121,7 @@ def get_inst_variable(env, name, delay, duration, args, synchro):
         name.raise_error(str(e))
     except AssertionError:
         name.raise_error("The instruction variable is only available for {}".format(Variable))
-    return Instruction_variable(env.get_calculator(), variable, args, delay, synchro)
+    return Instruction_variable(env.get_calculator(), variable, args, duration, delay, synchro)
 
 def get_inst_trap(env, name, delay, duration, args, synchro):
     try:
@@ -140,11 +140,20 @@ def get_inst_trap(env, name, delay, duration, args, synchro):
 
 def get_inst_spotify(env, name, delay, duration, args, synchro):
     try:
-        type_inst = TYPE_INST_SPOTIFY[str(args)]
+        try:
+            type_inst, arg = args.split(",")
+            type_inst = TYPE_INST_SPOTIFY[str(type_inst)]
+            if type_inst in [TYPE_INST_SPOTIFY.volume, TYPE_INST_SPOTIFY.start_playlist]:
+                val = arg
+            else:
+                args.raise_error("Spotify action volume, playlist need to have an argument like : volume, 50")
+        except ValueError:
+            type_inst = TYPE_INST_SPOTIFY[str(args)]
+            val = 0
     except KeyError:
         args.raise_error("Spotify action {} not define this is the allowed keys :\n {}".
                         format(str(args), [arg.name for arg in TYPE_INST_SPOTIFY]))
-    return Instruction_spotify(env.get_calculator(), name.get_spotify(), type_inst, delay, synchro)
+    return Instruction_spotify(env.get_calculator(), name.get_spotify(), type_inst, val, delay, synchro)
 
 def get_inst_interrupt(env, name, delay, duration, args, synchro):
     manager = name.get_getter().get_manager()
@@ -164,7 +173,7 @@ def get_inst_button_prin(env, name, delay, duration, args, synchro):
 
 def get_inst_mode(env, name, delay, duration, args, synchro):
     tree = name.get_getter().get_tree()
-    return Instruction_mode(env.get_calculator(), tree, str(name), delay, synchro)
+    return Instruction_mode(env.get_calculator(), tree, str(name), delay, args, synchro)
 
 
 TYPE = {"button_secondary" : get_inst_button_sec,

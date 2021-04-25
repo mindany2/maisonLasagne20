@@ -7,16 +7,30 @@
       <!-- <META HTTP-EQUIV="Refresh" CONTENT="60; URL=/"> -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>
+
+            function move(id, value)
+            {
+                $.post( "/move_slider", {
+                    id: id,
+                    value: value
+                },
+                function(data){
+                    //TODO reload the page without the html
+                });
+            }
+
+
             function change(id)
             {
                 $.post( "/press_button", {
-                    javascript_data: id 
+                    id: id 
                 },
                 function(data){
                     document.location.reload();
                     //TODO reload the page without the html
                 });
             }
+
 
             function reload()
             {

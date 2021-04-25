@@ -1,32 +1,55 @@
 from enum import Enum
 from time import sleep
-from threading import Thread, Barrier
+from threading import Thread, Barrier, Lock
 import uuid
 
 class STATE(Enum):
     CONTINUE = 0
     WAIT = 1
 
-class Instruction():
+class Instruction:
     """
     This class is the parent class of all instructions
     """
     def __init__(self, calculator, duration, delay, synchro):
         self.delay = delay
+        self.fixed_duration = duration #duration define in the data
         self.duration = duration
         self.synchro = synchro
         self.calculator = calculator
+        self.current = False
+        self.id = uuid.uuid1()
+        self.in_reload = []
+        self.mutex_current = Lock()
+
+    def get_id(self):
+        return self.id
 
     def run(self, time_spent = 0):
-        self.duration=self.eval(self.duration)
-        self.delay.wait(time_spent)
+        if not(self.in_reload):
+            self.current = True
+            self.duration=self.eval(self.fixed_duration)
+            if self.delay:
+                self.delay.wait(time_spent)
+        else:
+            self.duration = self.in_reload.pop()
         # next in sub-classes
 
+    def reload(self, duration):
+        # reload the inst without any delay or duration
+        self.in_reload.append(duration)
+        self.run(Barrier(1))
+
+    def wait_precedent(self):
+        if self.delay:
+            return self.delay.wait_precedent
+        return False
+
     def finish(self):
-        pass
+        self.current = False
 
     def eval(self, string):
-        return self.calculator.eval(string)
+        return self.calculator.eval(string, self)
 
     def initialize(self):
         # verify if the expressions given can be resolved

@@ -27,6 +27,9 @@ class Instruction_button(Instruction):
         if not(self.button):
             raise(Exception("Need to initialize the instruction before start"))
 
+        if not(self.current):
+            return
+
         condition = self.eval(self.condition)
         env, preset, scenars = self.name_scenars.get_scenarios(get_all = True)
         # check if it is the right preset, if not just pass
@@ -38,6 +41,7 @@ class Instruction_button(Instruction):
                 # if not, just press the button with the condition like state
                 # it is necessary a principal button
                 self.button.press(state=condition)
+                
 
     def initialize(self):
         """
@@ -61,6 +65,7 @@ class Instruction_button(Instruction):
             self.condition.raise_error("Error type button : {}".format(self.type_bt))
 
     def finish(self):
+        super().finish()
         if self.type_bt == TYPE_BUTTON.secondary:
             self.button.press(state=False)
 
@@ -72,5 +77,7 @@ class Instruction_button(Instruction):
 
     def __str__(self):
         string = "".join("- Type : Bouton\n")
+        string += "".join(" type : {}".format(self.type_bt))
+        string += "".join(" Link : {}".format(self.name_scenars))
         string += super().__str__()
         return string

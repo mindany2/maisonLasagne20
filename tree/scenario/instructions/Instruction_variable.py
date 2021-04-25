@@ -8,15 +8,15 @@ class Instruction_variable(Instruction):
     """
     Set a variable to a value
     """
-    def __init__(self,calculator, variable, value, delay, synchro, duration = 0):
+    def __init__(self,calculator, variable, value, duration, delay, synchro):
         Instruction.__init__(self,calculator, duration, delay, synchro)
         self.variable = variable
         self.value = value
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
-        self.variable.set(self.eval(self.value))
-        #Logger.debug("set the variable {} to {}".format(self.variable.name, self.variable.get()))
+        self.variable.set(self.eval(self.value), self.duration)
+        Logger.debug("set the variable {} to {}".format(self.variable.name, self.variable.get()))
 
     def initialize(self):
         super().initialize()

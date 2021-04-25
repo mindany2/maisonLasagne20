@@ -82,6 +82,7 @@ class Dimmable_light(Connected_object):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : dimmable_light\n")
+        string += "".join("- Status : {}%\n".format(self.dimmer))
         string += "".join("- Triak : {}\n".format(self.triak))
         string += "".join("- Buld : {}\n".format(self.type_buld))
         return string

@@ -6,6 +6,7 @@ from tree.utils.Logger import Logger
 from tree.utils.Dico import Dico
 from threading import Thread
 from time import sleep,time
+from threading import Lock
 
 TIME_OUT = 1 #s
 
@@ -24,6 +25,7 @@ class Connection(Locker):
         self.output_interrupts = []
         # list of all interrupts inputs FROM the remote device
         self.input_interrrupts = Dico()
+        self.mutex_client = Lock()
 
     def add_input_interrupt(self, name, env_path):
         self.input_interrrupts.add(name, env_path)
@@ -33,11 +35,11 @@ class Connection(Locker):
 
     def send_interrupt(self, name, state):
         if name in self.output_interrupts:
-            Logger.info("send {}:{} to {}".format(name, state, self.name))
+            #Logger.info("send {}:{} to {}".format(name, state, self.name))
             self.send(Network_interrupt(self.me, name, state))
 
     def press_inter(self,getter, name, state):
-        Logger.info("receive {}:{} from {}".format(name, state, self.name))
+        #Logger.info("receive {}:{} from {}".format(name, state, self.name))
         if name in self.input_interrrupts.keys():
             getter.get_tree().press_inter(self.input_interrrupts.get(name), name, state)
 
@@ -59,30 +61,34 @@ class Connection(Locker):
                 Logger.error("No connection or interrupt to {} at {}".format(self.name, self.addr))
 
     def send(self, message):
-        self.lock()
-        self.timeout = time()
+        self.mutex_client.acquire()
         if not(self.client.state()):
             if self.client.connect():
                 Logger.info("Connect from {}".format(self.name))
                 Thread(target=self.check_for_disconnection).start()
             else:
                 Logger.error("Could not connect to {} at {}".format(self.name, self.addr))
-                self.unlock()
                 return
         data = self.client.send(message)
-        self.unlock()
+        self.timeout = time()
+        self.mutex_client.release()
         return data
 
     def check_for_disconnection(self):
         """
         check if the connection exceed the TIME_OUT since the last send
         """
-        while (time() - self.timeout) < TIME_OUT:
-            sleep(0.1)
+        while self.mutex_client.locked():
+            self.mutex_client.acquire()
+            self.mutex_client.release()
+            while (time() - self.timeout) < TIME_OUT:
+                sleep(0.1)
         Logger.info("Disconnect from {}".format(self.name))
         self.disconnect()
 
     def disconnect(self):
+        self.mutex_client.acquire()
         self.client.disconnect()
+        self.mutex_client.release()
 
 

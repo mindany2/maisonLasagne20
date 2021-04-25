@@ -9,6 +9,9 @@ from tree.scenario.Scenario import Scenario, MARKER
 from tree.buttons.Button_principal import Button_principal
 from tree.buttons.Button_secondary import Button_secondary
 from tree.buttons.Button_choice import Button_choice
+from tree.buttons.Button_variable import Button_variable
+from tree.buttons.Button_tempo import Button_tempo
+import re
 
 
 def get_presets(getter, env, path):
@@ -28,16 +31,36 @@ def get_presets(getter, env, path):
         # HTML Button
         html = file.get("HTML")
         if html:
-            get_html_buttons(html, preset)
+            get_html_buttons(html, preset, env)
 
         env.add_preset(preset)
 
-def get_html_buttons(buttons, preset):
+def get_html_buttons(buttons, preset, env):
     for button in buttons:
         action, name = button.get("action", mandatory=True), button.get_str("name", mandatory=True)
-        if action.get_str("type") == "button":
+        type_action = action.get("type")
+        if str(type_action) == "button":
             type_bt, scenars = action.get("button", mandatory=True), action.get("scenarios", mandatory=True)
-        preset.add_button(get_bt(name, preset, type_bt, scenars))
+            preset.add_button(get_bt(name, preset, type_bt, scenars))
+        elif str(type_action) == "variable":
+            var_name = action.get_str("variable", mandatory=True)
+            try:
+                variable = env.get_var(var_name)
+            except NameError as e:
+                var_name.raise_error(e)
+            preset.add_button(Button_variable(name, variable))
+        else:
+            type_action.raise_error("Type action is not correct")
+
+        # check if the image is static, if not, it could be a spotify picture
+        image = button.get("background_image")
+        if image and not(re.search("\.png|\.jpg|\.jpeg", str(image))):
+            if re.search("spotify.",str(image)):
+                image.get_spotify().add_state(name, list(image.split("."))[1])
+            else:
+                image.raise_error("Invalid format for the image need [png,jpg,jpeg]")
+
+
 
 def get_inter_buttons(buttons, preset):
     getter = buttons.get_getter()
@@ -66,6 +89,10 @@ def get_bt(name, preset, type_bt, scenars):
             return Button_secondary(name, manager, list_scenar[0])
         elif str(type_bt) == "choice":
             return Button_choice(name, manager, list_scenar)
+        elif str(type_bt).count("tempo"):
+            type_, tempo = type_bt.split(",",2)
+            return Button_tempo(name, manager, list_scenar[0], list_scenar[1], int(tempo))
+
         else:
             type_bt.raise_error("Could not find a button type {}".format(str(type_bt)))
 

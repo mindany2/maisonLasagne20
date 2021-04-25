@@ -22,8 +22,8 @@ class Instruction_position(Instruction_light):
         Setup a try/finally to allow kill from another instruction
         """
         try:
-            super().run()
             self.light.lock()
+            super().run()
             delay = time()
  
             x_init, y_init = self.light.get_position()
@@ -62,7 +62,7 @@ class Instruction_position(Instruction_light):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : position\n")
-        string += "".join("- Position : {}\n".format(self.position_final))
+        string += "".join("- Position : {},{}\n".format(self.x, self.y))
         return string   
 
 

@@ -1,9 +1,8 @@
 from data_manager.utils.Csv_reader import Csv_reader
 
 from tree.connected_objects import Led, Dimmable_light, Lamp, Speakers, Trap, BULD
-from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo
+from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy_laser, Strombo, Dmx_strip_led
 
-from In_out.dmx.Dmx_device import Dmx_device
 from In_out.bluetooth_devices import ELK_BLEDOM, LEDBLE, TRIONES
 from In_out.wifi_devices import LEDnet
 from In_out.sensors.Sensor_GPIO import Sensor_GPIO
@@ -26,8 +25,7 @@ def get_dimmable(getter, name, sub_type, relay_triak, addr):
     if str(sub_type) == "dmx":
         if not(str(addr)):
             addr.raise_error("The {} need an dmx address".format(name))
-        device = Dmx_device(getter.get_dmx(), int(addr))
-        return Dmx_dimmable_light(name, relay_triak.get_relay(), device)
+        return Dmx_dimmable_light(name, relay_triak.get_relay(), int(addr), getter.get_dmx())
     try:
         buld = BULD[str(sub_type)]
     except KeyError:
@@ -36,11 +34,13 @@ def get_dimmable(getter, name, sub_type, relay_triak, addr):
 
 def get_led(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
-        addr.raise_error("The {} need an bluetooth/wifi address".format(name))
+        addr.raise_error("The {} need an address".format(name))
     try:
         controller = TYPE_LED[str(sub_type)](str(addr))
     except KeyError:
-        sub_type.raise_error("The sub_type {} is not present in the TYPE_LED (Led.py)".format(str(sub_type)))
+        if str(sub_type) == "dmx":
+            return Dmx_strip_led(name, relay_triak.get_relay(), int(addr), getter.get_dmx())
+        sub_type.raise_error("The sub_type {} is not present in the TYPE_LED".format(str(sub_type)))
     return Led(name, relay_triak.get_relay(), controller)
 
 def get_lamp(getter, name, sub_type, relay_triak, addr):
@@ -65,7 +65,7 @@ def get_trap(getter, name, sub_type, relay_triak, addr):
 def get_crazy(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
         addr.raise_error("The {} need an dmx address".format(name))
-    return Crazy_2(name, relay_triak.get_relay(), Dmx_device(getter.get_dmx(), str(addr)))
+    return Crazy_2(name, relay_triak.get_relay(), str(addr), getter.get_dmx())
 
 def get_laser(getter, name, sub_type, relay_triak, addr):
     #TODO
@@ -74,12 +74,12 @@ def get_laser(getter, name, sub_type, relay_triak, addr):
 def get_lyre(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
         addr.raise_error("The {} need an dmx address".format(name))
-    return Lyre(name, relay_triak.get_relay(), Dmx_device(getter.get_dmx(), int(addr)))
+    return Lyre(name, relay_triak.get_relay(), int(addr), getter.get_dmx())
 
 def get_strombo(getter, name, sub_type, relay_triak, addr):
     if not(str(addr)):
         addr.raise_error("The {} need an dmx address".format(name))
-    return Strombo(name, relay_triak.get_relay(), Dmx_device(getter.get_dmx(), str(addr)))
+    return Strombo(name, relay_triak.get_relay(), str(addr), getter.get_dmx())
 
         
 TYPE_LED = { "lednet" : LEDnet,

@@ -19,6 +19,7 @@ class Server:
         self.port = port
         self.getter = getter
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         try:
             self.socket.bind(("", self.port))
@@ -35,6 +36,7 @@ class Server:
             conn, addr = self.socket.accept()
             Logger.info("Connected to: "+ str(addr))
             process = Thread(target=self.threaded_client, args=[conn])
+            process.name = "Connection to {}".format(addr)
             process.start()
 
     def kill(self):
@@ -62,6 +64,7 @@ class Server:
                 conn.send(data)
                 break
             try:
+                print(f"do {requete}")
                 data = requete.do(self.getter)
             except Exception as e:
                 trace = traceback.format_exc()

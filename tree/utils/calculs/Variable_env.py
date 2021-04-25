@@ -8,7 +8,7 @@ class Variable_env(Variable):
     def __init__(self, getter):
         Variable.__init__(self, "env", 0)
 
-    def get(self, getter, variable_name):
+    def get(self, inst, getter, variable_name):
         match = re.match(r'env.(?P<env>([\w\.]*))\.(?P<var>([^\,]*))', variable_name)
         if match:
             path_env, name_var = match.group("env"), match.group("var")
@@ -17,11 +17,13 @@ class Variable_env(Variable):
         env = getter.get_tree().get_env(path_env)
         try:
             var = env.get_var(name_var)
-            return var.get()
+            return var.get(inst)
         except KeyError:
             # it can be a state variable
             if name_var.count("state"):
                 return env.state()
+            elif name_var.count("is_on"):
+                return env.is_on()
             raise(KeyError("The variable {} in the environnement {} doesn't existe".format(variable_name, path_env)))
 
     def set(self, val):

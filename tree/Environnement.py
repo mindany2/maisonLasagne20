@@ -34,8 +34,12 @@ class Environnement:
     def add_object(self, obj):
         self.list_objects.add(obj)
 
-    def add_variable(self, var):
+    def add_variable(self, var, recursive=True):
         self.calculator.add(var)
+        # add it in all sub_env
+        if recursive:
+            for env in self.list_sub_env:
+                env.add_variable(var)
 
     def add_env(self, env):
         self.list_sub_env.add(env)
@@ -71,9 +75,14 @@ class Environnement:
             return
         if new_preset:
             old_preset = self.get_preset_select()
+            self.calculator.reset()
             if new_preset is not old_preset:
-                new_preset.initialize(old_preset.get_marker())
+                marker = old_preset.get_marker()
+                # no keeping deco, just principal state
+                if marker == MARKER.DECO:
+                    marker = MARKER.OFF
                 old_preset.reset()
+                new_preset.initialize(marker)
                 self.change_preset_select(new_preset)
 
     def do_current_scenar(self):
@@ -166,8 +175,10 @@ class Environnement:
         string += "".join(["|  {}\n".format(string) for string in str(self.get_preset_select()).split("\n")])
         string += "".join("-Variables\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.calculator).split("\n")])
+        """
         string += "".join("-Sub-environnements\n")
         string += "".join(["|  {}\n".format(string) for string in str(self.list_sub_env).split("\n")])
+        """
         return string
 
     

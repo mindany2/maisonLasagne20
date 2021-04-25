@@ -25,21 +25,23 @@ class Scenario_manager:
     def initialize(self, scenar_init):
         self.scenario_select = scenar_init
         self.current_scenar = scenar_init
-        self.current_scenar.set_state(True)
 
     def do_current_scenar(self):
-        Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
+        Logger.info("Do current scenario {}.{}".format(self.name, self.current_scenar.name))
         self.mutex.acquire()
-        self.current_scenar.do()
+        if not self.current_scenar.state():
+            self.current_scenar.set_state(True)
+            self.current_scenar.do()
         self.mutex.release()
 
     def do(self, scenar):
         # start the scenario
-        self.current_scenar.set_state(False)
-        self.current_scenar = scenar
-        self.current_scenar.set_state(True)
-        self.current_scenar.do()
-        Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
+        if self.current_scenar is not scenar:
+            self.current_scenar.set_state(False)
+            self.current_scenar = scenar
+            self.current_scenar.set_state(True)
+            self.current_scenar.do()
+            Logger.info("Do scenario {}.{}".format(self.name, self.current_scenar.name))
 
     def do_scenar_principal(self, scenar):
         """
@@ -61,6 +63,7 @@ class Scenario_manager:
             self.do(scenar)
         elif self.scenario_select.get_marker() == MARKER.OFF:
             # if we are already OFF, so just clear the list an shutdown 
+            # TODO strange comportements
             self.do(scenar)
             self.stack.clear()
         else: 

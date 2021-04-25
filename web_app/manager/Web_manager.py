@@ -28,6 +28,11 @@ class Web_manager:
         button = section.get_icon(button)
         button.press(self.client, "{}.{}.".format(self.get_active_page().name, section.name))
 
+    def move_slider(self, section, slider, value):
+        section = self.get_active_page().get_section(section)
+        slider = section.get_icon(slider)
+        slider.move(self.client, "{}.{}.".format(self.get_active_page().name, section.name), value)
+
     def pack(self):
         # setup the actual page
         print("request data")
@@ -38,9 +43,9 @@ class Web_manager:
             for section in page.get_sections():
                 for icon in section.get_list_icons():
                     try:
-                        selected = datas["{}.{}.{}".format(page.name, section.name, icon.name)]
+                        infos = datas["{}.{}.{}".format(page.name, section.name, icon.name)]
                         icon.change_state(True)
-                        icon.change_selected(selected)
+                        icon.change_infos(infos)
                     except KeyError as e:
                         icon.change_state(False)
                         print(e, icon)
