@@ -11,12 +11,11 @@ class Set_DMX(Message):
     def do(self, getter):
         dmx = getter.get_manager().get_dmx()
         if self.value == -1:
-            dmx.connect(self.addr)
+            return dmx.connect(self.addr)
         elif self.value == -2:
             dmx.disconnect(self.addr)
         else:
             dmx.set(self.addr, self.value)
-        print("return")
         return True
 
     def __str__(self):
