@@ -77,5 +77,13 @@ class SP:
         return self.sp.track(id)
 
     @token_check
+    def audio_analysis(self, id):
+        return self.sp.audio_analysis(id)
+
+    @token_check
+    def audio_features(self, id):
+        return self.sp.audio_features(id)
+
+    @token_check
     def get_playlist(self,id):
         return self.sp.playlist(id)

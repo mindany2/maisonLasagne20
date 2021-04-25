@@ -55,7 +55,7 @@ class Instruction_position(Instruction_light):
             Logger.info("The instruction on {} was killed".format(self.light.name))
 
         finally:
-            Logger.info("{} took {}s to move instead of {}s".format(self.light.name, time()-delay, self.duration))
+            #Logger.info("{} took {}s to move instead of {}s".format(self.light.name, time()-delay, self.duration))
             self.light.set_position(x_final, y_final)
             self.light.unlock()
  

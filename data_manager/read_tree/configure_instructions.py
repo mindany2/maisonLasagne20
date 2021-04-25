@@ -50,7 +50,7 @@ def get_inst_strombo(env, name, delay, duration, args, synchro):
 
 def get_inst_speed(env, name, delay, duration, args, synchro):
     light = name.get_object(env, (Lyre, Crazy_2))
-    return Instruction_gobo(env.get_calculator(), light, args, duration, delay, synchro)
+    return Instruction_speed(env.get_calculator(), light, args, duration, delay, synchro)
 
 def get_inst_program(env, name, delay, duration, args, synchro):
     light = name.get_object(env, Crazy_2)

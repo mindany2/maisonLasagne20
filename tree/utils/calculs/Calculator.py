@@ -42,11 +42,14 @@ class Calculator:
         return 0
 
     def get_value(self, var_name, expression, inst):
-        cutted_name = var_name.split(".")[0]
         try:
-            return self.variables.get(cutted_name).get(inst, expression.get_getter(), var_name)
-        except KeyError:
-            expression.raise_error("Could not find the variable {}".format(var_name))
+            return float(var_name)
+        except ValueError:
+            cutted_name = var_name.split(".")[0]
+            try:
+                return self.variables.get(cutted_name).get(inst, expression.get_getter(), var_name)
+            except KeyError:
+                expression.raise_error("Could not find the variable {}".format(var_name))
 
     def reset(self):
         # reset the inst list of all variables

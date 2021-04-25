@@ -18,4 +18,3 @@ class KingDMX(Dmx_controller):
         super().set(channel, value)
         if self.dmx:
             self.dmx.set_channel(channel, int(value))
-            Logger.debug(f"send {channel} {value}")

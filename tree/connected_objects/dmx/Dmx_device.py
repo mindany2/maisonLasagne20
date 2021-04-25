@@ -18,13 +18,11 @@ class Dmx_device(Lamp):
             while not self.dmx.connect(self.addr):
                 sleep(1)
             self.connected = True
-            print(f"{self.name} connected")
 
     def disconnect(self):
         if self.connected:
             self.dmx.disconnect(self.addr)
             self.connected = False
-            print(f"{self.name} is disconnected")
 
     def __str__(self):
         return str(self.addr)

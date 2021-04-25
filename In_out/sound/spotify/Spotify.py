@@ -34,12 +34,12 @@ class Spotify:
 
         self.scenar_start, self.scenar_volume, self.scenar_stop = None, None, None
         self.volume = Variable("spotify_volume", volume_init, action_set=self.set_volume, action_get=self.get_volume)
+        self.bpm = Variable("bpm", 1, action_get=self.get_bpm)
 
         self.sp = SP(name, pi_id, secrets)
         if self.analysis:
             self.player = Player(self.sp)
-            self.player.start()
-            self.track = None
+            self.track = Track(self.sp)
 
     def initialize(self):
         if self.name_scenar_start:
@@ -50,7 +50,7 @@ class Spotify:
             self.scenar_volume = self.name_scenar_volume.get_scenarios()
 
     def get_variables(self):
-        return [self.volume]
+        return [self.volume, self.bpm]
 
     def get_bpm(self):
         if self.track:
@@ -84,20 +84,17 @@ class Spotify:
 
     def wait_for_beat(self, number):
         if self.track != None:
-            cond = self.track.beat
-            try:
-                cond.acquire()
-                for _ in range(number):
-                    cond.wait()
-                    if self.track == None:
-                        break
-            finally:
-                cond.release()
+            for _ in range(number):
+                self.track.beat.acquire()
+                self.track.beat.wait()
+                self.track.beat.release()
+                if self.track == None:
+                    break
         else:
             sleep(0.1)
 
     def starting(self, track):
-        self.track = Track(self.sp, track)
+        self.track.change_id(track)
         if self.analysis:
             self.player.start()
             self.track.start_analysis(self.player)
@@ -130,12 +127,9 @@ class Spotify:
             self.scenar_volume.do()
 
     def changing_track(self, track):
-        self.track = Track(self.sp, track)
-        # TODO remake analysis
+        self.track.change_id(track)
         if self.analysis:
-            if self.track != None:
-                self.track.kill()
-            self.track = track
+            self.track.start_analysis(self.player)
 
     def inter(self, getter, status, volume, track, position):
         Logger.debug("Spotify : {} : volume={} : track ={} : position {}".format(status, volume, track, position))
