@@ -31,7 +31,7 @@ class List_interrupts_extender:
 
         self.start()
         GPIO.setup(self.port_interrupt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt)
+        GPIO.add_event_detect(self.port_interrupt, GPIO.RISING, callback = self.detect_interrupt, bouncetime=10)
 
     def start(self):
         # GPINTEN = setup interrupt

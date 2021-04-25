@@ -173,7 +173,7 @@ def get_inst_button_prin(env, name, delay, duration, args, synchro):
 
 def get_inst_mode(env, name, delay, duration, args, synchro):
     tree = name.get_getter().get_tree()
-    return Instruction_mode(env.get_calculator(), tree, str(name), delay, synchro)
+    return Instruction_mode(env.get_calculator(), tree, str(name), delay, args, synchro)
 
 
 TYPE = {"button_secondary" : get_inst_button_sec,

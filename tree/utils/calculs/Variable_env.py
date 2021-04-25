@@ -22,6 +22,8 @@ class Variable_env(Variable):
             # it can be a state variable
             if name_var.count("state"):
                 return env.state()
+            elif name_var.count("is_on"):
+                return env.is_on()
             raise(KeyError("The variable {} in the environnement {} doesn't existe".format(variable_name, path_env)))
 
     def set(self, val):

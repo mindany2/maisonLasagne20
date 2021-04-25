@@ -25,6 +25,7 @@ class Button_tempo(Button):
             process = Thread(target=self.wait)
             process.name = "Wait tempo button {self.name}"
             process.start()
+            self.started = True
         self.time = time()
 
 
@@ -32,6 +33,7 @@ class Button_tempo(Button):
         while time() - self.time < self.tempo:
             sleep(0.1)
         self.manager.do_scenar_principal(self.scenar_off)
+        self.started = False
 
     def __eq__(self, other):
         if isinstance(other, Button_tempo):
