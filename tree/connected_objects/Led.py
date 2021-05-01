@@ -1,6 +1,6 @@
 from tree.connected_objects.Lamp import Lamp
 from tree.utils.Color import Color
-from time import sleep
+import time
 from random import randrange
 from In_out.external_boards.relay.Relay import STATE
 from In_out.wifi_devices.Wifi_device import Wifi_device
@@ -20,7 +20,7 @@ class Led(Lamp):
         if not(self.connected):
             if self.color.is_black() and not(self.force):
                 self.set_state(True)
-                sleep(1)
+                time.sleep(1)
             self.connected = self.controler.connect()
             if not(self.connected):
                 # the led is out of order
@@ -35,13 +35,14 @@ class Led(Lamp):
 
     def disconnect(self):
         if self.connected:
-            sleep(0.5)
+            time.sleep(0.5)
             self.controler.disconnect(is_black = self.color.is_black())
             if self.color.is_black() and not(self.force):
                 self.set_state(False)
             self.connected = False
 
     def set_color(self, dimmer, color):
+        assert (self.connected), "Need to connect the led before set the color"
         if self.color != Color(color):
             self.color = Color(color)
 
@@ -58,9 +59,9 @@ class Led(Lamp):
                 Logger.error("The led {} is out of order".format(self.name))
                 for _ in range(0,3):
                     self.set_state(STATE.OFF)
-                    sleep(3)
+                    time.sleep(3)
                     self.set_state(STATE.ON)
-                    sleep(3)
+                    time.sleep(3)
                 return True
             self.disconnect()
             self.set_state(STATE.OFF)
@@ -68,7 +69,7 @@ class Led(Lamp):
 
     def reload(self, other):
         if isinstance(other, Led):
-            self.dimmer == other.dimmer
+            self.dimmer = other.dimmer
             self.color = other.color
 
     def __eq__(self, other):

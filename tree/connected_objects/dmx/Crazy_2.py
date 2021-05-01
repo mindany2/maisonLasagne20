@@ -36,7 +36,6 @@ class Crazy_2(Dmx_device):
     def __eq__(self, other):
         if isinstance(other, Crazy_2):
             return super().__eq__(other)\
-                    and super() == other.dmx\
                     and self.program == other.program\
                     and self.strombo == other.strombo\
                     and self.speed == other.speed

@@ -24,5 +24,15 @@ class Dmx_device(Lamp):
             self.dmx.disconnect(self.addr)
             self.connected = False
 
+    def __eq__(self, other):
+        if isinstance(other, Dmx_device):
+            return super().__eq__(other)\
+                    and self.dmx == other.dmx\
+                    and self.addr == other.addr
+        return False
+
     def __str__(self):
-        return str(self.addr)
+        string = super().__str__()
+        string += f"- Address : {self.addr}\n"
+        string += f"- Dmx : {self.dmx}\n"
+        return string

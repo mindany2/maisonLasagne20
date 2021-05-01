@@ -29,7 +29,7 @@ class TestLocker(unittest.TestCase):
         self.assertTrue(proc.is_alive())
         self.assertTrue(locker.test())
         locker.unlock()
-        sleep(0.001)
+        sleep(0.01)
         self.assertFalse(proc.is_alive())
         locker.unlock()
         self.assertFalse(locker.locked())

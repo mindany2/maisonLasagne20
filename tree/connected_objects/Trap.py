@@ -33,17 +33,17 @@ class Trap(Connected_object):
         return self.state
 
     def set_magnet(self, state):
-        self.magnet.set(state)
+        self.magnet.set_state(state)
 
     def go_down(self):
-        self.distrib_down.set(True)
+        self.distrib_down.set_state(True)
         sleep(0.5)
-        self.distrib_down.set(False)
+        self.distrib_down.set_state(False)
 
     def go_up(self):
-        self.distrib_up.set(True)
+        self.distrib_up.set_state(True)
         sleep(0.5)
-        self.distrib_up.set(False)
+        self.distrib_up.set_state(False)
 
     def change(self, state):
         self.state = state

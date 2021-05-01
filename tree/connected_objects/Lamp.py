@@ -52,13 +52,15 @@ class Lamp(Connected_object):
         if isinstance(other, Lamp):
             self.force = other.force
             self.state = other.state
+            self.invert = other.invert
 
     def __eq__(self, other):
         if isinstance(other, Lamp):
             return super().__eq__(other)\
                     and self.relay == other.relay\
                     and self.force == other.force\
-                    and self.invert == other.invert
+                    and self.invert == other.invert\
+                    and self.state == other.state
         return False
 
     def __str__(self):
