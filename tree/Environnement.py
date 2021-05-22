@@ -48,8 +48,7 @@ class Environnement:
         self.list_presets.add(preset)
 
     def state(self):
-        # return the marker of the principal scenario
-        # it tells if the scenario is ON/OFF/DECO
+        # it tells if the scenario is ON
         return self.get_preset_select().get_marker() == MARKER.ON
 
     def is_on(self):
@@ -70,7 +69,7 @@ class Environnement:
 
         try:
             new_preset = self.list_presets_chosen.get(mode.name)
-        except KeyError as e:
+        except KeyError:
             # the env haven't a preset selected for this mode, just keep the actual
             return
         if new_preset:
@@ -98,31 +97,32 @@ class Environnement:
         self.list_presets_chosen.add(mode, preset)
 
     def get_preset(self, name):
-        preset = self.list_presets.get(name)
-        if preset: return preset
-        raise(NameError("The preset {} doesn't exist in the environnement {}".format(name, self.name)))
+        try:
+            return self.list_presets.get(name)
+        except KeyError:
+            raise(KeyError("The preset {} doesn't exist in the environnement {}".format(name, self.name)))
 
     def get_env(self, path):
         if path:
             # it is in a sub-environnement
             try:
                 return self.list_sub_env.get(path[0]).get_env(path[1:])
-            except KeyError as e:
+            except KeyError:
                 raise(KeyError("Could not found an env like {} in {}".format(".".join(path), self.name)))
 
         return self
 
     def get_object(self, name):
-        obj = self.list_objects.get(name)
-        if obj:
-            return obj
-        raise(NameError("The object {} is doesn't exist in the environnement {}".format(name, self.name)))
+        try:
+            return self.list_objects.get(name)
+        except KeyError:
+            raise(KeyError("The object {} is doesn't exist in the environnement {}".format(name, self.name)))
 
     def get_var(self, name):
-        var = self.calculator.get(name)
-        if var:
-            return var
-        raise(NameError("The variable {} is doesn't exist in the environnement {}".format(name, self.name)))
+        try:
+            return self.calculator.get(name)
+        except KeyError:
+            raise(KeyError("The variable {} is doesn't exist in the environnement {}".format(name, self.name)))
 
     def get_list_envs(self):
         list_env = Dico()
@@ -134,12 +134,13 @@ class Environnement:
         return list_env
 
     def get_scenar(self, name, preset=None):
-        if preset:
-            scenar = self.get_preset(preset).get_scenar(name)
-        else:
-            scenar = self.get_preset_select().get_scenar(name)
-        if scenar: return scenar
-        raise(NameError("The scenario {} is doesn't exist in the preset {} in the environnement {}".format(name, preset, self.name)))
+        try:
+            if preset:
+                return self.get_preset(preset).get_scenar(name)
+            else:
+                return self.get_preset_select().get_scenar(name)
+        except KeyError:
+            raise(KeyError("The scenario {} is doesn't exist in the preset {} in the environnement {}".format(name, preset, self.name)))
 
     def get_calculator(self):
         return self.calculator

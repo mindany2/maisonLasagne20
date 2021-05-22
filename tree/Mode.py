@@ -13,8 +13,10 @@ class Mode:
         self.scenar_init = None
         self.scenar_end = None
         self.inters = []
+        self.initialized = False
 
     def initialize(self):
+        self.initialized = True
         if self.name_scenar_init:
             self.scenar_init = self.name_scenar_init.get_scenarios()
             self.scenar_init.initialize()
@@ -30,11 +32,11 @@ class Mode:
 
     def change_state(self, state):
         self.state = state
-        if self.state and self.scenar_init:
-            self.scenar_init.do(join = True)
-        elif not(self.state) and self.scenar_end:
-            print(self.scenar_end)
-            self.scenar_end.do()
+        if self.initialize:
+            if self.state and self.scenar_init:
+                self.scenar_init.do(join = True)
+            elif not(self.state) and self.scenar_end:
+                self.scenar_end.do(join = True)
 
     def get_state(self):
         return self.state
@@ -50,5 +52,6 @@ class Mode:
         string = self.name + "\n"
         if self.name_scenar_init:
             string += "|  Scenario_init : {}".format(str(self.name_scenar_init))
+            string += "|  Scenario_end : {}".format(str(self.name_scenar_end))
         return string
 

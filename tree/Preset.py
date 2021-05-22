@@ -58,6 +58,7 @@ class Preset:
         elif marker != MARKER.OFF:
             # setup the OFF by default
             self.initialize(MARKER.OFF)
+            return
         else:
             raise(ValueError("Need to setup a OFF scenario in the preset {}".format(self.name)))
 
@@ -89,10 +90,8 @@ class Preset:
         string = self.name + "\n"
         string += "- Manager\n"
         string += "".join(["  |{}\n".format(string) for string in str(self.manager).split("\n")])
-        """
         string += "".join("- Scenarios\n")
         string += "".join(["  |{}\n".format(string) for string in str(self.list_scenario).split("\n")])
         string += "".join("- Buttons\n")
         string += "".join(["  |{}\n".format(string) for string in str(self.buttons).split("\n")])
-        """
         return string

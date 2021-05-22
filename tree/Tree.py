@@ -18,17 +18,17 @@ class Tree:
         return self.global_environnement
 
     def get_mode(self, name_mode):
-        mode = self.list_modes.get(name_mode)
-        if mode:
-            return mode
-        raise(NameError("Could not find the mode {} in the tree".format(name_mode)))
+        try:
+            return self.list_modes.get(name_mode)
+        except KeyError:
+            raise(KeyError("Could not find the mode {} in the tree".format(name_mode)))
 
     def change_mode(self, name_mode):
         Logger.info("Change mode : {} => {}".format(self.list_modes.selected().name, name_mode))
         mode_select = self.get_mode(name_mode)
         self.global_environnement.change_mode(mode_select)
         self.list_modes.change_select(mode_select)
-        self.global_environnement.do_current_scenar()
+        self.do_current_scenars()
 
     def do_current_scenars(self):
         self.global_environnement.do_current_scenar()
@@ -44,10 +44,10 @@ class Tree:
         if path[0] == self.global_environnement.name:
             # just removing the global env name
             path = path[1:]
-        env = self.global_environnement.get_env(path)
-        if env:
-            return env
-        raise(NameError("The environnement research : {} is not present in the tree".format(path))) 
+        try:
+            return self.global_environnement.get_env(path)
+        except KeyError:
+            raise(KeyError("The environnement research : {} is not present in the tree".format(path))) 
     
 
     def get_list_envs(self):
@@ -81,7 +81,7 @@ class Tree:
 
     def __str__(self):
         string = "-"*10 + "Tree"+"-"*10 + "\n"
-        string = "Threads:" + str(threading.active_count())+"\n"
+        string += "Threads:" + str(threading.active_count())+"\n"
         string += "".join(["|  {}\n".format(thread.name) for thread in threading.enumerate()])
         string += "-Modes\n"
         string += "".join(["|  {}\n".format(string) for string in str(self.list_modes).split("\n")])
