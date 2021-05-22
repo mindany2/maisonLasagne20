@@ -23,9 +23,10 @@ class Lyre(Dmx_device):
         self.color = COLOR.white
         self.gobo = GOBO.simple_round
         
-        self.locker_dimmer = Locker()
+        self.locker_position = Locker()
 
     def set_position(self, pan, tilt):
+        assert self.locker_position.locked(), "Need to look the position instead of connection"
         if self.pan != pan:
             super().set(CHANNEL.pan, pan)
         if self.tilt != tilt:
@@ -66,19 +67,20 @@ class Lyre(Dmx_device):
     def get_position(self):
         return (self.pan, self.tilt)
 
-    def lock_dimmer(self):
-        self.locker_dimmer.lock()
+    def lock_position(self):
+        self.locker_position.lock()
 
-    def test_dimmer(self):
-        return self.locker_dimmer.test()
+    def test_position(self):
+        return self.locker_position.test()
 
-    def unlock_dimmer(self):
-        self.locker_dimmer.unlock()
+    def unlock_position(self):
+        self.locker_position.unlock()
 
     def reload(self, other):
         if isinstance(other, Lyre):
             self.pan  = other.pan
             self.tilt = other.tilt
+            self.speed = other.speed
             self.speed_motor = other.speed_motor
             self.strombo = other.strombo
             self.dimmer = other.dimmer
@@ -101,7 +103,6 @@ class Lyre(Dmx_device):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Lyre\n")
-        string += "".join("- Dmx : {}\n".format(super()))
         return string
 
 class COLOR(Enum):

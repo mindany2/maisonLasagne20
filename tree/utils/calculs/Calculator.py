@@ -22,7 +22,7 @@ class Calculator:
         string = str(expression)
         if string:
             # search for variables names
-            for var in re.split("[\*,\-,\+,\/,\(,\),<,>,|, ]", string):
+            for var in re.split("[\\*,\\-,\\+,\\/,\\(,\\),<,>,|,==,!= ]", string):
                 if not(var):
                     continue
                 try:
@@ -38,8 +38,6 @@ class Calculator:
                 return eval(string)
             except SyntaxError as e:
                 expression.raise_error(str(e))
-                
-        return 0
 
     def get_value(self, var_name, expression, inst):
         try:
@@ -47,7 +45,7 @@ class Calculator:
         except ValueError:
             cutted_name = var_name.split(".")[0]
             try:
-                return self.variables.get(cutted_name).get(inst, expression.get_getter(), var_name)
+                return self.variables.get(cutted_name).get(inst, var_name)
             except KeyError:
                 expression.raise_error("Could not find the variable {}".format(var_name))
 

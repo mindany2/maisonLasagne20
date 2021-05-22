@@ -1,7 +1,7 @@
 import numpy as np
 from tree.scenario.instructions.light.Instruction_light import Instruction_light, RESOLUTION
 from tree.utils.Color import Color
-from time import sleep,time
+import time
 from tree.utils.Logger import Logger
 
 class Instruction_color(Instruction_light):
@@ -19,7 +19,7 @@ class Instruction_color(Instruction_light):
         self.eval(self.dimmer)
 
     def run(self, barrier):
-        delay = time()
+        delay = time.time()
         
         try:
             self.light.lock()
@@ -30,49 +30,44 @@ class Instruction_color(Instruction_light):
             if self.eval(self.duration) == 0:
                 if dimmer_final != dimmer_initial or color != self.light.color:
                     if self.light.connect():
-                        super().run(time_spent=(time()-delay))
+                        super().run(time_spent=(time.time()-delay))
                         self.light.set_color(dimmer_final, color.value)
                         self.light.disconnect()
                 return
 
+            if (dimmer_final == dimmer_initial and color == self.light.color):
+                barrier.wait()
+                return
             nb_dots = RESOLUTION*self.eval(self.duration)
             if dimmer_initial != dimmer_final:
                 liste_dimmer = np.arange(dimmer_initial, dimmer_final, (dimmer_final-dimmer_initial)/nb_dots)
             else:
                 liste_dimmer = [dimmer_initial]*nb_dots
-            if color != self.light.color:
-                liste_color = color.generate_array(self.light.color, nb_dots)
-            else:
-                barrier.wait()
-                self.light.disconnect()
-                return
+            liste_color = color.generate_array(self.light.color, nb_dots)
 
-            if self.light.test():
-                raise SystemExit("kill inst")
 
             connected = self.light.connect()
             if not(connected):
                 barrier.wait()
                 return
-            super().run(time_spent=(time()-delay))
+            super().run(time_spent=(time.time()-delay))
+            assert not self.light.test()
 
             barrier.wait()
             for dim, value_color in zip(liste_dimmer, liste_color):
-                if self.light.test():
-                    raise SystemExit("kill inst")
+                assert not self.light.test()
                 self.light.set_color(dim, value_color)
-                sleep(1/RESOLUTION)
+                time.sleep(1/RESOLUTION)
                 barrier.wait()
             self.light.set_color(dimmer_final, color.value)
             self.light.disconnect()
+        except AssertionError:
+            # The inst is killed
+            pass
 
         finally:
             self.light.unlock()
 
-    def finish(self):
-        print(f"finish {self.light.name}")
-        super().finish()
- 
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : color\n")

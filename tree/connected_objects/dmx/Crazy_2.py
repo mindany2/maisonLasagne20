@@ -29,6 +29,7 @@ class Crazy_2(Dmx_device):
 
     def reload(self, other):
         if isinstance(other, Crazy_2):
+            super().reload(other)
             self.program = other.program
             self.strombo = other.strombo
             self.speed = other.speed

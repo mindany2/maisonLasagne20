@@ -15,10 +15,9 @@ class Instruction_strombo(Instruction_light):
         super().initialize()
         self.eval(self.strombo)
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
-        barrier.wait()
-        self.light.set_strombo(self.strombo)
+        self.light.set_strombo(self.eval(self.strombo))
  
     def __str__(self):
         string = super().__str__()

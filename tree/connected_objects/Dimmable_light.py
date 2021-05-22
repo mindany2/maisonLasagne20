@@ -52,15 +52,6 @@ class Dimmable_light(Connected_object):
         self.triak.set(value)
         self.dimmer = int(dimmer)
 
-    def lock_dimmer(self):
-        self.lock()
-
-    def test_dimmer(self):
-        return self.test()
-
-    def unlock_dimmer(self):
-        self.unlock()
-
     def convert(self, dimmer):
         # convert dimmer value to triak value
         maxi, mini = self.type_buld.value
@@ -69,6 +60,7 @@ class Dimmable_light(Connected_object):
 
     def reload(self, other):
         if isinstance(other, Dimmable_light):
+            super().reload(other)
             self.dimmer = other.dimmer
 
     def __eq__(self, other):

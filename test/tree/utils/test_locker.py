@@ -11,7 +11,15 @@ class TestLocker(unittest.TestCase):
             pass
         locker.unlock()
 
-    @timeout_decorator.timeout(0.1)
+    def test_blocked_lock(self):
+        with self.assertRaises(timeout_decorator.TimeoutError):
+            @timeout_decorator.timeout(0.01)
+            def test():
+                locker = Locker()
+                locker.lock()
+                locker.lock()
+            test()
+
     def test_lock(self):
         locker = Locker()
         Thread(target= lambda x=locker : self.start(x)).start()
@@ -35,6 +43,8 @@ class TestLocker(unittest.TestCase):
         self.assertFalse(locker.locked())
 
 
+if __name__ == "__main__":
+    unittest.main()
 
 
 

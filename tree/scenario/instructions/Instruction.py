@@ -38,11 +38,11 @@ class Instruction:
     def reload(self, duration):
         # reload the inst without any delay or duration
         self.in_reload.append(duration)
-        self.run(Barrier(1))
+        self.run()
 
     def wait_precedent(self):
         if self.delay:
-            return self.delay.wait_precedent
+            return self.delay.get_wait_precedent()
         return False
 
     def finish(self):
@@ -57,7 +57,12 @@ class Instruction:
         self.eval(self.duration)
 
     def __eq__(self, other):
-        return True
+        if isinstance(other, Instruction):
+            return self.delay == other.delay\
+                    and self.calculator == other.calculator\
+                    and self.fixed_duration == other.fixed_duration\
+                    and self.synchro == other.synchro
+        return False
 
     def __str__(self):
         string = "- Duration : {}\n".format(self.duration)

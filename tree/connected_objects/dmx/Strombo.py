@@ -22,12 +22,6 @@ class Strombo(Dmx_device):
             super().set(CHANNEL.strombo, value)
         self.strombo = value
 
-    def lock_dimmer(self):
-        super().lock()
-
-    def unlock_dimmer(self):
-        super().unlock()
-
     def reload(self, other):
         if isinstance(other, Strombo):
             self.dimmer == other.dimmer
@@ -36,7 +30,6 @@ class Strombo(Dmx_device):
     def __eq__(self, other):
         if isinstance(other, Strombo):
             return super().__eq__(other)\
-                    and super() == other.dmx\
                     and self.dimmer == other.dimmer\
                     and self.strombo == other.strombo
         return False
@@ -44,7 +37,6 @@ class Strombo(Dmx_device):
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Strombo\n")
-        string += "".join("- Dmx : {}\n".format(super()))
         return string
 
 

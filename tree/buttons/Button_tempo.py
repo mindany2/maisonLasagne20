@@ -1,6 +1,6 @@
 from tree.buttons.Button import Button
 from threading import Thread
-from time import time, sleep
+import time
 
 class Button_tempo(Button):
     """
@@ -13,7 +13,7 @@ class Button_tempo(Button):
         self.scenar_off = scenar_off
         self.tempo = tempo
         self.started = False
-        self.time = time()
+        self.time = time.time()
 
     def state(self):
         return self.manager.get_state()
@@ -21,17 +21,17 @@ class Button_tempo(Button):
     def press(self, state = None):
         if not self.started:
             self.manager.do_scenar_principal(self.scenar_on)
-            self.time = time()
+            self.time = time.time()
             process = Thread(target=self.wait)
-            process.name = "Wait tempo button {self.name}"
+            process.name = f"Wait tempo button {self.name}"
             process.start()
             self.started = True
-        self.time = time()
+        self.time = time.time()
 
 
     def wait(self):
-        while time() - self.time < self.tempo:
-            sleep(0.1)
+        while time.time() - self.time <= self.tempo:
+            time.sleep(0.1)
         self.manager.do_scenar_principal(self.scenar_off)
         self.started = False
 

@@ -46,6 +46,7 @@ class TestColor(unittest.TestCase):
 
     def test_eq(self):
         color = Color("0x462481")
+        self.assertNotEqual(color, 12)
         self.assertFalse(Color("0x14fe52") == color)
         self.assertTrue(Color(4596865) == color)
         

@@ -37,4 +37,5 @@ class Instruction_spotify(Instruction):
         string = super().__str__()
         string += "".join("- Type : spotify\n")
         string += "".join("- Action : {}\n".format(self.type_inst))
+        string += "".join("- Args : {}\n".format(self.val))
         return string

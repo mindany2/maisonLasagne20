@@ -15,9 +15,8 @@ class Instruction_speed(Instruction_light):
         super().initialize()
         self.eval(self.value)
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
-        barrier.wait()
         self.light.set_speed(self.eval(self.value))
  
     def __str__(self):

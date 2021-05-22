@@ -14,7 +14,7 @@ class Instruction_power(Instruction_light):
         super().initialize()
         self.eval(self.state)
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         self.light.lock()
         super().run()
         self.state = self.eval(self.state)
@@ -23,7 +23,7 @@ class Instruction_power(Instruction_light):
  
     def __str__(self):
         string = super().__str__()
-        string += "".join("- Type : lamp\n")
+        string += "".join("- Type : power\n")
         string += "".join("- State : {}\n".format(self.state))
         return string   
 

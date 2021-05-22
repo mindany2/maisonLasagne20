@@ -17,9 +17,6 @@ class Instruction_mode(Instruction):
             self.tree.change_mode(self.name_mode)
         #Logger.debug("set the variable {} to {}".format(self.variable.name, self.variable.get()))
 
-    def initialize(self):
-        super().initialize()
-
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : mode\n")

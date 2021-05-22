@@ -27,6 +27,7 @@ class Scenario_manager:
         self.current_scenar = scenar_init
 
     def do_current_scenar(self):
+        assert self.current_scenar, "Need to initialize before"
         Logger.info("Do current scenario {}.{}".format(self.name, self.current_scenar.name))
         self.mutex.acquire()
         if not self.current_scenar.state():
@@ -79,6 +80,7 @@ class Scenario_manager:
         """
         This method is call to modifie secondaries scenarios to and in the stack
         """
+        assert self.scenario_select, "Need to initialize before"
         self.mutex.acquire()
         if scenar.get_marker() == MARKER.NONE:
             # null scenario are just invisible

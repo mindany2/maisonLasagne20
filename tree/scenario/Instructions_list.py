@@ -1,7 +1,6 @@
 from threading import Thread, Barrier
 from numpy import cumsum
 from time import time, sleep
-from multiprocessing import Process
 
 class Instructions_list:
     """
@@ -33,7 +32,8 @@ class Instructions_list:
         if not(inst.synchro):
             # need a new barrier
             self.list_barrier.append(0)
-
+    """
+    # TODO 
     def __eq__(self, other):
         if isinstance(other, Instructions_list):
             if len(self.list) == 0 or len(other.list) == 0:
@@ -45,6 +45,7 @@ class Instructions_list:
                         return False
             return True
         return False
+    """
 
     def __iter__(self):
         return self.list.__iter__()
@@ -76,6 +77,8 @@ class Instructions_list:
         if finish:
             self.finish()
 
+    def get_state(self):
+        return self.state
 
     def initialize(self):
         for inst in self.list:
@@ -84,7 +87,7 @@ class Instructions_list:
     def __str__(self):
         string = ""
         if self.loop:
-            string += "".join("- Loop : {}\n".format(self.loop))
+            string += "- Loop\n"
         for inst in self.list:
             string += "\n"
             string += "".join(["   |{}\n".format(string) for string in str(inst).split("\n")])

@@ -74,7 +74,7 @@ def get_variables(variables, *args):
             env.add_variable(spotify_var, recursive=False)
     except NameError:
         pass
-    env.add_variable(Variable_env(variables.get_getter()), recursive=False)
+    env.add_variable(Variable_env(variables.get_getter().get_tree()), recursive=False)
     for var in variables:
         env.add_variable(Variable(var.get_str("name", mandatory = True),
                                   var.get_int("value", mandatory = True)))

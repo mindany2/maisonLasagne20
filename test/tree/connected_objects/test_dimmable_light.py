@@ -53,14 +53,6 @@ class TestDimmableLight(unittest.TestCase):
         self.assertEqual(triak.set.call_count, 2)
         self.assertEqual(triak.set.call_args[0][0], 336)
 
-    def test_lock(self):
-        triak = Mock()
-        light = Dimmable_light("test", triak, BULD.buld_63)
-        self.assertTrue(isinstance(light, Locker))
-        light.lock_dimmer()
-        self.assertFalse(light.test_dimmer())
-        light.unlock_dimmer()
-
     def test_reload(self):
         triak = Mock()
         light = Dimmable_light("test", triak, BULD.buld_63)

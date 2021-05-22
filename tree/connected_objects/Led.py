@@ -69,6 +69,7 @@ class Led(Lamp):
 
     def reload(self, other):
         if isinstance(other, Led):
+            super().reload(other)
             self.dimmer = other.dimmer
             self.color = other.color
 

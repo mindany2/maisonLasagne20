@@ -28,7 +28,7 @@ class Scenario:
         return self.marker
 
     def state(self):
-        return self.list_inst.state
+        return self.list_inst.get_state()
 
     def reload(self, other):
         if isinstance(other, Scenario):

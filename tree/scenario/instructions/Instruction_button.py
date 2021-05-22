@@ -24,8 +24,7 @@ class Instruction_button(Instruction):
     def run(self, barrier = None):
         super().run()
 
-        if not(self.button):
-            raise(Exception("Need to initialize the instruction before start"))
+        assert(self.button), Exception("Need to initialize the instruction before start")
 
         if not(self.current):
             return
@@ -71,7 +70,7 @@ class Instruction_button(Instruction):
 
     def __eq__(self, other):
         if isinstance(other, Instruction_button):
-            if self.type_bt == other.type_bt:
+            if self.type_bt == other.type_bt and self.condition == other.condition and super().__eq__(other):
                 return (self.button == other.button)
         return False
 

@@ -50,6 +50,7 @@ class Lamp(Connected_object):
 
     def reload(self, other):
         if isinstance(other, Lamp):
+            super().reload(other)
             self.force = other.force
             self.state = other.state
             self.invert = other.invert

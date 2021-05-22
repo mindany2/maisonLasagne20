@@ -12,7 +12,7 @@ class Instruction_light(Instruction):
 
     def __eq__(self, other):
         if isinstance(other, Instruction_light):
-            return (self.light == other.light) 
+            return super().__eq__(other) and (self.light == other.light) 
         return False
 
     def __str__(self):

@@ -17,7 +17,7 @@ class Button_principal(Button):
         if self.scenar_off:
             # if there are 2 scenarios
             if state == None:
-                state = not(self.manager.get_principal_state())
+                state = not(self.state())
 
             if state:
                 self.manager.do_scenar_principal(self.scenar_on)

@@ -14,7 +14,7 @@ class Variable:
         # action is a function to perform when the variable is set
         self.action_set, self.action_get = action_set, action_get
 
-    def get(self, inst=None, getter = None, arg = None):
+    def get(self, inst=None, arg=None):
         if inst:
             self.add_inst(inst)
         if self.action_get:
@@ -31,7 +31,7 @@ class Variable:
 
     def reload(self, other):
         if isinstance(other, Variable):
-            self.val = other.val
+            self.val = other.get()
 
     def set(self, val, duration=0):
         self.val = val
@@ -41,20 +41,14 @@ class Variable:
         for inst in self.list_inst:
             if inst.current:
                 # do inst inst if it is currently running
-                try:
-                    proc = Thread(target=inst.reload, args=[duration])
-                    proc.name = "Reload inst with variable {} : {}".format(self.name, str(inst))
-                    proc.start()
-                except Exception as e:
-                    Logger.error(e)
-        
+                proc = Thread(target=inst.reload, args=[duration])
+                proc.name = "Reload inst with variable {} : {}".format(self.name, str(inst))
+                proc.start()
+    
     def __int__(self):
         return self.val
 
-    def __add__(self, integer):
-        return int(self)+integer
-
     def __str__(self):
         string = "{} = {}\n".format(self.name, self.val)
-        string += "".join([" - {} : {}\n".format(inst.light.name, inst.current) for inst in self.list_inst if isinstance(inst, Instruction_light)])
+        string += "".join([" - {} : {}\n".format(inst, inst.current) for inst in self.list_inst])
         return string

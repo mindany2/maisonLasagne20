@@ -1,5 +1,5 @@
 from tree.connected_objects.Lamp import Lamp
-from time import sleep
+import time
 
 class Dmx_device(Lamp):
     """
@@ -11,12 +11,13 @@ class Dmx_device(Lamp):
         self.addr = addr
 
     def set(self, channel, value):
+        assert self.connected, "Need to connect the device before"
         self.dmx.set(self.addr + channel.value - 1, value)
 
     def connect(self):
         if not self.connected:
             while not self.dmx.connect(self.addr):
-                sleep(1)
+                time.sleep(1)
             self.connected = True
 
     def disconnect(self):

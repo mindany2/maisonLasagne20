@@ -1,6 +1,6 @@
 from tree.scenario.instructions.Instruction import Instruction
 from tree.utils.Logger import Logger
-from time import time, sleep
+import time
 
 RESOLUTION = 10
 
@@ -33,20 +33,24 @@ class Instruction_speaker(Instruction):
                 return
 
             nb_dots = self.duration*RESOLUTION
-            self.speaker.connect()
+            if not self.speaker.connect():
+                return
+            assert not self.speaker.test()
 
             val = volume_initial
             for _ in range(0,nb_dots):
-                if self.speaker.test():
-                    raise SystemExit("kill inst")
-                temps = time()
+                assert not self.speaker.test()
+                temps = time.time()
                 self.speaker.change_volume(int(val))
                 val += gap/nb_dots
-                dodo = 1/RESOLUTION-(time()-temps)
+                dodo = 1/RESOLUTION-(time.time()-temps)
                 if dodo > 0:
-                    sleep(dodo)
+                    time.sleep(dodo)
             self.speaker.change_volume(volume_final)
             self.speaker.disconnect()
+        except AssertionError:
+            # the inst was killed
+            pass
         finally:
             self.speaker.unlock()
   

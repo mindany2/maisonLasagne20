@@ -15,12 +15,10 @@ class Instruction_gobo(Instruction_light):
         super().initialize()
         self.eval(self.gobo)
 
-    def run(self, barrier):
-        """
-        Setup a try/finally to allow kill from another instruction
-        """
+    def run(self, barrier=None):
+        #There are not lock here to do not perturb the position or dimmer locker
+        #It is casi-instant so no need
         super().run(time_spent=0)
-        barrier.wait()
         liste = [i.name for i in GOBO]
         self.light.set_gobo(GOBO[liste[self.eval(self.gobo)]])
  

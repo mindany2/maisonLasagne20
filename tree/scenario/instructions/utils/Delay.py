@@ -1,4 +1,4 @@
-from time import sleep
+import time
 
 class Delay:
     """
@@ -12,6 +12,9 @@ class Delay:
         self.manager = manager
         self.calculator = calculator
 
+    def get_wait_precedent(self):
+        return self.wait_precedent
+
     def initialize(self):
         self.calculator.eval(self.val)
 
@@ -22,7 +25,7 @@ class Delay:
             self.manager.get_spotify().wait_for_beat(number)
         tps = self.calculator.eval(self.val)-time_spent
         if tps > 0:
-            sleep(tps)
+            time.sleep(tps)
 
     def __str__(self):
         return str(self.val)

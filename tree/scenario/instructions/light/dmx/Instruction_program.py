@@ -15,9 +15,8 @@ class Instruction_program(Instruction_light):
         super().initialize()
         self.eval(self.number)
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
-        barrier.wait()
         self.light.set_program(self.eval(self.number))
  
     def __str__(self):

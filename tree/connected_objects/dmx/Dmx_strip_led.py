@@ -36,7 +36,6 @@ class Dmx_strip_led(Dmx_device):
         string = super().__str__()
         string += "".join("- Type : led dmx\n")
         string += "".join("- Status : dimmer={} color={}\n".format(self.dimmer, self.color))
-        string += "".join("- Controler : {}\n".format(super()))
         return string
 
 class CHANNEL(Enum):

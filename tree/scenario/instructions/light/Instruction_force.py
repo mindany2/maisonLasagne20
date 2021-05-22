@@ -14,7 +14,7 @@ class Instruction_force(Instruction_light):
         super().initialize()
         self.eval(self.state)
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         self.light.lock()
         super().run()
         self.state = self.eval(self.state)

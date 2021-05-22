@@ -24,34 +24,21 @@ class Dmx_dimmable_light(Dmx_device):
             super().set_state(False)
         super().disconnect()
 
-    def lock_dimmer(self):
-        super().lock()
-        if self.dimmer == 0:
-            self.set_state(1)
-
-    def test_dimmer(self):
-        return super().test()
-
-    def unlock_dimmer(self):
-        super().unlock()
-        if self.dimmer == 0:
-            self.set_state(0)
-
     def reload(self, other):
         if isinstance(other, Dmx_dimmable_light):
-            self.dimmer == other.dimmer
+            super().reload(other)
+            self.dimmer = other.dimmer
 
     def __eq__(self, other):
         if isinstance(other, Dmx_dimmable_light):
             return super().__eq__(other)\
-                    and super() == other.dmx\
                     and self.dimmer == other.dimmer
         return False
 
     def __str__(self):
         string = super().__str__()
         string += "".join("- Type : Dmx_dimmable_light\n")
-        string += "".join("- Dmx : {}\n".format(super()))
+        string += f"- dimmer : {self.dimmer}"
         return string
 
 

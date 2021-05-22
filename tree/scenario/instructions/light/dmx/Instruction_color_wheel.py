@@ -15,9 +15,10 @@ class Instruction_color_wheel(Instruction_light):
         super().initialize()
         self.eval(self.color)
 
-    def run(self, barrier):
+    def run(self, barrier=None):
+        #There are not lock here to do not perturb the position or dimmer locker
+        #It is casi-instant so no need
         super().run()
-        barrier.wait()
         liste = [i.name for i in COLOR]
         self.light.set_color(COLOR[liste[self.eval(self.color)]])
  

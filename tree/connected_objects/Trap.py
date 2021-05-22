@@ -50,6 +50,7 @@ class Trap(Connected_object):
 
     def reload(self, other):
         if isinstance(other, Trap):
+            super().reload(other)
             self.state == other.state
 
     def __eq__(self, other):

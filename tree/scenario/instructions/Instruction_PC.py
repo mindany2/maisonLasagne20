@@ -4,7 +4,7 @@ from In_out.network.messages.control.Press_key import Press_key
 from In_out.network.messages.control.Press_mouse import Press_mouse
 from enum import Enum
 from tree.utils.Logger import Logger
-from time import sleep
+import time
 
 class Instruction_PC(Instruction):
     """
@@ -17,7 +17,7 @@ class Instruction_PC(Instruction):
         self.action = action
         self.args = args
 
-    def run(self, barrier):
+    def run(self, barrier=None):
         super().run()
         self.pc.lock()
         if self.action == ACTIONS.power_on:
@@ -30,7 +30,7 @@ class Instruction_PC(Instruction):
 
         elif self.action == ACTIONS.keys:
             self.pc.send(Press_key(self.args))
-            sleep(0.1) # time to let the key 
+            time.sleep(0.1) # time to let the key 
             Logger.info("press "+str(self.args))
 
         elif self.action == ACTIONS.mouse:
@@ -38,10 +38,10 @@ class Instruction_PC(Instruction):
             clic_right = False
             x, y = self.args[0:2]
             if len(self.args) > 2:
-                double_clic = (self.args[3] == "double")
-                clic_right = (self.args[3] == "droit")
+                double_clic = (self.args[2] == "double")
+                clic_right = (self.args[2] == "droit")
             self.pc.send(Press_mouse(x, y, clic_right, double_clic))
-            Logger.info("clic "+self.args)
+            Logger.info("clic "+str(self.args))
         self.pc.unlock()
 
     def __str__(self):

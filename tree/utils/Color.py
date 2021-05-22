@@ -43,7 +43,9 @@ class Color:
         return "#"+str(self.value)[2::]
 
     def __eq__(self, other):
-        return int(self.value,16) == int(other.value,16)
+        if isinstance(other, Color):
+            return int(self.value,16) == int(other.value,16)
+        return False
 
     def generate_array(self, color_init, nb_dots):
         self.int_to_rgb()
