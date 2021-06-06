@@ -39,6 +39,10 @@ class TestColor(unittest.TestCase):
         color = Color("0x000000")
         self.assertTrue(color.is_black())
 
+    def test_int(self):
+        color = Color("0x462481")
+        self.assertEqual(int(color), 0x462481)
+
     def test_set(self):
         color = Color("0x462481")
         color.set(Color("0xffffff"))

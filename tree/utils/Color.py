@@ -42,6 +42,9 @@ class Color:
     def get_with_hash(self):
         return "#"+str(self.value)[2::]
 
+    def __int__(self):
+        return int(self.value, 16)
+
     def __eq__(self, other):
         if isinstance(other, Color):
             return int(self.value,16) == int(other.value,16)
