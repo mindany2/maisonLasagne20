@@ -17,5 +17,8 @@ class Variable_spotify(Variable):
             return self.spotify.get_state()
         raise(NameError("The variable {} in spotify doesn't existe".format(variable_name)))
 
+    def reload(self, other):
+        pass
+
     def set(self, val):
         raise(ReferenceError("Cannot set an this variable"))

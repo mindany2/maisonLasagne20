@@ -23,8 +23,10 @@ class Scenario_manager:
         self.mutex = Lock()
 
     def initialize(self, scenar_init):
-        self.scenario_select = scenar_init
-        self.current_scenar = scenar_init
+        if not self.current_scenar:
+            self.scenario_select = scenar_init
+            self.current_scenar = scenar_init
+            self.do_current_scenar()
 
     def do_current_scenar(self):
         assert self.current_scenar, "Need to initialize before"

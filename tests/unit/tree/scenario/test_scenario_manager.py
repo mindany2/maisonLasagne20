@@ -33,8 +33,8 @@ class TestScenarioManager(unittest.TestCase):
         self.assertEqual(self.scenar_init.set_state.call_count, not(state))
         if not state:
             self.assertEqual(self.scenar_init.set_state.call_args[0][0], not state)
-        self.assertEqual(self.mutex.acquire.call_count, 1)
-        self.assertEqual(self.mutex.release.call_count, 1)
+        self.assertEqual(self.mutex.acquire.call_count, 2)
+        self.assertEqual(self.mutex.release.call_count, 2)
 
     def test_do_principal_no_initialize(self):
         self.manager.do_scenar_principal(self.scenar_init)
@@ -76,8 +76,8 @@ class TestScenarioManager(unittest.TestCase):
             self.assertEqual(self.manager.get_scenar_select(), self.scenar)
             self.assertEqual(self.scenar.do.call_count, 1)
 
-        self.assertEqual(self.mutex.acquire.call_count, 1)
-        self.assertEqual(self.mutex.release.call_count, 1)
+        self.assertEqual(self.mutex.acquire.call_count, 2)
+        self.assertEqual(self.mutex.release.call_count, 2)
 
     @parameterized.expand(((MARKER.DECO, MARKER.ON), (MARKER.NONE, MARKER.ON), (MARKER.OFF, MARKER.ON), (MARKER.DECO, MARKER.OFF)))
     def test_do_secondary(self, marker, marker_init):
@@ -96,8 +96,8 @@ class TestScenarioManager(unittest.TestCase):
             self.assertEqual(self.manager.top(), self.scenar)
         if marker_init == MARKER.OFF or marker == MARKER.NONE:
             self.assertEqual(self.scenar.do.call_count, 1)
-        self.assertEqual(self.mutex.acquire.call_count, 1)
-        self.assertEqual(self.mutex.release.call_count, 1)
+        self.assertEqual(self.mutex.acquire.call_count, 2)
+        self.assertEqual(self.mutex.release.call_count, 2)
 
 
     def test_reload_current(self):
@@ -140,8 +140,8 @@ class TestScenarioManager(unittest.TestCase):
             self.assertEqual(self.scenar_stack2.do.call_count, 0)
         else:
             self.assertFalse(self.scenar_stack2 in self.manager.get_stack())
-        self.assertEqual(self.mutex.acquire.call_count, 1)
-        self.assertEqual(self.mutex.release.call_count, 1)
+        self.assertEqual(self.mutex.acquire.call_count, 2)
+        self.assertEqual(self.mutex.release.call_count, 2)
         self.manager.remove(Mock())
 
     @parameterized.expand(((MARKER.DECO, MARKER.ON), (MARKER.NONE, MARKER.ON), (MARKER.DECO, MARKER.OFF)))
@@ -167,8 +167,8 @@ class TestScenarioManager(unittest.TestCase):
                 self.assertEqual(self.scenar_stack2.do.call_count, 1)
         self.assertEqual(self.manager.get_scenar_select(), self.scenar_init)
 
-        self.assertEqual(self.mutex.acquire.call_count, 1)
-        self.assertEqual(self.mutex.release.call_count, 1)
+        self.assertEqual(self.mutex.acquire.call_count, 2)
+        self.assertEqual(self.mutex.release.call_count, 2)
 
     
     @parameterized.expand(((MARKER.DECO, ), (MARKER.NONE, ), (MARKER.ON,),  (MARKER.OFF,)))

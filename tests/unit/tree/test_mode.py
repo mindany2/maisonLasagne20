@@ -42,6 +42,7 @@ class TestMode(unittest.TestCase):
         self.assertTrue(self.scenar_end.get_scenarios().do.call_args[1]["join"])
 
     def test_str(self):
+        self.assertEqual(self.name, self.mode.get_name())
         self.assertTrue(self.name in str(self.mode))
         self.assertTrue(str(self.scenar_init) in str(self.mode))
         self.assertTrue(str(self.scenar_end) in str(self.mode))

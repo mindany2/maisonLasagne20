@@ -1,21 +1,21 @@
 from tree.Tree import Tree
 from data_manager.utils.Getter import Getter
-from data_manager.read_tree.configure_tree import config_tree
+from data_manager.read_tree.configure_tree import config_tree, PATH
 from tree.utils.Dico import Dico
 import sys
 from enum import Enum
 
-def reload_tree(old_getter):
+def reload_tree(old_getter, path = PATH):
     """
     Manage to reload all the tree to change environnements, scenarios, light..
     Without shutdown all the process
-    /!\ did not change the peripheric manager
+    //!\\ did not change the peripheric manager
     """
     sys.setrecursionlimit(1500)
     manager = old_getter.get_manager()
     old_tree = old_getter.get_tree()
     new_getter = Getter(Tree(), manager)
-    config_tree(new_getter)
+    config_tree(new_getter, path=path)
     new_tree = new_getter.get_tree()
 
     # we have the old tree and the new one created

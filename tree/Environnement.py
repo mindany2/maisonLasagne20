@@ -156,16 +156,6 @@ class Environnement:
         for env in self.list_sub_env:
             env.initialize()
 
-    def __eq__(self, other):
-        if isinstance(other, Environnement):
-            return self.name == other.name\
-                    and self.list_presets_chosen == other.list_presets_chosen\
-                    and self.list_objects == other.list_objects\
-                    and self.list_presets == other.list_presets\
-                    and self.calculator == other.calculator\
-                    and self.list_sub_env == other.list_sub_env
-        return False
-
     def __str__(self):
         string = self.name + "\n"
         string += "-Link modes\n"

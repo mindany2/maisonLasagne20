@@ -42,3 +42,6 @@ class TestVariableEnv(unittest.TestCase):
         with self.assertRaises(ReferenceError):
             self.variable.set(12)
 
+    def test_reload(self):
+        self.variable.reload(self.variable)
+

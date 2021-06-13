@@ -79,13 +79,6 @@ class Preset:
     def get_list_scenars(self):
         return self.list_scenario
 
-    def __eq__(self, other):
-        if isinstance(other, Preset):
-            return self.name == other.name\
-                    and self.list_scenario == other.list_scenario\
-                    and self.buttons == other.buttons
-        return False
-
     def __str__(self):
         string = self.name + "\n"
         string += "- Manager\n"

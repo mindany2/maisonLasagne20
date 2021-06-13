@@ -15,6 +15,9 @@ class Mode:
         self.inters = []
         self.initialized = False
 
+    def get_name(self):
+        return self.name
+
     def initialize(self):
         self.initialized = True
         if self.name_scenar_init:
@@ -40,13 +43,6 @@ class Mode:
 
     def get_state(self):
         return self.state
-
-    def __eq__(self, other):
-        if isinstance(other, Mode):
-            return self.name == other.name\
-                    and self.state == other.state\
-                    and self.scenar_init == other.scenar_init
-        return False
 
     def __str__(self):
         string = self.name + "\n"
