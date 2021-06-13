@@ -37,6 +37,7 @@ class Dimmable_light(Connected_object):
             self.triak.set(self.convert(0))
         elif self.dimmer == 100:
             self.triak.set(self.convert(100))
+        return True
 
     def disconnect(self):
         #disconnect if it is necessary
