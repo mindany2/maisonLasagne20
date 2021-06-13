@@ -65,6 +65,7 @@ class TestInstruction_led(unittest.TestCase):
             suiv_time, suiv_color = self.infos[i+1]
 
         self.assertEqual(str(controller.send_color.call_args[0][0]), "0x7F0000")
+        self.assertEqual(self.count, 21)
     
 
  

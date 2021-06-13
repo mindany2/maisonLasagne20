@@ -32,9 +32,8 @@ class Scenario_manager:
         assert self.current_scenar, "Need to initialize before"
         Logger.info("Do current scenario {}.{}".format(self.name, self.current_scenar.name))
         self.mutex.acquire()
-        if not self.current_scenar.state():
-            self.current_scenar.set_state(True)
-            self.current_scenar.do()
+        self.current_scenar.set_state(True)
+        self.current_scenar.do()
         self.mutex.release()
 
     def do(self, scenar):
@@ -108,7 +107,6 @@ class Scenario_manager:
 
     def reload_current_scenar(self, scenario):
         self.current_scenar = scenario
-        self.current_scenar.do()
 
     def reset(self):
         self.stack.clear()

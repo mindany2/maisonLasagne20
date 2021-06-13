@@ -29,8 +29,8 @@ class TestScenarioManager(unittest.TestCase):
         self.manager.initialize(self.scenar_init)
         self.scenar_init.state.return_value = state
         self.manager.do_current_scenar()
-        self.assertEqual(self.scenar_init.do.call_count, not(state))
-        self.assertEqual(self.scenar_init.set_state.call_count, not(state))
+        self.assertEqual(self.scenar_init.do.call_count, 2)
+        self.assertEqual(self.scenar_init.set_state.call_count, 2)
         if not state:
             self.assertEqual(self.scenar_init.set_state.call_args[0][0], not state)
         self.assertEqual(self.mutex.acquire.call_count, 2)
@@ -105,7 +105,7 @@ class TestScenarioManager(unittest.TestCase):
         self.scenar = Mock()
         self.manager.reload_current_scenar(self.scenar)
         self.assertEqual(self.manager.get_current_scenar(), self.scenar)
-        self.assertEqual(self.scenar.do.call_count, 1)
+        self.assertEqual(self.scenar.do.call_count, 0)
 
     def test_reload_selected(self):
         self.manager.initialize(self.scenar_init)
@@ -158,11 +158,11 @@ class TestScenarioManager(unittest.TestCase):
         self.manager.remove(self.scenar_stack)
         if marker == MARKER.NONE:
             self.assertEqual(self.manager.get_current_scenar(), self.scenar_stack)
-            self.assertEqual(self.scenar_stack.do.call_count, 1)
+            self.assertEqual(self.scenar_stack.do.call_count, 0)
         else:
             self.assertFalse(self.scenar_stack in self.manager.get_stack())
             if marker_init != MARKER.OFF:
-                self.assertEqual(self.scenar_init.do.call_count, 1)
+                self.assertEqual(self.scenar_init.do.call_count, 2)
             else:
                 self.assertEqual(self.scenar_stack2.do.call_count, 1)
         self.assertEqual(self.manager.get_scenar_select(), self.scenar_init)
