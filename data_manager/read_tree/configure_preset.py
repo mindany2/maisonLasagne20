@@ -54,7 +54,7 @@ def get_html_buttons(buttons, preset, env):
 
         # check if the image is static, if not, it could be a spotify picture
         image = button.get("background_image")
-        if image and not(re.search("\.png|\.jpg|\.jpeg", str(image))):
+        if image and not(re.search(r"\.png|\.jpg|\.jpeg", str(image))):
             if re.search("spotify.",str(image)):
                 image.get_spotify().add_state(name, list(image.split("."))[1])
             else:

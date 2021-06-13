@@ -122,7 +122,7 @@ class TestScenarioManager(unittest.TestCase):
         self.assertFalse(self.manager.get_stack())
         self.assertFalse(self.manager.get_current_scenar())
         self.assertFalse(self.manager.get_scenar_select())
-        self.assertTrue(self.scenar_init.set_state.call_args[0][0])
+        self.assertFalse(self.scenar_init.set_state.call_args[0][0])
 
     @parameterized.expand(((MARKER.DECO, MARKER.ON), (MARKER.NONE, MARKER.ON), (MARKER.DECO, MARKER.OFF)))
     def test_remove_second(self, marker, marker_init):

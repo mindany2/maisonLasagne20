@@ -2,6 +2,9 @@ Modes:
     - mode : mode_1
       preset : preset_1
 
+    - mode : mode_2
+      preset : preset_2
+
 Interrupts:
     config : |
         | name    | type     | args |

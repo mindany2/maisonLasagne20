@@ -7,6 +7,7 @@ from time import sleep
 import io
 import sys, traceback
 from tree.utils.Logger import Logger
+from In_out.network.Client import Client
 
 class Server:
 
@@ -41,6 +42,8 @@ class Server:
 
     def kill(self):
         self.started = False
+        # send an useless connection
+        Client().start()
 
     def threaded_client(self, conn):
         conn.send(pickle.dumps("hello"))

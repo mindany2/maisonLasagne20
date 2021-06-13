@@ -110,7 +110,7 @@ class Scenario_manager:
 
     def reset(self):
         self.stack.clear()
-        self.current_scenar.set_state(True)
+        self.current_scenar.set_state(False)
         self.current_scenar = None
         self.scenario_select = None
 
