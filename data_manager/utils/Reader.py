@@ -21,7 +21,7 @@ class Reader:
         return [Reader(self.getter, arg, self.path_file, self.line+i, add_line = self.add_line) for i,arg in enumerate(self.start)].__iter__()
 
     def __str__(self):
-        if self.start:
+        if self.start is not None:
             return str(self.start)
         return ""
 
