@@ -21,6 +21,7 @@ class Lamp(Connected_object):
             if not(self.force):
                 self.set_state(True)
             self.connected = True
+            return True
 
     def disconnect(self):
         if self.connected:
