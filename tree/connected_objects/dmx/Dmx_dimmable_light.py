@@ -17,7 +17,7 @@ class Dmx_dimmable_light(Dmx_device):
     def connect(self):
         if self.dimmer == 0:
             super().set_state(True)
-        super().connect()
+        return super().connect()
 
     def disconnect(self):
         if self.dimmer == 0:

@@ -15,8 +15,7 @@ class Dmx_strip_led(Dmx_device):
     def connect(self):
         if self.color.is_black() and not(self.force):
             self.set_state(True)
-        super().connect()
-        return True
+        return super().connect()
 
     def disconnect(self):
         if self.color.is_black() and not(self.force):

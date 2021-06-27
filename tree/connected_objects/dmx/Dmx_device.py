@@ -19,6 +19,7 @@ class Dmx_device(Lamp):
             while not self.dmx.connect(self.addr):
                 time.sleep(1)
             self.connected = True
+            return True
 
     def disconnect(self):
         if self.connected:
