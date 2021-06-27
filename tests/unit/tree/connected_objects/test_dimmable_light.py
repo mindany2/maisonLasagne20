@@ -20,7 +20,7 @@ class TestDimmableLight(unittest.TestCase):
     def test_connect(self):
         triak = Mock()
         light = Dimmable_light("test", triak, BULD.buld_63)
-        light.connect()
+        self.assertTrue(light.connect())
         self.assertEqual(triak.set.call_count, 2)
         self.assertEqual(triak.set.call_args[0][0], 400)
 
@@ -28,7 +28,7 @@ class TestDimmableLight(unittest.TestCase):
         self.assertEqual(triak.set.call_count, 3)
         self.assertEqual(triak.set.call_args[0][0], 80)
 
-        light.connect()
+        self.assertTrue(light.connect())
         self.assertEqual(triak.set.call_count, 4)
         self.assertEqual(triak.set.call_args[0][0], 80)
 

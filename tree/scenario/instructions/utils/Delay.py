@@ -7,6 +7,8 @@ class Delay:
     """
     def __init__(self, manager, calculator, val, wait_for_beat = 0, wait_precedent = False):
         self.val = val
+        if str(val) == "":
+            val.raise_error("lol")
         self.wait_precedent = wait_precedent
         self.wait_for_beat = wait_for_beat
         self.manager = manager

@@ -21,6 +21,9 @@ class TestCalculator(unittest.TestCase):
     @parametrize("exp, result", [("1+2", 3), ("8*2", 16), ("var*2", 42*2), ("var/(1-5)", -42/4),
         ("randint(1,1)", 1), ("False*2", 0), ("True+1", 2), ("var==42", 1), ("var != 42", 0), ("var**2", 42**2), ("*6", None), ("va+1", None)])
     def test_eval(self, exp, result):
+        # just one parametrize bug due to none initialization
+        self.variable = Mock()
+        self.calculator = Calculator()
         def raise_error(e):
             raise Exception(e)
         self.expression = Mock()
