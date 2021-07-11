@@ -49,7 +49,8 @@ class TestDmxNetwork(unittest.TestCase):
     @patch.object(DMX, "set_channel", return_value=None)
     @patch.object(DMX, "__init__", return_value=None)
     @patch.object(DMX, "clear_channels", return_value=None)
-    def test_wireless_connect_and_server_management(self, clear, init, set_channel):
+    def test_wireless_connect_and_server_management_instruction_kill(self, clear, init, set_channel):
+        sleep(3)
         self.start_server(clear, init, set_channel)
         sleep(0.1)
         self.assertTrue(self.server.started)
@@ -71,7 +72,11 @@ class TestDmxNetwork(unittest.TestCase):
         for process in [process1, process2]:
             process.start()
 
-        for process in [process1, process2]:
+        sleep(2.5)
+        process3 = threading.Thread(target=self.inst_light.run, args=[Mock()])
+        process3.start()
+
+        for process in [process1, process2, process3]:
             process.join()
 
         self.assertEqual(set_channel.call_count, 83)

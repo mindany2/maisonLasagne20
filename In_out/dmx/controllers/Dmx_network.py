@@ -17,5 +17,6 @@ class Dmx_network(Dmx_controller):
         return self.rpi.send(Set_DMX(channel, -1))
 
     def disconnect(self, channel):
+        print(f"disconnect {channel}")
         return self.rpi.send(Set_DMX(channel, -2))
 
