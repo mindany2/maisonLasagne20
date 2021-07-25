@@ -49,7 +49,7 @@ class TestDmxNetwork(unittest.TestCase):
     @patch.object(DMX, "set_channel", return_value=None)
     @patch.object(DMX, "__init__", return_value=None)
     @patch.object(DMX, "clear_channels", return_value=None)
-    def test_wireless_connect_and_server_management_instruction_kill(self, clear, init, set_channel):
+    def test_wireless_connect_and_server_management(self, clear, init, set_channel):
         sleep(3)
         self.start_server(clear, init, set_channel)
         sleep(0.1)
@@ -72,7 +72,66 @@ class TestDmxNetwork(unittest.TestCase):
         for process in [process1, process2]:
             process.start()
 
-        sleep(2.5)
+        for process in [process1, process2]:
+            process.join()
+
+        self.assertEqual(set_channel.call_count, 83)
+        self.assertEqual(self.relay1.set.call_count, 2)
+        self.assertEqual(self.relay2.set.call_count, 2)
+        self.assertEqual(self.led.color, Color("0xff00ff"))
+        self.assertEqual(self.led.dimmer, 100)
+        self.assertEqual(self.light.dimmer, 100)
+
+        self.kill()
+
+    @patch.object(DMX, "set_channel", return_value=None)
+    @patch.object(DMX, "__init__", return_value=None)
+    @patch.object(DMX, "clear_channels", return_value=None)
+    def test_wireless_connect_and_server_management_instruction_kill(self, clear, init, set_channel):
+        self.start_server(clear, init, set_channel)
+        sleep(0.1)
+        self.assertTrue(self.server.started)
+
+        # create the remote connection rpi to the started server
+        self.remote_rpi = Rpi("connection", None, "me")
+        self.network_dmx = Dmx_network(self.remote_rpi)
+        self.relay_light, self.relay_led = Mock(), Mock()
+        self.light = Dmx_dimmable_light("light", self.relay_light, 20, self.network_dmx)
+        self.led = Dmx_strip_led("light", self.relay_light, 55, self.network_dmx)
+
+        self.calculator = Mock()
+        self.calculator.eval.side_effect = lambda x, y: x
+        self.inst_light = Instruction_dimmer(self.calculator, self.light, 100, 2, 0, False)
+        self.inst_light2 = Instruction_dimmer(self.calculator, self.light, 0, 2, 0, False)
+        self.inst_led = Instruction_color(self.calculator, self.led, 100, 2, 0, False, "0xff00ff")
+        self.inst_led2 = Instruction_color(self.calculator, self.led, 100, 2, 0, False, "0xffffff")
+        self.cond = threading.Condition()
+
+        def deblock(channel, value):
+            if (channel, value) == (55, 124) or (channel, value) == (20, 75):
+                with self.cond:
+                    self.cond.notify()
+                print("oooooooooooooo")
+        
+        set_channel.side_effect = deblock
+        process1 = threading.Thread(target=self.inst_light.run, args=[Mock()])
+        process1.start()
+
+        sleep(0.2)
+        process2 = threading.Thread(target=self.inst_led.run, args=[Mock()])
+        process2.start()
+
+        with self.cond:
+            self.cond.wait()
+
+        process2 = threading.Thread(target=self.inst_led2.run, args=[Mock()])
+        process2.start()
+        process3 = threading.Thread(target=self.inst_light2.run, args=[Mock()])
+        process3.start()
+
+        with self.cond:
+            self.cond.wait()
+
         process3 = threading.Thread(target=self.inst_light.run, args=[Mock()])
         process3.start()
 
