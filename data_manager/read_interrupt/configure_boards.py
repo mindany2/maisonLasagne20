@@ -1,6 +1,8 @@
 from data_manager.utils.File_yaml import File_yaml
 from In_out.interrupts.List_interrupts_extender import List_interrupts_extender
 from In_out.utils.Port_extender import Port_extender
+from In_out.utils.Zigate import Zigate
+from In_out.zigbee.Zigbee_manager import Zigbee_manager
 
 def configure_boards(getter):
     """
@@ -12,6 +14,16 @@ def configure_boards(getter):
     # BOARDS
     config.get("BOARDS", get_boards)
 
+    #ZIGBEE
+    config.get("ZIGBEE", get_zigbee)
+
+def get_zigbee(zigbee):
+    module = zigbee.get("module", mandatory=True)
+    if str(module) == "zigate":
+        choosen_module = Zigate
+    else:
+        module.raise_error("Only zigate module available")
+    zigbee.get_getter().add_zigbee(Zigbee_manager(choosen_module))
 
 def get_boards(boards):
     extender = boards.get("Port_extender")
