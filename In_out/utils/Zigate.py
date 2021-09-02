@@ -5,7 +5,6 @@ class Zigate:
     Manage the zigbee interface with zigate
     """
     def __init__(self, send):
-        print("Start zigbee")
         self.send = send
         self.zigbee = zigate.connect(port=None)
         zigate.dispatcher.connect(self.call_back, zigate.dispatcher.Any)
