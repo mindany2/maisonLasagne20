@@ -2,7 +2,7 @@ from In_out.external_boards.relay.Relay import Relay
 from enum import Enum
 try:
     import RPi.GPIO as GPIO
-except ImportError:
+except (ImportError, RuntimeError):
     # we are not on a rpi
     pass
 
