@@ -15,7 +15,7 @@ class Interrupt:
         self.client = client
 
     def press(self, state = None):
-        Logger.info("Press inter {} on {}".format(self.name, self.name_env)) 
+        Logger.info("Press inter {} on {} with {}".format(self.name, self.name_env, state)) 
         self.client.send(Press_inter(self.name_env, self.name, state))
 
     def start(self):

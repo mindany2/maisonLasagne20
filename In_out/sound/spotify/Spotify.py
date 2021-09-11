@@ -108,6 +108,7 @@ class Spotify:
             self.player.set(int(position))
         if not(self.state) and self.scenar_start:
             self.scenar_start.do()
+        self.state = True
 
     def pausing(self, position):
         if self.analysis:
@@ -115,6 +116,7 @@ class Spotify:
             print("music = {} : player = {} : diff = {}".format(position, self.player.tps, int(position)-self.player.tps))
         if self.state and self.scenar_stop:
             self.scenar_stop.do()
+        self.state = False
 
     def stoping(self):
         if self.analysis:

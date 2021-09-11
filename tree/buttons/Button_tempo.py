@@ -19,6 +19,8 @@ class Button_tempo(Button):
         return self.manager.get_state()
 
     def press(self, state = None):
+        if state == False:
+            return
         if not self.started:
             self.manager.do_scenar_principal(self.scenar_on)
             self.time = time.time()

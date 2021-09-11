@@ -61,8 +61,11 @@ class SP:
 
     @token_check
     def start_playback(self, context_uri=None):
+        self.sp.transfer_playback(self.pi_id, force_play=True)
         self.sp.start_playback(self.pi_id, context_uri=context_uri)
-        print("started")
+        if context_uri:
+            self.sp.shuffle(True, device_id=self.pi_id)
+            self.sp.next_track(self.pi_id)
 
     @token_check
     def next_track(self):
