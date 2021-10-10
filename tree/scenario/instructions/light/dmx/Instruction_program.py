@@ -17,7 +17,9 @@ class Instruction_program(Instruction_light):
 
     def run(self, barrier=None):
         super().run()
+        self.light.connect()
         self.light.set_program(self.eval(self.number))
+        self.light.disconnect()
  
     def __str__(self):
         string = super().__str__()

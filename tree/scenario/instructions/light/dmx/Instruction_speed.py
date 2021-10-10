@@ -17,7 +17,9 @@ class Instruction_speed(Instruction_light):
 
     def run(self, barrier=None):
         super().run()
+        self.light.connect()
         self.light.set_speed(self.eval(self.value))
+        self.light.disconnect()
  
     def __str__(self):
         string = super().__str__()

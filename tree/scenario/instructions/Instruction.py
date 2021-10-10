@@ -38,7 +38,7 @@ class Instruction:
     def reload(self, duration):
         # reload the inst without any delay or duration
         self.in_reload.append(duration)
-        self.run()
+        self.run(Barrier(0))
 
     def wait_precedent(self):
         if self.delay:

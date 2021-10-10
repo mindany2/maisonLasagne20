@@ -22,6 +22,7 @@ class Instruction_position(Instruction_light):
         Setup a try/finally to allow kill from another instruction
         """
         try:
+            self.light.connect()
             self.light.lock_position()
             super().run()
  
@@ -58,6 +59,7 @@ class Instruction_position(Instruction_light):
         finally:
             #Logger.info("{} took {}s to move instead of {}s".format(self.light.name, time()-delay, self.duration))
             self.light.unlock_position()
+            self.light.disconnect()
  
     def __str__(self):
         string = super().__str__()

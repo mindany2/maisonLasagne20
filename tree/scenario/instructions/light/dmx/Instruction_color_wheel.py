@@ -19,8 +19,10 @@ class Instruction_color_wheel(Instruction_light):
         #There are not lock here to do not perturb the position or dimmer locker
         #It is casi-instant so no need
         super().run()
+        self.light.connect()
         liste = [i.name for i in COLOR]
         self.light.set_color(COLOR[liste[self.eval(self.color)]])
+        self.light.disconnect()
  
     def __str__(self):
         string = super().__str__()

@@ -18,9 +18,11 @@ class Instruction_gobo(Instruction_light):
     def run(self, barrier=None):
         #There are not lock here to do not perturb the position or dimmer locker
         #It is casi-instant so no need
+        self.light.connect()
         super().run(time_spent=0)
         liste = [i.name for i in GOBO]
         self.light.set_gobo(GOBO[liste[self.eval(self.gobo)]])
+        self.light.disconnect()
  
     def __str__(self):
         string = super().__str__()
