@@ -21,6 +21,7 @@ class Zigate:
 
 if __name__ == "__main__":
     z = Zigate(lambda device, attr : print(device, attr))
+    print("connected")
     z.permit_join()
     while True:
         pass

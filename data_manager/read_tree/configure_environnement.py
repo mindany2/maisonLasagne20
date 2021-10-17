@@ -33,7 +33,7 @@ def config_environnements(getter, env, path, name_env = "global"):
     config.get("Objects", get_objects, args = env)
 
     # Network interrupt
-    config.get("Interrupts", get_network_inter, args = name_env)
+    config.get("Interrupts", get_network_inter, args = (name_env, env))
 
     # Presets
     get_presets(getter, env, path+"/presets")
@@ -41,16 +41,18 @@ def config_environnements(getter, env, path, name_env = "global"):
     # Modes
     config.get("Modes", get_modes, args = env)
 
-def get_network_inter(inters, name_env):
+def get_network_inter(inters, args):
+    name_env, env = args
     getter = inters.get_getter()
     for inter in Csv_reader(getter, inters.get("config", mandatory=True)):
-        name, type_inter, args = inter.get_str("name"), inter.get_str("type"), inter.get("args")
+        name, type_inter, args = inter.get_str("name", mandatory=True), inter.get_str("type"), inter.get("args")
         if type_inter == "network":
             try:
                 connection = getter.get_manager().get_connection(str(args))
             except KeyError:
                 args.raise_error("Could not find connection {}".format(str(args)))
             connection.add_input_interrupt(name, name_env)
+        env.add_variable(Variable(name, None))
 
 def get_modes(modes, env):
     getter = modes.get_getter()
@@ -78,9 +80,4 @@ def get_variables(variables, *args):
     for var in variables:
         env.add_variable(Variable(var.get_str("name", mandatory = True),
                                   var.get_int("value", mandatory = True)))
-
-        
-
-
-
 

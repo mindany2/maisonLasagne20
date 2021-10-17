@@ -5,7 +5,7 @@ from tree.connected_objects.dmx import Dmx_dimmable_light, Lyre, Crazy_2, Galaxy
 
 from tree.scenario.instructions.utils.Delay import Delay
 from tree.scenario.instructions import Instruction_button, TYPE_BUTTON, Instruction_trap, TYPE_INST_TRAP
-from tree.scenario.instructions import Instruction_spotify, TYPE_INST_SPOTIFY, Instruction_variable, Instruction_interrupt
+from tree.scenario.instructions import Instruction_spotify, TYPE_INST_SPOTIFY, Instruction_variable, Instruction_interrupt, Instruction_command
 from tree.scenario.instructions import Instruction_mode, Instruction_speaker
 from tree.scenario.instructions.light import Instruction_color, Instruction_dimmer, Instruction_force, Instruction_power
 from tree.scenario.instructions.light.dmx import Instruction_color_wheel, Instruction_gobo, Instruction_position, Instruction_program
@@ -174,6 +174,9 @@ def get_inst_button_prin(env, name, delay, duration, args, synchro):
 def get_inst_mode(env, name, delay, duration, args, synchro):
     tree = name.get_getter().get_tree()
     return Instruction_mode(env.get_calculator(), tree, str(name), delay, args, synchro)
+def get_inst_command(env, name, delay, duration, args, synchro):
+    tree = name.get_getter().get_tree()
+    return Instruction_command(env.get_calculator(), str(name), delay, args, synchro)
 
 
 TYPE = {"button_secondary" : get_inst_button_sec,
@@ -195,4 +198,5 @@ TYPE = {"button_secondary" : get_inst_button_sec,
         "program" : get_inst_program,
         "speed" : get_inst_speed,
         "strombo" : get_inst_strombo,
-        "mode" : get_inst_mode}
+        "mode" : get_inst_mode,
+        "command": get_inst_command}

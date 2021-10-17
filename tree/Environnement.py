@@ -93,6 +93,7 @@ class Environnement:
     def change_preset_select(self, preset):
         self.list_presets.change_select(preset)
 
+
     def add_mode(self, mode, preset):
         self.list_presets_chosen.add(mode, preset)
 
@@ -146,6 +147,11 @@ class Environnement:
         return self.calculator
 
     def press_inter(self, name_inter, state):
+        try:
+            self.calculator.change_variable(name_inter, state)
+        except KeyError:
+            # the interrupt had not variable
+            pass
         self.get_preset_select().press_inter(name_inter, state)
         # also press it also in all the sub-environnements
         for env in self.list_sub_env:

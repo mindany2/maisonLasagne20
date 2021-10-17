@@ -13,5 +13,7 @@ class Zigbee_hum_temp_sensor(Zigbee_device):
             self.temperature = data["value"]
         elif data["name"] == "humidity":
             self.humidity = data["value"]
-        super().update((self.temperature, self.humidity))
+
+        values = {"temp": self.temperature, "humidity": self.humidity}
+        super().update(values)
 

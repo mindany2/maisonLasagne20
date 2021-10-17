@@ -26,7 +26,7 @@ def get_presets(getter, env, path):
         # Interrupts Button
         interrupts = file.get("Interrupts")
         if interrupts:
-            interrupts.get("buttons", get_inter_buttons, args = preset, mandatory = True)
+            interrupts.get("buttons", get_inter_buttons, args = (env, preset), mandatory = True)
 
         # HTML Button
         html = file.get("HTML")
@@ -41,7 +41,7 @@ def get_html_buttons(buttons, preset, env):
         type_action = action.get("type")
         if str(type_action) == "button":
             type_bt, scenars = action.get("button", mandatory=True), action.get("scenarios", mandatory=True)
-            preset.add_button(get_bt(name, preset, type_bt, scenars))
+            preset.add_button(get_bt(name, env, preset, type_bt, scenars))
         elif str(type_action) == "variable":
             var_name = action.get_str("variable", mandatory=True)
             try:
@@ -62,17 +62,26 @@ def get_html_buttons(buttons, preset, env):
 
 
 
-def get_inter_buttons(buttons, preset):
+def get_inter_buttons(buttons, args):
+    env, preset = args
     getter = buttons.get_getter()
     for inter in Csv_reader(getter, buttons):
         name, type_bt, scenars = inter.get_str("name", mandatory=True), inter.get("type", mandatory=True), inter.get("scenarios", mandatory=True)
-        preset.add_button(get_bt(name, preset, type_bt, scenars))
+        preset.add_button(get_bt(name, env, preset, type_bt, scenars))
 
-def get_bt(name, preset, type_bt, scenars):
+def get_bt(name,env, preset, type_bt, scenars):
         try:
             manager = preset.get_manager()
         except ValueError as e:
             type_bt.raise_error(str(e))
+
+        if str(type_bt) == "variable":
+            try:
+                variable = env.get_var(str(scenars))
+            except KeyError:
+                scenars.raise_error("Could not found the variable {} in environnement {}".format(str(scenars), preset.name))
+            return Button_variable(name, variable)
+
         list_scenar = []
         for scenar in scenars.split(","):
             try:

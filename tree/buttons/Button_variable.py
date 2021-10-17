@@ -1,4 +1,5 @@
 from tree.buttons.Button import Button
+from tree.utils.Logger import Logger
 
 class Button_variable(Button):
     """
@@ -13,6 +14,7 @@ class Button_variable(Button):
 
     def press(self, val = None):
         if val:
+            Logger.info(f"Set {self.variable.get_name()} to {val}")
             self.variable.set(val)
 
     def __eq__(self, other):

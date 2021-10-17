@@ -36,6 +36,7 @@ class Calculator:
                     except ValueError:
                         if var not in ("False", "True", "not", "randint", "morning"):
                             # replace the var_name by it's value
+                            var = var.split("[")[0]
                             string = string.replace(var,"self.get_value(\"{}\",expression, inst)".format(var))
                         elif var == "morning":
                             # check if it is the morning
@@ -48,23 +49,30 @@ class Calculator:
                 return eval(string)
             except SyntaxError as e:
                 expression.raise_error(str(e))
+            except ValueError as e:
+                Logger.error(e)
         return 0
 
     def get_value(self, var_name, expression, inst):
         try:
-            return float(var_name)
+            value = float(var_name)
         except ValueError:
             cutted_name = var_name.split(".")[0]
             try:
-                return self.variables.get(cutted_name).get(inst, var_name)
+                value = self.variables.get(cutted_name).get(inst, var_name)
             except KeyError:
                 expression.raise_error("Could not find the variable {}".format(var_name))
+        if value is None:
+            raise ValueError(f"The variable {var_name} is None")
+        return value
 
     def reset(self):
         # reset the inst list of all variables
         for var in self.variables:
             var.reset()
 
+    def change_variable(self, name, value):
+        self.variables.get(name).set(value)
 
     def get(self, name):
         cutted_name = name.split(".")
