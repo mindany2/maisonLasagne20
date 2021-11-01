@@ -7,7 +7,6 @@ numpy==1.16.2
 PyBluez==0.23
 pyserial==3.4
 RPi.GPIO==0.7.0
-serial==0.0.97
 spidev==3.4
 APScheduler
 wifi
