@@ -16,6 +16,15 @@ class Led(Lamp):
         self.controler = controler
         self.dimmer = 0
 
+
+    def force_relay(self, force):
+        if self.relay:
+            super().force_relay(force)
+
+    def set_state(self, state):
+        if self.relay:
+            super().set_state(state)
+
     def connect(self):
         if not(self.connected):
             if self.color.is_black() and not(self.force):

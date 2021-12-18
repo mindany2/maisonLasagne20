@@ -46,7 +46,7 @@ def get_led(getter, name, sub_type, relay_triak, addr):
         if str(sub_type) == "dmx":
             return Dmx_strip_led(name, relay_triak.get_relay(), int(addr), getter.get_dmx())
         sub_type.raise_error("The sub_type {} is not present in the TYPE_LED".format(str(sub_type)))
-    return Led(name, relay_triak.get_relay(), controller)
+    return Led(name, relay_triak.get_relay(mandatory=False), controller)
 
 def get_lamp(getter, name, sub_type, relay_triak, addr):
     return Lamp(name, relay_triak.get_relay())

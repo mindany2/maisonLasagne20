@@ -26,7 +26,7 @@ class Getter:
     def get_relay(self, index_relay, board):
         if board == "gpio":
             # the realy index is the gpio port
-            return Relay_GPIO(index_relay)
+            return Relay_GPIO(int(index_relay))
         elif board.count("."):
             # a relay on the network
             rpi_name, board = board.split(".")

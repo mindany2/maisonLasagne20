@@ -106,10 +106,12 @@ class Reader:
         except (IndexError, NameError) as e:
             self.raise_error("{} in the arg {}({})".format(str(e), index, board))
 
-    def get_relay(self):
+    def get_relay(self, mandatory=True):
         # allow to get a relay and raise exception
         if not(self.start):
-            self.raise_error("The relay need to be define")
+            if mandatory:
+                self.raise_error("The relay need to be define")
+            return
         index = self.get("index", mandatory = True)
         board = self.get("board", mandatory = True)
         try:
