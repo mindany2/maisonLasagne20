@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div style="{{manager.get_active_page().get_style()}}">
+    {% for section in manager.get_active_page().get_sections() %}
+        <div style="{{section.get_style()}}">
+            {% for icon in section.get_icons() %}
+                {% if icon.get_type() == TYPE_ICON.button %}
+                    <input onclick="change(id)" type="image" style="{{icon.get_style()}}"
+                     src={{(url_for('static', filename=icon.get_image()),icon.get_image())[icon.get_image().count('http')]}}
+                     id={{section.name + ","+icon.name}}> </input>
+                {% elif icon.get_type() == TYPE_ICON.text %}
+                    <p style="{{icon.get_style()}}">{{icon.get_text()}}</p>
+                {% elif icon.get_type() == TYPE_ICON.link %}
+                    <a href="{{icon.get_link()}}"><img src={{url_for('static', filename=icon.get_image())}} style="{{icon.get_style()}}"></a>
+                {% elif icon.get_type() == TYPE_ICON.slider %}
+                <input oninput="move(id, value)" type="range" min="{{icon.get_min()}}" max="{{icon.get_max}}" value="{{icon.get_value()}}"
+                                id="{{section.name+","+icon.name}}" style="{{icon.get_style()}}">
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
