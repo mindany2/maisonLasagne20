@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{manager.get_active_page().name}}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- Pour refresh toutes les minutes -->
+      <!-- <META HTTP-EQUIV="Refresh" CONTENT="60; URL=/"> -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+
+            function move(id, value)
+            {
+                $.post( "/move_slider", {
+                    id: id,
+                    value: value
+                },
+                function(data){
+                    //TODO reload the page without the html
+                });
+            }
+
+
+            function change(id)
+            {
+                $.post( "/press_button", {
+                    id: id 
+                },
+                function(data){
+                    document.location.reload();
+                    //TODO reload the page without the html
+                });
+            }
+
+
+            function reload()
+            {
+                /*
+                var page = document.createElement("div")
+                page.style.cssText = "{{manager.get_active_page().get_style()}}"
+                var newContent = document.createTextNode('Hi there and greetings!');
+                  // ajoute le nœud texte au nouveau div créé
+                page.appendChild(newContent);
+                document.body.appendChild(page)
+                */
+                // TODO setup all the html
+
+            }
+
+            window.onload = reload;
+        </script>
+        </head>
+        <body>
+            {% block content %}{% endblock %}
+    </body>
+</html>
