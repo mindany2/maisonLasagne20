@@ -1,0 +1,21 @@
+Modes:
+    - mode : mode_1
+      preset : preset_1
+
+    - mode : mode_2
+      preset : preset_2
+
+Interrupts:
+    config : |
+        | name    | type     | args |
+
+Variables:
+    config : |
+        | name | value |
+
+
+Objects:
+    config : |
+        | name  | type | sub_type | relay/triak | addr     |
+        | led_1 | led  | lednet   | 1(1)        | 10.0.0.1 |
+
